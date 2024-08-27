@@ -21,7 +21,7 @@
 		"@sapphire/plugin-logger": "^3.0.4",
 		"discord.js": "14.11.0",
 		"dotenv": "^16.0.3",
-		"ora": "^6.3.0"
+		"ora": "^8.0.1"
 	},
 	"devDependencies": {
 		"@bracketed/typescript-config": "latest",
