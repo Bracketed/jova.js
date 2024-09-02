@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "WebSessions" ADD COLUMN     "sessionTimestamp" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP;

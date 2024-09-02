@@ -1,41 +1,42 @@
 {
-	"name": "discordjs-template",
-	"packageManager": "yarn@3.5.1",
-	"private": true,
-	"main": "dist/BotRoot.js",
+	"name": "@bracketed/node-express-ts-template",
+	"packageManager": "yarn@4.1.0",
+	"version": "1.0.0",
+	"repository": "https://github.com/bracketed/templates-node-typescript-express",
+	"author": {
+		"name": "bracketed",
+		"url": "https://github.com/bracketed"
+	},
+	"main": "./dist/index.js",
 	"type": "module",
 	"imports": {
 		"#root/*": "./dist/*.js"
 	},
-	"author": {
-		"name": "ninjaninja140",
-		"url": "https://github.com/ninjaninja140"
-	},
-	"homepage": "https://bracketed.co.uk",
-	"repository": {
-		"url": "https://github.com/ninjaninja140/DiscordJS-Template"
-	},
-	"dependencies": {
-		"@sapphire/decorators": "^6.0.1",
-		"@sapphire/framework": "^4.4.3",
-		"@sapphire/plugin-logger": "^3.0.4",
-		"discord.js": "14.11.0",
-		"dotenv": "^16.0.3",
-		"ora": "^8.0.1"
+	"scripts": {
+		"dev-start": "yarn tsc && yarn node ./dist/index.js",
+		"start": "yarn node ./dist/index.js",
+		"test": "yarn tsx watch ./src/index.ts",
+		"compile": "yarn tsc",
+		"compose-build": "docker compose build",
+		"compose-up": "docker compose -f compose.yml up -d"
 	},
 	"devDependencies": {
-		"@bracketed/typescript-config": "latest",
-		"@sapphire/cli": "^1.6.1",
-		"typescript": "^5.0.4"
+		"@bracketed/typescript-config": "^4.4.0",
+		"@types/compression": "^1.7.5",
+		"@types/cors": "^2.8.17",
+		"@types/express": "^4.17.21",
+		"@types/node": "^22.5.2",
+		"prettier": "^3.3.3",
+		"tsx": "^4.19.0",
+		"typescript": "^5.5.4"
 	},
-	"scripts": {
-		"start": "node dist/BotRoot.js",
-		"dev": "yarn dlx prisma generate && yarn dlx tsc && yarn node dist/BotRoot.js",
-		"start:docker": "docker run --detach --name DiscordBot --network bridge --restart unless-stopped bot:latest",
-		"dev:docker": "docker build --tag bot:latest . && docker run --detach --name DiscordBot --network bridge --restart unless-stopped bot:latest",
-		"stop:docker": "docker stop DiscordBot && docker rm DiscordBot && docker rmi bot:latest",
-		"build:docker": "docker build --tag bot:latest .",
-		"remove:discord": "node RemoveCommands.js",
-		"build": "yarn install && yarn tsc"
+	"dependencies": {
+		"@bracketed/logger": "^1.0.2",
+		"@sapphire/stopwatch": "^1.5.2",
+		"compression": "^1.7.4",
+		"cors": "^2.8.5",
+		"dotenv": "^16.4.5",
+		"express": "^4.19.2",
+		"express-rate-limit": "^7.4.0"
 	}
 }

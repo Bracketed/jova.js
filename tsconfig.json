@@ -1,8 +1,8 @@
 {
 	"extends": "@bracketed/typescript-config/extra-strict",
 	"compilerOptions": {
-		"module": "ESNext",
-		"moduleResolution": "nodenext",
+		"module": "NodeNext",
+		"moduleResolution": "NodeNext",
 		"lib": ["ESNext"],
 		"target": "ESNext",
 		"paths": {
@@ -13,8 +13,13 @@
 		"outDir": "./dist",
 		"skipLibCheck": true,
 		"declaration": false,
-		"declarationMap": false
+		"declarationMap": false,
+		"incremental": false,
+		"listFiles": true,
+		"listEmittedFiles": true,
+		"resolveJsonModule": true,
+		"typeRoots": ["./src/types"]
 	},
-	"include": ["."],
+	"include": ["src", "src/**/*.json"],
 	"exclude": ["dist", "node_modules"]
 }
