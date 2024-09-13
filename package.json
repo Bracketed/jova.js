@@ -1,18 +1,55 @@
 {
-	"name": "@bracketed/node-express-ts-template",
+	"name": "@bracketed/jova.js",
 	"packageManager": "yarn@4.1.0",
 	"version": "1.0.0",
-	"repository": "https://github.com/bracketed/templates-node-typescript-express",
-	"author": {
-		"name": "bracketed",
-		"url": "https://github.com/bracketed"
+	"publishConfig": {
+		"access": "public"
 	},
-	"main": "./dist/index.js",
+	"license": "Apache-2.0",
+	"author": "@bracketed",
+	"main": "./lib/cjs/index.js",
+	"module": "./lib/esm/index.js",
+	"types": "./lib/types/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./lib/types/index.d.ts",
+			"require": "./lib/cjs/index.js",
+			"import": "./lib/esm/index.js"
+		}
+	},
+	"files": [
+		"lib"
+	],
 	"type": "module",
-	"imports": {
-		"#root/*": "./dist/*.js"
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/bracketed/jova.js.git",
+		"directory": "."
 	},
+	"homepage": "https://bracketed.co.uk",
+	"sideEffects": false,
+	"bugs": {
+		"url": "https://github.com/bracketed/node-logger/issues"
+	},
+	"keywords": [
+		"bracketed",
+		"typescript",
+		"express",
+		"framework",
+		"http",
+		"server",
+		"webserver",
+		"web",
+		"rest",
+		"router",
+		"app",
+		"api"
+	],
 	"scripts": {
+		"build:cjs": "tsc -p tsconfig.cjs.json",
+		"build:esm": "tsc -p tsconfig.esm.json",
+		"build": "yarn build:cjs && yarn build:esm",
+		"build:production": "npm run build:cjs && npm run build:esm",
 		"dev-start": "yarn tsc && yarn node ./dist/index.js",
 		"start": "yarn node ./dist/index.js",
 		"test": "yarn tsx watch ./src/index.ts",
@@ -25,18 +62,24 @@
 		"@types/compression": "^1.7.5",
 		"@types/cors": "^2.8.17",
 		"@types/express": "^4.17.21",
+		"@types/js-yaml": "^4",
 		"@types/node": "^22.5.2",
 		"prettier": "^3.3.3",
 		"tsx": "^4.19.0",
 		"typescript": "^5.5.4"
 	},
 	"dependencies": {
-		"@bracketed/logger": "^1.0.2",
+		"@bracketed/logger": "^1.0.10",
 		"@sapphire/stopwatch": "^1.5.2",
+		"axios": "^1.7.7",
 		"compression": "^1.7.4",
 		"cors": "^2.8.5",
 		"dotenv": "^16.4.5",
 		"express": "^4.19.2",
-		"express-rate-limit": "^7.4.0"
+		"express-rate-limit": "^7.4.0",
+		"find-up": "^7.0.0",
+		"ioredis": "^5.4.1",
+		"js-yaml": "^4.1.0",
+		"rate-limit-redis": "^4.2.0"
 	}
 }

@@ -1,13 +1,15 @@
-import { ApplicationRoute, Registry, Methods } from '#root/Registry';
 import * as Express from 'express';
+import { Registry } from '../registry/Registry.js';
+import { AppRoute as ApplicationRoute } from '../registry/types/Routes/AppRouteType.js';
+import { Methods } from '../types/http/HTTPRequestMethods.js';
 
 export class Route {
 	public registerApplicationRoutes(registry: Registry): ApplicationRoute {
-		return registry.registerAppRoute((route) =>
+		return registry.registerApplicationRoute((route) =>
 			route //
-				.setRoute('')
+				.setRouteName('')
 				.setMethod(Methods.GET)
-				.setHandler(this[Methods.GET].bind(this))
+				.setHandler(this[Methods.GET])
 		);
 	}
 
