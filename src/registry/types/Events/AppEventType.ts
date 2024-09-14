@@ -1,4 +1,4 @@
-import { ApplicationEvent } from 'src/types/JovaEvents.js';
+import { ApplicationEvent } from '../../../types/JovaEvents.js';
 import { EventHandler } from './EventHandlerType.js';
 
 /**

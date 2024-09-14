@@ -14,5 +14,5 @@
 		"skipLibCheck": true,
 		"incremental": false
 	},
-	"exclude": ["lib", "node_modules", "src/example"]
+	"exclude": ["lib", "node_modules"]
 }

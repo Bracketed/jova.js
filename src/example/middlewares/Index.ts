@@ -4,10 +4,10 @@ import {
 	ApplicationRegistry,
 	ApplicationRequest,
 	ApplicationResponse,
-} from '../..';
+} from '../../index.js';
 
 export class Middleware {
-	public registerApplicationMiddlewares(registry: ApplicationRegistry): ApplicationMiddleware {
+	public registerApplicationMiddleware(registry: ApplicationRegistry): ApplicationMiddleware {
 		return registry.registerApplicationMiddleware((middleware) =>
 			middleware //
 				.setMiddlewareName('middleware')

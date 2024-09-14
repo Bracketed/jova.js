@@ -50,24 +50,24 @@
 		"build:esm": "tsc -p tsconfig.esm.json",
 		"build": "yarn build:cjs && yarn build:esm",
 		"build:production": "npm run build:cjs && npm run build:esm",
-		"test": "yarn tsx watch ./src/example/index.test.ts",
+		"test": "yarn tsc && yarn node ./lib/example/index.test.js",
 		"compile": "yarn tsc"
 	},
 	"devDependencies": {
 		"@bracketed/typescript-config": "^4.4.0",
 		"@types/cors": "^2.8.17",
 		"@types/express": "^4.17.21",
-		"@types/node": "^22.5.2",
+		"@types/node": "^22.5.5",
 		"prettier": "^3.3.3",
-		"tsx": "^4.19.0",
-		"typescript": "^5.5.4"
+		"tsx": "^4.19.1",
+		"typescript": "^5.6.2"
 	},
 	"dependencies": {
 		"@bracketed/logger": "^1.0.10",
 		"@sapphire/stopwatch": "^1.5.2",
 		"axios": "^1.7.7",
 		"cors": "^2.8.5",
-		"express": "^4.19.2",
+		"express": "^4.21.0",
 		"express-rate-limit": "^7.4.0",
 		"ioredis": "^5.4.1",
 		"rate-limit-redis": "^4.2.0"

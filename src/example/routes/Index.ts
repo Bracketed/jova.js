@@ -1,4 +1,10 @@
-import { ApplicationRegistry, ApplicationRequest, ApplicationResponse, ApplicationRoute, Methods } from '../..';
+import {
+	ApplicationRegistry,
+	ApplicationRequest,
+	ApplicationResponse,
+	ApplicationRoute,
+	Methods,
+} from '../../index.js';
 
 export class Route {
 	public registerApplicationRoutes(registry: ApplicationRegistry): ApplicationRoute {

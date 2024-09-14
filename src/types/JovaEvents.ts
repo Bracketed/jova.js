@@ -24,7 +24,7 @@ export enum ApplicationEvent {
 	/**
 	 * Catch all events.
 	 *
-	 * Listener Handler Params: `...args: any[]`
+	 * Listener Handler Params: `event: ApplicationEvent, ...args: any[]`
 	 *
 	 * @enum {string}
 	 */

@@ -1,0 +1,7 @@
+version: '3.8'
+
+services:
+    redis:
+        image: 'bitnami/redis:latest'
+        environment:
+            - ALLOW_EMPTY_PASSWORD=yes

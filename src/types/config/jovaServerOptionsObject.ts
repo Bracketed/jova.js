@@ -1,5 +1,5 @@
 import { CorsOptions } from 'cors';
-import { MiddlewareHandler } from 'src/registry/types/Middlewares/MiddlewareHandlerType.js';
+import { MiddlewareHandler } from '../../registry/types/Middlewares/MiddlewareHandlerType.js';
 import { JovaCustomOption } from './jovaCustomOptions.js';
 import { JovaHeaderSetting } from './jovaHeaderAdditionObject.js';
 import { JovaPathSettings } from './jovaPathOptions.js';
