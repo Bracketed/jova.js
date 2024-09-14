@@ -1,33 +1,59 @@
-import { JovaEvent } from 'src/types/JovaEvents.js';
+import { ApplicationEvent } from 'src/types/JovaEvents.js';
 import { EventHandler } from './EventHandlerType.js';
 
-export class AppEvent {
-	private type: JovaEvent | undefined;
-	private once: boolean = false;
+/**
+ * An Application Event Listener.
+ *
+ * @export
+ * @class ApplicationListener
+ * @typedef {ApplicationListener}
+ */
+export class ApplicationListener {
+	private type: ApplicationEvent | undefined;
 	private handler: EventHandler = async (..._args: any[]) => {};
 
-	public setEventType(type: JovaEvent): this {
+	/**
+	 * Set the event type for the event listener.
+	 *
+	 * @public
+	 * @param {ApplicationEvent} type
+	 * @example this.setEventType(ApplicationEvent.ALL)
+	 * @default ApplicationEvent.ALL
+	 * @returns {this}
+	 */
+	public setEventType(type: ApplicationEvent): this {
 		this.type = type;
 		return this;
 	}
 
+	/**
+	 * Set the handler callback for the event listener.
+	 *
+	 * @public
+	 * @param {EventHandler} handler
+	 * @example this.setHandler(this.run)
+	 * @returns {this}
+	 */
 	public setHandler(handler: EventHandler): this {
 		this.handler = handler;
 		return this;
 	}
 
-	public setOnce(active: boolean): this {
-		this.once = active;
-		return this;
-	}
-
-	public getApplicationEvent() {
-		if (!this.type) return null;
+	/**
+	 * Gets the Event Listener's Details.
+	 *
+	 * @public
+	 * @returns {{ event: any; handler: EventHandler; }}
+	 */
+	public getApplicationEvent(): {
+		event: ApplicationEvent;
+		handler: EventHandler;
+	} {
+		if (!this.type) this.type = ApplicationEvent.ALL;
 
 		return {
 			event: this.type,
 			handler: this.handler,
-			once: this.once,
 		};
 	}
 }

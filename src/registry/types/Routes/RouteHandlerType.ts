@@ -1,6 +1,6 @@
-import * as Express from 'express';
+import { ApplicationRequest, ApplicationResponse } from '../../../index.js';
 
 export type RouteHandler = (
-	req: Express.Request,
-	res: Express.Response
-) => Express.Response | Promise<Express.Response | void> | void;
+	req: ApplicationRequest,
+	res: ApplicationResponse
+) => ApplicationResponse | Promise<ApplicationResponse | void> | void;

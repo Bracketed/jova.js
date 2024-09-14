@@ -1,7 +1,7 @@
-import * as Express from 'express';
+import { ApplicationNextFunction, ApplicationRequest, ApplicationResponse } from '../../../index.js';
 
 export type MiddlewareHandler = (
-	req: Express.Request,
-	res: Express.Response,
-	next: Express.NextFunction
-) => Express.Response | Promise<Express.Response | void> | void;
+	req: ApplicationRequest,
+	res: ApplicationResponse,
+	next: ApplicationNextFunction
+) => ApplicationResponse | Promise<ApplicationResponse | void> | void;
