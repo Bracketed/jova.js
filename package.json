@@ -40,7 +40,7 @@
 	"homepage": "https://bracketed.co.uk",
 	"sideEffects": false,
 	"bugs": {
-		"url": "https://github.com/bracketed/node-logger/issues"
+		"url": "https://github.com/bracketed/jova.js/issues"
 	},
 	"keywords": [
 		"bracketed",

@@ -1,10 +1,6 @@
 name: Node.js Package (NPM)
 
 on:
-    push:
-        paths:
-            - src/**
-            - package.json
     workflow_dispatch:
 
 jobs:
