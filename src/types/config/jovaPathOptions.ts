@@ -1,7 +1,7 @@
 /**
  * Custom paths for searching when the server runs.
  *
- * @export
+ 
  * @interface JovaPathSettings
  * @typedef {JovaPathSettings}
  */

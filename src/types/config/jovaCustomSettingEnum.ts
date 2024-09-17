@@ -1,7 +1,7 @@
 /**
- * Description placeholder
+ * The Jova Settings enum.
  *
- * @export
+ 
  * @enum {number}
  */
 export enum JovaSettingsTable {

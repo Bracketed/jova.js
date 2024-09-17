@@ -1,4 +1,4 @@
-import { ApplicationEvent, ApplicationListener, ApplicationRegistry } from '../../index.js';
+import { ApplicationEvent, ApplicationListener, ApplicationRegistry } from '../../types/index.js';
 
 export class Event {
 	public registerApplicationEvent(registry: ApplicationRegistry): ApplicationListener {
@@ -9,8 +9,9 @@ export class Event {
 		);
 	}
 
-	public async run(e: ApplicationEvent, ..._args: any[]) {
-		console.log(e);
+	public async run(e: ApplicationEvent, ...args: any[]) {
+		console.log('Event Hit:', e);
+		console.log(...args);
 		return;
 	}
 }

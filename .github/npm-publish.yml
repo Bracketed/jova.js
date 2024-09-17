@@ -1,0 +1,34 @@
+name: Node.js Package (NPM)
+
+on:
+    push:
+        paths:
+            - src/**
+            - package.json
+    workflow_dispatch:
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 22
+            - run: npm install
+            - run: npm run build:production
+
+    publish-npm:
+        needs: build
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 22
+                  registry-url: https://registry.npmjs.org/
+            - run: npm install
+            - run: npm run build:production
+            - run: npm publish --access public
+              env:
+                  NODE_AUTH_TOKEN: ${{secrets.NODE_PUBLISH}}

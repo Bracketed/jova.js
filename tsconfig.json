@@ -1,8 +1,7 @@
 {
 	"extends": "@bracketed/typescript-config/extra-strict",
 	"compilerOptions": {
-		"moduleResolution": "NodeNext",
-		"module": "NodeNext",
+		"module": "ESNext",
 		"lib": ["ESNext"],
 		"target": "ESNext",
 		"baseUrl": ".",

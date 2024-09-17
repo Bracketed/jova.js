@@ -1,11 +1,14 @@
-import { RateLimitExceededEventHandler, ValueDeterminingMiddleware } from 'express-rate-limit';
-import { RedisOptions } from 'ioredis';
-import { HttpStatus } from '../http/HTTPResponseCodes.js';
+import {
+	HttpStatus,
+	IORedisOptions,
+	RateLimitExceededEventHandler,
+	ValueDeterminingMiddleware,
+} from '../../types/index.js';
 
 /**
  * Ratelimit config for the Jova.js server.
  *
- * @export
+ 
  * @interface RatelimitConfig
  * @typedef {RatelimitConfig}
  */
@@ -133,7 +136,7 @@ export interface RatelimitConfig {
 	 * Can be a connection string
 	 * @example "redis://:authpassword@127.0.0.1:6380/4" // Connect to 127.0.0.1:6380, db 4, using password "authpassword":
 	 * @example "redis://username:authpassword@127.0.0.1:6380/4" // Username can also be passed via URI.
-	 * @type {?RedisOptions}
+	 * @type {?IORedisOptions}
 	 */
-	ratelimitDatabase?: RedisOptions;
+	ratelimitDatabase?: IORedisOptions;
 }

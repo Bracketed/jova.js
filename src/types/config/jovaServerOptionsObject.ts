@@ -1,15 +1,17 @@
-import { CorsOptions } from 'cors';
-import { MiddlewareHandler } from '../../registry/types/Middlewares/MiddlewareHandlerType.js';
-import { JovaCustomOption } from './jovaCustomOptions.js';
-import { JovaHeaderSetting } from './jovaHeaderAdditionObject.js';
-import { JovaPathSettings } from './jovaPathOptions.js';
-import { JovaSettings } from './jovaSettingsObject.js';
-import { RatelimitConfig } from './rateLimitOptionsObject.js';
+import {
+	CorsOptions,
+	JovaCustomOption,
+	JovaHeaderSetting,
+	JovaPathSettings,
+	JovaSettings,
+	MiddlewareHandler,
+	RatelimitConfig,
+} from '../../types/index.js';
 
 /**
  * Jova Server options.
  *
- * @export
+ 
  * @interface JovaServerOptions
  * @typedef {JovaServerOptions}
  */

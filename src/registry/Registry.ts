@@ -1,11 +1,13 @@
-import { Methods } from '../types/http/HTTPRequestMethods.js';
-import { ApplicationEvent } from '../types/JovaEvents.js';
-import { ApplicationListener } from './types/Events/AppEventType.js';
-import { EventHandler } from './types/Events/EventHandlerType.js';
-import { ApplicationMiddleware } from './types/Middlewares/AppMiddlewareType.js';
-import { MiddlewareHandler } from './types/Middlewares/MiddlewareHandlerType.js';
-import { ApplicationRoute } from './types/Routes/AppRouteType.js';
-import { RouteHandler } from './types/Routes/RouteHandlerType.js';
+import {
+	ApplicationEvent,
+	ApplicationListener,
+	ApplicationMiddleware,
+	ApplicationRoute,
+	EventHandler,
+	Methods,
+	MiddlewareHandler,
+	RouteHandler,
+} from '../types/index.js';
 
 interface RegistryOptions {
 	basePath?: string;
@@ -14,7 +16,7 @@ interface RegistryOptions {
 /**
  * The Registry class, this allows the Jova Server to register, use and manage its content.
  *
- * @export
+ 
  * @class Registry
  * @typedef {Registry}
  */
@@ -27,7 +29,6 @@ export class Registry {
 	/**
 	 * Creates Registry a instance.
 	 *
-	 * @constructor
 	 * @param {RegistryOptions} options
 	 */
 	constructor(options: RegistryOptions) {
@@ -114,7 +115,7 @@ export class Registry {
 			const middlewares = this.middlewares.map((m) => m.getApplicationMiddleware().handler);
 
 			return {
-				route: (this.basePath || route.basePathOverride) + route.route,
+				route: (route.basePathOverride || this.basePath) + route.route,
 				method: route.method,
 				handler: route.handler,
 				middlewares: [...middlewares, ...route.middlewares],

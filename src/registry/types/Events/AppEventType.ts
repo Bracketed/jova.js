@@ -1,10 +1,9 @@
-import { ApplicationEvent } from '../../../types/JovaEvents.js';
-import { EventHandler } from './EventHandlerType.js';
+import { ApplicationEvent, EventHandler } from '../../../types/index.js';
 
 /**
  * An Application Event Listener.
  *
- * @export
+ 
  * @class ApplicationListener
  * @typedef {ApplicationListener}
  */
@@ -43,7 +42,7 @@ export class ApplicationListener {
 	 * Gets the Event Listener's Details.
 	 *
 	 * @public
-	 * @returns {{ event: any; handler: EventHandler; }}
+	 * @returns {{ event: ApplicationEvent; handler: EventHandler; }}
 	 */
 	public getApplicationEvent(): {
 		event: ApplicationEvent;

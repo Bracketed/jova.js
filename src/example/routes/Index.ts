@@ -4,7 +4,7 @@ import {
 	ApplicationResponse,
 	ApplicationRoute,
 	Methods,
-} from '../../index.js';
+} from '../../types/index.js';
 
 export class Route {
 	public registerApplicationRoutes(registry: ApplicationRegistry): ApplicationRoute {
@@ -16,7 +16,8 @@ export class Route {
 		);
 	}
 
-	public async run(_request: ApplicationRequest, response: ApplicationResponse): Promise<ApplicationResponse | void> {
+	public async run(request: ApplicationRequest, response: ApplicationResponse): Promise<ApplicationResponse | void> {
+		console.log('Recieved request for', request.baseUrl);
 		return response.status(200).json({ message: 'Hello World!' });
 	}
 }

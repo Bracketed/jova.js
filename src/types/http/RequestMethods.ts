@@ -1,7 +1,7 @@
 /**
  * Request Methods.
  *
- * @export
+ 
  * @enum {string}
  */
 export enum Methods {
@@ -35,4 +35,16 @@ export enum Methods {
 	 * @enum {string}
 	 */
 	PUT = 'put',
+	/**
+	 * The HEAD request method.
+	 *
+	 * @enum {string}
+	 */
+	HEAD = 'head',
+	/**
+	 * The OPTIONS request method.
+	 *
+	 * @enum {string}
+	 */
+	OPTIONS = 'options',
 }

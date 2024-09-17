@@ -1,18 +1,22 @@
-import { ApplicationNextFunction, ApplicationRequest, ApplicationResponse } from '../../../index.js';
-import { Methods } from '../../../types/http/HTTPRequestMethods.js';
-import { Registry } from '../../Registry.js';
-import { MiddlewareHandler } from '../Middlewares/MiddlewareHandlerType.js';
-import { RouteHandler } from './RouteHandlerType.js';
+import {
+	ApplicationNextFunction,
+	ApplicationRegistry,
+	ApplicationRequest,
+	ApplicationResponse,
+	Methods,
+	MiddlewareHandler,
+	RouteHandler,
+} from '../../../types/index.js';
 
 /**
  * Description placeholder
  *
- * @export
+ 
  * @class ApplicationRoute
  * @typedef {ApplicationRoute}
  */
 export class ApplicationRoute {
-	private registry: Registry;
+	private registry: ApplicationRegistry;
 	private route: string = '';
 	private method: Methods = Methods.ALL;
 	private handler: RouteHandler = async (_req: ApplicationRequest, _res: ApplicationResponse) => {};
@@ -23,10 +27,9 @@ export class ApplicationRoute {
 	/**
 	 * Creates an instance of ApplicationRoute.
 	 *
-	 * @constructor
 	 * @param {Registry} registry
 	 */
-	constructor(registry: Registry) {
+	constructor(registry: ApplicationRegistry) {
 		this.registry = registry;
 	}
 
@@ -50,7 +53,7 @@ export class ApplicationRoute {
 	 * Set the method of your route.
 	 *
 	 * @public
-	 * @param {Methods} method
+	 * @param {Methods } method
 	 * @default Methods.ALL // Accepts any request on any method
 	 * @example this.setMethod(Methods.GET)
 	 * @returns {this}

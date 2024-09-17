@@ -1,7 +1,7 @@
 /**
  * Custom express options to set when the Jova.js server starts.
  *
- * @export
+ 
  * @interface JovaCustomOption
  * @typedef {JovaCustomOption}
  */

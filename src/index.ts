@@ -1,25 +1,26 @@
 import { Logger } from '@bracketed/logger';
 import { Stopwatch } from '@sapphire/stopwatch';
-import axios from 'axios';
-import { CorsOptions } from 'cors';
-import express, { Express, NextFunction, Request, Response } from 'express';
+import express, { Express } from 'express';
 import { EventEmitter } from 'node:events';
 import fs from 'node:fs';
 import path from 'node:path';
+import tcp from 'tcp-port-used';
 
-import { Registry } from './registry/Registry.js';
-
-import { MiddlewareHandler } from './registry/types/Middlewares/MiddlewareHandlerType.js';
-import { JovaCustomOption } from './types/config/jovaCustomOptions.js';
-import { JovaPathSettings } from './types/config/jovaPathOptions.js';
-import { JovaServerOptions } from './types/config/jovaServerOptionsObject.js';
-import { JovaSettings } from './types/config/jovaSettingsObject.js';
-import { RatelimitConfig } from './types/config/rateLimitOptionsObject.js';
-import { ApplicationEvent } from './types/JovaEvents.js';
-
-import { ApplicationListener } from './registry/types/Events/AppEventType.js';
-import { ApplicationMiddleware } from './registry/types/Middlewares/AppMiddlewareType.js';
-import { ApplicationRoute } from './registry/types/Routes/AppRouteType.js';
+import {
+	ApplicationEvent,
+	ApplicationListener,
+	ApplicationMiddleware,
+	ApplicationRegistry,
+	ApplicationRoute,
+	CorsOptions,
+	JovaCustomOption,
+	JovaPathSettings,
+	JovaServerOptions,
+	JovaSettings,
+	JovaSettingsTable,
+	MiddlewareHandler,
+	RatelimitConfig,
+} from './types/index.js';
 
 import { loadApplicationCorsConfiguration } from './resources/CorsConfig.js';
 import { loadApplicationCustomConfiguration } from './resources/CustomOptionsConfig.js';
@@ -27,27 +28,6 @@ import { loadApplicationEventsMiddlewareConfiguration } from './resources/Events
 import { loadApplicationMiddlewaresConfiguration } from './resources/MiddlewaresConfig.js';
 import { loadApplicationRatelimitConfiguration } from './resources/RatelimitConfig.js';
 import { loadApplicationSettingsConfiguration } from './resources/SettingsConfig.js';
-
-export * from './types/config/jovaCustomOptions.js';
-export * from './types/config/jovaCustomSettingEnum.js';
-export * from './types/config/jovaHeaderAdditionObject.js';
-export * from './types/config/jovaPathOptions.js';
-export * from './types/config/jovaServerOptionsObject.js';
-export * from './types/config/jovaSettingsObject.js';
-export * from './types/config/rateLimitDatabaseOptionsObject.js';
-export * from './types/config/rateLimitOptionsObject.js';
-
-export * from './types/http/HTTPRequestMethods.js';
-export * from './types/http/HTTPResponseCodes.js';
-
-export * from './registry/types/Routes/AppRouteType.js';
-export * from './registry/types/Routes/RouteHandlerType.js';
-
-export * from './registry/types/Middlewares/AppMiddlewareType.js';
-export * from './registry/types/Middlewares/MiddlewareHandlerType.js';
-
-export * from './registry/types/Events/AppEventType.js';
-export * from './registry/types/Events/EventHandlerType.js';
 
 function recursiveSearchInDir(targetDirName: string, currentDir: string): string | null {
 	const files = fs.readdirSync(currentDir);
@@ -152,9 +132,9 @@ class JovaServer extends EventEmitter {
 	 *
 	 * @public
 	 * @readonly
-	 * @type {Registry}
+	 * @type {ApplicationRegistry}
 	 */
-	public readonly registry: Registry;
+	public readonly registry: ApplicationRegistry;
 	private readonly application: Express = express();
 	private readonly logger: Logger = new Logger();
 	private readonly emitter: EventEmitter;
@@ -162,7 +142,6 @@ class JovaServer extends EventEmitter {
 	/**
 	 * Creates an instance of JovaServer.
 	 *
-	 * @constructor
 	 * @param {JovaServerOptions} [options={}]
 	 * @default {}
 	 */
@@ -183,7 +162,7 @@ class JovaServer extends EventEmitter {
 		};
 
 		this.emitter = new EventEmitter();
-		this.registry = new Registry({
+		this.registry = new ApplicationRegistry({
 			basePath: this.basePath,
 		});
 
@@ -214,7 +193,7 @@ class JovaServer extends EventEmitter {
 	 * Check for a free port to host your Jova server, optionally fund an available one.
 	 *
 	 * @public
-	 * @async
+	 
 	 * @param {(number | string)} port
 	 * @param {?boolean} [recursive]
 	 * @returns {Promise<number>}
@@ -222,12 +201,16 @@ class JovaServer extends EventEmitter {
 	public async checkFreePort(port: number | string, recursive?: boolean): Promise<number> {
 		if (typeof port === 'string') port = Number(port);
 		if (port >= 65354)
-			throw new Error('Cannot set application port while Jova.js Server is running.', {
+			throw new Error('Specified port is too high.', {
 				cause: 'AUTO_PORT_MAXED',
 			});
-		const InUse = await axios
-			.get(`localhost:${port}`)
-			.then(() => true)
+
+		const InUse = await tcp
+			.check(port)
+			.then((p) => {
+				if (p === true) return true;
+				else return false;
+			})
 			.catch(() => false);
 
 		if (InUse) {
@@ -244,15 +227,6 @@ class JovaServer extends EventEmitter {
 		return port;
 	}
 
-	private async loadJovaResources(): Promise<void> {
-		loadApplicationRatelimitConfiguration(this.application, this.ratelimitConf);
-		loadApplicationMiddlewaresConfiguration(this.application, this.middlewares);
-		loadApplicationEventsMiddlewareConfiguration(this.application, this.registry, this.emitter);
-		loadApplicationSettingsConfiguration(this.application, this.settings);
-		loadApplicationCorsConfiguration(this.application, this.corsOptions);
-		loadApplicationCustomConfiguration(this.application, this.customOptions);
-	}
-
 	/**
 	 * Alias for `all`.
 	 *
@@ -264,7 +238,6 @@ class JovaServer extends EventEmitter {
 	 * @readonly
 	 * @param path string
 	 * @param callback any
-	 * @alias all
 	 */
 	public readonly any = this.application.all;
 	/**
@@ -280,13 +253,24 @@ class JovaServer extends EventEmitter {
 	public readonly all = this.application.all;
 
 	/**
+	 * Contextual function.
+	 *
+	 * HTTP GET:
+	 *
 	 * Routes HTTP GET requests to the specified path with the specified callback functions.
 	 *
-	 * Source: http://expressjs.com/en/5x/api.html#app.get
+	 * Source: http://expressjs.com/en/5x/api.html#app.get.method
+	 *
+	 * Get Setting:
+	 *
+	 * Returns the value of name app setting, where name is one of the strings in the app settings table.
+	 *
+	 * Source: https://expressjs.com/en/5x/api.html#app.get
 	 *
 	 * @public
-	 * @param path string
-	 * @param callback any
+	 * @param (http get) path string
+	 * @param (http get) callback any
+	 * @param (get setting) setting string | JovaSettingsTable
 	 * @readonly
 	 */
 	public readonly get = this.application.get;
@@ -354,6 +338,156 @@ class JovaServer extends EventEmitter {
 	 */
 	public readonly route = this.application.route;
 
+	/**
+	 * Routes HTTP HEAD requests to the specified path with the specified callback functions.
+	 *
+	 * Source: http://expressjs.com/en/5x/api.html#app.head
+	 *
+	 * [ NO DOCUMENTATION CURRENT ]
+	 *
+	 * @public
+	 * @param path string
+	 * @param callback any
+	 * @readonly
+	 */
+	public readonly head = this.application.head;
+
+	/**
+	 * Routes HTTP OPTIONS requests to the specified path with the specified callback functions.
+	 *
+	 * Source: http://expressjs.com/en/5x/api.html#app.options
+	 *
+	 * [ NO DOCUMENTATION CURRENT ]
+	 *
+	 * @public
+	 * @param path string
+	 * @param callback any
+	 * @readonly
+	 */
+	public readonly options = this.application.options;
+
+	/**
+	 * Mounts the specified middleware function or functions at the specified path:
+	 * the middleware function is executed when the base of the requested path matches `path`.
+	 *
+	 * Source: http://expressjs.com/en/5x/api.html#app.use
+	 *
+	 * @public
+	 * @param path string
+	 * @param callback any
+	 * @readonly
+	 */
+	public readonly use = this.application.use;
+
+	/**
+	 * Mounts the specified middleware function or functions at the specified path:
+	 * the middleware function is executed when the base of the requested path matches `path`.
+	 *
+	 * Source: http://expressjs.com/en/5x/api.html#app.use
+	 *
+	 * @public
+	 * @param path string
+	 * @param callback any
+	 * @readonly
+	 */
+	public readonly middleware = this.application.use;
+
+	/**
+	 * Assigns setting name to value.
+	 * You may store any value that you want, but certain names can be used to configure the behavior of the server.
+	 * These special names are listed in the app settings table.
+	 *
+	 * Calling app.set('foo', true) for a Boolean property is the same as calling app.enable('foo').
+	 * Similarly, calling app.set('foo', false) for a Boolean property is the same as calling app.disable('foo').
+	 *
+	 * Source: http://expressjs.com/en/5x/api.html#app.set
+	 *
+	 * @public
+	 * @param Name JovaSettingsTable | string
+	 * @param Value any
+	 * @readonly
+	 */
+	public set(Name: JovaSettingsTable | string, Value: any): void {
+		this.application.set(Name, Value);
+	}
+
+	/**
+	 * Registers the given template engine `callback` as `ext`.
+	 *
+	 * Source: http://expressjs.com/en/5x/api.html#app.engine
+	 *
+	 * @public
+	 * @param ext string
+	 * @param callback (path: string, options: object, callback: (e: any, rendered?: string) => void) => void
+	 * @readonly
+	 */
+	public readonly engine = this.application.engine;
+
+	/**
+	 * The `container` object has properties that are local variables within the application,
+	 * and will be available in templates rendered with response.render.
+	 *
+	 * Once set, the value of `container` properties persist throughout the life of the application,
+	 * in contrast with response.locals properties that are valid only for the lifetime of the request.
+	 * You can access local variables in templates rendered within the application.
+	 * This is useful for providing helper functions to templates, as well as application-level data.
+	 * Local variables are available in middleware via `request.app.locals`.
+	 *
+	 * Source: http://expressjs.com/en/5x/api.html#app.locals
+	 *
+	 * @public
+	 */
+	public container = this.application.locals;
+
+	/**
+	 * The `locals` object has properties that are local variables within the application,
+	 * and will be available in templates rendered with response.render.
+	 *
+	 * Once set, the value of `locals` properties persist throughout the life of the application,
+	 * in contrast with response.locals properties that are valid only for the lifetime of the request.
+	 * You can access local variables in templates rendered within the application.
+	 * This is useful for providing helper functions to templates, as well as application-level data.
+	 * Local variables are available in middleware via `request.app.locals`.
+	 *
+	 * Source: http://expressjs.com/en/5x/api.html#app.locals
+	 *
+	 * @public
+	 */
+	public locals = this.application.locals;
+
+	/**
+	 * The `mount` property contains one or more path patterns on which a sub-app was mounted.
+	 *
+	 * Source: http://expressjs.com/en/5x/api.html#app.mountpath
+	 *
+	 * @public
+	 * @readonly
+	 */
+	public readonly mount = this.application.mountpath;
+
+	/**
+	 * The `mountpath` property contains one or more path patterns on which a sub-app was mounted.
+	 *
+	 * Source: http://expressjs.com/en/5x/api.html#app.mountpath
+	 *
+	 * @public
+	 * @readonly
+	 */
+	public readonly mountpath = this.application.mountpath;
+
+	/**
+	 * Returns the canonical path of the application, a string.
+	 *
+	 * The behavior of this method can become very complicated in complex cases of mounted apps:
+	 * it is usually better to use request.baseUrl to get the canonical path of the app.
+	 *
+	 * Source: http://expressjs.com/en/5x/api.html#app.path
+	 *
+	 * @public
+	 * @readonly
+	 */
+	public readonly path = this.application.path;
+
 	private async loadApplicationRoutes(): Promise<void> {
 		const routes = findHandlers(this.paths.routes as string);
 
@@ -362,8 +496,11 @@ class JovaServer extends EventEmitter {
 
 		for await (const [_index, value] of routes.entries()) {
 			const RouteTimer = new Stopwatch();
-			const Route = (await import(`file://${value}`)).Route as {
-				new (): { registerApplicationRoutes: (registry: Registry) => ApplicationRoute };
+			const RouteModule = await import(`file://${value}`);
+			if (!RouteModule['Route']) continue;
+
+			const Route = RouteModule.Route as {
+				new (): { registerApplicationRoutes: (registry: ApplicationRegistry) => ApplicationRoute };
 			};
 
 			const RegisteredRoute = new Route().registerApplicationRoutes(this.registry);
@@ -381,7 +518,10 @@ class JovaServer extends EventEmitter {
 
 			RouteSpecificMiddlewares.forEach((r) => Route.middlewares.push(r));
 
-			this.application[Route.method](Route.route, ...Route.middlewares, Route.handler);
+			this.application[Route.method](Route.route, ...RouteSpecificMiddlewares, Route.handler);
+			this.logger.info(
+				`ApplicationRouteRegistry: Route "${Route.route}" (${Route.method.toUpperCase()}) was deployed with ${RouteSpecificMiddlewares.length} route-specific middlewares.`
+			);
 		});
 
 		this.logger.info(
@@ -398,7 +538,7 @@ class JovaServer extends EventEmitter {
 		for await (const [_index, value] of events.entries()) {
 			const EventTimer = new Stopwatch();
 			const Event = (await import(`file://${value}`)).Event as {
-				new (): { registerApplicationEvent: (registry: Registry) => ApplicationListener };
+				new (): { registerApplicationEvent: (registry: ApplicationRegistry) => ApplicationListener };
 			};
 
 			const RegisteredEvent = new Event().registerApplicationEvent(this.registry);
@@ -414,15 +554,20 @@ class JovaServer extends EventEmitter {
 	}
 
 	private async loadApplicationMiddlewares(): Promise<void> {
-		const middlewares = findHandlers(this.paths.middlewares as string);
-
 		this.logger.info('ApplicationMiddlewareRegistry: Registering Middlewares...');
+
+		await loadApplicationRatelimitConfiguration(this.application, this.logger, this.ratelimitConf);
+		loadApplicationCorsConfiguration(this.application, this.logger, this.corsOptions);
+		loadApplicationMiddlewaresConfiguration(this.application, this.logger, this.middlewares);
+		loadApplicationEventsMiddlewareConfiguration(this.application, this.logger, this.registry, this.emitter);
+
+		const middlewares = findHandlers(this.paths.middlewares as string);
 		const MiddlewareRegisterStopwatch = new Stopwatch();
 
 		for await (const [_index, value] of middlewares.entries()) {
 			const MiddlewareTimer = new Stopwatch();
 			const Middleware = (await import(`file://${value}`)).Middleware as {
-				new (): { registerApplicationMiddleware: (registry: Registry) => ApplicationMiddleware };
+				new (): { registerApplicationMiddleware: (registry: ApplicationRegistry) => ApplicationMiddleware };
 			};
 
 			const RegisteredMiddleware = new Middleware().registerApplicationMiddleware(this.registry);
@@ -437,7 +582,7 @@ class JovaServer extends EventEmitter {
 		});
 
 		this.logger.info(
-			`ApplicationMiddlewareRegistry: Registered ${middlewares.length} Middleware(s) in ${MiddlewareRegisterStopwatch.stop().toString()}`
+			`ApplicationMiddlewareRegistry: Registered ${middlewares.length} + Built-in Middleware(s) in ${MiddlewareRegisterStopwatch.stop().toString()}`
 		);
 	}
 
@@ -445,7 +590,7 @@ class JovaServer extends EventEmitter {
 	 * Start the Jova Server, begin listening to a port & its incoming requests.
 	 *
 	 * @public
-	 * @async
+	 
 	 * @param {?(string | number)} [port]
 	 * @param {?boolean} [allowPortIncrement]
 	 * @example
@@ -476,7 +621,8 @@ class JovaServer extends EventEmitter {
 					{ cause: 'PORT_IN_USE' }
 				);
 
-			await this.loadJovaResources();
+			loadApplicationSettingsConfiguration(this.application, this.logger, this.settings);
+			loadApplicationCustomConfiguration(this.application, this.logger, this.customOptions);
 
 			await this.loadApplicationEvents().catch((err) => {
 				this.logger.fatal('ApplicationEventRegistry: Error during listener processing:', err);
@@ -498,10 +644,12 @@ class JovaServer extends EventEmitter {
 
 			this.application.listen(port, () => {
 				this.logger.info(
-					`Application: HTTP Server now serving on port ${port} with: ${this.registry.getRoutes().length} route(s) ${this.registry.getMiddlewares().length + (this.middlewares?.length || 0)} middleware(s) ${this.registry.getEvents().length} event listener(s)`
+					`Application: HTTP Server now serving on port ${port} with: ${this.registry.getRoutes().length} route(s) ${this.registry.getMiddlewares().length + (this.middlewares?.length || 0)} + Built-in middleware(s) ${this.registry.getEvents().length} event listener(s)`
 				);
 				this.release(ApplicationEvent.READY);
 			});
+
+			this.application.on('mount', (parentApp) => this.release(ApplicationEvent.MOUNT, parentApp));
 		} catch (error) {
 			this.logger.fatal('ApplicationError: Error during server startup:', error);
 			this.release(ApplicationEvent.ERROR, error);
@@ -513,12 +661,12 @@ class JovaServer extends EventEmitter {
 	 * Run a Jova test server, starts up and shuts back down returning an optional 0 exit code for success or 1 for error.
 	 *
 	 * @public
-	 * @async
+	 
 	 * @param {?(string | number)} [port]
 	 * @param {?true} [exit]
 	 * @returns {Promise<void>}
 	 */
-	public async test(port: string | number, exit?: true): Promise<void> {
+	public async testServerDeploy(port: string | number, exit?: true): Promise<void> {
 		try {
 			if (!port) port = this.port;
 
@@ -532,7 +680,8 @@ class JovaServer extends EventEmitter {
 
 			port = await this.checkFreePort(port, true);
 
-			await this.loadJovaResources();
+			loadApplicationSettingsConfiguration(this.application, this.logger, this.settings);
+			loadApplicationCustomConfiguration(this.application, this.logger, this.customOptions);
 
 			await this.loadApplicationEvents().catch((err) => {
 				this.logger.fatal('ApplicationEventRegistry: Error during listener processing:', err);
@@ -554,7 +703,7 @@ class JovaServer extends EventEmitter {
 
 			const app = this.application.listen(port, () => {
 				this.logger.info(
-					`Application: Test HTTP Server now serving on port ${port} with: ${this.registry.getRoutes().length} route(s) ${this.registry.getMiddlewares().length + (this.middlewares?.length || 0)} middleware(s) ${this.registry.getEvents().length} event listener(s)`
+					`Application: Test HTTP Server now serving on port ${port} with: ${this.registry.getRoutes().length} route(s) ${this.registry.getMiddlewares().length + (this.middlewares?.length || 0)} + Built-in middleware(s) ${this.registry.getEvents().length} event listener(s)`
 				);
 				this.release(ApplicationEvent.READY);
 			});
@@ -579,11 +728,4 @@ class JovaServer extends EventEmitter {
 	}
 }
 
-export {
-	ApplicationEvent,
-	NextFunction as ApplicationNextFunction,
-	Registry as ApplicationRegistry,
-	Request as ApplicationRequest,
-	Response as ApplicationResponse,
-	JovaServer,
-};
+export { JovaServer };

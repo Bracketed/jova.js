@@ -1,7 +1,7 @@
 /**
  * Redis configuration for the Jova.js Rate limiter.
  *
- * @export
+ 
  * @interface RatelimitDatabaseConfig
  * @typedef {RatelimitDatabaseConfig}
  */

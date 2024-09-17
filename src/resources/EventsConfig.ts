@@ -1,19 +1,25 @@
+import { Logger } from '@bracketed/logger';
 import { Express, NextFunction, Request, Response } from 'express';
 import EventEmitter from 'node:events';
-import { Registry } from 'src/registry/Registry.js';
-import { ApplicationEvent } from '../types/JovaEvents.js';
+import { ApplicationEvent, ApplicationRegistry } from '../types/index.js';
 
 export const loadApplicationEventsMiddlewareConfiguration = (
 	application: Express,
-	registry: Registry,
+	logger: Logger,
+	registry: ApplicationRegistry,
 	emitter: EventEmitter
 ) => {
+	const Events = registry.getEvents();
+
+	if (Events.length === 0) return;
+
 	application.use((r: Request, _r: Response, next: NextFunction) => {
 		emitter.emit(ApplicationEvent.ROUTE, r);
-		registry.getEvents().forEach((eventListener) => {
+		Events.forEach((eventListener) => {
 			if (eventListener.event === ApplicationEvent.ROUTE) eventListener.handler(r);
 			else if (eventListener.event === ApplicationEvent.ALL) eventListener.handler(ApplicationEvent.ROUTE, r);
 		});
 		return next();
 	});
+	logger.info('ApplicationMiddlewareRegistry: Routing event listeners were set up!');
 };

@@ -1,4 +1,4 @@
-import { ApplicationNextFunction, ApplicationRequest, ApplicationResponse } from '../../../index.js';
+import { ApplicationNextFunction, ApplicationRequest, ApplicationResponse } from '../../../types/index.js';
 
 export type MiddlewareHandler = (
 	req: ApplicationRequest,

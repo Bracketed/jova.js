@@ -1,4 +1,4 @@
-import { ApplicationRequest, ApplicationResponse } from '../../../index.js';
+import { ApplicationRequest, ApplicationResponse } from '../../../types/index.js';
 
 export type RouteHandler = (
 	req: ApplicationRequest,

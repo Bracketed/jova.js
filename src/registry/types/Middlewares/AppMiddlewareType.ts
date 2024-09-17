@@ -1,10 +1,14 @@
-import { ApplicationNextFunction, ApplicationRequest, ApplicationResponse } from '../../../index.js';
-import { MiddlewareHandler } from './MiddlewareHandlerType.js';
+import {
+	ApplicationNextFunction,
+	ApplicationRequest,
+	ApplicationResponse,
+	MiddlewareHandler,
+} from '../../../types/index.js';
 
 /**
  * An Application Middleware.
  *
- * @export
+ 
  * @class AppMiddleware
  * @typedef {AppMiddleware}
  */

@@ -4,7 +4,7 @@ import {
 	ApplicationRegistry,
 	ApplicationRequest,
 	ApplicationResponse,
-} from '../../index.js';
+} from '../../types/index.js';
 
 export class Middleware {
 	public registerApplicationMiddleware(registry: ApplicationRegistry): ApplicationMiddleware {
@@ -21,6 +21,7 @@ export class Middleware {
 		_response: ApplicationResponse,
 		next: ApplicationNextFunction
 	): Promise<ApplicationResponse | void> {
+		console.log('Connected to middleware!');
 		return next();
 	}
 }

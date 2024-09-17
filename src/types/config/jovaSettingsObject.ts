@@ -1,9 +1,9 @@
-import { JovaSettingsTable } from './jovaCustomSettingEnum.js';
+import { JovaSettingsTable } from '../../types/index.js';
 
 /**
  * The enableable and disableable settings for the Jova.js server.
  *
- * @export
+ 
  * @interface JovaSettings
  * @typedef {JovaSettings}
  */

@@ -1,0 +1,25 @@
+{
+	"$schema": "https://typedoc.org/schema.json",
+	"exclude": ["**/node_modules/**", "**/*+(index|.test).ts"],
+	"entryPoints": ["./src/index.ts", "./src/utilities/index.ts", "src/types/**/*.ts"],
+	"basePath": "./src",
+	"name": "Jova.js by Bracketed Softworks",
+	"readme": "./README.md",
+	"plugin": [
+		"typedoc-plugin-inline-sources",
+		"typedoc-plugin-markdown",
+		"typedoc-plugin-mdn-links",
+		"typedoc-github-wiki-theme"
+	],
+	"out": "wiki",
+	"includeVersion": true,
+	"excludePrivate": true,
+	"excludeProtected": true,
+	"tsconfig": "./tsconfig.json",
+	"disableSources": false,
+	"validation": {
+		"notExported": false,
+		"invalidLink": false,
+		"notDocumented": false
+	}
+}
