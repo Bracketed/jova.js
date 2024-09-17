@@ -2,7 +2,7 @@
 	"name": "@bracketed/jova.js",
 	"description": "Jova.js - A semi-advanced Express.js framework  by Bracketed Softworks!",
 	"packageManager": "yarn@4.1.0",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"publishConfig": {
 		"access": "public"
 	},
@@ -10,20 +10,20 @@
 	"author": "@bracketed",
 	"main": "./lib/cjs/index.js",
 	"module": "./lib/esm/index.js",
-	"types": "./lib/pkg-types/index.d.ts",
+	"types": "./lib/types/index.d.ts",
 	"exports": {
 		".": {
-			"types": "./lib/pkg-types/index.d.ts",
+			"types": "./lib/types/index.d.ts",
 			"require": "./lib/cjs/index.js",
 			"import": "./lib/esm/index.js"
 		},
 		"./utilities": {
-			"types": "./lib/pkg-types/utilities/index.d.ts",
+			"types": "./lib/types/utilities/index.d.ts",
 			"require": "./lib/cjs/utilities/index.js",
 			"import": "./lib/esm/utilities/index.js"
 		},
 		"./types": {
-			"types": "./lib/pkg-types/types/index.d.ts",
+			"types": "./lib/types/types/index.d.ts",
 			"require": "./lib/cjs/types/index.js",
 			"import": "./lib/esm/types/index.js"
 		}
