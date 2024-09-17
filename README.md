@@ -10,6 +10,8 @@
 A semi-advanced Express.js framework by Bracketed Softworks!
 This is a package built revolving around [Express.js](https://www.npmjs.com/package/express) to allow the easy usage of Express' API and adding extra things like built in middlewares, event listeners etc.
 
+Wiki available at <https://github.com/Bracketed/jova.js/wiki>
+
 <h2>What is this?</h2>
 
 \- A Framework package built for [Express.js](https://www.npmjs.com/package/express) that uses [@bracketed/logger](https://www.npmjs.com/package/@bracketed/logger) for logging.

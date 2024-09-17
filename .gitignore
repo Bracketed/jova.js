@@ -91,6 +91,7 @@ out
 .nuxt
 dist
 lib
+wiki
 
 # Gatsby files
 .cache/
