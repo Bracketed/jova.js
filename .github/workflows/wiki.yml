@@ -2,6 +2,9 @@ name: Update Wiki
 
 on:
     push:
+        paths:
+            - src/**
+            - typedoc.json
 
 jobs:
     update-wiki:
