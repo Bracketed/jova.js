@@ -8,7 +8,7 @@ const config: Config = {
 	favicon: 'img/JovaIcon.ico',
 
 	// Set the production url of your site here
-	url: 'https://jova.js.org',
+	url: 'https://bracketed.github.io/jova.js/', //'https://jova.js.org',
 	// Set the /<baseUrl>/ pathname under which your site is served
 	// For GitHub pages deployment, it is often '/<projectName>/'
 	baseUrl: '/',

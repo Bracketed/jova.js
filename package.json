@@ -62,7 +62,8 @@
 		"build": "yarn build:cjs && yarn build:esm",
 		"build:production": "npm run build:cjs && npm run build:esm",
 		"test": "yarn tsc && yarn node ./lib/example/index.test.js",
-		"compile": "yarn tsc"
+		"compile": "yarn tsc",
+		"deploy": "gh-pages -d build"
 	},
 	"devDependencies": {
 		"@bracketed/typescript-config": "^4.4.0",
