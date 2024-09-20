@@ -2,49 +2,49 @@
  * Request Methods.
  *
  
- * @enum {string}
+ * @enum string
  */
 export enum Methods {
 	/**
 	 * The GET request method.
 	 *
-	 * @enum {string}
+	 * @enum string
 	 */
 	GET = 'get',
 	/**
 	 * The POST request method.
 	 *
-	 * @enum {string}
+	 * @enum string
 	 */
 	POST = 'post',
 	/**
 	 * The DELETE request method.
 	 *
-	 * @enum {string}
+	 * @enum string
 	 */
 	DELETE = 'delete',
 	/**
 	 * The ANY request catcher, receive any form of request with this.
 	 *
-	 * @enum {string}
+	 * @enum string
 	 */
 	ALL = 'all',
 	/**
 	 * The PUT request method.
 	 *
-	 * @enum {string}
+	 * @enum string
 	 */
 	PUT = 'put',
 	/**
 	 * The HEAD request method.
 	 *
-	 * @enum {string}
+	 * @enum string
 	 */
 	HEAD = 'head',
 	/**
 	 * The OPTIONS request method.
 	 *
-	 * @enum {string}
+	 * @enum string
 	 */
 	OPTIONS = 'options',
 }

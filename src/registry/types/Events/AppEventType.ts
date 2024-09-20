@@ -5,7 +5,6 @@ import { ApplicationEvent, EventHandler } from '../../../types/index.js';
  *
  
  * @class ApplicationListener
- * @typedef {ApplicationListener}
  */
 export class ApplicationListener {
 	private type: ApplicationEvent | undefined;
@@ -15,10 +14,9 @@ export class ApplicationListener {
 	 * Set the event type for the event listener.
 	 *
 	 * @public
-	 * @param {ApplicationEvent} type
+	 * @param type
 	 * @example this.setEventType(ApplicationEvent.ALL)
 	 * @default ApplicationEvent.ALL
-	 * @returns {this}
 	 */
 	public setEventType(type: ApplicationEvent): this {
 		this.type = type;
@@ -29,9 +27,8 @@ export class ApplicationListener {
 	 * Set the handler callback for the event listener.
 	 *
 	 * @public
-	 * @param {EventHandler} handler
+	 * @param handler
 	 * @example this.setHandler(this.run)
-	 * @returns {this}
 	 */
 	public setHandler(handler: EventHandler): this {
 		this.handler = handler;
@@ -42,7 +39,6 @@ export class ApplicationListener {
 	 * Gets the Event Listener's Details.
 	 *
 	 * @public
-	 * @returns {{ event: ApplicationEvent; handler: EventHandler; }}
 	 */
 	public getApplicationEvent(): {
 		event: ApplicationEvent;

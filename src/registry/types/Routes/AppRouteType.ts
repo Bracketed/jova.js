@@ -13,7 +13,6 @@ import {
  *
  
  * @class ApplicationRoute
- * @typedef {ApplicationRoute}
  */
 export class ApplicationRoute {
 	private registry: ApplicationRegistry;
@@ -27,7 +26,7 @@ export class ApplicationRoute {
 	/**
 	 * Creates an instance of ApplicationRoute.
 	 *
-	 * @param {Registry} registry
+	 * @param registry
 	 */
 	constructor(registry: ApplicationRegistry) {
 		this.registry = registry;
@@ -39,10 +38,9 @@ export class ApplicationRoute {
 	 * This works with parameters too, works with anything that can go into the first perameter of a request handler.
 	 *
 	 * @public
-	 * @param {string} route
+	 * @param route
 	 * @default '' // Default route is just the root
 	 * @example this.setRouteName('/api/astronauts')
-	 * @returns {this}
 	 */
 	public setRouteName(route: string): this {
 		this.route = route;
@@ -53,10 +51,9 @@ export class ApplicationRoute {
 	 * Set the method of your route.
 	 *
 	 * @public
-	 * @param {Methods } method
+	 * @param method
 	 * @default Methods.ALL // Accepts any request on any method
 	 * @example this.setMethod(Methods.GET)
-	 * @returns {this}
 	 */
 	public setMethod(method: Methods): this {
 		this.method = method;
@@ -67,10 +64,9 @@ export class ApplicationRoute {
 	 * Set the handler for your route, this handles incoming requests for the method defined with `setMethod`.
 	 *
 	 * @public
-	 * @param {RouteHandler} handler
+	 * @param handler
 	 * @default // Default is an empty handler instance.
 	 * @example this.setHandler(this.run)
-	 * @returns {this}
 	 */
 	public setHandler(handler: RouteHandler): this {
 		this.handler = handler;
@@ -85,10 +81,9 @@ export class ApplicationRoute {
 	 * Define these middlewares using your `middlewares` dir.
 	 *
 	 * @public
-	 * @param {Array<string>} middlewares
+	 * @param middlewares
 	 * @default [] // No middlewares by default or no middlewares with middlewares running on all routes.
 	 * @example this.setRouteMiddlewares(['authorisationMiddleware'])
-	 * @returns {this}
 	 */
 	public setRouteMiddlewares(middlewares: Array<string>): this {
 		const Middlewares = this.registry.getMiddlewares();
@@ -110,10 +105,9 @@ export class ApplicationRoute {
 	 * Set required headers for your route, this enables a route-specific middleware for managing required headers.
 	 *
 	 * @public
-	 * @param {string[]} headers
+	 * @param headers
 	 * @default [] // No required headers.
 	 * @example this.setRequiredHeaders(['Authorisation', 'Cookie'])
-	 * @returns {this}
 	 */
 	public setRequiredHeaders(headers: string[]): this {
 		this.requiredHeaders = headers;
@@ -124,10 +118,9 @@ export class ApplicationRoute {
 	 * Enable the override for the `basePath` option in the `JovaServer` instance config.
 	 *
 	 * @public
-	 * @param {string} basePath
+	 * @param basePath
 	 * @default null // Use default basePath of '', also means disabled.
 	 * @example this.useBasePathOverride('/api/iss')
-	 * @returns {this}
 	 */
 	public useBasePathOverride(basePath: string): this {
 		this.basePathOverride = basePath;
@@ -150,7 +143,6 @@ export class ApplicationRoute {
 	 * Gets the Routes's Details.
 	 *
 	 * @public
-	 * @returns {{ route: string; method: Methods; handler: RouteHandler; middlewares: {}; basePathOverride: string; }}
 	 */
 	public getApplicationRoute(): {
 		route: string;

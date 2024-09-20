@@ -2,7 +2,7 @@
  * The Jova Settings enum.
  *
  
- * @enum {number}
+ * @enum number
  */
 export enum JovaSettingsTable {
 	/**
@@ -13,7 +13,7 @@ export enum JovaSettingsTable {
 	 * https://expressjs.com/en/api.html#app.settings.table
 	 *
 	 * @default undefined
-	 * @type {boolean}
+	 * @type boolean
 	 */
 	CaseSensitive = 'case sensitive routing',
 	/**
@@ -22,7 +22,7 @@ export enum JovaSettingsTable {
 	 * https://expressjs.com/en/api.html#app.settings.table
 	 *
 	 * @default process.env.NODE_ENV | "development"
-	 * @type {string}
+	 * @type string
 	 */
 	Environment = 'env',
 	/**
@@ -31,7 +31,7 @@ export enum JovaSettingsTable {
 	 * https://expressjs.com/en/api.html#app.settings.table
 	 *
 	 * @default "weak"
-	 * @type {any}
+	 * @type any
 	 */
 	ETag = 'etag',
 	/**
@@ -40,18 +40,17 @@ export enum JovaSettingsTable {
 	 * https://expressjs.com/en/api.html#app.settings.table
 	 *
 	 * @default "callback"
-	 * @type {string}
+	 * @type string
 	 */
 	JSONPCallback = 'jsonp callback name',
 	/**
 	 * Enable escaping JSON responses from the res.json, res.jsonp, and res.send APIs.
-	 * This will escape the characters <, >, and & as Unicode escape sequences in JSON.
 	 * The purpose of this it to assist with mitigating certain types of persistent XSS attacks when clients sniff responses for HTML.
 	 *
 	 * https://expressjs.com/en/api.html#app.settings.table
 	 *
 	 * @default undefined
-	 * @type {boolean}
+	 * @type boolean
 	 */
 	JSONEscape = 'json escape',
 	/**
@@ -62,7 +61,7 @@ export enum JovaSettingsTable {
 	 * https://expressjs.com/en/api.html#app.settings.table
 	 *
 	 * @default undefined
-	 * @type {any}
+	 * @type any
 	 */
 	JSONReplacer = 'json replacer',
 	/**
@@ -73,7 +72,7 @@ export enum JovaSettingsTable {
 	 * https://expressjs.com/en/api.html#app.settings.table
 	 *
 	 * @default undefined
-	 * @type {any}
+	 * @type any
 	 */
 	JSONSpaces = 'json spaces',
 	/**
@@ -88,7 +87,7 @@ export enum JovaSettingsTable {
 	 * https://expressjs.com/en/api.html#app.settings.table
 	 *
 	 * @default "extended"
-	 * @type {any}
+	 * @type any
 	 */
 	QueryParser = 'query parser',
 	/**
@@ -99,7 +98,7 @@ export enum JovaSettingsTable {
 	 * https://expressjs.com/en/api.html#app.settings.table
 	 *
 	 * @default undefined
-	 * @type {boolean}
+	 * @type boolean
 	 */
 	StrictRouting = 'strict routing',
 	/**
@@ -108,7 +107,7 @@ export enum JovaSettingsTable {
 	 * https://expressjs.com/en/api.html#app.settings.table
 	 *
 	 * @default 2
-	 * @type {boolean}
+	 * @type boolean
 	 */
 	SubdomainOffset = 'subdomain offset',
 	/**
@@ -123,7 +122,7 @@ export enum JovaSettingsTable {
 	 * https://expressjs.com/en/api.html#app.settings.table
 	 *
 	 * @default false
-	 * @type {any}
+	 * @type any
 	 */
 	TrustProxy = 'trust proxy',
 	/**
@@ -132,7 +131,7 @@ export enum JovaSettingsTable {
 	 * https://expressjs.com/en/api.html#app.settings.table
 	 *
 	 * @default process.cwd() + '/views'
-	 * @type {string | Array<string>}
+	 * @type string | Array<string>
 	 */
 	Views = 'views',
 	/**
@@ -143,7 +142,7 @@ export enum JovaSettingsTable {
 	 * https://expressjs.com/en/api.html#app.settings.table
 	 *
 	 * @default true | undefined
-	 * @type {boolean}
+	 * @type boolean
 	 */
 	ViewCache = 'view cache',
 	/**
@@ -154,7 +153,7 @@ export enum JovaSettingsTable {
 	 * https://expressjs.com/en/api.html#app.settings.table
 	 *
 	 * @default undefined
-	 * @type {string}
+	 * @type string
 	 */
 	ViewEngine = 'view engine',
 	/**
@@ -163,7 +162,7 @@ export enum JovaSettingsTable {
 	 * https://expressjs.com/en/api.html#app.settings.table
 	 *
 	 * @default true
-	 * @type {boolean}
+	 * @type boolean
 	 */
 	PoweredBy = 'x-powered-by',
 }

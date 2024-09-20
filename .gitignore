@@ -92,6 +92,7 @@ out
 dist
 lib
 wiki
+docs/docs/Documentation
 
 # Gatsby files
 .cache/

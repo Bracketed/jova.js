@@ -10,7 +10,6 @@ import {
  *
  
  * @class AppMiddleware
- * @typedef {AppMiddleware}
  */
 export class ApplicationMiddleware {
 	private middleware: string | undefined;
@@ -25,10 +24,9 @@ export class ApplicationMiddleware {
 	 * Set the name of your middleware, this is used to enable the middleware in certain routes.
 	 *
 	 * @public
-	 * @param {string} name
+	 * @param name
 	 * @default undefined // If no name is set or is set to "", runsOnAllRoutes will default to true and make it a global middleware.
 	 * @example this.setMiddlewareName('authorisationMiddleware')
-	 * @returns {this}
 	 */
 	public setMiddlewareName(name: string): this {
 		if (name === '') return this;
@@ -40,10 +38,9 @@ export class ApplicationMiddleware {
 	 * Set the callback function for your middleware.
 	 *
 	 * @public
-	 * @param {MiddlewareHandler} handler
+	 * @param handler
 	 * @default // Blank Handler
 	 * @example this.setHandler(this.run)
-	 * @returns {this}
 	 */
 	public setHandler(handler: MiddlewareHandler): this {
 		this.handler = handler;
@@ -54,10 +51,9 @@ export class ApplicationMiddleware {
 	 * Determine if this middleware is a globally running middleware across your application, or local to any route that specifically uses it.
 	 *
 	 * @public
-	 * @param {boolean} active
+	 * @param active
 	 * @default false // Updates to true if setMiddlewareName is unset.
 	 * @example this.runOnAllRoutes(false)
-	 * @returns {this}
 	 */
 	public runOnAllRoutes(active: boolean): this {
 		this.runsOnAllRoutes = active;
@@ -68,7 +64,6 @@ export class ApplicationMiddleware {
 	 * Gets the Middleware's Details.
 	 *
 	 * @public
-	 * @returns {{ middleware: string; handler: MiddlewareHandler; runsOnAllRoutes: boolean; }}
 	 */
 	public getApplicationMiddleware(): {
 		middleware: string | undefined;

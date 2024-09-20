@@ -1,0 +1,184 @@
+@font-face {
+	font-family: 'FF Neuwelt';
+	src: url('Neuwelt-Bold.eot');
+	src: local('FF Neuwelt Bold'), local('Neuwelt-Bold'), url('Neuwelt-Bold.eot?#iefix') format('embedded-opentype'),
+		url('Neuwelt-Bold.woff2') format('woff2'), url('Neuwelt-Bold.woff') format('woff'),
+		url('Neuwelt-Bold.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'FF Neuwelt Extra';
+	src: url('Neuwelt-ExtraBold.eot');
+	src: local('FF Neuwelt Extra Bold'), local('Neuwelt-ExtraBold'),
+		url('Neuwelt-ExtraBold.eot?#iefix') format('embedded-opentype'),
+		url('Neuwelt-ExtraBold.woff2') format('woff2'), url('Neuwelt-ExtraBold.woff') format('woff'),
+		url('Neuwelt-ExtraBold.ttf') format('truetype');
+	font-weight: 800;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'FF Neuwelt';
+	src: url('Neuwelt-BlackItalic.eot');
+	src: local('FF Neuwelt Black Italic'), local('Neuwelt-BlackItalic'),
+		url('Neuwelt-BlackItalic.eot?#iefix') format('embedded-opentype'),
+		url('Neuwelt-BlackItalic.woff2') format('woff2'), url('Neuwelt-BlackItalic.woff') format('woff'),
+		url('Neuwelt-BlackItalic.ttf') format('truetype');
+	font-weight: 900;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'FF Neuwelt';
+	src: url('Neuwelt-BoldItalic.eot');
+	src: local('FF Neuwelt Bold Italic'), local('Neuwelt-BoldItalic'),
+		url('Neuwelt-BoldItalic.eot?#iefix') format('embedded-opentype'),
+		url('Neuwelt-BoldItalic.woff2') format('woff2'), url('Neuwelt-BoldItalic.woff') format('woff'),
+		url('Neuwelt-BoldItalic.ttf') format('truetype');
+	font-weight: bold;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'FF Neuwelt';
+	src: url('Neuwelt-Italic.eot');
+	src: local('FF Neuwelt Italic'), local('Neuwelt-Italic'),
+		url('Neuwelt-Italic.eot?#iefix') format('embedded-opentype'),
+		url('Neuwelt-Italic.woff2') format('woff2'), url('Neuwelt-Italic.woff') format('woff'),
+		url('Neuwelt-Italic.ttf') format('truetype');
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'FF Neuwelt';
+	src: url('Neuwelt-Black.eot');
+	src: local('FF Neuwelt Black'), local('Neuwelt-Black'),
+		url('Neuwelt-Black.eot?#iefix') format('embedded-opentype'), url('Neuwelt-Black.woff2') format('woff2'),
+		url('Neuwelt-Black.woff') format('woff'), url('Neuwelt-Black.ttf') format('truetype');
+	font-weight: 900;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'FF Neuwelt';
+	src: url('Neuwelt-Light.eot');
+	src: local('FF Neuwelt Light'), local('Neuwelt-Light'),
+		url('Neuwelt-Light.eot?#iefix') format('embedded-opentype'), url('Neuwelt-Light.woff2') format('woff2'),
+		url('Neuwelt-Light.woff') format('woff'), url('Neuwelt-Light.ttf') format('truetype');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'FF Neuwelt';
+	src: url('Neuwelt-Medium.eot');
+	src: local('FF Neuwelt Medium'), local('Neuwelt-Medium'),
+		url('Neuwelt-Medium.eot?#iefix') format('embedded-opentype'),
+		url('Neuwelt-Medium.woff2') format('woff2'), url('Neuwelt-Medium.woff') format('woff'),
+		url('Neuwelt-Medium.ttf') format('truetype');
+	font-weight: 500;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'FF Neuwelt';
+	src: url('Neuwelt-LightItalic.eot');
+	src: local('FF Neuwelt Light Italic'), local('Neuwelt-LightItalic'),
+		url('Neuwelt-LightItalic.eot?#iefix') format('embedded-opentype'),
+		url('Neuwelt-LightItalic.woff2') format('woff2'), url('Neuwelt-LightItalic.woff') format('woff'),
+		url('Neuwelt-LightItalic.ttf') format('truetype');
+	font-weight: 300;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'FF Neuwelt';
+	src: url('Neuwelt-MediumItalic.eot');
+	src: local('FF Neuwelt Medium Italic'), local('Neuwelt-MediumItalic'),
+		url('Neuwelt-MediumItalic.eot?#iefix') format('embedded-opentype'),
+		url('Neuwelt-MediumItalic.woff2') format('woff2'), url('Neuwelt-MediumItalic.woff') format('woff'),
+		url('Neuwelt-MediumItalic.ttf') format('truetype');
+	font-weight: 500;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'FF Neuwelt Extra';
+	src: url('Neuwelt-ExtraBoldItalic.eot');
+	src: local('FF Neuwelt Extra Bold Italic'), local('Neuwelt-ExtraBoldItalic'),
+		url('Neuwelt-ExtraBoldItalic.eot?#iefix') format('embedded-opentype'),
+		url('Neuwelt-ExtraBoldItalic.woff2') format('woff2'), url('Neuwelt-ExtraBoldItalic.woff') format('woff'),
+		url('Neuwelt-ExtraBoldItalic.ttf') format('truetype');
+	font-weight: 800;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'FF Neuwelt Extra';
+	src: url('Neuwelt-ExtraLightItalic.eot');
+	src: local('FF Neuwelt Extra Light Italic'), local('Neuwelt-ExtraLightItalic'),
+		url('Neuwelt-ExtraLightItalic.eot?#iefix') format('embedded-opentype'),
+		url('Neuwelt-ExtraLightItalic.woff2') format('woff2'),
+		url('Neuwelt-ExtraLightItalic.woff') format('woff'),
+		url('Neuwelt-ExtraLightItalic.ttf') format('truetype');
+	font-weight: 200;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'FF Neuwelt Inline';
+	src: url('NeuweltInline-Regular.eot');
+	src: local('FF Neuwelt Inline'), local('NeuweltInline-Regular'),
+		url('NeuweltInline-Regular.eot?#iefix') format('embedded-opentype'),
+		url('NeuweltInline-Regular.woff2') format('woff2'), url('NeuweltInline-Regular.woff') format('woff'),
+		url('NeuweltInline-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'FF Neuwelt Extra';
+	src: url('Neuwelt-ExtraLight.eot');
+	src: local('FF Neuwelt Extra Light'), local('Neuwelt-ExtraLight'),
+		url('Neuwelt-ExtraLight.eot?#iefix') format('embedded-opentype'),
+		url('Neuwelt-ExtraLight.woff2') format('woff2'), url('Neuwelt-ExtraLight.woff') format('woff'),
+		url('Neuwelt-ExtraLight.ttf') format('truetype');
+	font-weight: 200;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'FF Neuwelt';
+	src: url('Neuwelt-Thin.eot');
+	src: local('FF Neuwelt Thin'), local('Neuwelt-Thin'), url('Neuwelt-Thin.eot?#iefix') format('embedded-opentype'),
+		url('Neuwelt-Thin.woff2') format('woff2'), url('Neuwelt-Thin.woff') format('woff'),
+		url('Neuwelt-Thin.ttf') format('truetype');
+	font-weight: 100;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'FF Neuwelt';
+	src: url('Neuwelt-Regular.eot');
+	src: local('FF Neuwelt'), local('Neuwelt-Regular'),
+		url('Neuwelt-Regular.eot?#iefix') format('embedded-opentype'),
+		url('Neuwelt-Regular.woff2') format('woff2'), url('Neuwelt-Regular.woff') format('woff'),
+		url('Neuwelt-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'FF Neuwelt';
+	src: url('Neuwelt-ThinItalic.eot');
+	src: local('FF Neuwelt Thin Italic'), local('Neuwelt-ThinItalic'),
+		url('Neuwelt-ThinItalic.eot?#iefix') format('embedded-opentype'),
+		url('Neuwelt-ThinItalic.woff2') format('woff2'), url('Neuwelt-ThinItalic.woff') format('woff'),
+		url('Neuwelt-ThinItalic.ttf') format('truetype');
+	font-weight: 100;
+	font-style: italic;
+}
+

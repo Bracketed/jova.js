@@ -10,25 +10,24 @@ import {
  *
  
  * @interface RatelimitConfig
- * @typedef {RatelimitConfig}
  */
 export interface RatelimitConfig {
 	/**
 	 * Time in milliseconds until the Ratelimit bucket refreshes.
 	 *
-	 * @type {?number}
+	 * @type number
 	 */
 	refreshTime?: number;
 	/**
 	 * The amount of requests that can be made before being Ratelimited.
 	 *
-	 * @type {?(number | ValueDeterminingMiddleware<number>)}
+	 * @type number | ValueDeterminingMiddleware<number>
 	 */
 	requestLimitAmount?: number | ValueDeterminingMiddleware<number>;
 	/**
 	 * The message for the server to respond when the rate limit is maxed.
 	 *
-	 * @type {?string}
+	 * @type string
 	 */
 	requestLimitMessage?: string;
 	/**
@@ -109,25 +108,25 @@ export interface RatelimitConfig {
 	 * 	NetworkAuthenticationRequired = 511,
 	 * }
 
-	 * @type {?HttpStatus}
+	 * @type HttpStatus
 	 */
 	requestLimitCode?: HttpStatus;
 	/**
 	 * A custom middleware to handle rate limited requests.
 	 *
-	 * @type {?RateLimitExceededEventHandler }
+	 * @type RateLimitExceededEventHandler
 	 */
 	requestLimitHandler?: RateLimitExceededEventHandler;
 	/**
 	 * Count all failed requests after the ratelimit bucket is full.
 	 *
-	 * @type {?boolean}
+	 * @type boolean
 	 */
 	countFailedRequests?: boolean;
 	/**
 	 * Allow requests to be counted into the bucket even if the Jova.js server fails to respond.
 	 *
-	 * @type {?boolean}
+	 * @type boolean
 	 */
 	allowOnInternalError?: boolean;
 	/**
@@ -136,7 +135,7 @@ export interface RatelimitConfig {
 	 * Can be a connection string
 	 * @example "redis://:authpassword@127.0.0.1:6380/4" // Connect to 127.0.0.1:6380, db 4, using password "authpassword":
 	 * @example "redis://username:authpassword@127.0.0.1:6380/4" // Username can also be passed via URI.
-	 * @type {?IORedisOptions}
+	 * @type IORedisOptions
 	 */
 	ratelimitDatabase?: IORedisOptions;
 }

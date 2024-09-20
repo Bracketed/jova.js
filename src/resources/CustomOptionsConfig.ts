@@ -1,5 +1,5 @@
+import { Express } from '@bracketed/express';
 import { Logger } from '@bracketed/logger';
-import { Express } from 'express';
 import { JovaCustomOption } from '../types/index.js';
 
 export const loadApplicationCustomConfiguration = (

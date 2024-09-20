@@ -14,7 +14,6 @@ export const request = {
 	 * @param field
 	 * The HTTP request header field.
 	 *
-	 * @returns `string | undefined`
 	 * @readonly
 	 */
 	getHeader: (request: ApplicationRequest, field: string): string | undefined => request.get(field),
@@ -26,7 +25,6 @@ export const request = {
 	 * @param field
 	 * The HTTP request header field.
 	 *
-	 * @returns `string | undefined`
 	 * @readonly
 	 */
 	header: (request: ApplicationRequest, field: string): string | undefined => request.get(field),
@@ -38,7 +36,6 @@ export const request = {
 	 * @param field
 	 * The HTTP request header field.
 
-	 * @returns `string | undefined`
 	 * @readonly
 	 */
 	get: (request: ApplicationRequest, field: string): string | undefined => request.get(field),
@@ -48,20 +45,20 @@ export const request = {
 	 *
 	 * Examples:
 	 * ```js
-	 *      // With Content-Type: text/html; charset=utf-8
-	 *      request.is('html');
-	 *      request.is('text/html');
-	 *      request.is('text/*');
-	 *      // => true
+	 * // With Content-Type: text/html; charset=utf-8
+	 * request.is('html');
+	 * request.is('text/html');
+	 * request.is('text/*');
+	 * // => true
 	 *
-	 *      // When Content-Type is application/json
-	 *      request.is('json');
-	 *      request.is('application/json');
-	 *      request.is('application/*');
-	 *      // => true
+	 * // When Content-Type is application/json
+	 * request.is('json');
+	 * request.is('application/json');
+	 * request.is('application/*');
+	 * // => true
 	 *
-	 *      request.is('html');
-	 *      // => false
+	 * request.is('html');
+	 * // => false
 	 * ```
 	 *
 	 * @param request
@@ -69,7 +66,6 @@ export const request = {
 	 * @param type
 	 * The Content Type.
 
-	 * @returns `string | false | null`
 	 * @readonly
 	 */
 	is: (request: ApplicationRequest, type: string | string[] | ContentType | ContentType[]): string | false | null =>
@@ -80,20 +76,20 @@ export const request = {
 	 *
 	 * Examples:
 	 * ```js
-	 *      // With Content-Type: text/html; charset=utf-8
-	 *      request.is('html');
-	 *      request.is('text/html');
-	 *      request.is('text/*');
-	 *      // => true
+	 * // With Content-Type: text/html; charset=utf-8
+	 * request.is('html');
+	 * request.is('text/html');
+	 * request.is('text/*');
+	 * // => true
 	 *
-	 *      // When Content-Type is application/json
-	 *      request.is('json');
-	 *      request.is('application/json');
-	 *      request.is('application/*');
-	 *      // => true
+	 * // When Content-Type is application/json
+	 * request.is('json');
+	 * request.is('application/json');
+	 * request.is('application/*');
+	 * // => true
 	 *
-	 *      request.is('html');
-	 *      // => false
+	 * request.is('html');
+	 * // => false
 	 * ```
 	 *
 	 * @param request
@@ -101,7 +97,6 @@ export const request = {
 	 * @param type
 	 * The Content Type.
 
-	 * @returns `string | false | null`
 	 * @readonly
 	 */
 	isType: (
@@ -114,20 +109,20 @@ export const request = {
 	 *
 	 * Examples:
 	 * ```js
-	 *      // With Content-Type: text/html; charset=utf-8
-	 *      request.is('html');
-	 *      request.is('text/html');
-	 *      request.is('text/*');
-	 *      // => true
+	 * // With Content-Type: text/html; charset=utf-8
+	 * request.is('html');
+	 * request.is('text/html');
+	 * request.is('text/*');
+	 * // => true
 	 *
-	 *      // When Content-Type is application/json
-	 *      request.is('json');
-	 *      request.is('application/json');
-	 *      request.is('application/*');
-	 *      // => true
+	 * // When Content-Type is application/json
+	 * request.is('json');
+	 * request.is('application/json');
+	 * request.is('application/*');
+	 * // => true
 	 *
-	 *      request.is('html');
-	 *      // => false
+	 * request.is('html');
+	 * // => false
 	 * ```
 	 *
 	 * @param request
@@ -135,7 +130,6 @@ export const request = {
 	 * @param type
 	 * The Content Type.
 
-	 * @returns `string | false | null`
 	 * @readonly
 	 */
 	isContentType: (
@@ -148,20 +142,20 @@ export const request = {
 	 *
 	 * Examples:
 	 * ```js
-	 *      // With Content-Type: text/html; charset=utf-8
-	 *      request.is('html');
-	 *      request.is('text/html');
-	 *      request.is('text/*');
-	 *      // => true
+	 * // With Content-Type: text/html; charset=utf-8
+	 * request.is('html');
+	 * request.is('text/html');
+	 * request.is('text/*');
+	 * // => true
 	 *
-	 *      // When Content-Type is application/json
-	 *      request.is('json');
-	 *      request.is('application/json');
-	 *      request.is('application/*');
-	 *      // => true
+	 * // When Content-Type is application/json
+	 * request.is('json');
+	 * request.is('application/json');
+	 * request.is('application/*');
+	 * // => true
 	 *
-	 *      request.is('html');
-	 *      // => false
+	 * request.is('html');
+	 * // => false
 	 * ```
 	 *
 	 * @param request
@@ -169,7 +163,6 @@ export const request = {
 	 * @param type
 	 * The Content Type.
 
-	 * @returns `string | false | null`
 	 * @readonly
 	 */
 	verify: (
@@ -182,20 +175,20 @@ export const request = {
 	 *
 	 * Examples:
 	 * ```js
-	 *      // With Content-Type: text/html; charset=utf-8
-	 *      request.is('html');
-	 *      request.is('text/html');
-	 *      request.is('text/*');
-	 *      // => true
+	 * // With Content-Type: text/html; charset=utf-8
+	 * request.is('html');
+	 * request.is('text/html');
+	 * request.is('text/*');
+	 * // => true
 	 *
-	 *      // When Content-Type is application/json
-	 *      request.is('json');
-	 *      request.is('application/json');
-	 *      request.is('application/*');
-	 *      // => true
+	 * // When Content-Type is application/json
+	 * request.is('json');
+	 * request.is('application/json');
+	 * request.is('application/*');
+	 * // => true
 	 *
-	 *      request.is('html');
-	 *      // => false
+	 * request.is('html');
+	 * // => false
 	 * ```
 	 *
 	 * @param request
@@ -203,7 +196,6 @@ export const request = {
 	 * @param type
 	 * The Content Type.
 
-	 * @returns `string | false | null`
 	 * @readonly
 	 */
 	verifyType: (
@@ -216,20 +208,20 @@ export const request = {
 	 *
 	 * Examples:
 	 * ```js
-	 *      // With Content-Type: text/html; charset=utf-8
-	 *      request.is('html');
-	 *      request.is('text/html');
-	 *      request.is('text/*');
-	 *      // => true
+	 * // With Content-Type: text/html; charset=utf-8
+	 * request.is('html');
+	 * request.is('text/html');
+	 * request.is('text/*');
+	 * // => true
 	 *
-	 *      // When Content-Type is application/json
-	 *      request.is('json');
-	 *      request.is('application/json');
-	 *      request.is('application/*');
-	 *      // => true
+	 * // When Content-Type is application/json
+	 * request.is('json');
+	 * request.is('application/json');
+	 * request.is('application/*');
+	 * // => true
 	 *
-	 *      request.is('html');
-	 *      // => false
+	 * request.is('html');
+	 * // => false
 	 * ```
 	 *
 	 * @param request
@@ -237,7 +229,6 @@ export const request = {
 	 * @param type
 	 * The Content Type.
 
-	 * @returns `string | false | null`
 	 * @readonly
 	 */
 	verifyContentType: (
@@ -269,7 +260,6 @@ export const request = {
 	 * An object that can have the following properties:
 	 * - combine: `boolean` - Specify if overlapping & adjacent ranges should be combined, defaults to `false`. When `true`, ranges will be combined and returned as if they were specified that way in the header.
 	 *
-	 * @returns `RangeParser.Ranges | RangeParser.Result | undefined`
 	 * @readonly
 	 */
 	range: (
@@ -290,35 +280,34 @@ export const request = {
 	 *
 	 * Examples:
 	 * ```js
-	 *     // Accept: text/html
-	 *     request.accepts('html');
-	 *     // => "html"
+	 * // Accept: text/html
+	 * request.accepts('html');
+	 * // => "html"
 	 *
-	 *     // Accept: text/*, application/json
-	 *     request.accepts('html');
-	 *     // => "html"
-	 *     request.accepts('text/html');
-	 *     // => "text/html"
-	 *     request.accepts('json, text');
-	 *     // => "json"
-	 *     request.accepts('application/json');
-	 *     // => "application/json"
+	 * // Accept: text/*, application/json
+	 * request.accepts('html');
+	 * // => "html"
+	 * request.accepts('text/html');
+	 * // => "text/html"
+	 * request.accepts('json, text');
+	 * // => "json"
+	 * request.accepts('application/json');
+	 * // => "application/json"
 	 *
-	 *     // Accept: text/*, application/json
-	 *     request.accepts('image/png');
-	 *     request.accepts('png');
-	 *     // => false
+	 * // Accept: text/*, application/json
+	 * request.accepts('image/png');
+	 * request.accepts('png');
+	 * // => false
 	 *
-	 *     // Accept: text/*;q=.5, application/json
-	 *     request.accepts(['html', 'json']);
-	 *     request.accepts('html, json');
-	 *     // => "json"
+	 * // Accept: text/*;q=.5, application/json
+	 * request.accepts(['html', 'json']);
+	 * request.accepts('html, json');
+	 * // => "json"
 	 * ```
 	 * @param request
 	 * The `ApplicationRequest` object from your route handler.
 	 * @param type
 	 * The Content Type
-	 * @returns `string | false`
 	 * @readonly
 	 */
 	accepts: (request: ApplicationRequest, type: string | ContentType): string | false => request.accepts(type),
@@ -335,35 +324,34 @@ export const request = {
 	 *
 	 * Examples:
 	 * ```js
-	 *     // Accept: text/html
-	 *     request.accepts('html');
-	 *     // => "html"
+	 * // Accept: text/html
+	 * request.accepts('html');
+	 * // => "html"
 	 *
-	 *     // Accept: text/*, application/json
-	 *     request.accepts('html');
-	 *     // => "html"
-	 *     request.accepts('text/html');
-	 *     // => "text/html"
-	 *     request.accepts('json, text');
-	 *     // => "json"
-	 *     request.accepts('application/json');
-	 *     // => "application/json"
+	 * // Accept: text/*, application/json
+	 * request.accepts('html');
+	 * // => "html"
+	 * request.accepts('text/html');
+	 * // => "text/html"
+	 * request.accepts('json, text');
+	 * // => "json"
+	 * request.accepts('application/json');
+	 * // => "application/json"
 	 *
-	 *     // Accept: text/*, application/json
-	 *     request.accepts('image/png');
-	 *     request.accepts('png');
-	 *     // => false
+	 * // Accept: text/*, application/json
+	 * request.accepts('image/png');
+	 * request.accepts('png');
+	 * // => false
 	 *
-	 *     // Accept: text/*;q=.5, application/json
-	 *     request.accepts(['html', 'json']);
-	 *     request.accepts('html, json');
-	 *     // => "json"
+	 * // Accept: text/*;q=.5, application/json
+	 * request.accepts(['html', 'json']);
+	 * request.accepts('html, json');
+	 * // => "json"
 	 * ```
 	 * @param request
 	 * The `ApplicationRequest` object from your route handler.
 	 * @param type
 	 * The Content Type
-	 * @returns `string | false`
 	 * @readonly
 	 */
 	acceptsType: (request: ApplicationRequest, type: string | ContentType): string | false => request.accepts(type),
@@ -380,35 +368,34 @@ export const request = {
 	 *
 	 * Examples:
 	 * ```js
-	 *     // Accept: text/html
-	 *     request.accepts('html');
-	 *     // => "html"
+	 * // Accept: text/html
+	 * request.accepts('html');
+	 * // => "html"
 	 *
-	 *     // Accept: text/*, application/json
-	 *     request.accepts('html');
-	 *     // => "html"
-	 *     request.accepts('text/html');
-	 *     // => "text/html"
-	 *     request.accepts('json, text');
-	 *     // => "json"
-	 *     request.accepts('application/json');
-	 *     // => "application/json"
+	 * // Accept: text/*, application/json
+	 * request.accepts('html');
+	 * // => "html"
+	 * request.accepts('text/html');
+	 * // => "text/html"
+	 * request.accepts('json, text');
+	 * // => "json"
+	 * request.accepts('application/json');
+	 * // => "application/json"
 	 *
-	 *     // Accept: text/*, application/json
-	 *     request.accepts('image/png');
-	 *     request.accepts('png');
-	 *     // => false
+	 * // Accept: text/*, application/json
+	 * request.accepts('image/png');
+	 * request.accepts('png');
+	 * // => false
 	 *
-	 *     // Accept: text/*;q=.5, application/json
-	 *     request.accepts(['html', 'json']);
-	 *     request.accepts('html, json');
-	 *     // => "json"
+	 * // Accept: text/*;q=.5, application/json
+	 * request.accepts(['html', 'json']);
+	 * request.accepts('html, json');
+	 * // => "json"
 	 * ```
 	 * @param request
 	 * The `ApplicationRequest` object from your route handler.
 	 * @param type
 	 * The Content Type
-	 * @returns `string | false`
 	 * @readonly
 	 */
 	acceptsTypes: (request: ApplicationRequest, ...types: string[] | ContentType[]): string | false =>
@@ -425,7 +412,6 @@ export const request = {
 	 * The `ApplicationRequest` object from your route handler.
 	 * @param charset
 	 * The Content Charset
-	 * @returns `string | false`
 	 * @readonly
 	 */
 	acceptsCharset: (request: ApplicationRequest, charset: string | Charset): string | false =>
@@ -441,7 +427,6 @@ export const request = {
 	 * The `ApplicationRequest` object from your route handler.
 	 * @param charset
 	 * The Content Charset
-	 * @returns `string | false`
 	 * @readonly
 	 */
 	acceptsCharsets: (request: ApplicationRequest, ...charsets: string[] | Charset[]): string | false =>
@@ -458,7 +443,6 @@ export const request = {
 	 * The `ApplicationRequest` object from your route handler.
 	 * @param encoding
 	 * The Content Encoder
-	 * @returns `string | false`
 	 * @readonly
 	 */
 	acceptsEncoding: (request: ApplicationRequest, encoding: string | Encoder): string | false =>
@@ -474,7 +458,6 @@ export const request = {
 	 * The `ApplicationRequest` object from your route handler.
 	 * @param encoding
 	 * The Content Encoder
-	 * @returns `string | false`
 	 * @readonly
 	 */
 	acceptsEncodings: (request: ApplicationRequest, ...encodings: string[] | Encoder[]): string | false =>
@@ -491,7 +474,6 @@ export const request = {
 	 * The `ApplicationRequest` object from your route handler.
 	 * @param lang
 	 * The Content Language
-	 * @returns `string | false`
 	 * @readonly
 	 */
 	acceptsLanguage: (request: ApplicationRequest, lang: string | Language): string | false =>
@@ -507,7 +489,6 @@ export const request = {
 	 * The `ApplicationRequest` object from your route handler.
 	 * @param lang
 	 * The Content Language
-	 * @returns `string | false`
 	 * @readonly
 	 */
 	acceptsLanguages: (request: ApplicationRequest, ...langs: string[] | Language[]): string | false =>

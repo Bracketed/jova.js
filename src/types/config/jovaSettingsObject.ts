@@ -5,7 +5,6 @@ import { JovaSettingsTable } from '../../types/index.js';
  *
  
  * @interface JovaSettings
- * @typedef {JovaSettings}
  */
 export interface JovaSettings {
 	/**
@@ -13,7 +12,7 @@ export interface JovaSettings {
 	 *
 	 * Allows boolean-based settings only.
 	 *
-	 * @type {?Array<JovaSettingsTable>}
+	 * @type Array<JovaSettingsTable>
 	 */
 	enabled?: Array<JovaSettingsTable>;
 	/**
@@ -21,7 +20,7 @@ export interface JovaSettings {
 	 *
 	 * Allows boolean-based settings only.
 	 *
-	 * @type {?Array<JovaSettingsTable>}
+	 * @type Array<JovaSettingsTable>
 	 */
 	disabled?: Array<JovaSettingsTable>;
 }

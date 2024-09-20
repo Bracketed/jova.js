@@ -1,6 +1,6 @@
+import express, { Express } from '@bracketed/express';
 import { Logger } from '@bracketed/logger';
 import { Stopwatch } from '@sapphire/stopwatch';
-import express, { Express } from 'express';
 import { EventEmitter } from 'node:events';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -104,8 +104,7 @@ function findHandlers(dir: string, startDir = process.cwd(), fileList: string[] 
  * The Jova Server Class.
  *
  * @class JovaServer
- * @typedef {JovaServer}
- * @extends {EventEmitter}
+ * @extends EventEmitter
  */
 class JovaServer extends EventEmitter {
 	/**
@@ -115,7 +114,7 @@ class JovaServer extends EventEmitter {
 	 * @readonly
 	 * @example 3000
 	 * @default 3000
-	 * @type {(string | number)}
+	 * @type string | number
 	 */
 	public readonly port: string | number;
 	private readonly basePath: string;
@@ -132,7 +131,7 @@ class JovaServer extends EventEmitter {
 	 *
 	 * @public
 	 * @readonly
-	 * @type {ApplicationRegistry}
+	 * @type ApplicationRegistry
 	 */
 	public readonly registry: ApplicationRegistry;
 	private readonly application: Express = express();
@@ -142,8 +141,8 @@ class JovaServer extends EventEmitter {
 	/**
 	 * Creates an instance of JovaServer.
 	 *
-	 * @param {JovaServerOptions} [options={}]
-	 * @default {}
+	 * @param options
+	 * @default undefined
 	 */
 	constructor(options: JovaServerOptions = {}) {
 		super();
@@ -194,9 +193,8 @@ class JovaServer extends EventEmitter {
 	 *
 	 * @public
 	 
-	 * @param {(number | string)} port
-	 * @param {?boolean} [recursive]
-	 * @returns {Promise<number>}
+	 * @param port
+	 * @param recursive
 	 */
 	public async checkFreePort(port: number | string, recursive?: boolean): Promise<number> {
 		if (typeof port === 'string') port = Number(port);
@@ -397,8 +395,8 @@ class JovaServer extends EventEmitter {
 	 * You may store any value that you want, but certain names can be used to configure the behavior of the server.
 	 * These special names are listed in the app settings table.
 	 *
-	 * Calling app.set('foo', true) for a Boolean property is the same as calling app.enable('foo').
-	 * Similarly, calling app.set('foo', false) for a Boolean property is the same as calling app.disable('foo').
+	 * Calling application.set('foo', true) for a Boolean property is the same as calling application.enable('foo').
+	 * Similarly, calling application.set('foo', false) for a Boolean property is the same as calling application.disable('foo').
 	 *
 	 * Source: http://expressjs.com/en/5x/api.html#app.set
 	 *
@@ -456,30 +454,10 @@ class JovaServer extends EventEmitter {
 	public locals = this.application.locals;
 
 	/**
-	 * The `mount` property contains one or more path patterns on which a sub-app was mounted.
-	 *
-	 * Source: http://expressjs.com/en/5x/api.html#app.mountpath
-	 *
-	 * @public
-	 * @readonly
-	 */
-	public readonly mount = this.application.mountpath;
-
-	/**
-	 * The `mountpath` property contains one or more path patterns on which a sub-app was mounted.
-	 *
-	 * Source: http://expressjs.com/en/5x/api.html#app.mountpath
-	 *
-	 * @public
-	 * @readonly
-	 */
-	public readonly mountpath = this.application.mountpath;
-
-	/**
 	 * Returns the canonical path of the application, a string.
 	 *
 	 * The behavior of this method can become very complicated in complex cases of mounted apps:
-	 * it is usually better to use request.baseUrl to get the canonical path of the app.
+	 * it is usually better to use request.baseUrl to get the canonical path of the application.
 	 *
 	 * Source: http://expressjs.com/en/5x/api.html#app.path
 	 *
@@ -591,8 +569,8 @@ class JovaServer extends EventEmitter {
 	 *
 	 * @public
 	 
-	 * @param {?(string | number)} [port]
-	 * @param {?boolean} [allowPortIncrement]
+	 * @param port
+	 * @param allowPortIncrement
 	 * @example
 	 * const server = new JovaServer();
 	 *
@@ -605,7 +583,6 @@ class JovaServer extends EventEmitter {
 	 * const server = new JovaServer();
 	 *
 	 * await server.listen(3000, true); // With port increment
-	 * @returns {Promise<void>}
 	 */
 	public async listen(port?: string | number, allowPortIncrement?: boolean): Promise<void> {
 		try {
@@ -648,8 +625,6 @@ class JovaServer extends EventEmitter {
 				);
 				this.release(ApplicationEvent.READY);
 			});
-
-			this.application.on('mount', (parentApp) => this.release(ApplicationEvent.MOUNT, parentApp));
 		} catch (error) {
 			this.logger.fatal('ApplicationError: Error during server startup:', error);
 			this.release(ApplicationEvent.ERROR, error);
@@ -662,9 +637,8 @@ class JovaServer extends EventEmitter {
 	 *
 	 * @public
 	 
-	 * @param {?(string | number)} [port]
-	 * @param {?true} [exit]
-	 * @returns {Promise<void>}
+	 * @param port
+	 * @param exit
 	 */
 	public async testServerDeploy(port: string | number, exit?: true): Promise<void> {
 		try {

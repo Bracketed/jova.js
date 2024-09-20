@@ -2,7 +2,7 @@
  * Events for Jova Listeners.
  *
  
- * @enum {string}
+ * @enum string
  */
 export enum ApplicationEvent {
 	/**
@@ -10,7 +10,7 @@ export enum ApplicationEvent {
 	 *
 	 * Listener Handler Params: `none`
 	 *
-	 * @enum {string}
+	 * @enum string
 	 */
 	READY = 'ready',
 	/**
@@ -18,7 +18,7 @@ export enum ApplicationEvent {
 	 *
 	 * Listener Handler Params: `request: ApplicationRequest`
 	 *
-	 * @enum {string}
+	 * @enum string
 	 */
 	ROUTE = 'route',
 	/**
@@ -26,7 +26,7 @@ export enum ApplicationEvent {
 	 *
 	 * Listener Handler Params: `event: ApplicationEvent, ...args: any[]`
 	 *
-	 * @enum {string}
+	 * @enum string
 	 */
 	ALL = 'any',
 	/**
@@ -34,15 +34,15 @@ export enum ApplicationEvent {
 	 *
 	 * Listener Handler Params: `error: Error | unknown`
 	 *
-	 * @enum {string}
+	 * @enum string
 	 */
 	ERROR = 'error',
 	/**
-	 * The mount event is fired on a sub-app, when it is mounted on a parent app. The parent app is passed to the callback function.
+	 * The mount event is fired on a sub-app, when it is mounted on a parent application. The parent app is passed to the callback function.
 	 *
 	 * Listener Handler Params: `application: JovaServer`
 	 *
-	 * @enum {string}
+	 * @enum string
 	 */
 	MOUNT = 'mount',
 }

@@ -3,19 +3,18 @@
  *
  
  * @interface JovaHeaderSetting
- * @typedef {JovaHeaderSetting}
  */
 export interface JovaHeaderSetting {
 	/**
 	 * The name of the header.
 	 *
-	 * @type {string}
+	 * @type string
 	 */
 	header: string;
 	/**
 	 * The value of the header.
 	 *
-	 * @type {*}
+	 * @type any
 	 */
 	value: any;
 }

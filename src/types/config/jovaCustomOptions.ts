@@ -3,19 +3,18 @@
  *
  
  * @interface JovaCustomOption
- * @typedef {JovaCustomOption}
  */
 export interface JovaCustomOption {
 	/**
 	 * The name of the setting.
 	 *
-	 * @type {string}
+	 * @type string
 	 */
 	name: string;
 	/**
 	 * The value to set it to.
 	 *
-	 * @type {*}
+	 * @type any
 	 */
 	value: any;
 }

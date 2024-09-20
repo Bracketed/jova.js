@@ -18,7 +18,6 @@ interface RegistryOptions {
  *
  
  * @class Registry
- * @typedef {Registry}
  */
 export class Registry {
 	private readonly routes: ApplicationRoute[] = [];
@@ -29,7 +28,7 @@ export class Registry {
 	/**
 	 * Creates Registry a instance.
 	 *
-	 * @param {RegistryOptions} options
+	 * @param options
 	 */
 	constructor(options: RegistryOptions) {
 		this.basePath = options.basePath || '';
@@ -39,7 +38,7 @@ export class Registry {
 	 * Register an app route to the registry, does not work if the Jova App has already been initialised, but will work if the app has not.
 	 *
 	 * @public
-	 * @param {(route: ApplicationRoute) => ApplicationRoute} configureRoute
+	 * @param configureRoute
 	 * @example
 	 * return registry.registerApplicationRoute((route) =>
 	 *		route //
@@ -47,7 +46,6 @@ export class Registry {
 	 *			.setMethod(Methods.GET)
 	 *			.setHandler(this.run)
 	 *	);
-	 * @returns {ApplicationRoute}
 	 */
 	public registerApplicationRoute(configureRoute: (route: ApplicationRoute) => ApplicationRoute): ApplicationRoute {
 		const Route = new ApplicationRoute(this);
@@ -59,14 +57,13 @@ export class Registry {
 	 * Register an app event to the registry, does not work if the Jova App has already been initialised, but will work if the app has not.
 	 *
 	 * @public
-	 * @param {(route: ApplicationListener) => ApplicationListener} configureEvent
+	 * @param configureEvent
 	 * @example
 	 * 	return registry.registerApplicationEvent((event) =>
 	 *		event //
 	 *			.setEventType(ApplicationEvent.READY)
 	 *			.setHandler(this.run)
 	 *	);
-	 * @returns {ApplicationListener}
 	 */
 	public registerApplicationEvent(
 		configureEvent: (event: ApplicationListener) => ApplicationListener
@@ -80,7 +77,7 @@ export class Registry {
 	 * Register an app middleware to the registry, does not work if the Jova App has already been initialised, but will work if the app has not.
 	 *
 	 * @public
-	 * @param {(middleware: ApplicationMiddleware) => ApplicationMiddleware} configureMiddleware
+	 * @param configureMiddleware
 	 * @example
 	 * 	return registry.registerApplicationMiddleware((middleware) =>
 	 *		middleware //
@@ -88,7 +85,6 @@ export class Registry {
 	 *			.setHandler(this.run)
 	 *			.runOnAllRoutes(false)
 	 *	);
-	 * @returns {ApplicationMiddleware}
 	 */
 	public registerApplicationMiddleware(
 		configureMiddleware: (middleware: ApplicationMiddleware) => ApplicationMiddleware
@@ -102,7 +98,6 @@ export class Registry {
 	 * Gets all the routes currently attached to the registry.
 	 *
 	 * @public
-	 * @returns {{ route: string; method: Methods; handler: RouteHandler; middlewares: MiddlewareHandler[]; }[]}
 	 */
 	public getRoutes(): {
 		route: string;
@@ -127,7 +122,6 @@ export class Registry {
 	 * Gets all the routes currently attached to the registry.
 	 *
 	 * @public
-	 * @returns {{ event: ApplicationEvent; handler: EventHandler; }[}
 	 */
 	public getEvents(): {
 		event: ApplicationEvent;
@@ -147,7 +141,6 @@ export class Registry {
 	 * Gets all the middlewares currently attached to the registry.
 	 *
 	 * @public
-	 * @returns {{ middleware: string | undefined; handler: MiddlewareHandler; runsOnAllRoutes: boolean; }[]}
 	 */
 	public getMiddlewares(): {
 		middleware: string | undefined;
@@ -169,7 +162,6 @@ export class Registry {
 	 * Clear all registries.
 	 *
 	 * @public
-	 * @returns {void}
 	 */
 	public flush(): void {
 		this.middlewares.length = 0;

@@ -13,20 +13,19 @@ import {
  *
  
  * @interface JovaServerOptions
- * @typedef {JovaServerOptions}
  */
 export interface JovaServerOptions {
 	/**
 	 * Deploy example middlewares and routes when running the Jova.js Server.
 	 *
-	 * @type {?JovaPathSettings}
+	 * @type JovaPathSettings
 	 */
 	paths?: JovaPathSettings;
 	/**
 	 * An optional base path for all of your routes to begin at.
 	 *
 	 * @example "/api"
-	 * @type {?string}
+	 * @type string
 	 */
 	basePath?: string;
 	/**
@@ -40,13 +39,13 @@ export interface JovaServerOptions {
 	 * 	console.log(`New request at ${request.path}!`)
 	 * 	return next()
 	 * })
-	 * @type {?Array<Middleware>}
+	 * @type Array<Middleware>
 	 */
 	middlewares?: Array<MiddlewareHandler>;
 	/**
 	 * The port for the Jova Server to run on.
 	 * @default 3000
-	 * @type {?(string | number)}
+	 * @type string | number
 	 */
 	port?: string | number;
 	/**
@@ -64,31 +63,31 @@ export interface JovaServerOptions {
 	 *		allowOnInternalError?: boolean;
 	 *		ratelimitDatabase?: string | RatelimitDatabaseConfig;
 	 * }
-	 * @type {?RatelimitConfig}
+	 * @type RatelimitConfig
 	 */
 	ratelimiting?: RatelimitConfig;
 	/**
 	 * Custom settings from express to be enabled or disabled upon the server starting.
-	 * @default {}
-	 * @type {?JovaSettings}
+	 * @default undefined
+	 * @type JovaSettings
 	 */
 	settings?: JovaSettings;
 	/**
 	 * Custom options from express to be set upon the server starting, similar to `settings` but this sets any value unlike `settings` which only allows settings from the `JovaSettingsTable` enum.
 	 * @default []
-	 * @type {?Array<JovaCustomOption>}
+	 * @type Array<JovaCustomOption>
 	 */
 	customOptions?: Array<JovaCustomOption>;
 	/**
 	 * Custom headers to be applied to outgoing responses, this is a middleware of optional use but the headers put in here are read-only at runtime until the request is received by a request handler.
 	 * @default []
-	 * @type {?Array<JovaHeaderSetting>}
+	 * @type Array<JovaHeaderSetting>
 	 */
 	customHeaders?: Array<JovaHeaderSetting>;
 	/**
 	 * Enable cors and set up certain values for the cors middleware.
-	 * @default {}
-	 * @type {?CorsOptions}
+	 * @default undefined
+	 * @type CorsOptions
 	 */
 	cors?: CorsOptions;
 }

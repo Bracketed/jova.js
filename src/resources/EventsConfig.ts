@@ -1,5 +1,5 @@
+import { Express, NextFunction, Request, Response } from '@bracketed/express';
 import { Logger } from '@bracketed/logger';
-import { Express, NextFunction, Request, Response } from 'express';
 import EventEmitter from 'node:events';
 import { ApplicationEvent, ApplicationRegistry } from '../types/index.js';
 

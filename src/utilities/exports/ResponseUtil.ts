@@ -21,7 +21,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	continue: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.Continue),
@@ -30,7 +30,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	switchingProtocols: (response: ApplicationResponse): ApplicationResponse =>
@@ -40,7 +40,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	processing: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.Processing),
@@ -49,7 +49,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	earlyHints: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.EarlyHints),
@@ -61,7 +61,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	created: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.Created),
@@ -70,7 +70,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	accepted: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.Accepted),
@@ -79,7 +79,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	nonAuthoritativeInformation: (response: ApplicationResponse): ApplicationResponse =>
@@ -89,7 +89,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	noContent: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.NoContent),
@@ -98,7 +98,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	resetContent: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.ResetContent),
@@ -107,7 +107,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	partialContent: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.PartialContent),
@@ -116,7 +116,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	multiStatus: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.MultiStatus),
@@ -125,7 +125,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	alreadyReported: (response: ApplicationResponse): ApplicationResponse =>
@@ -135,7 +135,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	imUsed: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.IMUsed),
@@ -146,7 +146,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	multipleChoices: (response: ApplicationResponse): ApplicationResponse =>
@@ -156,7 +156,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	movedPermanently: (response: ApplicationResponse): ApplicationResponse =>
@@ -166,7 +166,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	found: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.Found),
@@ -175,7 +175,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	seeOther: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.SeeOther),
@@ -184,7 +184,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	notModified: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.NotModified),
@@ -193,7 +193,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	useProxy: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.UseProxy),
@@ -202,7 +202,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	temporaryRedirect: (response: ApplicationResponse): ApplicationResponse =>
@@ -212,7 +212,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	permanentRedirect: (response: ApplicationResponse): ApplicationResponse =>
@@ -224,7 +224,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	badRequest: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.BadRequest),
@@ -233,7 +233,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	unauthorized: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.Unauthorized),
@@ -242,7 +242,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	paymentRequired: (response: ApplicationResponse): ApplicationResponse =>
@@ -252,7 +252,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	forbidden: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.Forbidden),
@@ -261,7 +261,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	notFound: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.NotFound),
@@ -270,7 +270,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	methodNotAllowed: (response: ApplicationResponse): ApplicationResponse =>
@@ -280,7 +280,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	notAcceptable: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.NotAcceptable),
@@ -289,7 +289,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	proxyAuthenticationRequired: (response: ApplicationResponse): ApplicationResponse =>
@@ -299,7 +299,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	requestTimeout: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.RequestTimeout),
@@ -308,7 +308,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	conflict: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.Conflict),
@@ -317,7 +317,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	gone: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.Gone),
@@ -326,7 +326,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	lengthRequired: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.LengthRequired),
@@ -335,7 +335,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	preconditionFailed: (response: ApplicationResponse): ApplicationResponse =>
@@ -345,7 +345,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	payloadTooLarge: (response: ApplicationResponse): ApplicationResponse =>
@@ -355,7 +355,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	uriTooLong: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.URITooLong),
@@ -364,7 +364,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	unsupportedMediaType: (response: ApplicationResponse): ApplicationResponse =>
@@ -374,7 +374,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	rangeNotSatisfiable: (response: ApplicationResponse): ApplicationResponse =>
@@ -384,7 +384,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	expectationFailed: (response: ApplicationResponse): ApplicationResponse =>
@@ -394,7 +394,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	imATeapot: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.ImATeapot),
@@ -403,7 +403,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	misdirectedRequest: (response: ApplicationResponse): ApplicationResponse =>
@@ -413,7 +413,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	unprocessableEntity: (response: ApplicationResponse): ApplicationResponse =>
@@ -423,7 +423,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	locked: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.Locked),
@@ -432,7 +432,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	failedDependency: (response: ApplicationResponse): ApplicationResponse =>
@@ -442,7 +442,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	tooEarly: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.TooEarly),
@@ -451,7 +451,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	upgradeRequired: (response: ApplicationResponse): ApplicationResponse =>
@@ -461,7 +461,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	preconditionRequired: (response: ApplicationResponse): ApplicationResponse =>
@@ -471,7 +471,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	tooManyRequests: (response: ApplicationResponse): ApplicationResponse =>
@@ -481,7 +481,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	requestHeaderFieldsTooLarge: (response: ApplicationResponse): ApplicationResponse =>
@@ -491,7 +491,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	unavailableForLegalReasons: (response: ApplicationResponse): ApplicationResponse =>
@@ -503,7 +503,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	internalServerError: (response: ApplicationResponse): ApplicationResponse =>
@@ -513,7 +513,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	notImplemented: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.NotImplemented),
@@ -522,7 +522,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	badGateway: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.BadGateway),
@@ -531,7 +531,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	serviceUnavailable: (response: ApplicationResponse): ApplicationResponse =>
@@ -541,7 +541,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	gatewayTimeout: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.GatewayTimeout),
@@ -550,7 +550,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	httpVersionNotSupported: (response: ApplicationResponse): ApplicationResponse =>
@@ -560,7 +560,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	variantAlsoNegotiates: (response: ApplicationResponse): ApplicationResponse =>
@@ -570,7 +570,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	insufficientStorage: (response: ApplicationResponse): ApplicationResponse =>
@@ -580,7 +580,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	loopDetected: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.LoopDetected),
@@ -589,7 +589,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	notExtended: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.NotExtended),
@@ -598,7 +598,7 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @returns response
+
 	 * @readonly
 	 */
 	networkAuthenticationRequired: (response: ApplicationResponse): ApplicationResponse =>
@@ -617,7 +617,7 @@ export const response = {
 	 * @param value
 	 * The HTTP response header field value.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	sendHeader: (
@@ -644,7 +644,7 @@ export const response = {
 	 * @param value
 	 * The HTTP response header field value.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	setHeader: (response: ApplicationResponse, field: any, value?: string | string[]): ApplicationResponse =>
@@ -668,7 +668,7 @@ export const response = {
 	 * @param value
 	 * The HTTP response header field value.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	set: (response: ApplicationResponse, field: any, value?: string | string[]): ApplicationResponse =>
@@ -681,7 +681,7 @@ export const response = {
 	 * @param field
 	 * The HTTP response header field.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	getHeader: (response: ApplicationResponse, field: string): string | undefined => response.get(field),
@@ -693,7 +693,7 @@ export const response = {
 	 * @param field
 	 * The HTTP response header field.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	header: (response: ApplicationResponse, field: string): string | undefined => response.get(field),
@@ -705,14 +705,14 @@ export const response = {
 	 * @param field
 	 * The HTTP response header field.
 
-	 * @returns response
+
 	 * @readonly
 	 */
 	get: (response: ApplicationResponse, field: string): string | undefined => response.get(field),
 	/**
 	 * Appends the specified value to the HTTP response header field.
 	 * If the header is not already set, it creates the header with the specified value.
-	 * The value parameter can be a string or an array.
+	 * The value parameter can be a `string` or an `array`.
 	 *
 	 * Note: calling `response.set()` after `response.append()` will reset the previously-set header value.
 	 *
@@ -723,7 +723,7 @@ export const response = {
 	 * @param value
 	 * The value to the header.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	append: (response: ApplicationResponse, field: string, value?: string[] | string): ApplicationResponse =>
@@ -731,7 +731,7 @@ export const response = {
 	/**
 	 * Appends the specified value to the HTTP response header field.
 	 * If the header is not already set, it creates the header with the specified value.
-	 * The value parameter can be a string or an array.
+	 * The value parameter can be a `string` or an `array`.
 	 *
 	 * Note: calling `response.set()` after `response.append()` will reset the previously-set header value.
 	 *
@@ -742,7 +742,7 @@ export const response = {
 	 * @param value
 	 * The value to the header.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	appendHeader: (response: ApplicationResponse, field: string, value?: string[] | string): ApplicationResponse =>
@@ -750,7 +750,7 @@ export const response = {
 	/**
 	 * Appends the specified value to the HTTP response header field.
 	 * If the header is not already set, it creates the header with the specified value.
-	 * The value parameter can be a string or an array.
+	 * The value parameter can be a `string` or an `array`.
 	 *
 	 * Note: calling `response.set()` after `response.append()` will reset the previously-set header value.
 	 *
@@ -760,7 +760,7 @@ export const response = {
 	 * The HTTP response header field.
 	 * @param value
 	 * The value to the header.
-	 * @returns response
+
 	 * @readonly
 	 */
 	addHeader: (response: ApplicationResponse, field: string, value?: string[] | string): ApplicationResponse =>
@@ -780,7 +780,7 @@ export const response = {
 	 * The `ApplicationResponse` object from your route handler.
 	 * @param links
 	 * The links to be added to headers.
-	 * @returns response
+
 	 * @readonly
 	 */
 	link: (response: ApplicationResponse, links: any): ApplicationResponse => response.links(links),
@@ -799,7 +799,7 @@ export const response = {
 	 * The `ApplicationResponse` object from your route handler.
 	 * @param links
 	 * The links to be added to headers.
-	 * @returns response
+
 	 * @readonly
 	 */
 	links: (response: ApplicationResponse, links: any): ApplicationResponse => response.links(links),
@@ -818,7 +818,7 @@ export const response = {
 	 * The `ApplicationResponse` object from your route handler.
 	 * @param links
 	 * The links to be added to headers.
-	 * @returns response
+
 	 * @readonly
 	 */
 	linkHeaders: (response: ApplicationResponse, links: any): ApplicationResponse => response.links(links),
@@ -840,7 +840,7 @@ export const response = {
 	 * The `ApplicationResponse` object from your route handler.
 	 * @param url
 	 * The url for the location to be set to.
-	 * @returns response
+
 	 * @readonly
 	 */
 	addLocationHeader: (response: ApplicationResponse, url: string): ApplicationResponse => response.location(url),
@@ -862,7 +862,7 @@ export const response = {
 	 * The `ApplicationResponse` object from your route handler.
 	 * @param url
 	 * The url for the location to be set to.
-	 * @returns response
+
 	 * @readonly
 	 */
 	addLocation: (response: ApplicationResponse, url: string): ApplicationResponse => response.location(url),
@@ -884,7 +884,7 @@ export const response = {
 	 * The `ApplicationResponse` object from your route handler.
 	 * @param url
 	 * The url for the location to be set to.
-	 * @returns response
+
 	 * @readonly
 	 */
 	location: (response: ApplicationResponse, url: string): ApplicationResponse => response.location(url),
@@ -895,7 +895,7 @@ export const response = {
 	 * The `ApplicationResponse` object from your route handler.
 	 * @param filename
 	 * The filename for the attachment.
-	 * @returns response
+
 	 * @readonly
 	 */
 	attach: (response: ApplicationResponse, filename?: string): ApplicationResponse => response.attachment(filename),
@@ -906,7 +906,7 @@ export const response = {
 	 * The `ApplicationResponse` object from your route handler.
 	 * @param filename
 	 * The filename for the attachment.
-	 * @returns response
+
 	 * @readonly
 	 */
 	attachFile: (response: ApplicationResponse, filename?: string): ApplicationResponse =>
@@ -918,7 +918,7 @@ export const response = {
 	 * The `ApplicationResponse` object from your route handler.
 	 * @param filename
 	 * The filename for the attachment.
-	 * @returns response
+
 	 * @readonly
 	 */
 	sendAttachment: (response: ApplicationResponse, filename?: string): ApplicationResponse =>
@@ -930,7 +930,7 @@ export const response = {
 	 * The `ApplicationResponse` object from your route handler.
 	 * @param filename
 	 * The filename for the attachment.
-	 * @returns response
+
 	 * @readonly
 	 */
 	addAttachment: (response: ApplicationResponse, filename?: string): ApplicationResponse =>
@@ -942,7 +942,7 @@ export const response = {
 	 * The `ApplicationResponse` object from your route handler.
 	 * @param filename
 	 * The filename for the attachment.
-	 * @returns response
+
 	 * @readonly
 	 */
 	setAttachment: (response: ApplicationResponse, filename?: string): ApplicationResponse =>
@@ -954,7 +954,7 @@ export const response = {
 	 * The `ApplicationResponse` object from your route handler.
 	 * @param filename
 	 * The filename for the attachment.
-	 * @returns response
+
 	 * @readonly
 	 */
 	attachment: (response: ApplicationResponse, filename?: string): ApplicationResponse =>
@@ -977,7 +977,7 @@ export const response = {
 	 *
 	 * // save as above
 	 * response.cookie('rememberme', '1', { maxAge: 900000, httpOnly: true })
-	 * @returns response
+
 	 * @readonly
 	 */
 	setCookie: (
@@ -1004,7 +1004,7 @@ export const response = {
 	 *
 	 * // save as above
 	 * response.cookie('rememberme', '1', { maxAge: 900000, httpOnly: true })
-	 * @returns response
+
 	 * @readonly
 	 */
 	addCookie: (
@@ -1031,7 +1031,7 @@ export const response = {
 	 *
 	 * // save as above
 	 * response.cookie('rememberme', '1', { maxAge: 900000, httpOnly: true })
-	 * @returns response
+
 	 * @readonly
 	 */
 	cookie: (response: ApplicationResponse, name: string, value: string, options: CookieOptions): ApplicationResponse =>
@@ -1052,7 +1052,7 @@ export const response = {
 	 *
 	 * // save as above
 	 * response.cookie('rememberme', '1', { maxAge: 900000, httpOnly: true })
-	 * @returns response
+
 	 * @readonly
 	 */
 	simpleCookie: (response: ApplicationResponse, name: string, value: string): ApplicationResponse =>
@@ -1067,7 +1067,7 @@ export const response = {
 	 * @param options
 	 * The target cookie options.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	clearCookie: (response: ApplicationResponse, name: string, options?: CookieOptions): ApplicationResponse =>
@@ -1082,7 +1082,7 @@ export const response = {
 	 * @param options
 	 * The target cookie options.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	clear: (response: ApplicationResponse, name: string, options?: CookieOptions): ApplicationResponse =>
@@ -1097,7 +1097,7 @@ export const response = {
 	 * @param options
 	 * The target cookie options.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	removeCookie: (response: ApplicationResponse, name: string, options?: CookieOptions): ApplicationResponse =>
@@ -1112,7 +1112,7 @@ export const response = {
 	 * @param options
 	 * The target cookie options.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	deleteCookie: (response: ApplicationResponse, name: string, options?: CookieOptions): ApplicationResponse =>
@@ -1139,7 +1139,6 @@ export const response = {
 	 * @param callback
 	 * The callback if an error occurs.
 	 *
-	 * @returns void
 	 * @readonly
 	 */
 	advancedDownload: (
@@ -1169,7 +1168,6 @@ export const response = {
 	 * @param callback
 	 * The callback if an error occurs.
 	 *
-	 * @returns void
 	 * @readonly
 	 */
 	namedDownload: (response: ApplicationResponse, path: string, filename: string, callback?: ErrorCallback): void =>
@@ -1192,7 +1190,6 @@ export const response = {
 	 * @param callback
 	 * The callback if an error occurs.
 	 *
-	 * @returns void
 	 * @readonly
 	 */
 	download: (response: ApplicationResponse, path: string, callback?: ErrorCallback): void =>
@@ -1216,12 +1213,12 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @param chunk Optional data to write. For streams not operating in object mode, `chunk` must be a {string}, {Buffer},
-	 * {TypedArray} or {DataView}. For object mode streams, `chunk` may be any JavaScript value other than `null`.
-	 * @param encoding The encoding if `chunk` is a string
+	 * @param chunk Optional data to write. For streams not operating in object mode, `chunk` must be a `string`, `Buffer`,
+	 * `TypedArray` or `DataView`. For object mode streams, `chunk` may be any JavaScript value other than `null`.
+	 * @param encoding The encoding if `chunk` is a `string`
 	 * @param callback Callback for when the stream is finished.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	end: (response: ApplicationResponse): ApplicationResponse => response.end(),
@@ -1244,12 +1241,12 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @param chunk Optional data to write. For streams not operating in object mode, `chunk` must be a {string}, {Buffer},
-	 * {TypedArray} or {DataView}. For object mode streams, `chunk` may be any JavaScript value other than `null`.
-	 * @param encoding The encoding if `chunk` is a string
+	 * @param chunk Optional data to write. For streams not operating in object mode, `chunk` must be a `string`, `Buffer`,
+	 * `TypedArray` or `DataView`. For object mode streams, `chunk` may be any JavaScript value other than `null`.
+	 * @param encoding The encoding if `chunk` is a `string`
 	 * @param callback Callback for when the stream is finished.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	callbackedEnd: (response: ApplicationResponse, callback?: () => void): ApplicationResponse =>
@@ -1273,12 +1270,12 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @param chunk Optional data to write. For streams not operating in object mode, `chunk` must be a {string}, {Buffer},
-	 * {TypedArray} or {DataView}. For object mode streams, `chunk` may be any JavaScript value other than `null`.
-	 * @param encoding The encoding if `chunk` is a string
+	 * @param chunk Optional data to write. For streams not operating in object mode, `chunk` must be a `string`, `Buffer`,
+	 * `TypedArray` or `DataView`. For object mode streams, `chunk` may be any JavaScript value other than `null`.
+	 * @param encoding The encoding if `chunk` is a `string`
 	 * @param callback Callback for when the stream is finished.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	chunkedEnd: (response: ApplicationResponse, chunk: any, callback?: () => void): ApplicationResponse =>
@@ -1302,12 +1299,12 @@ export const response = {
 	 *
 	 * @param response
 	 * The `ApplicationResponse` object from your route handler.
-	 * @param chunk Optional data to write. For streams not operating in object mode, `chunk` must be a {string}, {Buffer},
-	 * {TypedArray} or {DataView}. For object mode streams, `chunk` may be any JavaScript value other than `null`.
+	 * @param chunk Optional data to write. For streams not operating in object mode, `chunk` must be a `string`, `Buffer`,
+	 * `TypedArray` or `DataView`. For object mode streams, `chunk` may be any JavaScript value other than `null`.
 	 * @param encoding The encoding if `chunk` is a string
 	 * @param callback Callback for when the stream is finished.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	encodedEnd: (response: ApplicationResponse, chunk: any, encoding: BufferEncoding, callback?: () => void) =>
@@ -1326,37 +1323,39 @@ export const response = {
 	 * Content-Type is set for you, however if you choose
 	 * you may alter this within the callback using `response.type()`
 	 * or `response.set('Content-Type', ...)`.
+	 * ```js
+	 * response.format({
+	 * 'text/plain': function(){
+	 *   response.send('hey');
+	 * },
 	 *
-	 *    response.format({
-	 *      'text/plain': function(){
-	 *        response.send('hey');
-	 *      },
+	 * 'text/html': function(){
+	 *   response.send('<p>hey</p>');
+	 * },
 	 *
-	 *      'text/html': function(){
-	 *        response.send('<p>hey</p>');
-	 *      },
-	 *
-	 *      'appliation/json': function(){
-	 *        response.send({ message: 'hey' });
-	 *      }
-	 *    });
+	 * 'appliation/json': function(){
+	 *   response.send({ message: 'hey' });
+	 * }
+	 * });
+	 * ```
 	 *
 	 * In addition to canonicalized MIME types you may
 	 * also use `extnames` mapped to these types:
+	 * ```js
+	 * response.format({
+	 * text: function(){
+	 *   response.send('hey');
+	 * },
 	 *
-	 *    response.format({
-	 *      text: function(){
-	 *        response.send('hey');
-	 *      },
+	 * html: function(){
+	 *   response.send('<p>hey</p>');
+	 * },
 	 *
-	 *      html: function(){
-	 *        response.send('<p>hey</p>');
-	 *      },
-	 *
-	 *      json: function(){
-	 *        response.send({ message: 'hey' });
-	 *      }
-	 *    });
+	 * json: function(){
+	 *   response.send({ message: 'hey' });
+	 * }
+	 * });
+	 * ```
 	 *
 	 * By default Express passes an `Error`
 	 * with a `.status` of 406 to `next(err)`
@@ -1369,7 +1368,7 @@ export const response = {
 	 * @param obj
 	 * The object to be formatted.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	format: (response: ApplicationResponse, obj: any): ApplicationResponse => response.format(obj),
@@ -1387,37 +1386,39 @@ export const response = {
 	 * Content-Type is set for you, however if you choose
 	 * you may alter this within the callback using `response.type()`
 	 * or `response.set('Content-Type', ...)`.
+	 * ```js
+	 * response.format({
+	 * 'text/plain': function(){
+	 *   response.send('hey');
+	 * },
 	 *
-	 *    response.format({
-	 *      'text/plain': function(){
-	 *        response.send('hey');
-	 *      },
+	 * 'text/html': function(){
+	 *   response.send('<p>hey</p>');
+	 * },
 	 *
-	 *      'text/html': function(){
-	 *        response.send('<p>hey</p>');
-	 *      },
-	 *
-	 *      'appliation/json': function(){
-	 *        response.send({ message: 'hey' });
-	 *      }
-	 *    });
+	 * 'appliation/json': function(){
+	 *   response.send({ message: 'hey' });
+	 * }
+	 * });
+	 * ```
 	 *
 	 * In addition to canonicalized MIME types you may
 	 * also use `extnames` mapped to these types:
+	 * ```js
+	 * response.format({
+	 * text: function(){
+	 *   response.send('hey');
+	 * },
 	 *
-	 *    response.format({
-	 *      text: function(){
-	 *        response.send('hey');
-	 *      },
+	 * html: function(){
+	 *   response.send('<p>hey</p>');
+	 * },
 	 *
-	 *      html: function(){
-	 *        response.send('<p>hey</p>');
-	 *      },
-	 *
-	 *      json: function(){
-	 *        response.send({ message: 'hey' });
-	 *      }
-	 *    });
+	 * json: function(){
+	 *   response.send({ message: 'hey' });
+	 * }
+	 * });
+	 * ```
 	 *
 	 * By default Express passes an `Error`
 	 * with a `.status` of 406 to `next(err)`
@@ -1430,7 +1431,7 @@ export const response = {
 	 * @param obj
 	 * The object to be formatted.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	formatObject: (response: ApplicationResponse, obj: any): ApplicationResponse => response.format(obj),
@@ -1450,7 +1451,7 @@ export const response = {
 	 * @param obj
 	 * The object to be sent.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	json: (response: ApplicationResponse, obj: any | object): ApplicationResponse => response.json(obj),
@@ -1470,7 +1471,7 @@ export const response = {
 	 * @param obj
 	 * The object to be sent.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	jsonp: (response: ApplicationResponse, obj: any): ApplicationResponse => response.jsonp(obj),
@@ -1498,7 +1499,7 @@ export const response = {
 	 * @param status
 	 * Optional status code to be sent with the redirect.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	redirect: (response: ApplicationResponse, url: string, status?: HttpStatus | number): void => {
@@ -1529,7 +1530,7 @@ export const response = {
 	 * @param status
 	 * Optional status code to be sent with the redirect.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	redirectResponse: (response: ApplicationResponse, url: string, status?: HttpStatus | number): void => {
@@ -1560,7 +1561,7 @@ export const response = {
 	 * @param status
 	 * Optional status code to be sent with the redirect.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	redirectRequest: (response: ApplicationResponse, url: string, status?: HttpStatus | number): void => {
@@ -1579,7 +1580,7 @@ export const response = {
 	 * @param callback
 	 * Optional callback to the render function.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	render: (response: ApplicationResponse, view: string, callback?: (err: Error, html: string) => void): void =>
@@ -1601,7 +1602,7 @@ export const response = {
 	 * @param callback
 	 * Optional callback to the render function.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	advancedRender: (
@@ -1626,7 +1627,7 @@ export const response = {
 	 * @param body
 	 * The response body to be sent.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	send: (response: ApplicationResponse, body?: any): ApplicationResponse => response.send(body),
@@ -1646,7 +1647,7 @@ export const response = {
 	 * @param body
 	 * The response body to be sent.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	sendContent: (response: ApplicationResponse, body?: any): ApplicationResponse => response.send(body),
@@ -1676,18 +1677,17 @@ export const response = {
 	 * the same code, so HTTP cache support etc is identical.
 	 *
 	 * ```js
-	 *     app.get('/user/:uid/photos/:file', function(req, res){
-	 *       var uid = req.params.uid
-	 *         , file = req.params.file;
-	 *
-	 *       req.user.mayViewFilesFrom(uid, function(yes){
-	 *         if (yes) {
-	 *           response.sendFile('/uploads/' + uid + '/' + file);
-	 *         } else {
-	 *           response.send(403, 'Sorry! you cant see that.');
-	 *         }
-	 *       });
-	 *     });
+	 * application.get('/user/:uid/photos/:file', function(req, res){
+	 *   var uid = req.params.uid
+	 * , file = req.params.file;
+	 *   req.user.mayViewFilesFrom(uid, function(yes){
+	 * if (yes) {
+	 *  response.sendFile('/uploads/' + uid + '/' + file);
+	 * } else {
+	 *  response.send(403, 'Sorry! you cant see that.');
+	 * }
+	 *   });
+	 * });
 	 * ```
 	 *
 	 * @param response
@@ -1695,7 +1695,7 @@ export const response = {
 	 * @param body
 	 * The response body to be sent.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	sendAdvancedFile: (
@@ -1723,18 +1723,17 @@ export const response = {
 	 * the same code, so HTTP cache support etc is identical.
 	 *
 	 * ```js
-	 *     app.get('/user/:uid/photos/:file', function(req, res){
-	 *       var uid = req.params.uid
-	 *         , file = req.params.file;
-	 *
-	 *       req.user.mayViewFilesFrom(uid, function(yes){
-	 *         if (yes) {
-	 *           response.sendFile('/uploads/' + uid + '/' + file);
-	 *         } else {
-	 *           response.send(403, 'Sorry! you cant see that.');
-	 *         }
-	 *       });
-	 *     });
+	 * application.get('/user/:uid/photos/:file', function(req, res){
+	 *   var uid = req.params.uid
+	 * , file = req.params.file;
+	 *   req.user.mayViewFilesFrom(uid, function(yes){
+	 * if (yes) {
+	 *  response.sendFile('/uploads/' + uid + '/' + file);
+	 * } else {
+	 *  response.send(403, 'Sorry! you cant see that.');
+	 * }
+	 *   });
+	 * });
 	 * ```
 	 *
 	 * @param response
@@ -1742,7 +1741,7 @@ export const response = {
 	 * @param body
 	 * The response body to be sent.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	sendFile: (response: ApplicationResponse, path: string, callback?: ErrorCallback) =>
@@ -1766,18 +1765,17 @@ export const response = {
 	 * the same code, so HTTP cache support etc is identical.
 	 *
 	 * ```js
-	 *     app.get('/user/:uid/photos/:file', function(req, res){
-	 *       var uid = req.params.uid
-	 *         , file = req.params.file;
-	 *
-	 *       req.user.mayViewFilesFrom(uid, function(yes){
-	 *         if (yes) {
-	 *           response.sendFile('/uploads/' + uid + '/' + file);
-	 *         } else {
-	 *           response.send(403, 'Sorry! you cant see that.');
-	 *         }
-	 *       });
-	 *     });
+	 * application.get('/user/:uid/photos/:file', function(req, res){
+	 *   var uid = req.params.uid
+	 * , file = req.params.file;
+	 *   req.user.mayViewFilesFrom(uid, function(yes){
+	 * if (yes) {
+	 *  response.sendFile('/uploads/' + uid + '/' + file);
+	 * } else {
+	 *  response.send(403, 'Sorry! you cant see that.');
+	 * }
+	 *   });
+	 * });
 	 * ```
 	 *
 	 * @param response
@@ -1785,7 +1783,7 @@ export const response = {
 	 * @param body
 	 * The response body to be sent.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	file: (response: ApplicationResponse, path: string, callback?: ErrorCallback) => response.sendFile(path, callback),
@@ -1808,18 +1806,17 @@ export const response = {
 	 * the same code, so HTTP cache support etc is identical.
 	 *
 	 * ```js
-	 *     app.get('/user/:uid/photos/:file', function(req, res){
-	 *       var uid = req.params.uid
-	 *         , file = req.params.file;
-	 *
-	 *       req.user.mayViewFilesFrom(uid, function(yes){
-	 *         if (yes) {
-	 *           response.sendFile('/uploads/' + uid + '/' + file);
-	 *         } else {
-	 *           response.send(403, 'Sorry! you cant see that.');
-	 *         }
-	 *       });
-	 *     });
+	 * application.get('/user/:uid/photos/:file', function(req, res){
+	 *   var uid = req.params.uid
+	 * , file = req.params.file;
+	 *   req.user.mayViewFilesFrom(uid, function(yes){
+	 * if (yes) {
+	 *  response.sendFile('/uploads/' + uid + '/' + file);
+	 * } else {
+	 *  response.send(403, 'Sorry! you cant see that.');
+	 * }
+	 *   });
+	 * });
 	 * ```
 	 *
 	 * @param response
@@ -1827,7 +1824,7 @@ export const response = {
 	 * @param body
 	 * The response body to be sent.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	upload: (response: ApplicationResponse, path: string, callback?: ErrorCallback) =>
@@ -1851,18 +1848,17 @@ export const response = {
 	 * the same code, so HTTP cache support etc is identical.
 	 *
 	 * ```js
-	 *     app.get('/user/:uid/photos/:file', function(req, res){
-	 *       var uid = req.params.uid
-	 *         , file = req.params.file;
-	 *
-	 *       req.user.mayViewFilesFrom(uid, function(yes){
-	 *         if (yes) {
-	 *           response.sendFile('/uploads/' + uid + '/' + file);
-	 *         } else {
-	 *           response.send(403, 'Sorry! you cant see that.');
-	 *         }
-	 *       });
-	 *     });
+	 * application.get('/user/:uid/photos/:file', function(req, res){
+	 *   var uid = req.params.uid
+	 * , file = req.params.file;
+	 *   req.user.mayViewFilesFrom(uid, function(yes){
+	 * if (yes) {
+	 *  response.sendFile('/uploads/' + uid + '/' + file);
+	 * } else {
+	 *  response.send(403, 'Sorry! you cant see that.');
+	 * }
+	 *   });
+	 * });
 	 * ```
 	 *
 	 * @param response
@@ -1870,7 +1866,7 @@ export const response = {
 	 * @param body
 	 * The response body to be sent.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	uploadFile: (response: ApplicationResponse, path: string, callback?: ErrorCallback) =>
@@ -1894,18 +1890,17 @@ export const response = {
 	 * the same code, so HTTP cache support etc is identical.
 	 *
 	 * ```js
-	 *     app.get('/user/:uid/photos/:file', function(req, res){
-	 *       var uid = req.params.uid
-	 *         , file = req.params.file;
-	 *
-	 *       req.user.mayViewFilesFrom(uid, function(yes){
-	 *         if (yes) {
-	 *           response.sendFile('/uploads/' + uid + '/' + file);
-	 *         } else {
-	 *           response.send(403, 'Sorry! you cant see that.');
-	 *         }
-	 *       });
-	 *     });
+	 * application.get('/user/:uid/photos/:file', function(req, res){
+	 *   var uid = req.params.uid
+	 * , file = req.params.file;
+	 *   req.user.mayViewFilesFrom(uid, function(yes){
+	 * if (yes) {
+	 *  response.sendFile('/uploads/' + uid + '/' + file);
+	 * } else {
+	 *  response.send(403, 'Sorry! you cant see that.');
+	 * }
+	 *   });
+	 * });
 	 * ```
 	 *
 	 * @param response
@@ -1913,7 +1908,7 @@ export const response = {
 	 * @param body
 	 * The response body to be sent.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	addFile: (response: ApplicationResponse, path: string, callback?: ErrorCallback) =>
@@ -1924,10 +1919,10 @@ export const response = {
 	 *
 	 * Examples:
 	 * ```js
-	 *    response.sendStatus(200); // equivalent to response.status(200).send('OK')
-	 *    response.sendStatus(403); // equivalent to response.status(403).send('Forbidden')
-	 *    response.sendStatus(404); // equivalent to response.status(404).send('Not Found')
-	 *    response.sendStatus(500); // equivalent to response.status(500).send('Internal Server Error')
+	 * response.sendStatus(200); // equivalent to response.status(200).send('OK')
+	 * response.sendStatus(403); // equivalent to response.status(403).send('Forbidden')
+	 * response.sendStatus(404); // equivalent to response.status(404).send('Not Found')
+	 * response.sendStatus(500); // equivalent to response.status(500).send('Internal Server Error')
 	 * ```
 	 *
 	 * @param response
@@ -1935,7 +1930,7 @@ export const response = {
 	 * @param code
 	 * The response status code.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	sendStatus: (response: ApplicationResponse, code: number | HttpStatus): ApplicationResponse =>
@@ -1946,10 +1941,10 @@ export const response = {
 	 *
 	 * Examples:
 	 * ```js
-	 *    response.sendStatus(200); // equivalent to response.status(200).send('OK')
-	 *    response.sendStatus(403); // equivalent to response.status(403).send('Forbidden')
-	 *    response.sendStatus(404); // equivalent to response.status(404).send('Not Found')
-	 *    response.sendStatus(500); // equivalent to response.status(500).send('Internal Server Error')
+	 * response.sendStatus(200); // equivalent to response.status(200).send('OK')
+	 * response.sendStatus(403); // equivalent to response.status(403).send('Forbidden')
+	 * response.sendStatus(404); // equivalent to response.status(404).send('Not Found')
+	 * response.sendStatus(500); // equivalent to response.status(500).send('Internal Server Error')
 	 * ```
 	 *
 	 * @param response
@@ -1957,7 +1952,7 @@ export const response = {
 	 * @param code
 	 * The response status code.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	code: (response: ApplicationResponse, code: number | HttpStatus): ApplicationResponse => response.sendStatus(code),
@@ -1967,10 +1962,10 @@ export const response = {
 	 *
 	 * Examples:
 	 * ```js
-	 *    response.sendStatus(200); // equivalent to response.status(200).send('OK')
-	 *    response.sendStatus(403); // equivalent to response.status(403).send('Forbidden')
-	 *    response.sendStatus(404); // equivalent to response.status(404).send('Not Found')
-	 *    response.sendStatus(500); // equivalent to response.status(500).send('Internal Server Error')
+	 * response.sendStatus(200); // equivalent to response.status(200).send('OK')
+	 * response.sendStatus(403); // equivalent to response.status(403).send('Forbidden')
+	 * response.sendStatus(404); // equivalent to response.status(404).send('Not Found')
+	 * response.sendStatus(500); // equivalent to response.status(500).send('Internal Server Error')
 	 * ```
 	 *
 	 * @param response
@@ -1978,7 +1973,7 @@ export const response = {
 	 * @param code
 	 * The response status code.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	setStatus: (response: ApplicationResponse, code: number | HttpStatus): ApplicationResponse =>
@@ -1989,10 +1984,10 @@ export const response = {
 	 *
 	 * Examples:
 	 * ```js
-	 *    response.sendStatus(200); // equivalent to response.status(200).send('OK')
-	 *    response.sendStatus(403); // equivalent to response.status(403).send('Forbidden')
-	 *    response.sendStatus(404); // equivalent to response.status(404).send('Not Found')
-	 *    response.sendStatus(500); // equivalent to response.status(500).send('Internal Server Error')
+	 * response.sendStatus(200); // equivalent to response.status(200).send('OK')
+	 * response.sendStatus(403); // equivalent to response.status(403).send('Forbidden')
+	 * response.sendStatus(404); // equivalent to response.status(404).send('Not Found')
+	 * response.sendStatus(500); // equivalent to response.status(500).send('Internal Server Error')
 	 * ```
 	 *
 	 * @param response
@@ -2000,7 +1995,7 @@ export const response = {
 	 * @param code
 	 * The response status code.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	status: (response: ApplicationResponse, code: number | HttpStatus): ApplicationResponse => response.status(code),
@@ -2022,7 +2017,7 @@ export const response = {
 	 * @param type
 	 * The response content type.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	type: (response: ApplicationResponse, type: string | ContentType): ApplicationResponse => response.type(type),
@@ -2044,7 +2039,7 @@ export const response = {
 	 * @param type
 	 * The response content type.
 	 *
-	 * @returns response
+
 	 
 	 * @readonly
 	 */
@@ -2068,7 +2063,7 @@ export const response = {
 	 * @param type
 	 * The response content type.
 	 *
-	 * @returns response
+
 	 
 	 * @readonly
 	 */
@@ -2092,7 +2087,7 @@ export const response = {
 	 * @param type
 	 * The response content type.
 	 *
-	 * @returns response
+
 	 
 	 * @readonly
 	 */
@@ -2115,7 +2110,7 @@ export const response = {
 	 * @param type
 	 * The response content type.
 	 *
-	 * @returns response
+
 	 
 	 * @readonly
 	 */
@@ -2139,7 +2134,7 @@ export const response = {
 	 * @param type
 	 * The response content type.
 	 *
-	 * @returns response
+
 	 
 	 * @readonly
 	 */
@@ -2162,7 +2157,7 @@ export const response = {
 	 * @param type
 	 * The response content type.
 	 *
-	 * @returns response
+
 	 
 	 * @readonly
 	 */
@@ -2186,7 +2181,7 @@ export const response = {
 	 * @param type
 	 * The response content type.
 	 *
-	 * @returns response
+
 	 
 	 * @readonly
 	 */
@@ -2204,7 +2199,7 @@ export const response = {
 	 * @param field
 	 * The header.
 	 *
-	 * @returns response
+
 	 * @readonly
 	 */
 	vary: (response: ApplicationResponse, field: string): ApplicationResponse => response.vary(field),

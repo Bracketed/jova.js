@@ -1,5 +1,5 @@
+import { CookieOptions, Errback, NextFunction, Request, Response } from '@bracketed/express';
 import { CorsOptions } from 'cors';
-import { CookieOptions, Errback, NextFunction, Request, Response } from 'express';
 import { RateLimitExceededEventHandler, ValueDeterminingMiddleware } from 'express-rate-limit';
 import { RedisOptions as IORedisOptions } from 'ioredis';
 import RangeParser from 'range-parser';

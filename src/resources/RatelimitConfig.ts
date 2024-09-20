@@ -1,6 +1,6 @@
+import { Express } from '@bracketed/express';
 import { Logger } from '@bracketed/logger';
 import { Stopwatch } from '@sapphire/stopwatch';
-import { Express } from 'express';
 import rateLimit from 'express-rate-limit';
 import { Redis } from 'ioredis';
 import RedisStore from 'rate-limit-redis';

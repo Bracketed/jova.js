@@ -1,0 +1,95 @@
+/* Segoe UI Normal */
+@font-face {
+	font-family: 'SegoeUI';
+	src: url('segoeui.ttf');
+	font-weight: 400;
+	font-style: normal;
+}
+
+/* Segoe UI Bold */
+@font-face {
+	font-family: 'SegoeUI';
+	src: url('segoeuib.ttf');
+	font-weight: 700;
+	font-style: normal;
+}
+
+/* Segoe UI Normal Italic*/
+@font-face {
+	font-family: 'SegoeUI';
+	src: url('segoeuii.ttf');
+	font-weight: 400;
+	font-style: italic;
+}
+
+/* Segoe UI Light*/
+@font-face {
+	font-family: 'SegoeUI';
+	src: url('segoeuil.ttf');
+	font-weight: 300;
+	font-style: normal;
+}
+
+/* Segoe UI SemiLight*/
+@font-face {
+	font-family: 'SegoeUI';
+	src: url('segoeuisl.ttf');
+	font-weight: 350;
+	font-style: normal;
+}
+
+/* Segoe UI Bold Italic*/
+@font-face {
+	font-family: 'SegoeUI';
+	src: url('segoeuiz.ttf');
+	font-weight: 700;
+	font-style: italic;
+}
+
+/* Segoe UI Black*/
+@font-face {
+	font-family: 'SegoeUI';
+	src: url('seguibl.ttf');
+	font-weight: 900;
+	font-style: normal;
+}
+
+/* Segoe UI Black Italic*/
+@font-face {
+	font-family: 'SegoeUI';
+	src: url('seguibli.ttf');
+	font-weight: 900;
+	font-style: italic;
+}
+
+/* Segoe UI Light Italic*/
+@font-face {
+	font-family: 'SegoeUI';
+	src: url('seguili.ttf');
+	font-weight: 300;
+	font-style: italic;
+}
+
+/* Segoe UI SemiBold*/
+@font-face {
+	font-family: 'SegoeUI';
+	src: url('seguisb.ttf');
+	font-weight: 600;
+	font-style: normal;
+}
+
+/* Segoe UI SemiBold Italic*/
+@font-face {
+	font-family: 'SegoeUI';
+	src: url('seguisbi.ttf');
+	font-weight: 600;
+	font-style: italic;
+}
+
+/* Segoe UI SemiLight Italic*/
+@font-face {
+	font-family: 'SegoeUI';
+	src: url('seguisli.ttf');
+	font-weight: 350;
+	font-style: italic;
+}
