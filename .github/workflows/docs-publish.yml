@@ -3,6 +3,7 @@ name: Deploy Docusaurus site to GitHub Pages
 on:
     push:
         paths:
+            - .github/workflows/**
             - docs/**
             - src/**
             - package.json
@@ -11,6 +12,7 @@ on:
             - tsconfig.esm.json
             - typedoc.json
     pull_request:
+    workflow_dispatch:
 
 jobs:
     deploy:
