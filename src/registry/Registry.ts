@@ -40,14 +40,14 @@ export class Registry {
 	 * @public
 	 * @param configureRoute
 	 * @example
-	 * return registry.registerApplicationRoute((route) =>
+	 * return registry.registerApplicationRoutes((route) =>
 	 *		route //
 	 *			.setRouteName('')
 	 *			.setMethod(Methods.GET)
 	 *			.setHandler(this.run)
 	 *	);
 	 */
-	public registerApplicationRoute(configureRoute: (route: ApplicationRoute) => ApplicationRoute): ApplicationRoute {
+	public registerApplicationRoutes(configureRoute: (route: ApplicationRoute) => ApplicationRoute): ApplicationRoute {
 		const Route = new ApplicationRoute(this);
 		this.routes.push(configureRoute(Route));
 		return Route;

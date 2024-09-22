@@ -4,10 +4,11 @@ import {
 	ApplicationRegistry,
 	ApplicationRequest,
 	ApplicationResponse,
+	MiddlewareController,
 } from '../../types/index.js';
 
-export class Middleware {
-	public registerApplicationMiddleware(registry: ApplicationRegistry): ApplicationMiddleware {
+export class Middleware extends MiddlewareController {
+	public override registerApplicationMiddleware(registry: ApplicationRegistry): ApplicationMiddleware {
 		return registry.registerApplicationMiddleware((middleware) =>
 			middleware //
 				.setMiddlewareName('middleware')
@@ -16,12 +17,12 @@ export class Middleware {
 		);
 	}
 
-	public async run(
+	public override async run(
 		_request: ApplicationRequest,
 		_response: ApplicationResponse,
 		next: ApplicationNextFunction
 	): Promise<ApplicationResponse | void> {
-		console.log('Connected to middleware!');
+		this.logger.info('Connected to middleware!');
 		return next();
 	}
 }

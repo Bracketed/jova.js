@@ -16,7 +16,7 @@ import {
 } from '@bracketed/jova.js/types';
 
 export class Route {
-	public registerApplicationRoutes(registry: ApplicationRegistry): ApplicationRoute {
+	public registerApplicationRoute(registry: ApplicationRegistry): ApplicationRoute {
 		return registry.registerApplicationRoute((route) =>
 			route //
 				.setRouteName('')
@@ -44,7 +44,7 @@ const {
 } = require('@bracketed/jova.js/types');
 
 export class Route {
-	public registerApplicationRoutes(registry: ApplicationRegistry): ApplicationRoute {
+	public registerApplicationRoute(registry: ApplicationRegistry): ApplicationRoute {
 		return registry.registerApplicationRoute((route) =>
 			route //
 				.setRouteName('')

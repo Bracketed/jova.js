@@ -13,7 +13,7 @@ import {
  *
  * @readonly
  */
-export const response = {
+export class response {
 	// Response Codes
 	// 1xx Informational responses
 	/**
@@ -24,7 +24,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	continue: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.Continue),
+	public readonly continue = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.Continue);
 	/**
 	 * HTTP Switching Protocols response method.
 	 *
@@ -33,8 +34,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	switchingProtocols: (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.SwitchingProtocols),
+	public readonly switchingProtocols = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.SwitchingProtocols);
 	/**
 	 * HTTP Processing response method.
 	 *
@@ -43,7 +44,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	processing: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.Processing),
+	public readonly processing = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.Processing);
 	/**
 	 * HTTP Early Hints response method.
 	 *
@@ -52,10 +54,11 @@ export const response = {
 
 	 * @readonly
 	 */
-	earlyHints: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.EarlyHints),
+	public readonly earlyHints = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.EarlyHints);
 
 	// 2xx Success codes
-	ok: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.OK),
+	public readonly ok = (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.OK);
 	/**
 	 * HTTP OK response method.
 	 *
@@ -64,7 +67,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	created: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.Created),
+	public readonly created = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.Created);
 	/**
 	 * HTTP Created response method.
 	 *
@@ -73,7 +77,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	accepted: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.Accepted),
+	public readonly accepted = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.Accepted);
 	/**
 	 * HTTP Non Authoritative Information response method.
 	 *
@@ -82,8 +87,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	nonAuthoritativeInformation: (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.NonAuthoritativeInformation),
+	public readonly nonAuthoritativeInformation = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.NonAuthoritativeInformation);
 	/**
 	 * HTTP No Content response method.
 	 *
@@ -92,7 +97,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	noContent: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.NoContent),
+	public readonly noContent = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.NoContent);
 	/**
 	 * HTTP Reset Content response method.
 	 *
@@ -101,7 +107,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	resetContent: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.ResetContent),
+	public readonly resetContent = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.ResetContent);
 	/**
 	 * HTTP Partial Content response method.
 	 *
@@ -110,7 +117,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	partialContent: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.PartialContent),
+	public readonly partialContent = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.PartialContent);
 	/**
 	 * HTTP Multi Status response method.
 	 *
@@ -119,7 +127,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	multiStatus: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.MultiStatus),
+	public readonly multiStatus = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.MultiStatus);
 	/**
 	 * HTTP Already Reported response method.
 	 *
@@ -128,8 +137,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	alreadyReported: (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.AlreadyReported),
+	public readonly alreadyReported = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.AlreadyReported);
 	/**
 	 * HTTP I'm Used response method.
 	 *
@@ -138,7 +147,7 @@ export const response = {
 
 	 * @readonly
 	 */
-	imUsed: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.IMUsed),
+	public readonly imUsed = (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.IMUsed);
 
 	// 3xx Redirection
 	/**
@@ -149,8 +158,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	multipleChoices: (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.MultipleChoices),
+	public readonly multipleChoices = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.MultipleChoices);
 	/**
 	 * HTTP Permanently Moved response method.
 	 *
@@ -159,8 +168,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	movedPermanently: (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.MovedPermanently),
+	public readonly movedPermanently = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.MovedPermanently);
 	/**
 	 * HTTP Found response method.
 	 *
@@ -169,7 +178,7 @@ export const response = {
 
 	 * @readonly
 	 */
-	found: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.Found),
+	public readonly found = (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.Found);
 	/**
 	 * HTTP See Other response method.
 	 *
@@ -178,7 +187,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	seeOther: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.SeeOther),
+	public readonly seeOther = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.SeeOther);
 	/**
 	 * HTTP Not Modified response method.
 	 *
@@ -187,7 +197,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	notModified: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.NotModified),
+	public readonly notModified = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.NotModified);
 	/**
 	 * HTTP Use Proxy response method.
 	 *
@@ -196,7 +207,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	useProxy: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.UseProxy),
+	public readonly useProxy = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.UseProxy);
 	/**
 	 * HTTP Temporary Redirect response method.
 	 *
@@ -205,8 +217,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	temporaryRedirect: (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.TemporaryRedirect),
+	public readonly temporaryRedirect = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.TemporaryRedirect);
 	/**
 	 * HTTP Permanent Redirect response method.
 	 *
@@ -215,8 +227,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	permanentRedirect: (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.PermanentRedirect),
+	public readonly permanentRedirect = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.PermanentRedirect);
 
 	// 4xx Client errors
 	/**
@@ -227,7 +239,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	badRequest: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.BadRequest),
+	public readonly badRequest = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.BadRequest);
 	/**
 	 * HTTP Unauthorised response method.
 	 *
@@ -236,7 +249,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	unauthorized: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.Unauthorized),
+	public readonly unauthorized = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.Unauthorized);
 	/**
 	 * HTTP Payment Required response method.
 	 *
@@ -245,8 +259,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	paymentRequired: (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.PaymentRequired),
+	public readonly paymentRequired = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.PaymentRequired);
 	/**
 	 * HTTP Forbidden response method.
 	 *
@@ -255,7 +269,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	forbidden: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.Forbidden),
+	public readonly forbidden = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.Forbidden);
 	/**
 	 * HTTP Not Found response method.
 	 *
@@ -264,7 +279,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	notFound: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.NotFound),
+	public readonly notFound = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.NotFound);
 	/**
 	 * HTTP Method Not Allowed response method.
 	 *
@@ -273,8 +289,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	methodNotAllowed: (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.MethodNotAllowed),
+	public readonly methodNotAllowed = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.MethodNotAllowed);
 	/**
 	 * HTTP Not Acceptable response method.
 	 *
@@ -283,7 +299,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	notAcceptable: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.NotAcceptable),
+	public readonly notAcceptable = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.NotAcceptable);
 	/**
 	 * HTTP Proxy Auth Required response method.
 	 *
@@ -292,8 +309,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	proxyAuthenticationRequired: (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.ProxyAuthenticationRequired),
+	public readonly proxyAuthenticationRequired = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.ProxyAuthenticationRequired);
 	/**
 	 * HTTP Timeout response method.
 	 *
@@ -302,7 +319,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	requestTimeout: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.RequestTimeout),
+	public readonly requestTimeout = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.RequestTimeout);
 	/**
 	 * HTTP Request conflict response method.
 	 *
@@ -311,7 +329,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	conflict: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.Conflict),
+	public readonly conflict = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.Conflict);
 	/**
 	 * HTTP Gone response method.
 	 *
@@ -320,7 +339,7 @@ export const response = {
 
 	 * @readonly
 	 */
-	gone: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.Gone),
+	public readonly gone = (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.Gone);
 	/**
 	 * HTTP Length Required response method.
 	 *
@@ -329,7 +348,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	lengthRequired: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.LengthRequired),
+	public readonly lengthRequired = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.LengthRequired);
 	/**
 	 * HTTP Precondition Failed response method.
 	 *
@@ -338,8 +358,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	preconditionFailed: (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.PreconditionFailed),
+	public readonly preconditionFailed = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.PreconditionFailed);
 	/**
 	 * HTTP Payload too large response method.
 	 *
@@ -348,8 +368,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	payloadTooLarge: (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.PayloadTooLarge),
+	public readonly payloadTooLarge = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.PayloadTooLarge);
 	/**
 	 * HTTP URI too long response method.
 	 *
@@ -358,7 +378,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	uriTooLong: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.URITooLong),
+	public readonly uriTooLong = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.URITooLong);
 	/**
 	 * HTTP Unsupported Media Type response method.
 	 *
@@ -367,8 +388,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	unsupportedMediaType: (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.UnsupportedMediaType),
+	public readonly unsupportedMediaType = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.UnsupportedMediaType);
 	/**
 	 * HTTP Range error response method.
 	 *
@@ -377,8 +398,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	rangeNotSatisfiable: (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.RangeNotSatisfiable),
+	public readonly rangeNotSatisfiable = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.RangeNotSatisfiable);
 	/**
 	 * HTTP Expectation failure response method.
 	 *
@@ -387,8 +408,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	expectationFailed: (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.ExpectationFailed),
+	public readonly expectationFailed = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.ExpectationFailed);
 	/**
 	 * HTTP I'm A Teapot response method.
 	 *
@@ -397,7 +418,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	imATeapot: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.ImATeapot),
+	public readonly imATeapot = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.ImATeapot);
 	/**
 	 * HTTP Misdirected response method.
 	 *
@@ -406,8 +428,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	misdirectedRequest: (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.MisdirectedRequest),
+	public readonly misdirectedRequest = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.MisdirectedRequest);
 	/**
 	 * HTTP Unprocessable Entity response method.
 	 *
@@ -416,8 +438,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	unprocessableEntity: (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.UnprocessableEntity),
+	public readonly unprocessableEntity = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.UnprocessableEntity);
 	/**
 	 * HTTP Request Locked response method.
 	 *
@@ -426,7 +448,7 @@ export const response = {
 
 	 * @readonly
 	 */
-	locked: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.Locked),
+	public readonly locked = (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.Locked);
 	/**
 	 * HTTP Dependency Failure response method.
 	 *
@@ -435,8 +457,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	failedDependency: (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.FailedDependency),
+	public readonly failedDependency = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.FailedDependency);
 	/**
 	 * HTTP Too Early response method.
 	 *
@@ -445,7 +467,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	tooEarly: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.TooEarly),
+	public readonly tooEarly = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.TooEarly);
 	/**
 	 * HTTP Upgrade Required response method.
 	 *
@@ -454,8 +477,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	upgradeRequired: (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.UpgradeRequired),
+	public readonly upgradeRequired = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.UpgradeRequired);
 	/**
 	 * HTTP Required Precondition response method.
 	 *
@@ -464,8 +487,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	preconditionRequired: (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.PreconditionRequired),
+	public readonly preconditionRequired = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.PreconditionRequired);
 	/**
 	 * HTTP Too many requests response method.
 	 *
@@ -474,8 +497,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	tooManyRequests: (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.TooManyRequests),
+	public readonly tooManyRequests = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.TooManyRequests);
 	/**
 	 * HTTP Header Fields too large response method.
 	 *
@@ -484,8 +507,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	requestHeaderFieldsTooLarge: (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.RequestHeaderFieldsTooLarge),
+	public readonly requestHeaderFieldsTooLarge = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.RequestHeaderFieldsTooLarge);
 	/**
 	 * HTTP Unavailable for legal reasons response method.
 	 *
@@ -494,8 +517,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	unavailableForLegalReasons: (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.UnavailableForLegalReasons),
+	public readonly unavailableForLegalReasons = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.UnavailableForLegalReasons);
 
 	// 5xx Server errors
 	/**
@@ -506,8 +529,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	internalServerError: (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.InternalServerError),
+	public readonly internalServerError = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.InternalServerError);
 	/**
 	 * HTTP Not Implemented response method.
 	 *
@@ -516,7 +539,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	notImplemented: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.NotImplemented),
+	public readonly notImplemented = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.NotImplemented);
 	/**
 	 * HTTP Bad Gateway response method.
 	 *
@@ -525,7 +549,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	badGateway: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.BadGateway),
+	public readonly badGateway = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.BadGateway);
 	/**
 	 * HTTP Service Unavailable response method.
 	 *
@@ -534,8 +559,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	serviceUnavailable: (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.ServiceUnavailable),
+	public readonly serviceUnavailable = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.ServiceUnavailable);
 	/**
 	 * HTTP Gateway Timeout response method.
 	 *
@@ -544,7 +569,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	gatewayTimeout: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.GatewayTimeout),
+	public readonly gatewayTimeout = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.GatewayTimeout);
 	/**
 	 * HTTP Version Unsupported response method.
 	 *
@@ -553,8 +579,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	httpVersionNotSupported: (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.HTTPVersionNotSupported),
+	public readonly httpVersionNotSupported = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.HTTPVersionNotSupported);
 	/**
 	 * HTTP Variant Also Negotiates response method.
 	 *
@@ -563,8 +589,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	variantAlsoNegotiates: (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.VariantAlsoNegotiates),
+	public readonly variantAlsoNegotiates = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.VariantAlsoNegotiates);
 	/**
 	 * HTTP Insufficient Storage response method.
 	 *
@@ -573,8 +599,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	insufficientStorage: (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.InsufficientStorage),
+	public readonly insufficientStorage = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.InsufficientStorage);
 	/**
 	 * HTTP Loop Detected response method.
 	 *
@@ -583,7 +609,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	loopDetected: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.LoopDetected),
+	public readonly loopDetected = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.LoopDetected);
 	/**
 	 * HTTP Not Extended response method.
 	 *
@@ -592,7 +619,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	notExtended: (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.NotExtended),
+	public readonly notExtended = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.NotExtended);
 	/**
 	 * HTTP Network Authentication Required response method.
 	 *
@@ -601,8 +629,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	networkAuthenticationRequired: (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.NetworkAuthenticationRequired),
+	public readonly networkAuthenticationRequired = (response: ApplicationResponse): ApplicationResponse =>
+		response.status(HttpStatus.NetworkAuthenticationRequired);
 
 	// Functions
 	/**
@@ -620,11 +648,11 @@ export const response = {
 
 	 * @readonly
 	 */
-	sendHeader: (
+	public readonly sendHeader = (
 		response: ApplicationResponse,
 		name: string,
 		value: number | string | readonly string[]
-	): ApplicationResponse => response.setHeader(name, value),
+	): ApplicationResponse => response.setHeader(name, value);
 	/**
 	 * Set header `field` to `value`, or pass
 	 * an object of header fields.
@@ -647,8 +675,11 @@ export const response = {
 
 	 * @readonly
 	 */
-	setHeader: (response: ApplicationResponse, field: any, value?: string | string[]): ApplicationResponse =>
-		response.set(field, value),
+	public readonly setHeader = (
+		response: ApplicationResponse,
+		field: any,
+		value?: string | string[]
+	): ApplicationResponse => response.set(field, value);
 	/**
 	 * Set header `field` to `value`, or pass
 	 * an object of header fields.
@@ -671,8 +702,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	set: (response: ApplicationResponse, field: any, value?: string | string[]): ApplicationResponse =>
-		response.set(field, value),
+	public readonly set = (response: ApplicationResponse, field: any, value?: string | string[]): ApplicationResponse =>
+		response.set(field, value);
 	/**
 	 * Get value for header `field`.
 	 *
@@ -684,7 +715,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	getHeader: (response: ApplicationResponse, field: string): string | undefined => response.get(field),
+	public readonly getHeader = (response: ApplicationResponse, field: string): string | undefined =>
+		response.get(field);
 	/**
 	 * Get value for header `field`.
 	 *
@@ -696,7 +728,7 @@ export const response = {
 
 	 * @readonly
 	 */
-	header: (response: ApplicationResponse, field: string): string | undefined => response.get(field),
+	public readonly header = (response: ApplicationResponse, field: string): string | undefined => response.get(field);
 	/**
 	 * Get value for header `field`.
 	 *
@@ -708,7 +740,7 @@ export const response = {
 
 	 * @readonly
 	 */
-	get: (response: ApplicationResponse, field: string): string | undefined => response.get(field),
+	public readonly get = (response: ApplicationResponse, field: string): string | undefined => response.get(field);
 	/**
 	 * Appends the specified value to the HTTP response header field.
 	 * If the header is not already set, it creates the header with the specified value.
@@ -726,8 +758,11 @@ export const response = {
 
 	 * @readonly
 	 */
-	append: (response: ApplicationResponse, field: string, value?: string[] | string): ApplicationResponse =>
-		response.append(field, value),
+	public readonly append = (
+		response: ApplicationResponse,
+		field: string,
+		value?: string[] | string
+	): ApplicationResponse => response.append(field, value);
 	/**
 	 * Appends the specified value to the HTTP response header field.
 	 * If the header is not already set, it creates the header with the specified value.
@@ -745,8 +780,11 @@ export const response = {
 
 	 * @readonly
 	 */
-	appendHeader: (response: ApplicationResponse, field: string, value?: string[] | string): ApplicationResponse =>
-		response.append(field, value),
+	public readonly appendHeader = (
+		response: ApplicationResponse,
+		field: string,
+		value?: string[] | string
+	): ApplicationResponse => response.append(field, value);
 	/**
 	 * Appends the specified value to the HTTP response header field.
 	 * If the header is not already set, it creates the header with the specified value.
@@ -763,8 +801,11 @@ export const response = {
 
 	 * @readonly
 	 */
-	addHeader: (response: ApplicationResponse, field: string, value?: string[] | string): ApplicationResponse =>
-		response.append(field, value),
+	public readonly addHeader = (
+		response: ApplicationResponse,
+		field: string,
+		value?: string[] | string
+	): ApplicationResponse => response.append(field, value);
 	/**
 	 * Set Link header field with the given `links`.
 	 *
@@ -783,7 +824,7 @@ export const response = {
 
 	 * @readonly
 	 */
-	link: (response: ApplicationResponse, links: any): ApplicationResponse => response.links(links),
+	public readonly link = (response: ApplicationResponse, links: any): ApplicationResponse => response.links(links);
 	/**
 	 * Set Link header field with the given `links`.
 	 *
@@ -802,7 +843,7 @@ export const response = {
 
 	 * @readonly
 	 */
-	links: (response: ApplicationResponse, links: any): ApplicationResponse => response.links(links),
+	public readonly links = (response: ApplicationResponse, links: any): ApplicationResponse => response.links(links);
 	/**
 	 * Set Link header field with the given `links`.
 	 *
@@ -821,7 +862,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	linkHeaders: (response: ApplicationResponse, links: any): ApplicationResponse => response.links(links),
+	public readonly linkHeaders = (response: ApplicationResponse, links: any): ApplicationResponse =>
+		response.links(links);
 	/**
 	 * Set the location header to url.
 	 * The given url can also be the name of a mapped url, for example by default express supports "back" which redirects to the Referrer or Referer headers or "/".
@@ -843,7 +885,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	addLocationHeader: (response: ApplicationResponse, url: string): ApplicationResponse => response.location(url),
+	public readonly addLocationHeader = (response: ApplicationResponse, url: string): ApplicationResponse =>
+		response.location(url);
 	/**
 	 * Set the location header to url.
 	 * The given url can also be the name of a mapped url, for example by default express supports "back" which redirects to the Referrer or Referer headers or "/".
@@ -865,7 +908,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	addLocation: (response: ApplicationResponse, url: string): ApplicationResponse => response.location(url),
+	public readonly addLocation = (response: ApplicationResponse, url: string): ApplicationResponse =>
+		response.location(url);
 	/**
 	 * Set the location header to url.
 	 * The given url can also be the name of a mapped url, for example by default express supports "back" which redirects to the Referrer or Referer headers or "/".
@@ -887,7 +931,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	location: (response: ApplicationResponse, url: string): ApplicationResponse => response.location(url),
+	public readonly location = (response: ApplicationResponse, url: string): ApplicationResponse =>
+		response.location(url);
 	/**
 	 * Set `"Content-Disposition"` header to attachment with optional `filename`.
 	 *
@@ -898,7 +943,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	attach: (response: ApplicationResponse, filename?: string): ApplicationResponse => response.attachment(filename),
+	public readonly attach = (response: ApplicationResponse, filename?: string): ApplicationResponse =>
+		response.attachment(filename);
 	/**
 	 * Set `"Content-Disposition"` header to attachment with optional `filename`.
 	 *
@@ -909,8 +955,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	attachFile: (response: ApplicationResponse, filename?: string): ApplicationResponse =>
-		response.attachment(filename),
+	public readonly attachFile = (response: ApplicationResponse, filename?: string): ApplicationResponse =>
+		response.attachment(filename);
 	/**
 	 * Set `"Content-Disposition"` header to attachment with optional `filename`.
 	 *
@@ -921,8 +967,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	sendAttachment: (response: ApplicationResponse, filename?: string): ApplicationResponse =>
-		response.attachment(filename),
+	public readonly sendAttachment = (response: ApplicationResponse, filename?: string): ApplicationResponse =>
+		response.attachment(filename);
 	/**
 	 * Set `"Content-Disposition"` header to attachment with optional `filename`.
 	 *
@@ -933,8 +979,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	addAttachment: (response: ApplicationResponse, filename?: string): ApplicationResponse =>
-		response.attachment(filename),
+	public readonly addAttachment = (response: ApplicationResponse, filename?: string): ApplicationResponse =>
+		response.attachment(filename);
 	/**
 	 * Set `"Content-Disposition"` header to attachment with optional `filename`.
 	 *
@@ -945,8 +991,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	setAttachment: (response: ApplicationResponse, filename?: string): ApplicationResponse =>
-		response.attachment(filename),
+	public readonly setAttachment = (response: ApplicationResponse, filename?: string): ApplicationResponse =>
+		response.attachment(filename);
 	/**
 	 * Set `"Content-Disposition"` header to attachment with optional `filename`.
 	 *
@@ -957,8 +1003,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	attachment: (response: ApplicationResponse, filename?: string): ApplicationResponse =>
-		response.attachment(filename),
+	public readonly attachment = (response: ApplicationResponse, filename?: string): ApplicationResponse =>
+		response.attachment(filename);
 	/**
 	 * Set cookie `name` to `val`, with the given `options`.
 	 *
@@ -980,12 +1026,12 @@ export const response = {
 
 	 * @readonly
 	 */
-	setCookie: (
+	public readonly setCookie = (
 		response: ApplicationResponse,
 		name: string,
 		value: string,
 		options: CookieOptions
-	): ApplicationResponse => response.cookie(name, value, options),
+	): ApplicationResponse => response.cookie(name, value, options);
 	/**
 	 * Set cookie `name` to `val`, with the given `options`.
 	 *
@@ -1007,12 +1053,12 @@ export const response = {
 
 	 * @readonly
 	 */
-	addCookie: (
+	public readonly addCookie = (
 		response: ApplicationResponse,
 		name: string,
 		value: string,
 		options: CookieOptions
-	): ApplicationResponse => response.cookie(name, value, options),
+	): ApplicationResponse => response.cookie(name, value, options);
 	/**
 	 * Set cookie `name` to `val`, with the given `options`.
 	 *
@@ -1034,8 +1080,12 @@ export const response = {
 
 	 * @readonly
 	 */
-	cookie: (response: ApplicationResponse, name: string, value: string, options: CookieOptions): ApplicationResponse =>
-		response.cookie(name, value, options),
+	public readonly cookie = (
+		response: ApplicationResponse,
+		name: string,
+		value: string,
+		options: CookieOptions
+	): ApplicationResponse => response.cookie(name, value, options);
 	/**
 	 * Set cookie `name` to `val`, with the given `options`.
 	 *
@@ -1055,8 +1105,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	simpleCookie: (response: ApplicationResponse, name: string, value: string): ApplicationResponse =>
-		response.cookie(name, value),
+	public readonly simpleCookie = (response: ApplicationResponse, name: string, value: string): ApplicationResponse =>
+		response.cookie(name, value);
 	/**
 	 * Clear cookie `name`.
 	 *
@@ -1070,8 +1120,11 @@ export const response = {
 
 	 * @readonly
 	 */
-	clearCookie: (response: ApplicationResponse, name: string, options?: CookieOptions): ApplicationResponse =>
-		response.clearCookie(name, options),
+	public readonly clearCookie = (
+		response: ApplicationResponse,
+		name: string,
+		options?: CookieOptions
+	): ApplicationResponse => response.clearCookie(name, options);
 	/**
 	 * Clear cookie `name`.
 	 *
@@ -1085,8 +1138,11 @@ export const response = {
 
 	 * @readonly
 	 */
-	clear: (response: ApplicationResponse, name: string, options?: CookieOptions): ApplicationResponse =>
-		response.clearCookie(name, options),
+	public readonly clear = (
+		response: ApplicationResponse,
+		name: string,
+		options?: CookieOptions
+	): ApplicationResponse => response.clearCookie(name, options);
 	/**
 	 * Clear cookie `name`.
 	 *
@@ -1100,8 +1156,11 @@ export const response = {
 
 	 * @readonly
 	 */
-	removeCookie: (response: ApplicationResponse, name: string, options?: CookieOptions): ApplicationResponse =>
-		response.clearCookie(name, options),
+	public readonly removeCookie = (
+		response: ApplicationResponse,
+		name: string,
+		options?: CookieOptions
+	): ApplicationResponse => response.clearCookie(name, options);
 	/**
 	 * Clear cookie `name`.
 	 *
@@ -1115,8 +1174,11 @@ export const response = {
 
 	 * @readonly
 	 */
-	deleteCookie: (response: ApplicationResponse, name: string, options?: CookieOptions): ApplicationResponse =>
-		response.clearCookie(name, options),
+	public readonly deleteCookie = (
+		response: ApplicationResponse,
+		name: string,
+		options?: CookieOptions
+	): ApplicationResponse => response.clearCookie(name, options);
 	/**
 	 * Transfer the file at the given path as an attachment.
 	 *
@@ -1141,13 +1203,13 @@ export const response = {
 	 *
 	 * @readonly
 	 */
-	advancedDownload: (
+	public readonly advancedDownload = (
 		response: ApplicationResponse,
 		path: string,
 		filename: string,
 		options: DownloadOptions,
 		callback?: ErrorCallback
-	): void => response.download(path, filename, options, callback),
+	): void => response.download(path, filename, options, callback);
 	/**
 	 * Transfer the file at the given path as an attachment.
 	 *
@@ -1170,8 +1232,12 @@ export const response = {
 	 *
 	 * @readonly
 	 */
-	namedDownload: (response: ApplicationResponse, path: string, filename: string, callback?: ErrorCallback): void =>
-		response.download(path, filename, callback),
+	public readonly namedDownload = (
+		response: ApplicationResponse,
+		path: string,
+		filename: string,
+		callback?: ErrorCallback
+	): void => response.download(path, filename, callback);
 	/**
 	 * Transfer the file at the given path as an attachment.
 	 *
@@ -1192,8 +1258,8 @@ export const response = {
 	 *
 	 * @readonly
 	 */
-	download: (response: ApplicationResponse, path: string, callback?: ErrorCallback): void =>
-		response.download(path, callback),
+	public readonly download = (response: ApplicationResponse, path: string, callback?: ErrorCallback): void =>
+		response.download(path, callback);
 	/**
 	 * Calling the `writable.end()` method signals that no more data will be written
 	 * to the `Writable`. The optional `chunk` and `encoding` arguments allow one
@@ -1221,7 +1287,7 @@ export const response = {
 
 	 * @readonly
 	 */
-	end: (response: ApplicationResponse): ApplicationResponse => response.end(),
+	public readonly end = (response: ApplicationResponse): ApplicationResponse => response.end();
 	/**
 	 * Calling the `writable.end()` method signals that no more data will be written
 	 * to the `Writable`. The optional `chunk` and `encoding` arguments allow one
@@ -1249,8 +1315,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	callbackedEnd: (response: ApplicationResponse, callback?: () => void): ApplicationResponse =>
-		response.end(callback),
+	public readonly callbackedEnd = (response: ApplicationResponse, callback?: () => void): ApplicationResponse =>
+		response.end(callback);
 	/**
 	 * Calling the `writable.end()` method signals that no more data will be written
 	 * to the `Writable`. The optional `chunk` and `encoding` arguments allow one
@@ -1278,8 +1344,11 @@ export const response = {
 
 	 * @readonly
 	 */
-	chunkedEnd: (response: ApplicationResponse, chunk: any, callback?: () => void): ApplicationResponse =>
-		response.end(chunk, callback),
+	public readonly chunkedEnd = (
+		response: ApplicationResponse,
+		chunk: any,
+		callback?: () => void
+	): ApplicationResponse => response.end(chunk, callback);
 	/**
 	 * Calling the `writable.end()` method signals that no more data will be written
 	 * to the `Writable`. The optional `chunk` and `encoding` arguments allow one
@@ -1307,8 +1376,12 @@ export const response = {
 
 	 * @readonly
 	 */
-	encodedEnd: (response: ApplicationResponse, chunk: any, encoding: BufferEncoding, callback?: () => void) =>
-		response.end(chunk, encoding, callback),
+	public readonly encodedEnd = (
+		response: ApplicationResponse,
+		chunk: any,
+		encoding: BufferEncoding,
+		callback?: () => void
+	) => response.end(chunk, encoding, callback);
 	/**
 	 * Respond to the Acceptable formats using an `obj`
 	 * of mime-type callbacks.
@@ -1371,7 +1444,7 @@ export const response = {
 
 	 * @readonly
 	 */
-	format: (response: ApplicationResponse, obj: any): ApplicationResponse => response.format(obj),
+	public readonly format = (response: ApplicationResponse, obj: any): ApplicationResponse => response.format(obj);
 	/**
 	 * Respond to the Acceptable formats using an `obj`
 	 * of mime-type callbacks.
@@ -1434,7 +1507,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	formatObject: (response: ApplicationResponse, obj: any): ApplicationResponse => response.format(obj),
+	public readonly formatObject = (response: ApplicationResponse, obj: any): ApplicationResponse =>
+		response.format(obj);
 	/**
 	 * Send JSON response.
 	 *
@@ -1454,7 +1528,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	json: (response: ApplicationResponse, obj: any | object): ApplicationResponse => response.json(obj),
+	public readonly json = (response: ApplicationResponse, obj: any | object): ApplicationResponse =>
+		response.json(obj);
 	/**
 	 * Send JSON response with JSONP callback support.
 	 *
@@ -1474,7 +1549,7 @@ export const response = {
 
 	 * @readonly
 	 */
-	jsonp: (response: ApplicationResponse, obj: any): ApplicationResponse => response.jsonp(obj),
+	public readonly jsonp = (response: ApplicationResponse, obj: any): ApplicationResponse => response.jsonp(obj);
 	/**
 	 * Redirect to the given `url` with optional response `status`
 	 * defaulting to 302.
@@ -1502,10 +1577,10 @@ export const response = {
 
 	 * @readonly
 	 */
-	redirect: (response: ApplicationResponse, url: string, status?: HttpStatus | number): void => {
+	public readonly redirect = (response: ApplicationResponse, url: string, status?: HttpStatus | number): void => {
 		if (status) return response.redirect(status, url);
 		return response.redirect(url);
-	},
+	};
 	/**
 	 * Redirect to the given `url` with optional response `status`
 	 * defaulting to 302.
@@ -1533,10 +1608,14 @@ export const response = {
 
 	 * @readonly
 	 */
-	redirectResponse: (response: ApplicationResponse, url: string, status?: HttpStatus | number): void => {
+	public readonly redirectResponse = (
+		response: ApplicationResponse,
+		url: string,
+		status?: HttpStatus | number
+	): void => {
 		if (status) return response.redirect(status, url);
 		return response.redirect(url);
-	},
+	};
 	/**
 	 * Redirect to the given `url` with optional response `status`
 	 * defaulting to 302.
@@ -1564,10 +1643,14 @@ export const response = {
 
 	 * @readonly
 	 */
-	redirectRequest: (response: ApplicationResponse, url: string, status?: HttpStatus | number): void => {
+	public readonly redirectRequest = (
+		response: ApplicationResponse,
+		url: string,
+		status?: HttpStatus | number
+	): void => {
 		if (status) return response.redirect(status, url);
 		return response.redirect(url);
-	},
+	};
 	/**
 	 * Render `view` with the given `options` and optional callback `fn`.
 	 * When a callback function is given a response will _not_ be made
@@ -1583,8 +1666,11 @@ export const response = {
 
 	 * @readonly
 	 */
-	render: (response: ApplicationResponse, view: string, callback?: (err: Error, html: string) => void): void =>
-		response.render(view, callback),
+	public readonly render = (
+		response: ApplicationResponse,
+		view: string,
+		callback?: (err: Error, html: string) => void
+	): void => response.render(view, callback);
 	/**
 	 * Render `view` with the given `options` and optional callback `fn`.
 	 * When a callback function is given a response will _not_ be made
@@ -1605,12 +1691,12 @@ export const response = {
 
 	 * @readonly
 	 */
-	advancedRender: (
+	public readonly advancedRender = (
 		response: ApplicationResponse,
 		view: string,
 		options?: object,
 		callback?: (err: Error, html: string) => void
-	): void => response.render(view, options, callback),
+	): void => response.render(view, options, callback);
 	/**
 	 * Send a response.
 	 *
@@ -1630,7 +1716,7 @@ export const response = {
 
 	 * @readonly
 	 */
-	send: (response: ApplicationResponse, body?: any): ApplicationResponse => response.send(body),
+	public readonly send = (response: ApplicationResponse, body?: any): ApplicationResponse => response.send(body);
 	/**
 	 * Send a response.
 	 *
@@ -1650,7 +1736,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	sendContent: (response: ApplicationResponse, body?: any): ApplicationResponse => response.send(body),
+	public readonly sendContent = (response: ApplicationResponse, body?: any): ApplicationResponse =>
+		response.send(body);
 	/**
 	 * Transfer the file at the given `path`.
 	 *
@@ -1698,12 +1785,12 @@ export const response = {
 
 	 * @readonly
 	 */
-	sendAdvancedFile: (
+	public readonly sendAdvancedFile = (
 		response: ApplicationResponse,
 		path: string,
 		options: SendFileOptions,
 		callback?: ErrorCallback
-	) => response.sendFile(path, options, callback),
+	) => response.sendFile(path, options, callback);
 	/**
 	 * Transfer the file at the given `path`.
 	 *
@@ -1744,8 +1831,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	sendFile: (response: ApplicationResponse, path: string, callback?: ErrorCallback) =>
-		response.sendFile(path, callback),
+	public readonly sendFile = (response: ApplicationResponse, path: string, callback?: ErrorCallback) =>
+		response.sendFile(path, callback);
 	/**
 	 * Transfer the file at the given `path`.
 	 *
@@ -1786,7 +1873,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	file: (response: ApplicationResponse, path: string, callback?: ErrorCallback) => response.sendFile(path, callback),
+	public readonly file = (response: ApplicationResponse, path: string, callback?: ErrorCallback) =>
+		response.sendFile(path, callback);
 	/**
 	 * Transfer the file at the given `path`.
 	 *
@@ -1827,8 +1915,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	upload: (response: ApplicationResponse, path: string, callback?: ErrorCallback) =>
-		response.sendFile(path, callback),
+	public readonly upload = (response: ApplicationResponse, path: string, callback?: ErrorCallback) =>
+		response.sendFile(path, callback);
 	/**
 	 * Transfer the file at the given `path`.
 	 *
@@ -1869,8 +1957,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	uploadFile: (response: ApplicationResponse, path: string, callback?: ErrorCallback) =>
-		response.sendFile(path, callback),
+	public readonly uploadFile = (response: ApplicationResponse, path: string, callback?: ErrorCallback) =>
+		response.sendFile(path, callback);
 	/**
 	 * Transfer the file at the given `path`.
 	 *
@@ -1911,8 +1999,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	addFile: (response: ApplicationResponse, path: string, callback?: ErrorCallback) =>
-		response.sendFile(path, callback),
+	public readonly addFile = (response: ApplicationResponse, path: string, callback?: ErrorCallback) =>
+		response.sendFile(path, callback);
 	/**
 	 * Set the response HTTP status code to `statusCode` and send its string representation as the response body.
 	 * Source: http://expressjs.com/4x/api.html#res.sendStatus
@@ -1933,8 +2021,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	sendStatus: (response: ApplicationResponse, code: number | HttpStatus): ApplicationResponse =>
-		response.sendStatus(code),
+	public readonly sendStatus = (response: ApplicationResponse, code: number | HttpStatus): ApplicationResponse =>
+		response.sendStatus(code);
 	/**
 	 * Set the response HTTP status code to `statusCode` and send its string representation as the response body.
 	 * Source: http://expressjs.com/4x/api.html#res.sendStatus
@@ -1955,7 +2043,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	code: (response: ApplicationResponse, code: number | HttpStatus): ApplicationResponse => response.sendStatus(code),
+	public readonly code = (response: ApplicationResponse, code: number | HttpStatus): ApplicationResponse =>
+		response.sendStatus(code);
 	/**
 	 * Set the response HTTP status code to `statusCode` and send its string representation as the response body.
 	 * Source: http://expressjs.com/4x/api.html#res.sendStatus
@@ -1976,8 +2065,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	setStatus: (response: ApplicationResponse, code: number | HttpStatus): ApplicationResponse =>
-		response.sendStatus(code),
+	public readonly setStatus = (response: ApplicationResponse, code: number | HttpStatus): ApplicationResponse =>
+		response.sendStatus(code);
 	/**
 	 * Set the response HTTP status code to `statusCode` and send its string representation as the response body.
 	 * Source: http://expressjs.com/4x/api.html#res.sendStatus
@@ -1998,7 +2087,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	status: (response: ApplicationResponse, code: number | HttpStatus): ApplicationResponse => response.status(code),
+	public readonly status = (response: ApplicationResponse, code: number | HttpStatus): ApplicationResponse =>
+		response.status(code);
 	/**
 	 * Set _Content-Type_ response header with `type` through `mime.lookup()`
 	 * when it does not contain "/", or set the Content-Type to `type` otherwise.
@@ -2020,31 +2110,8 @@ export const response = {
 
 	 * @readonly
 	 */
-	type: (response: ApplicationResponse, type: string | ContentType): ApplicationResponse => response.type(type),
-	/**
-	 * Set _Content-Type_ response header with `type` through `mime.lookup()`
-	 * when it does not contain "/", or set the Content-Type to `type` otherwise.
-	 *
-	 * Examples:
-	 * ```js
-	 * response.type('.html');
-	 * response.type('html');
-	 * response.type('json');
-	 * response.type('application/json');
-	 * response.type('png');
-	 * ```
-	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
-	 * @param type
-	 * The response content type.
-	 *
-
-	 
-	 * @readonly
-	 */
-	responseType: (response: ApplicationResponse, type: string | ContentType): ApplicationResponse =>
-		response.type(type),
+	public readonly type = (response: ApplicationResponse, type: string | ContentType): ApplicationResponse =>
+		response.type(type);
 	/**
 	 * Set _Content-Type_ response header with `type` through `mime.lookup()`
 	 * when it does not contain "/", or set the Content-Type to `type` otherwise.
@@ -2067,8 +2134,8 @@ export const response = {
 	 
 	 * @readonly
 	 */
-	setResponseType: (response: ApplicationResponse, type: string | ContentType): ApplicationResponse =>
-		response.type(type),
+	public readonly responseType = (response: ApplicationResponse, type: string | ContentType): ApplicationResponse =>
+		response.type(type);
 	/**
 	 * Set _Content-Type_ response header with `type` through `mime.lookup()`
 	 * when it does not contain "/", or set the Content-Type to `type` otherwise.
@@ -2091,7 +2158,10 @@ export const response = {
 	 
 	 * @readonly
 	 */
-	setType: (response: ApplicationResponse, type: string | ContentType): ApplicationResponse => response.type(type),
+	public readonly setResponseType = (
+		response: ApplicationResponse,
+		type: string | ContentType
+	): ApplicationResponse => response.type(type);
 	/**
 	 * Set _Content-Type_ response header with `type` through `mime.lookup()`
 	 * when it does not contain "/", or set the Content-Type to `type` otherwise.
@@ -2114,8 +2184,8 @@ export const response = {
 	 
 	 * @readonly
 	 */
-	setResponse: (response: ApplicationResponse, type: string | ContentType): ApplicationResponse =>
-		response.type(type),
+	public readonly setType = (response: ApplicationResponse, type: string | ContentType): ApplicationResponse =>
+		response.type(type);
 	/**
 	 * Set _Content-Type_ response header with `type` through `mime.lookup()`
 	 * when it does not contain "/", or set the Content-Type to `type` otherwise.
@@ -2138,7 +2208,8 @@ export const response = {
 	 
 	 * @readonly
 	 */
-	setContent: (response: ApplicationResponse, type: string | ContentType): ApplicationResponse => response.type(type),
+	public readonly setResponse = (response: ApplicationResponse, type: string | ContentType): ApplicationResponse =>
+		response.type(type);
 	/**
 	 * Set _Content-Type_ response header with `type` through `mime.lookup()`
 	 * when it does not contain "/", or set the Content-Type to `type` otherwise.
@@ -2161,8 +2232,8 @@ export const response = {
 	 
 	 * @readonly
 	 */
-	setContentType: (response: ApplicationResponse, type: string | ContentType): ApplicationResponse =>
-		response.type(type),
+	public readonly setContent = (response: ApplicationResponse, type: string | ContentType): ApplicationResponse =>
+		response.type(type);
 	/**
 	 * Set _Content-Type_ response header with `type` through `mime.lookup()`
 	 * when it does not contain "/", or set the Content-Type to `type` otherwise.
@@ -2185,8 +2256,32 @@ export const response = {
 	 
 	 * @readonly
 	 */
-	contentType: (response: ApplicationResponse, type: string | ContentType): ApplicationResponse =>
-		response.type(type),
+	public readonly setContentType = (response: ApplicationResponse, type: string | ContentType): ApplicationResponse =>
+		response.type(type);
+	/**
+	 * Set _Content-Type_ response header with `type` through `mime.lookup()`
+	 * when it does not contain "/", or set the Content-Type to `type` otherwise.
+	 *
+	 * Examples:
+	 * ```js
+	 * response.type('.html');
+	 * response.type('html');
+	 * response.type('json');
+	 * response.type('application/json');
+	 * response.type('png');
+	 * ```
+	 *
+	 * @param response
+	 * The `ApplicationResponse` object from your route handler.
+	 * @param type
+	 * The response content type.
+	 *
+
+	 
+	 * @readonly
+	 */
+	public readonly contentType = (response: ApplicationResponse, type: string | ContentType): ApplicationResponse =>
+		response.type(type);
 	/**
 	 * Adds the field to the Vary response header, if it is not there already.
 	 * Examples:
@@ -2202,5 +2297,5 @@ export const response = {
 
 	 * @readonly
 	 */
-	vary: (response: ApplicationResponse, field: string): ApplicationResponse => response.vary(field),
-};
+	public readonly vary = (response: ApplicationResponse, field: string): ApplicationResponse => response.vary(field);
+}

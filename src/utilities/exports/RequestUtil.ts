@@ -1,11 +1,11 @@
 import { ApplicationRequest, Charset, ContentType, Encoder, Language, RangeParser } from '../../types/index.js';
 
 /**
- * A utility for managing request.
+ * A utility for managing requests.
  *
  * @readonly
  */
-export const request = {
+export class request {
 	/**
 	 * Get value for header `field`.
 	 *
@@ -16,7 +16,7 @@ export const request = {
 	 *
 	 * @readonly
 	 */
-	getHeader: (request: ApplicationRequest, field: string): string | undefined => request.get(field),
+	public readonly getHeader = (request: ApplicationRequest, field: string): string | undefined => request.get(field);
 	/**
 	 * Get value for header `field`.
 	 *
@@ -27,7 +27,7 @@ export const request = {
 	 *
 	 * @readonly
 	 */
-	header: (request: ApplicationRequest, field: string): string | undefined => request.get(field),
+	public readonly header = (request: ApplicationRequest, field: string): string | undefined => request.get(field);
 	/**
 	 * Get value for header `field`.
 	 *
@@ -38,7 +38,7 @@ export const request = {
 
 	 * @readonly
 	 */
-	get: (request: ApplicationRequest, field: string): string | undefined => request.get(field),
+	public readonly get = (request: ApplicationRequest, field: string): string | undefined => request.get(field);
 	/**
 	 * Check if the incoming request contains the "Content-Type"
 	 * header field, and it contains the give mime `type`.
@@ -68,41 +68,10 @@ export const request = {
 
 	 * @readonly
 	 */
-	is: (request: ApplicationRequest, type: string | string[] | ContentType | ContentType[]): string | false | null =>
-		request.is(type),
-	/**
-	 * Check if the incoming request contains the "Content-Type"
-	 * header field, and it contains the give mime `type`.
-	 *
-	 * Examples:
-	 * ```js
-	 * // With Content-Type: text/html; charset=utf-8
-	 * request.is('html');
-	 * request.is('text/html');
-	 * request.is('text/*');
-	 * // => true
-	 *
-	 * // When Content-Type is application/json
-	 * request.is('json');
-	 * request.is('application/json');
-	 * request.is('application/*');
-	 * // => true
-	 *
-	 * request.is('html');
-	 * // => false
-	 * ```
-	 *
-	 * @param request
-	 * The `ApplicationRequest` object from your route handler.
-	 * @param type
-	 * The Content Type.
-
-	 * @readonly
-	 */
-	isType: (
+	public readonly is = (
 		request: ApplicationRequest,
 		type: string | string[] | ContentType | ContentType[]
-	): string | false | null => request.is(type),
+	): string | false | null => request.is(type);
 	/**
 	 * Check if the incoming request contains the "Content-Type"
 	 * header field, and it contains the give mime `type`.
@@ -132,10 +101,10 @@ export const request = {
 
 	 * @readonly
 	 */
-	isContentType: (
+	public readonly isType = (
 		request: ApplicationRequest,
 		type: string | string[] | ContentType | ContentType[]
-	): string | false | null => request.is(type),
+	): string | false | null => request.is(type);
 	/**
 	 * Check if the incoming request contains the "Content-Type"
 	 * header field, and it contains the give mime `type`.
@@ -165,10 +134,10 @@ export const request = {
 
 	 * @readonly
 	 */
-	verify: (
+	public readonly isContentType = (
 		request: ApplicationRequest,
 		type: string | string[] | ContentType | ContentType[]
-	): string | false | null => request.is(type),
+	): string | false | null => request.is(type);
 	/**
 	 * Check if the incoming request contains the "Content-Type"
 	 * header field, and it contains the give mime `type`.
@@ -198,10 +167,10 @@ export const request = {
 
 	 * @readonly
 	 */
-	verifyType: (
+	public readonly verify = (
 		request: ApplicationRequest,
 		type: string | string[] | ContentType | ContentType[]
-	): string | false | null => request.is(type),
+	): string | false | null => request.is(type);
 	/**
 	 * Check if the incoming request contains the "Content-Type"
 	 * header field, and it contains the give mime `type`.
@@ -231,10 +200,43 @@ export const request = {
 
 	 * @readonly
 	 */
-	verifyContentType: (
+	public readonly verifyType = (
 		request: ApplicationRequest,
 		type: string | string[] | ContentType | ContentType[]
-	): string | false | null => request.is(type),
+	): string | false | null => request.is(type);
+	/**
+	 * Check if the incoming request contains the "Content-Type"
+	 * header field, and it contains the give mime `type`.
+	 *
+	 * Examples:
+	 * ```js
+	 * // With Content-Type: text/html; charset=utf-8
+	 * request.is('html');
+	 * request.is('text/html');
+	 * request.is('text/*');
+	 * // => true
+	 *
+	 * // When Content-Type is application/json
+	 * request.is('json');
+	 * request.is('application/json');
+	 * request.is('application/*');
+	 * // => true
+	 *
+	 * request.is('html');
+	 * // => false
+	 * ```
+	 *
+	 * @param request
+	 * The `ApplicationRequest` object from your route handler.
+	 * @param type
+	 * The Content Type.
+
+	 * @readonly
+	 */
+	public readonly verifyContentType = (
+		request: ApplicationRequest,
+		type: string | string[] | ContentType | ContentType[]
+	): string | false | null => request.is(type);
 	/**
 	 * Parse Range header field, capping to the given `size`.
 	 *
@@ -262,11 +264,11 @@ export const request = {
 	 *
 	 * @readonly
 	 */
-	range: (
+	public readonly range = (
 		request: ApplicationRequest,
 		size: number,
 		options?: RangeParser.Options
-	): RangeParser.Ranges | RangeParser.Result | undefined => request.range(size, options),
+	): RangeParser.Ranges | RangeParser.Result | undefined => request.range(size, options);
 	/**
 	 * Check if the given `type(s)` is acceptable, returning
 	 * the best match when true, otherwise `undefined`, in which
@@ -310,7 +312,8 @@ export const request = {
 	 * The Content Type
 	 * @readonly
 	 */
-	accepts: (request: ApplicationRequest, type: string | ContentType): string | false => request.accepts(type),
+	public readonly accepts = (request: ApplicationRequest, type: string | ContentType): string | false =>
+		request.accepts(type);
 	/**
 	 * Check if the given `type(s)` is acceptable, returning
 	 * the best match when true, otherwise `undefined`, in which
@@ -354,7 +357,8 @@ export const request = {
 	 * The Content Type
 	 * @readonly
 	 */
-	acceptsType: (request: ApplicationRequest, type: string | ContentType): string | false => request.accepts(type),
+	public readonly acceptsType = (request: ApplicationRequest, type: string | ContentType): string | false =>
+		request.accepts(type);
 	/**
 	 * Check if the given `type(s)` is acceptable, returning
 	 * the best match when true, otherwise `undefined`, in which
@@ -398,8 +402,8 @@ export const request = {
 	 * The Content Type
 	 * @readonly
 	 */
-	acceptsTypes: (request: ApplicationRequest, ...types: string[] | ContentType[]): string | false =>
-		request.accepts(...types),
+	public readonly acceptsTypes = (request: ApplicationRequest, ...types: string[] | ContentType[]): string | false =>
+		request.accepts(...types);
 
 	/**
 	 * Returns the first accepted charset of the specified character sets,
@@ -414,8 +418,8 @@ export const request = {
 	 * The Content Charset
 	 * @readonly
 	 */
-	acceptsCharset: (request: ApplicationRequest, charset: string | Charset): string | false =>
-		request.acceptsCharsets(charset),
+	public readonly acceptsCharset = (request: ApplicationRequest, charset: string | Charset): string | false =>
+		request.acceptsCharsets(charset);
 	/**
 	 * Returns the first accepted charset of the specified character sets,
 	 * based on the request's Accept-Charset HTTP header field.
@@ -429,8 +433,10 @@ export const request = {
 	 * The Content Charset
 	 * @readonly
 	 */
-	acceptsCharsets: (request: ApplicationRequest, ...charsets: string[] | Charset[]): string | false =>
-		request.acceptsCharsets(...charsets),
+	public readonly acceptsCharsets = (
+		request: ApplicationRequest,
+		...charsets: string[] | Charset[]
+	): string | false => request.acceptsCharsets(...charsets);
 
 	/**
 	 * Returns the first accepted encoding of the specified encodings,
@@ -445,8 +451,8 @@ export const request = {
 	 * The Content Encoder
 	 * @readonly
 	 */
-	acceptsEncoding: (request: ApplicationRequest, encoding: string | Encoder): string | false =>
-		request.acceptsEncodings(encoding),
+	public readonly acceptsEncoding = (request: ApplicationRequest, encoding: string | Encoder): string | false =>
+		request.acceptsEncodings(encoding);
 	/**
 	 * Returns the first accepted encoding of the specified encodings,
 	 * based on the request's Accept-Encoding HTTP header field.
@@ -460,8 +466,10 @@ export const request = {
 	 * The Content Encoder
 	 * @readonly
 	 */
-	acceptsEncodings: (request: ApplicationRequest, ...encodings: string[] | Encoder[]): string | false =>
-		request.acceptsEncodings(...encodings),
+	public readonly acceptsEncodings = (
+		request: ApplicationRequest,
+		...encodings: string[] | Encoder[]
+	): string | false => request.acceptsEncodings(...encodings);
 
 	/**
 	 * Returns the first accepted language of the specified languages,
@@ -476,8 +484,8 @@ export const request = {
 	 * The Content Language
 	 * @readonly
 	 */
-	acceptsLanguage: (request: ApplicationRequest, lang: string | Language): string | false =>
-		request.acceptsLanguages(lang),
+	public readonly acceptsLanguage = (request: ApplicationRequest, lang: string | Language): string | false =>
+		request.acceptsLanguages(lang);
 	/**
 	 * Returns the first accepted language of the specified languages,
 	 * based on the request's Accept-Language HTTP header field.
@@ -491,6 +499,6 @@ export const request = {
 	 * The Content Language
 	 * @readonly
 	 */
-	acceptsLanguages: (request: ApplicationRequest, ...langs: string[] | Language[]): string | false =>
-		request.acceptsLanguages(...langs),
-};
+	public readonly acceptsLanguages = (request: ApplicationRequest, ...langs: string[] | Language[]): string | false =>
+		request.acceptsLanguages(...langs);
+}

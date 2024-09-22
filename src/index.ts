@@ -6,20 +6,22 @@ import fs from 'node:fs';
 import path from 'node:path';
 import tcp from 'tcp-port-used';
 
+import * as utilities from './utilities/index.js';
+
 import {
 	ApplicationEvent,
-	ApplicationListener,
-	ApplicationMiddleware,
 	ApplicationRegistry,
-	ApplicationRoute,
 	CorsOptions,
+	EventController,
 	JovaCustomOption,
 	JovaPathSettings,
 	JovaServerOptions,
 	JovaSettings,
 	JovaSettingsTable,
+	MiddlewareController,
 	MiddlewareHandler,
 	RatelimitConfig,
+	RouteController,
 } from './types/index.js';
 
 import { loadApplicationCorsConfiguration } from './resources/CorsConfig.js';
@@ -36,15 +38,12 @@ function recursiveSearchInDir(targetDirName: string, currentDir: string): string
 		const fullPath = path.join(currentDir, file);
 		const stat = fs.statSync(fullPath);
 
-		// If a directory matches the target directory name, return it
-		if (stat.isDirectory() && file === targetDirName) {
-			return fullPath;
-		}
+		if (file === 'node_modules') continue;
+		if (stat.isDirectory() && file === targetDirName) return fullPath;
 
-		// If it's a directory, recursively search inside
 		if (stat.isDirectory()) {
 			const result = recursiveSearchInDir(targetDirName, fullPath);
-			if (result) return result; // If found in subdirectory, return the result
+			if (result) return result;
 		}
 	}
 
@@ -54,16 +53,13 @@ function recursiveSearchInDir(targetDirName: string, currentDir: string): string
 function findDirUpward(targetDirName: string, startDir: string): string | null {
 	let currentDir = path.resolve(startDir);
 
-	// Keep walking up until the root directory is reached
 	while (currentDir !== path.parse(currentDir).root) {
 		const result: string | null = recursiveSearchInDir(targetDirName, currentDir);
-		if (result) {
-			return result; // Return the directory if found
-		}
-		currentDir = path.dirname(currentDir); // Move up to the parent directory
+		if (result) return result;
+		currentDir = path.dirname(currentDir);
 	}
 
-	return null; // Return null if directory not found
+	return null;
 }
 
 function findHandlers(dir: string, startDir = process.cwd(), fileList: string[] = [], visitedDirs = new Set()) {
@@ -71,25 +67,21 @@ function findHandlers(dir: string, startDir = process.cwd(), fileList: string[] 
 
 	if (!foundDir) {
 		console.error(`Directory '${dir}' not found from '${startDir}' or any parent directories.`);
-		return fileList; // Return empty list if directory doesn't exist
+		return fileList;
 	}
 
-	// Resolve the absolute path of the found directory
 	const absoluteDir = path.resolve(foundDir);
-
-	// Check if the directory has been visited to avoid processing it twice
 	if (visitedDirs.has(absoluteDir)) return fileList;
 
-	// Mark this directory as visited
 	visitedDirs.add(absoluteDir);
 
-	// Read the contents of the directory
 	const files = fs.readdirSync(absoluteDir);
 
-	// Loop through each item in the directory
-	files.forEach((file) => {
+	files.forEach((file: string) => {
 		const fullPath = path.join(absoluteDir, file);
 		const stat = fs.statSync(fullPath);
+
+		if (file === 'node_modules') return;
 
 		if (stat.isDirectory()) findHandlers(file, fullPath, fileList, visitedDirs);
 		else {
@@ -475,13 +467,14 @@ class JovaServer extends EventEmitter {
 		for await (const [_index, value] of routes.entries()) {
 			const RouteTimer = new Stopwatch();
 			const RouteModule = await import(`file://${value}`);
-			if (!RouteModule['Route']) continue;
+			if (!RouteModule['Route'] || typeof RouteModule['Route'] !== 'function') continue;
 
-			const Route = RouteModule.Route as {
-				new (): { registerApplicationRoutes: (registry: ApplicationRegistry) => ApplicationRoute };
-			};
+			const Route = RouteModule.Route as new (...args: any[]) => RouteController;
 
-			const RegisteredRoute = new Route().registerApplicationRoutes(this.registry);
+			const RegisteredRoute = new Route(this.application, this.logger, {
+				request: new utilities.request(),
+				response: new utilities.response(),
+			}).registerApplicationRoutes(this.registry);
 
 			this.logger.info(
 				`ApplicationRouteRegistry: Registered Route: "${RegisteredRoute.getApplicationRoute().route}" (${RegisteredRoute.getApplicationRoute().method.toUpperCase()}) in ${RouteTimer.stop().toString()}`
@@ -503,23 +496,31 @@ class JovaServer extends EventEmitter {
 		});
 
 		this.logger.info(
-			`ApplicationRouteRegistry: Registered ${routes.length} Route(s) in ${RouteRegisterStopwatch.stop().toString()}`
+			`ApplicationRouteRegistry: Registered ${this.registry.getRoutes().length} Route(s) in ${RouteRegisterStopwatch.stop().toString()}`
 		);
+		if (!(routes.length === this.registry.getRoutes().length))
+			this.logger.warn(
+				'ApplicationRouteRegistry: Some routes were not registered due to errors or missing content in the registering process'
+			);
 	}
 
 	private async loadApplicationEvents(): Promise<void> {
 		const events = findHandlers(this.paths.events as string);
 
-		this.logger.info('ApplicationEventRegistry: Registering Events...');
+		this.logger.info(`ApplicationEventRegistry: Registering ${events.length} Events...`);
 		const EventRegisterStopwatch = new Stopwatch();
 
 		for await (const [_index, value] of events.entries()) {
 			const EventTimer = new Stopwatch();
-			const Event = (await import(`file://${value}`)).Event as {
-				new (): { registerApplicationEvent: (registry: ApplicationRegistry) => ApplicationListener };
-			};
+			const EventModule = await import(`file://${value}`);
+			if (!EventModule['Event'] || typeof EventModule['Event'] !== 'function') continue;
 
-			const RegisteredEvent = new Event().registerApplicationEvent(this.registry);
+			const Event = EventModule.Event as new (...args: any[]) => EventController;
+
+			const RegisteredEvent = new Event(this.application, this.logger, {
+				request: new utilities.request(),
+				response: new utilities.response(),
+			}).registerApplicationEvent(this.registry);
 
 			this.logger.info(
 				`ApplicationEventRegistry: Registered Event: "${RegisteredEvent.getApplicationEvent().event}" in ${EventTimer.stop().toString()}`
@@ -527,8 +528,12 @@ class JovaServer extends EventEmitter {
 		}
 
 		this.logger.info(
-			`ApplicationEventRegistry: Registered ${events.length} Event(s) in ${EventRegisterStopwatch.stop().toString()}`
+			`ApplicationEventRegistry: Registered ${this.registry.getEvents().length} Event(s) in ${EventRegisterStopwatch.stop().toString()}`
 		);
+		if (!(events.length === this.registry.getEvents().length))
+			this.logger.warn(
+				'ApplicationEventRegistry: Some events were not registered due to errors or missing content in the registering process'
+			);
 	}
 
 	private async loadApplicationMiddlewares(): Promise<void> {
@@ -544,11 +549,15 @@ class JovaServer extends EventEmitter {
 
 		for await (const [_index, value] of middlewares.entries()) {
 			const MiddlewareTimer = new Stopwatch();
-			const Middleware = (await import(`file://${value}`)).Middleware as {
-				new (): { registerApplicationMiddleware: (registry: ApplicationRegistry) => ApplicationMiddleware };
-			};
+			const MiddlewareModule = await import(`file://${value}`);
+			if (!MiddlewareModule['Middleware'] || typeof MiddlewareModule['Middleware'] !== 'function') continue;
 
-			const RegisteredMiddleware = new Middleware().registerApplicationMiddleware(this.registry);
+			const Middleware = MiddlewareModule.Middleware as new (...args: any[]) => MiddlewareController;
+
+			const RegisteredMiddleware = new Middleware(this.application, this.logger, {
+				request: new utilities.request(),
+				response: new utilities.response(),
+			}).registerApplicationMiddleware(this.registry);
 
 			this.logger.info(
 				`ApplicationMiddlewareRegistry: Registered Middleware: "${RegisteredMiddleware.getApplicationMiddleware().middleware}" in ${MiddlewareTimer.stop().toString()} - Runs on all Routes: ${RegisteredMiddleware.getApplicationMiddleware().runsOnAllRoutes}`
@@ -560,8 +569,12 @@ class JovaServer extends EventEmitter {
 		});
 
 		this.logger.info(
-			`ApplicationMiddlewareRegistry: Registered ${middlewares.length} + Built-in Middleware(s) in ${MiddlewareRegisterStopwatch.stop().toString()}`
+			`ApplicationMiddlewareRegistry: Registered ${this.registry.getMiddlewares().length} + Built-in Middleware(s) in ${MiddlewareRegisterStopwatch.stop().toString()}`
 		);
+		if (!(middlewares.length === this.registry.getMiddlewares().length))
+			this.logger.warn(
+				'ApplicationMiddlewareRegistry: Some routes were not registered due to errors or missing content in the registering process'
+			);
 	}
 
 	/**
@@ -585,6 +598,7 @@ class JovaServer extends EventEmitter {
 	 * await server.listen(3000, true); // With port increment
 	 */
 	public async listen(port?: string | number, allowPortIncrement?: boolean): Promise<void> {
+		this.logger.info(`Application: Starting new HTTP server on port ${port}...`);
 		try {
 			if (!port) port = this.port;
 
@@ -601,28 +615,36 @@ class JovaServer extends EventEmitter {
 			loadApplicationSettingsConfiguration(this.application, this.logger, this.settings);
 			loadApplicationCustomConfiguration(this.application, this.logger, this.customOptions);
 
+			this.logger.info();
+			this.logger.info('-------------------- EVENT REGISTERING --------------------');
 			await this.loadApplicationEvents().catch((err) => {
 				this.logger.fatal('ApplicationEventRegistry: Error during listener processing:', err);
 				this.release(ApplicationEvent.ERROR, err);
 				process.exit(1);
 			});
 
+			this.logger.info();
+			this.logger.info('-------------------- MIDDLEWARE REGISTERING --------------------');
 			await this.loadApplicationMiddlewares().catch((err) => {
 				this.logger.fatal('ApplicationMiddlewareRegistry: Error during middleware processing:', err);
 				this.release(ApplicationEvent.ERROR, err);
 				process.exit(1);
 			});
 
+			this.logger.info();
+			this.logger.info('-------------------- ROUTE REGISTERING --------------------');
 			await this.loadApplicationRoutes().catch((err) => {
 				this.logger.fatal('ApplicationRouteRegistry: Error during route processing:', err);
 				this.release(ApplicationEvent.ERROR, err);
 				process.exit(1);
 			});
 
+			this.logger.info();
 			this.application.listen(port, () => {
 				this.logger.info(
-					`Application: HTTP Server now serving on port ${port} with: ${this.registry.getRoutes().length} route(s) ${this.registry.getMiddlewares().length + (this.middlewares?.length || 0)} + Built-in middleware(s) ${this.registry.getEvents().length} event listener(s)`
+					`Application: HTTP Server now serving on port ${port} with: ${this.registry.getRoutes().length} route(s), ${this.registry.getMiddlewares().length + (this.middlewares?.length || 0)} + Built-in middleware(s) and ${this.registry.getEvents().length} event listener(s)`
 				);
+				this.logger.info();
 				this.release(ApplicationEvent.READY);
 			});
 		} catch (error) {

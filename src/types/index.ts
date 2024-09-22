@@ -28,6 +28,10 @@ export * from './express/SendOptions.js';
 export * from '../registry/types/Routes/AppRouteType.js';
 export * from '../registry/types/Routes/RouteHandlerType.js';
 
+export * from '../registry/types/Events/BaseEventType.js';
+export * from '../registry/types/Middlewares/BaseMiddlewareType.js';
+export * from '../registry/types/Routes/BaseRouteType.js';
+
 export * from '../registry/types/Middlewares/AppMiddlewareType.js';
 export * from '../registry/types/Middlewares/MiddlewareHandlerType.js';
 

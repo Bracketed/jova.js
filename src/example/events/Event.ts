@@ -1,7 +1,7 @@
-import { ApplicationEvent, ApplicationListener, ApplicationRegistry } from '../../types/index.js';
+import { ApplicationEvent, ApplicationListener, ApplicationRegistry, EventController } from '../../types/index.js';
 
-export class Event {
-	public registerApplicationEvent(registry: ApplicationRegistry): ApplicationListener {
+export class Event extends EventController {
+	public override registerApplicationEvent(registry: ApplicationRegistry): ApplicationListener {
 		return registry.registerApplicationEvent((event) =>
 			event //
 				.setEventType(ApplicationEvent.ALL)
@@ -9,9 +9,8 @@ export class Event {
 		);
 	}
 
-	public async run(e: ApplicationEvent, ...args: any[]) {
-		console.log('Event Hit:', e);
-		console.log(...args);
+	public override async run(_e: ApplicationEvent, ..._args: any[]) {
+		console.log(this);
 		return;
 	}
 }

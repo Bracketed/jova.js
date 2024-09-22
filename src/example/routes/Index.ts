@@ -4,11 +4,12 @@ import {
 	ApplicationResponse,
 	ApplicationRoute,
 	Methods,
+	RouteController,
 } from '../../types/index.js';
 
-export class Route {
-	public registerApplicationRoutes(registry: ApplicationRegistry): ApplicationRoute {
-		return registry.registerApplicationRoute((route) =>
+export class Route extends RouteController {
+	public override registerApplicationRoutes(registry: ApplicationRegistry): ApplicationRoute {
+		return registry.registerApplicationRoutes((route) =>
 			route //
 				.setRouteName('')
 				.setMethod(Methods.GET)
@@ -16,8 +17,11 @@ export class Route {
 		);
 	}
 
-	public async run(request: ApplicationRequest, response: ApplicationResponse): Promise<ApplicationResponse | void> {
-		console.log('Recieved request for', request.baseUrl);
+	public override async run(
+		request: ApplicationRequest,
+		response: ApplicationResponse
+	): Promise<ApplicationResponse | void> {
+		this.logger.info('Recieved request for', request.baseUrl);
 		return response.status(200).json({ message: 'Hello World!' });
 	}
 }
