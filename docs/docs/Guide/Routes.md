@@ -13,20 +13,23 @@ import {
 	ApplicationResponse,
 	ApplicationRoute,
 	Methods,
+	RouteController,
 } from '@bracketed/jova.js/types';
 
-export class Route {
-	public registerApplicationRoute(registry: ApplicationRegistry): ApplicationRoute {
-		return registry.registerApplicationRoute((route) =>
+export class Route extends RouteController {
+	public override registerApplicationRoutes(registry: ApplicationRegistry): ApplicationRoute {
+		return registry.registerApplicationRoutes((route) =>
 			route //
 				.setRouteName('')
 				.setMethod(Methods.GET)
-				.setHandler(this.run)
 		);
 	}
 
-	public async run(request: ApplicationRequest, response: ApplicationResponse): Promise<ApplicationResponse | void> {
-		console.log('Recieved request for', request.baseUrl);
+	public override async run(
+		request: ApplicationRequest,
+		response: ApplicationResponse
+	): Promise<ApplicationResponse | void> {
+		this.logger.info('Recieved request for', request.baseUrl);
 		return response.status(200).json({ message: 'Hello World!' });
 	}
 }
@@ -41,20 +44,23 @@ const {
 	ApplicationResponse,
 	ApplicationRoute,
 	Methods,
+	RouteController,
 } = require('@bracketed/jova.js/types');
 
-export class Route {
-	public registerApplicationRoute(registry: ApplicationRegistry): ApplicationRoute {
-		return registry.registerApplicationRoute((route) =>
+export class Route extends RouteController {
+	public override registerApplicationRoutes(registry: ApplicationRegistry): ApplicationRoute {
+		return registry.registerApplicationRoutes((route) =>
 			route //
 				.setRouteName('')
 				.setMethod(Methods.GET)
-				.setHandler(this.run)
 		);
 	}
 
-	public async run(request: ApplicationRequest, response: ApplicationResponse): Promise<ApplicationResponse | void> {
-		console.log('Recieved request for', request.baseUrl);
+	public override async run(
+		request: ApplicationRequest,
+		response: ApplicationResponse
+	): Promise<ApplicationResponse | void> {
+		this.logger.info('Recieved request for', request.baseUrl);
 		return response.status(200).json({ message: 'Hello World!' });
 	}
 }

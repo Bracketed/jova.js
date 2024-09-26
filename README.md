@@ -109,20 +109,16 @@ However, you can set up routes, middlewares and event listeners like this:
 ```ts
 // ESM
 // ./events/Event.ts
-import { ApplicationEvent, ApplicationListener, ApplicationRegistry } from '@bracketed.jova.js/types';
+import { ApplicationEvent, EventController, EventListenerOptions } from '@bracketed/jova.js/types';
 
-export class Event {
-	public registerApplicationEvent(registry: ApplicationRegistry): ApplicationListener {
-		return registry.registerApplicationEvent((event) =>
-			event //
-				.setEventType(ApplicationEvent.ALL)
-				.setHandler(this.run)
-		);
+export class Event extends EventController {
+	public override setApplicationEventOptions(): EventListenerOptions {
+		return {
+			type: ApplicationEvent.ALL,
+		};
 	}
 
-	public async run(e: ApplicationEvent, ...args: any[]) {
-		console.log('Event Hit:', e);
-		console.log(...args);
+	public override async run(_e: ApplicationEvent, ..._args: any[]) {
 		return;
 	}
 }
@@ -131,20 +127,16 @@ export class Event {
 ```ts
 // CJS
 // ./events/Event.ts
-const { ApplicationEvent, ApplicationListener, ApplicationRegistry } = require('@bracketed.jova.js/types');
+const { ApplicationEvent, EventController, EventListenerOptions } = require('@bracketed.jova.js/types');
 
-export class Event {
-	public registerApplicationEvent(registry: ApplicationRegistry): ApplicationListener {
-		return registry.registerApplicationEvent((event) =>
-			event //
-				.setEventType(ApplicationEvent.ALL)
-				.setHandler(this.run)
-		);
+export class Event extends EventController {
+	public override setApplicationEventOptions(): EventListenerOptions {
+		return {
+			type: ApplicationEvent.ALL,
+		};
 	}
 
-	public async run(e: ApplicationEvent, ...args: any[]) {
-		console.log('Event Hit:', e);
-		console.log(...args);
+	public override async run(_e: ApplicationEvent, ..._args: any[]) {
 		return;
 	}
 }
@@ -161,20 +153,23 @@ import {
 	ApplicationResponse,
 	ApplicationRoute,
 	Methods,
+	RouteController,
 } from '@bracketed/jova.js/types';
 
-export class Route {
-	public registerApplicationRoute(registry: ApplicationRegistry): ApplicationRoute {
-		return registry.registerApplicationRoute((route) =>
+export class Route extends RouteController {
+	public override registerApplicationRoutes(registry: ApplicationRegistry): ApplicationRoute {
+		return registry.registerApplicationRoutes((route) =>
 			route //
 				.setRouteName('')
 				.setMethod(Methods.GET)
-				.setHandler(this.run)
 		);
 	}
 
-	public async run(request: ApplicationRequest, response: ApplicationResponse): Promise<ApplicationResponse | void> {
-		console.log('Recieved request for', request.baseUrl);
+	public override async run(
+		request: ApplicationRequest,
+		response: ApplicationResponse
+	): Promise<ApplicationResponse | void> {
+		this.logger.info('Recieved request for', request.baseUrl);
 		return response.status(200).json({ message: 'Hello World!' });
 	}
 }
@@ -189,20 +184,23 @@ const {
 	ApplicationResponse,
 	ApplicationRoute,
 	Methods,
+	RouteController,
 } = require('@bracketed/jova.js/types');
 
-export class Route {
-	public registerApplicationRoute(registry: ApplicationRegistry): ApplicationRoute {
-		return registry.registerApplicationRoute((route) =>
+export class Route extends RouteController {
+	public override registerApplicationRoutes(registry: ApplicationRegistry): ApplicationRoute {
+		return registry.registerApplicationRoutes((route) =>
 			route //
 				.setRouteName('')
 				.setMethod(Methods.GET)
-				.setHandler(this.run)
 		);
 	}
 
-	public async run(request: ApplicationRequest, response: ApplicationResponse): Promise<ApplicationResponse | void> {
-		console.log('Recieved request for', request.baseUrl);
+	public override async run(
+		request: ApplicationRequest,
+		response: ApplicationResponse
+	): Promise<ApplicationResponse | void> {
+		this.logger.info('Recieved request for', request.baseUrl);
 		return response.status(200).json({ message: 'Hello World!' });
 	}
 }
@@ -214,29 +212,27 @@ export class Route {
 // ESM
 // ./middlewares/Middleware.ts
 import {
-	ApplicationMiddleware,
 	ApplicationNextFunction,
-	ApplicationRegistry,
 	ApplicationRequest,
 	ApplicationResponse,
+	MiddlewareController,
+	MiddlewareOptions,
 } from '@bracketed/jova.js/types';
 
-export class Middleware {
-	public registerApplicationMiddleware(registry: ApplicationRegistry): ApplicationMiddleware {
-		return registry.registerApplicationMiddleware((middleware) =>
-			middleware //
-				.setMiddlewareName('middleware')
-				.setHandler(this.run)
-				.runOnAllRoutes(false)
-		);
+export class Middleware extends MiddlewareController {
+	public override setApplicationMiddlewareOptions(): MiddlewareOptions {
+		return {
+			middlewareName: 'middleware',
+			runsOnAllRoutes: true,
+		};
 	}
 
-	public async run(
+	public override async run(
 		_request: ApplicationRequest,
 		_response: ApplicationResponse,
 		next: ApplicationNextFunction
 	): Promise<ApplicationResponse | void> {
-		console.log('Connected to middleware!');
+		this.logger.info('Connected to middleware!');
 		return next();
 	}
 }
@@ -246,29 +242,27 @@ export class Middleware {
 // CJS
 // ./middlewares/Middleware.ts
 const {
-	ApplicationMiddleware,
 	ApplicationNextFunction,
-	ApplicationRegistry,
 	ApplicationRequest,
 	ApplicationResponse,
+	MiddlewareController,
+	MiddlewareOptions,
 } = require('@bracketed/jova.js/types');
 
-export class Middleware {
-	public registerApplicationMiddleware(registry: ApplicationRegistry): ApplicationMiddleware {
-		return registry.registerApplicationMiddleware((middleware) =>
-			middleware //
-				.setMiddlewareName('middleware')
-				.setHandler(this.run)
-				.runOnAllRoutes(false)
-		);
+export class Middleware extends MiddlewareController {
+	public override setApplicationMiddlewareOptions(): MiddlewareOptions {
+		return {
+			middlewareName: 'middleware',
+			runsOnAllRoutes: true,
+		};
 	}
 
-	public async run(
+	public override async run(
 		_request: ApplicationRequest,
 		_response: ApplicationResponse,
 		next: ApplicationNextFunction
 	): Promise<ApplicationResponse | void> {
-		console.log('Connected to middleware!');
+		this.logger.info('Connected to middleware!');
 		return next();
 	}
 }

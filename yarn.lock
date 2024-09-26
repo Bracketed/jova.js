@@ -154,7 +154,7 @@ __metadata:
     "@sapphire/stopwatch": "npm:^1.5.2"
     "@types/cors": "npm:^2.8.17"
     "@types/express": "npm:^4"
-    "@types/node": "npm:^22.5.5"
+    "@types/node": "npm:^22.7.2"
     "@types/range-parser": "npm:^1.2.7"
     "@types/tcp-port-used": "npm:^1.0.4"
     cors: "npm:^2.8.5"
@@ -172,8 +172,8 @@ __metadata:
     typedoc-github-theme: "npm:^0.1.2"
     typedoc-github-wiki-theme: "npm:^2.0.0"
     typedoc-plugin-inline-sources: "npm:^1.1.0"
-    typedoc-plugin-markdown: "npm:^4.2.7"
-    typedoc-plugin-mdn-links: "npm:^3.2.12"
+    typedoc-plugin-markdown: "npm:^4.2.8"
+    typedoc-plugin-mdn-links: "npm:^3.3.1"
     typescript: "npm:^5.6.2"
   languageName: unknown
   linkType: soft
@@ -351,14 +351,14 @@ __metadata:
   linkType: hard
 
 "@types/express-serve-static-core@npm:^4.17.33":
-  version: 4.19.5
-  resolution: "@types/express-serve-static-core@npm:4.19.5"
+  version: 4.19.6
+  resolution: "@types/express-serve-static-core@npm:4.19.6"
   dependencies:
     "@types/node": "npm:*"
     "@types/qs": "npm:*"
     "@types/range-parser": "npm:*"
     "@types/send": "npm:*"
-  checksum: 10c0/ba8d8d976ab797b2602c60e728802ff0c98a00f13d420d82770f3661b67fa36ea9d3be0b94f2ddd632afe1fbc6e41620008b01db7e4fabdd71a2beb5539b0725
+  checksum: 10c0/4281f4ead71723f376b3ddf64868ae26244d434d9906c101cf8d436d4b5c779d01bd046e4ea0ed1a394d3e402216fabfa22b1fa4dba501061cd7c81c54045983
   languageName: node
   linkType: hard
 
@@ -446,12 +446,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^22.5.5":
-  version: 22.5.5
-  resolution: "@types/node@npm:22.5.5"
+"@types/node@npm:^22.7.2":
+  version: 22.7.2
+  resolution: "@types/node@npm:22.7.2"
   dependencies:
     undici-types: "npm:~6.19.2"
-  checksum: 10c0/ead9495cfc6b1da5e7025856dcce2591e9bae635357410c0d2dd619fce797d2a1d402887580ca4b336cb78168b195224869967de370a23f61663cf1e4836121c
+  checksum: 10c0/987e4df034e4af0ce76b938c2c0d94373da376b228f1c93081a661c77e682795c599bcad47c93c70a25b8ea443587137cf23088fb7f62ef442955f13046eae3d
   languageName: node
   linkType: hard
 
@@ -462,14 +462,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/qs@npm:*":
-  version: 6.9.15
-  resolution: "@types/qs@npm:6.9.15"
-  checksum: 10c0/49c5ff75ca3adb18a1939310042d273c9fc55920861bd8e5100c8a923b3cda90d759e1a95e18334092da1c8f7b820084687770c83a1ccef04fb2c6908117c823
-  languageName: node
-  linkType: hard
-
-"@types/qs@npm:6.9.16":
+"@types/qs@npm:*, @types/qs@npm:6.9.16":
   version: 6.9.16
   resolution: "@types/qs@npm:6.9.16"
   checksum: 10c0/a4e871b80fff623755e356fd1f225aea45ff7a29da30f99fddee1a05f4f5f33485b314ab5758145144ed45708f97e44595aa9a8368e9bbc083932f931b12dbb6
@@ -2585,21 +2578,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc-plugin-markdown@npm:^4.2.7":
-  version: 4.2.7
-  resolution: "typedoc-plugin-markdown@npm:4.2.7"
+"typedoc-plugin-markdown@npm:^4.2.8":
+  version: 4.2.8
+  resolution: "typedoc-plugin-markdown@npm:4.2.8"
   peerDependencies:
     typedoc: 0.26.x
-  checksum: 10c0/b806ed39a0c34eca2d552bf580a1c8cdc794e90b88fb4e0a55cc0a96f01b317c5c6b7c1cb2a6e378b8fdd164ebf0da7b17534137ec849dfd6caf48d8f1b941d1
+  checksum: 10c0/d79548f65f1d745f68c964cfd03d2cb89039f1afc285e6386691b53f3b5c07332331b7308cba434621dcde615aff3068f1b91fbbe958c968c6501beedbfea836
   languageName: node
   linkType: hard
 
-"typedoc-plugin-mdn-links@npm:^3.2.12":
-  version: 3.2.12
-  resolution: "typedoc-plugin-mdn-links@npm:3.2.12"
+"typedoc-plugin-mdn-links@npm:^3.3.1":
+  version: 3.3.1
+  resolution: "typedoc-plugin-mdn-links@npm:3.3.1"
   peerDependencies:
     typedoc: ">= 0.23.14 || 0.24.x || 0.25.x || 0.26.x"
-  checksum: 10c0/1ddb859c73e83cc271ac4587d77e255d25b2f0080ed6dc0991160d64d84fd194f22a013eb3fd62f5ff2d147b586f6036a86d1d288ba8c837483c5a5436d8d4e1
+  checksum: 10c0/8df2549628c8974b88fa047dfe46e0db01a2b4afb4a3d8132af0cc329679a85f0b0196e4f85c701ad077ea3e1d10fba65b08fda57c761f1ec883ba5facc29c6e
   languageName: node
   linkType: hard
 

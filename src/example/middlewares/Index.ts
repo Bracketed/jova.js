@@ -1,20 +1,17 @@
 import {
-	ApplicationMiddleware,
 	ApplicationNextFunction,
-	ApplicationRegistry,
 	ApplicationRequest,
 	ApplicationResponse,
 	MiddlewareController,
+	MiddlewareOptions,
 } from '../../types/index.js';
 
 export class Middleware extends MiddlewareController {
-	public override registerApplicationMiddleware(registry: ApplicationRegistry): ApplicationMiddleware {
-		return registry.registerApplicationMiddleware((middleware) =>
-			middleware //
-				.setMiddlewareName('middleware')
-				.setHandler(this.run)
-				.runOnAllRoutes(false)
-		);
+	public override setApplicationMiddlewareOptions(): MiddlewareOptions {
+		return {
+			middlewareName: 'middleware',
+			runsOnAllRoutes: true,
+		};
 	}
 
 	public override async run(

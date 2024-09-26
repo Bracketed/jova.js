@@ -8,29 +8,27 @@ Put your middlewares into the `/middlewares` directory of your Jova application.
 // ESM
 // ./middlewares/Middleware.ts
 import {
-	ApplicationMiddleware,
 	ApplicationNextFunction,
-	ApplicationRegistry,
 	ApplicationRequest,
 	ApplicationResponse,
+	MiddlewareController,
+	MiddlewareOptions,
 } from '@bracketed/jova.js/types';
 
-export class Middleware {
-	public registerApplicationMiddleware(registry: ApplicationRegistry): ApplicationMiddleware {
-		return registry.registerApplicationMiddleware((middleware) =>
-			middleware //
-				.setMiddlewareName('middleware')
-				.setHandler(this.run)
-				.runOnAllRoutes(false)
-		);
+export class Middleware extends MiddlewareController {
+	public override setApplicationMiddlewareOptions(): MiddlewareOptions {
+		return {
+			middlewareName: 'middleware',
+			runsOnAllRoutes: true,
+		};
 	}
 
-	public async run(
+	public override async run(
 		_request: ApplicationRequest,
 		_response: ApplicationResponse,
 		next: ApplicationNextFunction
 	): Promise<ApplicationResponse | void> {
-		console.log('Connected to middleware!');
+		this.logger.info('Connected to middleware!');
 		return next();
 	}
 }
@@ -40,29 +38,27 @@ export class Middleware {
 // CJS
 // ./middlewares/Middleware.ts
 const {
-	ApplicationMiddleware,
 	ApplicationNextFunction,
-	ApplicationRegistry,
 	ApplicationRequest,
 	ApplicationResponse,
+	MiddlewareController,
+	MiddlewareOptions,
 } = require('@bracketed/jova.js/types');
 
-export class Middleware {
-	public registerApplicationMiddleware(registry: ApplicationRegistry): ApplicationMiddleware {
-		return registry.registerApplicationMiddleware((middleware) =>
-			middleware //
-				.setMiddlewareName('middleware')
-				.setHandler(this.run)
-				.runOnAllRoutes(false)
-		);
+export class Middleware extends MiddlewareController {
+	public override setApplicationMiddlewareOptions(): MiddlewareOptions {
+		return {
+			middlewareName: 'middleware',
+			runsOnAllRoutes: true,
+		};
 	}
 
-	public async run(
+	public override async run(
 		_request: ApplicationRequest,
 		_response: ApplicationResponse,
 		next: ApplicationNextFunction
 	): Promise<ApplicationResponse | void> {
-		console.log('Connected to middleware!');
+		this.logger.info('Connected to middleware!');
 		return next();
 	}
 }

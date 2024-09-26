@@ -3134,7 +3134,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/gh-pages@npm:^6":
+"@types/gh-pages@npm:^6.1.0":
   version: 6.1.0
   resolution: "@types/gh-pages@npm:6.1.0"
   checksum: 10c0/d8bf644822df211accac9cff24fcc0a5155fd715d05bc1698175623f5cde1aff81c302e7e38f7105e0fa0fe7ab24d7009d8dbb875897af669f48e06c3c20484c
@@ -7647,7 +7647,7 @@ __metadata:
     "@easyops-cn/docusaurus-search-local": "npm:^0.44.5"
     "@knodes/typedoc-plugin-code-blocks": "npm:^0.23.4"
     "@mdx-js/react": "npm:^3.0.1"
-    "@types/gh-pages": "npm:^6"
+    "@types/gh-pages": "npm:^6.1.0"
     axios: "npm:^1.7.7"
     bad-words: "npm:^4.0.0"
     clsx: "npm:^2.1.1"
@@ -7659,8 +7659,8 @@ __metadata:
     react-use: "npm:^17.5.1"
     typedoc: "npm:^0.26.7"
     typedoc-plugin-inline-sources: "npm:^1.1.0"
-    typedoc-plugin-markdown: "npm:^4.2.7"
-    typedoc-plugin-mdn-links: "npm:^3.2.12"
+    typedoc-plugin-markdown: "npm:^4.2.8"
+    typedoc-plugin-mdn-links: "npm:^3.3.1"
     typedoc-plugin-remove-references: "npm:^0.0.6"
     typescript: "npm:~5.6.2"
   languageName: unknown
@@ -12127,21 +12127,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc-plugin-markdown@npm:^4.2.7":
-  version: 4.2.7
-  resolution: "typedoc-plugin-markdown@npm:4.2.7"
+"typedoc-plugin-markdown@npm:^4.2.8":
+  version: 4.2.8
+  resolution: "typedoc-plugin-markdown@npm:4.2.8"
   peerDependencies:
     typedoc: 0.26.x
-  checksum: 10c0/b806ed39a0c34eca2d552bf580a1c8cdc794e90b88fb4e0a55cc0a96f01b317c5c6b7c1cb2a6e378b8fdd164ebf0da7b17534137ec849dfd6caf48d8f1b941d1
+  checksum: 10c0/d79548f65f1d745f68c964cfd03d2cb89039f1afc285e6386691b53f3b5c07332331b7308cba434621dcde615aff3068f1b91fbbe958c968c6501beedbfea836
   languageName: node
   linkType: hard
 
-"typedoc-plugin-mdn-links@npm:^3.2.12":
-  version: 3.2.12
-  resolution: "typedoc-plugin-mdn-links@npm:3.2.12"
+"typedoc-plugin-mdn-links@npm:^3.3.1":
+  version: 3.3.1
+  resolution: "typedoc-plugin-mdn-links@npm:3.3.1"
   peerDependencies:
     typedoc: ">= 0.23.14 || 0.24.x || 0.25.x || 0.26.x"
-  checksum: 10c0/1ddb859c73e83cc271ac4587d77e255d25b2f0080ed6dc0991160d64d84fd194f22a013eb3fd62f5ff2d147b586f6036a86d1d288ba8c837483c5a5436d8d4e1
+  checksum: 10c0/8df2549628c8974b88fa047dfe46e0db01a2b4afb4a3d8132af0cc329679a85f0b0196e4f85c701ad077ea3e1d10fba65b08fda57c761f1ec883ba5facc29c6e
   languageName: node
   linkType: hard
 

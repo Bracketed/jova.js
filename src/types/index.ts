@@ -26,19 +26,21 @@ export * from './express/FileOptions.js';
 export * from './express/SendOptions.js';
 
 export * from '../registry/types/Routes/AppRouteType.js';
+export * from '../registry/types/Routes/BaseRouteType.js';
 export * from '../registry/types/Routes/RouteHandlerType.js';
 
-export * from '../registry/types/Events/BaseEventType.js';
-export * from '../registry/types/Middlewares/BaseMiddlewareType.js';
-export * from '../registry/types/Routes/BaseRouteType.js';
-
 export * from '../registry/types/Middlewares/AppMiddlewareType.js';
+export * from '../registry/types/Middlewares/BaseMiddlewareType.js';
 export * from '../registry/types/Middlewares/MiddlewareHandlerType.js';
 
 export * from '../registry/types/Events/AppEventType.js';
+export * from '../registry/types/Events/BaseEventType.js';
 export * from '../registry/types/Events/EventHandlerType.js';
 
-export * from './JovaEvents.js';
+export * from './jova/Events.js';
+
+export * from './registry/EventListenerOptions.js';
+export * from './registry/MiddlewareOptions.js';
 
 export {
 	NextFunction as ApplicationNextFunction,

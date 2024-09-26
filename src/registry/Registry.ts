@@ -6,7 +6,6 @@ import {
 	EventHandler,
 	Methods,
 	MiddlewareHandler,
-	RouteHandler,
 } from '../types/index.js';
 
 interface RegistryOptions {
@@ -102,7 +101,6 @@ export class Registry {
 	public getRoutes(): {
 		route: string;
 		method: Methods;
-		handler: RouteHandler;
 		middlewares: MiddlewareHandler[];
 	}[] {
 		return this.routes.map((routeInstance) => {
@@ -112,7 +110,6 @@ export class Registry {
 			return {
 				route: (route.basePathOverride || this.basePath) + route.route,
 				method: route.method,
-				handler: route.handler,
 				middlewares: [...middlewares, ...route.middlewares],
 			};
 		});

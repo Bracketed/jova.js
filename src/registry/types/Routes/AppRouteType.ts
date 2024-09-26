@@ -5,20 +5,17 @@ import {
 	ApplicationResponse,
 	Methods,
 	MiddlewareHandler,
-	RouteHandler,
 } from '../../../types/index.js';
 
 /**
- * Description placeholder
+ * An Application Route.
  *
- 
  * @class ApplicationRoute
  */
 export class ApplicationRoute {
 	private registry: ApplicationRegistry;
 	private route: string = '';
 	private method: Methods = Methods.ALL;
-	private handler: RouteHandler = async (_req: ApplicationRequest, _res: ApplicationResponse) => {};
 	private middlewares: Array<MiddlewareHandler> = [];
 	private requiredHeaders: string[] = [];
 	private basePathOverride: string | null = null;
@@ -57,19 +54,6 @@ export class ApplicationRoute {
 	 */
 	public setMethod(method: Methods): this {
 		this.method = method;
-		return this;
-	}
-
-	/**
-	 * Set the handler for your route, this handles incoming requests for the method defined with `setMethod`.
-	 *
-	 * @public
-	 * @param handler
-	 * @default // Default is an empty handler instance.
-	 * @example this.setHandler(this.run)
-	 */
-	public setHandler(handler: RouteHandler): this {
-		this.handler = handler;
 		return this;
 	}
 
@@ -147,14 +131,12 @@ export class ApplicationRoute {
 	public getApplicationRoute(): {
 		route: string;
 		method: Methods;
-		handler: RouteHandler;
 		middlewares: MiddlewareHandler[];
 		basePathOverride: string | null;
 	} {
 		return {
 			route: this.route,
 			method: this.method,
-			handler: this.handler,
 			middlewares: [...this.middlewares, this.checkHeadersMiddleware],
 			basePathOverride: this.basePathOverride,
 		};

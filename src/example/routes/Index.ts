@@ -13,7 +13,6 @@ export class Route extends RouteController {
 			route //
 				.setRouteName('')
 				.setMethod(Methods.GET)
-				.setHandler(this.run)
 		);
 	}
 

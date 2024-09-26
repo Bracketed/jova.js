@@ -8,7 +8,6 @@ import {
 /**
  * An Application Middleware.
  *
- 
  * @class AppMiddleware
  */
 export class ApplicationMiddleware {
@@ -28,8 +27,8 @@ export class ApplicationMiddleware {
 	 * @default undefined // If no name is set or is set to "", runsOnAllRoutes will default to true and make it a global middleware.
 	 * @example this.setMiddlewareName('authorisationMiddleware')
 	 */
-	public setMiddlewareName(name: string): this {
-		if (name === '') return this;
+	public setMiddlewareName(name: string | undefined): this {
+		if (name === '' || !name) return this;
 		this.middleware = name;
 		return this;
 	}

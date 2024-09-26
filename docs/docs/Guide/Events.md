@@ -7,20 +7,16 @@ Put your event handlers into the `/events` directory of your Jova application.
 ```ts
 // ESM
 // ./events/Event.ts
-import { ApplicationEvent, ApplicationListener, ApplicationRegistry } from '@bracketed.jova.js/types';
+import { ApplicationEvent, EventController, EventListenerOptions } from '@bracketed/jova.js/types';
 
-export class Event {
-	public registerApplicationEvent(registry: ApplicationRegistry): ApplicationListener {
-		return registry.registerApplicationEvent((event) =>
-			event //
-				.setEventType(ApplicationEvent.ALL)
-				.setHandler(this.run)
-		);
+export class Event extends EventController {
+	public override setApplicationEventOptions(): EventListenerOptions {
+		return {
+			type: ApplicationEvent.ALL,
+		};
 	}
 
-	public async run(e: ApplicationEvent, ...args: any[]) {
-		console.log('Event Hit:', e);
-		console.log(...args);
+	public override async run(_e: ApplicationEvent, ..._args: any[]) {
 		return;
 	}
 }
@@ -29,20 +25,16 @@ export class Event {
 ```ts
 // CJS
 // ./events/Event.ts
-const { ApplicationEvent, ApplicationListener, ApplicationRegistry } = require('@bracketed.jova.js/types');
+const { ApplicationEvent, EventController, EventListenerOptions } = require('@bracketed.jova.js/types');
 
-export class Event {
-	public registerApplicationEvent(registry: ApplicationRegistry): ApplicationListener {
-		return registry.registerApplicationEvent((event) =>
-			event //
-				.setEventType(ApplicationEvent.ALL)
-				.setHandler(this.run)
-		);
+export class Event extends EventController {
+	public override setApplicationEventOptions(): EventListenerOptions {
+		return {
+			type: ApplicationEvent.ALL,
+		};
 	}
 
-	public async run(e: ApplicationEvent, ...args: any[]) {
-		console.log('Event Hit:', e);
-		console.log(...args);
+	public override async run(_e: ApplicationEvent, ..._args: any[]) {
 		return;
 	}
 }
