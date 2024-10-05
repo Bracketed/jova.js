@@ -32,15 +32,10 @@
 		"lib"
 	],
 	"type": "module",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/bracketed/jova.js"
-	},
+	"repository": "https://github.com/bracketed/jova.js",
 	"homepage": "https://jova.js.org/",
 	"sideEffects": false,
-	"bugs": {
-		"url": "https://github.com/bracketed/jova.js/issues"
-	},
+	"bugs": "https://github.com/bracketed/jova.js/issues",
 	"keywords": [
 		"bracketed",
 		"typescript",
