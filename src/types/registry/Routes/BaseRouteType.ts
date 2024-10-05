@@ -1,13 +1,13 @@
 import { Express, Locals } from '@bracketed/express';
 import { Logger } from '@bracketed/logger';
+import { UtilitiesType } from '../../../utilities/index.js';
 import {
 	ApplicationRegistry,
 	ApplicationRequest,
 	ApplicationResponse,
 	ApplicationRoute,
 	HttpStatus,
-} from '../../../types/index.js';
-import { UtilitiesType } from '../../../utilities/index.js';
+} from '../../index.js';
 
 /**
  * The Route Controller, The base class for `Route` which is used in routing files.

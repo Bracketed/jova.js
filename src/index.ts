@@ -1,12 +1,12 @@
 import express, { Express } from '@bracketed/express';
 import { Logger } from '@bracketed/logger';
-import { Stopwatch } from '@sapphire/stopwatch';
 import { EventEmitter } from 'node:events';
 import fs from 'node:fs';
 import path from 'node:path';
-import tcp from 'tcp-port-used';
 
 import * as utilities from './utilities/index.js';
+import * as tcp from './utilities/port-in-use.js';
+import { Stopwatch } from './utilities/stopwatch.js';
 
 import {
 	ApplicationEvent,

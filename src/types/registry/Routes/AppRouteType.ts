@@ -5,7 +5,7 @@ import {
 	ApplicationResponse,
 	Methods,
 	MiddlewareHandler,
-} from '../../../types/index.js';
+} from '../../index.js';
 
 /**
  * An Application Route.

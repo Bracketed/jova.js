@@ -1,9 +1,4 @@
-import {
-	ApplicationNextFunction,
-	ApplicationRequest,
-	ApplicationResponse,
-	MiddlewareHandler,
-} from '../../../types/index.js';
+import { ApplicationNextFunction, ApplicationRequest, ApplicationResponse, MiddlewareHandler } from '../../index.js';
 
 /**
  * An Application Middleware.

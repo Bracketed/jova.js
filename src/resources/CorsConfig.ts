@@ -1,6 +1,6 @@
 import { Express } from '@bracketed/express';
 import { Logger } from '@bracketed/logger';
-import cors from 'cors';
+import cors from '../middlewares/CORS.js';
 import { CorsOptions } from '../types/index.js';
 
 export const loadApplicationCorsConfiguration = (

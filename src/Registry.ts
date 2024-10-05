@@ -6,16 +6,11 @@ import {
 	EventHandler,
 	Methods,
 	MiddlewareHandler,
-} from '../types/index.js';
-
-interface RegistryOptions {
-	basePath?: string;
-}
+} from './types/index.js';
 
 /**
  * The Registry class, this allows the Jova Server to register, use and manage its content.
  *
- 
  * @class Registry
  */
 export class Registry {
@@ -29,7 +24,7 @@ export class Registry {
 	 *
 	 * @param options
 	 */
-	constructor(options: RegistryOptions) {
+	constructor(options: { basePath?: string }) {
 		this.basePath = options.basePath || '';
 	}
 

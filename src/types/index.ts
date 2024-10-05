@@ -1,9 +1,8 @@
 import { CookieOptions, Errback, NextFunction, Request, Response } from '@bracketed/express';
-import { CorsOptions } from 'cors';
 import { RateLimitExceededEventHandler, ValueDeterminingMiddleware } from 'express-rate-limit';
 import { RedisOptions as IORedisOptions } from 'ioredis';
 import RangeParser from 'range-parser';
-import { Registry } from '../registry/Registry.js';
+import { Registry } from '../Registry.js';
 
 export * from './config/jovaCustomOptions.js';
 export * from './config/jovaCustomSettingEnum.js';
@@ -25,22 +24,27 @@ export * from './express/DownloadOptions.js';
 export * from './express/FileOptions.js';
 export * from './express/SendOptions.js';
 
-export * from '../registry/types/Routes/AppRouteType.js';
-export * from '../registry/types/Routes/BaseRouteType.js';
-export * from '../registry/types/Routes/RouteHandlerType.js';
+export * from './registry/Routes/AppRouteType.js';
+export * from './registry/Routes/BaseRouteType.js';
+export * from './registry/Routes/RouteHandlerType.js';
 
-export * from '../registry/types/Middlewares/AppMiddlewareType.js';
-export * from '../registry/types/Middlewares/BaseMiddlewareType.js';
-export * from '../registry/types/Middlewares/MiddlewareHandlerType.js';
+export * from './registry/Middlewares/AppMiddlewareType.js';
+export * from './registry/Middlewares/BaseMiddlewareType.js';
+export * from './registry/Middlewares/MiddlewareHandlerType.js';
+export * from './registry/Middlewares/MiddlewareOptions.js';
 
-export * from '../registry/types/Events/AppEventType.js';
-export * from '../registry/types/Events/BaseEventType.js';
-export * from '../registry/types/Events/EventHandlerType.js';
+export * from './registry/Events/AppEventType.js';
+export * from './registry/Events/BaseEventType.js';
+export * from './registry/Events/EventHandlerType.js';
+export * from './registry/Events/EventListenerOptions.js';
 
 export * from './jova/Events.js';
 
-export * from './registry/EventListenerOptions.js';
-export * from './registry/MiddlewareOptions.js';
+export * from './cors/CustomOrigin.js';
+export * from './cors/Options.js';
+export * from './cors/OptionsDelegate.js';
+export * from './cors/Request.js';
+export * from './cors/StaticOrigin.js';
 
 export {
 	NextFunction as ApplicationNextFunction,
@@ -48,7 +52,6 @@ export {
 	Request as ApplicationRequest,
 	Response as ApplicationResponse,
 	CookieOptions,
-	CorsOptions,
 	Errback as ErrorCallback,
 	IORedisOptions,
 	RangeParser,

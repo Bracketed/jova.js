@@ -1,4 +1,4 @@
-import { ApplicationEvent, EventHandler } from '../../../types/index.js';
+import { ApplicationEvent, EventHandler } from '../../index.js';
 
 /**
  * An Application Event Listener.
