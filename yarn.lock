@@ -152,7 +152,7 @@ __metadata:
     "@bracketed/logger": "npm:^1.0.10"
     "@bracketed/typescript-config": "npm:^4.4.0"
     "@types/debug": "npm:^4.1.12"
-    "@types/express": "npm:^4"
+    "@types/express": "npm:4.17.21"
     "@types/node": "npm:^22.7.4"
     "@types/object-assign": "npm:^4.0.33"
     "@types/range-parser": "npm:^1.2.7"
@@ -355,7 +355,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/express@npm:^4":
+"@types/express@npm:4.17.21":
   version: 4.17.21
   resolution: "@types/express@npm:4.17.21"
   dependencies:

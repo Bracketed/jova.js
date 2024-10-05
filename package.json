@@ -62,7 +62,7 @@
 	"devDependencies": {
 		"@bracketed/typescript-config": "^4.4.0",
 		"@types/debug": "^4.1.12",
-		"@types/express": "^4",
+		"@types/express": "4.17.21",
 		"@types/node": "^22.7.4",
 		"@types/object-assign": "^4.0.33",
 		"@types/range-parser": "^1.2.7",
