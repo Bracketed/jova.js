@@ -1,10 +1,10 @@
 import { Express } from '@bracketed/express';
 import { Logger } from '@bracketed/logger';
-import { Stopwatch } from '@sapphire/stopwatch';
 import rateLimit from 'express-rate-limit';
 import { Redis } from 'ioredis';
 import RedisStore from 'rate-limit-redis';
 import { RatelimitConfig } from '../types/index.js';
+import { Stopwatch } from '../utilities/stopwatch.js';
 
 export const loadApplicationRatelimitConfiguration = async (
 	application: Express,
