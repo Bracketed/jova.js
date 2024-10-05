@@ -28,7 +28,7 @@ jobs:
             - run: npm publish --access public --provenance
               env:
                   NODE_AUTH_TOKEN: ${{secrets.NODE_PUBLISH}}
-            - run: "sed -i 's/\"name\": \"@bracketed\//\"name\": \"/g' package.json"
+            - run: sed -i 's/@bracketed\///g' package.json
             - run: npm publish --access public --provenance
               env:
                   NODE_AUTH_TOKEN: ${{secrets.NODE_PUBLISH}}
