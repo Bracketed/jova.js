@@ -16,16 +16,16 @@ Wiki available at <https://github.com/Bracketed/jova.js/wiki>
 <h2>What is this?</h2>
 
 \- A Framework package built for [Express.js](https://www.npmjs.com/package/express) that uses [@bracketed/logger](https://www.npmjs.com/package/@bracketed/logger) for logging.
-\- It utilises a range of packages to bring you the best experience! Some of these are, [ioRedis](https://www.npmjs.com/package/ioredis) for Database-Based ratelimit buckets, [Express Rate Limit](https://www.npmjs.com/package/express-rate-limit) for the ratelimiting middleware, [CORS](https://www.npmjs.com/package/cors) for CORS middleware, [TCP Port Used](https://www.npmjs.com/package/tcp-port-used) for determining used ports and a few minor packages that can be found in the dependencies tab for small tasks in Jova.js.
+\- It utilises a range of packages to bring you the best experience! Some of these are, [ioRedis](https://www.npmjs.com/package/ioredis) for Database-Based ratelimit buckets, [CORS](https://www.npmjs.com/package/cors) for CORS middleware and a few minor packages that can be found in the dependencies tab for small tasks in Jova.js.
 
 <h2>Summary (Directory)</h2>
 
--   [Installation](#Installation)
-      <!--truncate-->
-    -   [Yarn](#YarnInstall)
-    -   [Npm](#NpmInstall)
--   [Usage](#Usage)
--   [Contribution](#Contribution)
+- [Installation](#Installation)
+  <!--truncate-->
+    - [Yarn](#YarnInstall)
+    - [Npm](#NpmInstall)
+- [Usage](#Usage)
+- [Contribution](#Contribution)
 
 <h2 id="Installation">Installation</h2>
 
@@ -75,8 +75,8 @@ project
 
 Jova.js also has two other exports, `@bracketed/jova.js/utilities` and `@bracketed/jova.js/types`.
 
--   `@bracketed/jova.js/utilities` - Utilities for routers and middlewares currently, may contain more in future versions of Jova. Exports `request` and `response`, utilities containers. All are documented using jsDoc.
--   `@bracketed/jova.js/types` - Typings for Jova.js, used in routes, middlewares, events etc.
+- `@bracketed/jova.js/utilities` - Utilities for routers and middlewares currently, may contain more in future versions of Jova. Exports `request` and `response`, utilities containers. All are documented using jsDoc.
+- `@bracketed/jova.js/types` - Typings for Jova.js, used in routes, middlewares, events etc.
 
 Initiating a new Jova Server.
 

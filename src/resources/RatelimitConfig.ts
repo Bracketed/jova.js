@@ -1,9 +1,9 @@
 import { Express } from '@bracketed/express';
 import { Logger } from '@bracketed/logger';
-import rateLimit from 'express-rate-limit';
 import { Redis } from 'ioredis';
-import RedisStore from 'rate-limit-redis';
 import { RatelimitConfig } from '../types/index.js';
+import rateLimit from '../utilities/limiter/index.js';
+import RedisStore from '../utilities/redis-limiter/index.js';
 import { Stopwatch } from '../utilities/stopwatch.js';
 
 export const loadApplicationRatelimitConfiguration = async (

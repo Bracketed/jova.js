@@ -1,6 +1,6 @@
-import assign from 'object-assign';
-import vary from 'vary';
 import { CorsOptions, CorsOptionsDelegate, CorsRequest, CustomOrigin, StaticOrigin } from '../types/index.js';
+import { assign } from '../utilities/assign.js';
+import { vary } from '../utilities/vary/index.js';
 
 const defaults: CorsOptions = {
 	origin: '*',
@@ -9,7 +9,7 @@ const defaults: CorsOptions = {
 	optionsSuccessStatus: 204,
 };
 
-function isString(s: any): s is string {
+function isString(s: unknown): s is string {
 	return typeof s === 'string' || s instanceof String;
 }
 

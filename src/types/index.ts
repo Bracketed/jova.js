@@ -1,8 +1,8 @@
 import { CookieOptions, Errback, NextFunction, Request, Response } from '@bracketed/express';
-import { RateLimitExceededEventHandler, ValueDeterminingMiddleware } from 'express-rate-limit';
 import { RedisOptions as IORedisOptions } from 'ioredis';
-import RangeParser from 'range-parser';
 import { Registry } from '../Registry.js';
+import { RateLimitExceededEventHandler, ValueDeterminingMiddleware } from '../utilities/limiter/index.js';
+import { RangeParser } from '../utilities/range.js';
 
 export * from './config/jovaCustomOptions.js';
 export * from './config/jovaCustomSettingEnum.js';

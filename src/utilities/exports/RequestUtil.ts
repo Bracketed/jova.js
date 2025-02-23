@@ -1,4 +1,5 @@
-import { ApplicationRequest, Charset, ContentType, Encoder, Language, RangeParser } from '../../types/index.js';
+import { ApplicationRequest, Charset, ContentType, Encoder, Language } from '../../types/index.js';
+import { Options, Ranges, Result } from '../range.js';
 
 /**
  * A utility for managing requests.
@@ -267,8 +268,8 @@ export class request {
 	public readonly range = (
 		request: ApplicationRequest,
 		size: number,
-		options?: RangeParser.Options
-	): RangeParser.Ranges | RangeParser.Result | undefined => request.range(size, options);
+		options?: Options
+	): Ranges | Result | undefined => request.range(size, options);
 	/**
 	 * Check if the given `type(s)` is acceptable, returning
 	 * the best match when true, otherwise `undefined`, in which
