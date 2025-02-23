@@ -1,6 +1,3 @@
-// /source/lib.ts
-// The option parser and rate limiting middleware
-
 import type { NextFunction, RequestHandler } from '@bracketed/express';
 import type { ApplicationRequest as Request, ApplicationResponse as Response } from '../../types/index.js';
 import {
@@ -26,30 +23,15 @@ import type {
 } from './types.js';
 import { getValidations, type Validations } from './validations.js';
 
-/**
- * Type guard to check if a store is legacy store.
- *
- * @param store {LegacyStore | Store} - The store to check.
- *
- * @return {boolean} - Whether the store is a legacy store.
- */
 const isLegacyStore = (store: LegacyStore | Store): store is LegacyStore =>
 	// Check that `incr` exists but `increment` does not - store authors might want
 	// to keep both around for backwards compatibility.
 	typeof (store as any).incr === 'function' && typeof (store as any).increment !== 'function';
 
-/**
- * Converts a legacy store to the promisified version.
- *
- * @param store {LegacyStore | Store} - The store passed to the middleware.
- *
- * @returns {Store} - The promisified version of the store.
- */
 const promisifyStore = (passedStore: LegacyStore | Store): Store => {
-	if (!isLegacyStore(passedStore)) {
+	if (!isLegacyStore(passedStore))
 		// It's not an old store, return as is
 		return passedStore;
-	}
 
 	const legacyStore = passedStore;
 
@@ -72,7 +54,6 @@ const promisifyStore = (passedStore: LegacyStore | Store): Store => {
 			return legacyStore.resetKey(key);
 		}
 
-		/* istanbul ignore next */
 		async resetAll(): Promise<void> {
 			if (typeof legacyStore.resetAll === 'function') return legacyStore.resetAll();
 		}
@@ -81,17 +62,6 @@ const promisifyStore = (passedStore: LegacyStore | Store): Store => {
 	return new PromisifiedStore();
 };
 
-/**
- * The internal configuration interface.
- *
- * This is copied from Options, with fields made non-readonly and deprecated
- * fields removed.
- *
- * For documentation on what each field does, {@see Options}.
- *
- * This is not stored in types because it's internal to the API, and should not
- * be interacted with by the user.
- */
 type Configuration = {
 	windowMs: number;
 	limit: number | ValueDeterminingMiddleware<number>;
@@ -112,14 +82,6 @@ type Configuration = {
 	passOnStoreError: boolean;
 };
 
-/**
- * Converts a `Configuration` object to a valid `Options` object, in case the
- * configuration needs to be passed back to the user.
- *
- * @param config {Configuration} - The configuration object to convert.
- *
- * @returns {Partial<Options>} - The options derived from the configuration.
- */
 const getOptionsFromConfig = (config: Configuration): Options => {
 	const { validations, ...directlyPassableEntries } = config;
 
@@ -129,39 +91,18 @@ const getOptionsFromConfig = (config: Configuration): Options => {
 	};
 };
 
-/**
- *
- * Remove any options where their value is set to undefined. This avoids overwriting defaults
- * in the case a user passes undefined instead of simply omitting the key.
- *
- * @param passedOptions {Options} - The options to omit.
- *
- * @returns {Options} - The same options, but with all undefined fields omitted.
- *
- * @private
- */
 const omitUndefinedOptions = (passedOptions: Partial<Options>): Partial<Options> => {
 	const omittedOptions: Partial<Options> = {};
 
 	for (const k of Object.keys(passedOptions)) {
 		const key = k as keyof Options;
 
-		if (passedOptions[key] !== undefined) {
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-			omittedOptions[key] = passedOptions[key];
-		}
+		if (passedOptions[key] !== undefined) omittedOptions[key] = passedOptions[key];
 	}
 
 	return omittedOptions;
 };
 
-/**
- * Type-checks and adds the defaults for options the user has not specified.
- *
- * @param options {Options} - The options the user specifies.
- *
- * @returns {Configuration} - A complete configuration object.
- */
 const parseOptions = (passedOptions: Partial<Options>): Configuration => {
 	// Passing undefined should be equivalent to not passing an option at all, so we'll
 	// omit all fields where their value is undefined.
@@ -224,7 +165,6 @@ const parseOptions = (passedOptions: Partial<Options>): Configuration => {
 			validations.xForwardedForHeader(request);
 
 			// By default, use the IP address to rate limit users.
-			// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
 			return request.ip!;
 		},
 		async handler(request: Request, response: Response, _next: NextFunction, _optionsUsed: Options): Promise<void> {
@@ -237,9 +177,7 @@ const parseOptions = (passedOptions: Partial<Options>): Configuration => {
 					: config.message;
 
 			// Send the response if writable.
-			if (!response.writableEnded) {
-				response.send(message);
-			}
+			if (!response.writableEnded) response.send(message);
 		},
 		passOnStoreError: false,
 		// Allow the default options to be overriden by the passed options.
@@ -260,46 +198,24 @@ const parseOptions = (passedOptions: Partial<Options>): Configuration => {
 		typeof config.store.resetKey !== 'function' ||
 		(config.store.resetAll !== undefined && typeof config.store.resetAll !== 'function') ||
 		(config.store.init !== undefined && typeof config.store.init !== 'function')
-	) {
+	)
 		throw new TypeError(
 			'An invalid store was passed. Please ensure that the store is a class that implements the `Store` interface.'
 		);
-	}
 
 	return config;
 };
 
-/**
- * Just pass on any errors for the developer to handle, usually as a HTTP 500
- * Internal Server Error.
- *
- * @param fn {RequestHandler} - The request handler for which to handle errors.
- *
- * @returns {RequestHandler} - The request handler wrapped with a `.catch` clause.
- *
- * @private
- */
 const handleAsyncErrors =
 	(fn: RequestHandler): RequestHandler =>
 	async (request: Request, response: Response, next: NextFunction) => {
 		try {
 			await Promise.resolve(fn(request, response, next)).catch(next);
 		} catch (error: unknown) {
-			/* istanbul ignore next */
 			next(error);
 		}
 	};
 
-/**
- *
- * Create an instance of IP rate-limiting middleware for Express.
- *
- * @param passedOptions {Options} - Options to configure the rate limiter.
- *
- * @returns {RateLimitRequestHandler} - The middleware that rate-limits clients based on your configuration.
- *
- * @public
- */
 const rateLimit = (passedOptions?: Partial<Options>): RateLimitRequestHandler => {
 	// Parse the options and add the default values for unspecified options
 	const config = parseOptions(passedOptions ?? {});
@@ -437,11 +353,10 @@ const rateLimit = (passedOptions?: Partial<Options>): RateLimitRequestHandler =>
 				});
 			}
 
-			if (config.skipSuccessfulRequests) {
+			if (config.skipSuccessfulRequests)
 				response.on('finish', async () => {
 					if (await config.requestWasSuccessful(request, response)) await decrementKey();
 				});
-			}
 		}
 
 		// Disable the validations, since they should have run at least once by now.
@@ -450,9 +365,7 @@ const rateLimit = (passedOptions?: Partial<Options>): RateLimitRequestHandler =>
 		// If the client has exceeded their rate limit, set the Retry-After header
 		// and call the `handler` function.
 		if (totalHits > limit) {
-			if (config.legacyHeaders || config.standardHeaders) {
-				setRetryAfterHeader(response, info, config.windowMs);
-			}
+			if (config.legacyHeaders || config.standardHeaders) setRetryAfterHeader(response, info, config.windowMs);
 
 			config.handler(request, response, next, options);
 			return;

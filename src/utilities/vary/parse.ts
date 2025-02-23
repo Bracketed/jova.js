@@ -6,21 +6,12 @@
 
 // Typescript-ified vary by Eden Kneale (2025)
 
-/**
- * Parse a vary header into an array.
- *
- * @param {String} header
- * @return {Array}
- * @private
- */
-
 function parse(header: string): string[] {
 	const list: Array<string> = [];
 	let end: number = 0;
 	let start: number = 0;
 
 	// gather tokens
-
 	for (var i = 0, len = header.length; i < len; i++) {
 		switch (header.charCodeAt(i)) {
 			case 0x20:

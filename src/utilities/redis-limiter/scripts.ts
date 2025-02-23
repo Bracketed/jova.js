@@ -1,10 +1,3 @@
-// /source/scripts.ts
-// The lua scripts for the increment and get operations.
-
-/**
- * The lua scripts, used to make consecutive queries on the same key and avoid
- * race conditions by doing all the work on the redis server.
- */
 const scripts = {
 	increment: `
       local totalHits = redis.call("INCR", KEYS[1])
@@ -29,7 +22,8 @@ const scripts = {
 		`
 		.replaceAll(/^\s+/gm, '')
 		.trim(),
-}
+};
 
 // Export them so we can use them in the `lib.ts` file.
-export default scripts
+export default scripts;
+

@@ -5,11 +5,6 @@
  * MIT Licensed
  */
 
-/**
- * Module exports.
- * @public
- */
-
 type Ranges = Array<Range>;
 type IndexedRanges = Array<IndexedRange>;
 
@@ -25,25 +20,11 @@ interface IndexedRange {
 }
 
 interface Options {
-	/**
-	 * The "combine" option can be set to `true` and overlapping & adjacent ranges
-	 * will be combined into a single range.
-	 */
 	combine?: boolean | undefined;
 }
 type ResultUnsatisfiable = -1;
 type ResultInvalid = -2;
 type Result = ResultUnsatisfiable | ResultInvalid;
-
-/**
- * Parse "Range" header `str` relative to the given file `size`.
- *
- * @param {Number} size
- * @param {String} str
- * @param {Object} [options]
- * @return {Array}
- * @public
- */
 
 function rangeParser(size: number, str: string, options?: { combine?: boolean | undefined }) {
 	const index: number = str.indexOf('=');
@@ -87,11 +68,6 @@ function rangeParser(size: number, str: string, options?: { combine?: boolean | 
 	return options && options.combine ? combineRanges(ranges) : ranges;
 }
 
-/**
- * Combine overlapping & adjacent ranges.
- * @private
- */
-
 function combineRanges(ranges: Ranges) {
 	const ordered: IndexedRanges = ranges.map(mapWithIndex).sort(sortByRangeStart);
 
@@ -118,14 +94,6 @@ function combineRanges(ranges: Ranges) {
 	return combined;
 }
 
-/**
-
- * Map function to add index value to ranges.
-
- * @private
-
- */
-
 function mapWithIndex(range: Range, index: number) {
 	return {
 		start: range.start,
@@ -134,14 +102,6 @@ function mapWithIndex(range: Range, index: number) {
 	};
 }
 
-/**
-
- * Map function to remove index value from ranges.
-
- * @private
-
- */
-
 function mapWithoutIndex(range: Range) {
 	return {
 		start: range.start,
@@ -149,25 +109,9 @@ function mapWithoutIndex(range: Range) {
 	};
 }
 
-/**
-
- * Sort function to sort ranges by index.
-
- * @private
-
- */
-
 function sortByRangeIndex(a: IndexedRange, b: IndexedRange) {
 	return a.index - b.index;
 }
-
-/**
-
- * Sort function to sort ranges by start position.
-
- * @private
-
- */
 
 function sortByRangeStart(a: Range, b: Range) {
 	return a.start - b.start;

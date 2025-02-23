@@ -8,71 +8,34 @@
 
 import { parse } from './parse.js';
 
-/**
- * RegExp to match field-name in RFC 7230 sec 3.2
- *
- * field-name    = token
- * token         = 1*tchar
- * tchar         = "!" / "#" / "$" / "%" / "&" / "'" / "*"
- *               / "+" / "-" / "." / "^" / "_" / "`" / "|" / "~"
- *               / DIGIT / ALPHA
- *               ; any VCHAR, except delimiters
- */
 const FIELD_NAME_REGEXP: RegExp = /^[!#$%&'*+\-.^_`|~0-9A-Za-z]+$/;
 
-/**
- * Append a field to a vary header.
- *
- * @param {String} header
- * @param {String|Array} field
- * @return {String}
- * @public
- */
-
 function append(header: string, field: string | string[]): string {
-	if (typeof header !== 'string') {
-		throw new TypeError('header argument is required');
-	}
+	if (typeof header !== 'string') throw new TypeError('header argument is required');
 
-	if (!field) {
-		throw new TypeError('field argument is required');
-	}
+	if (!field) throw new TypeError('field argument is required');
 
 	// get fields array
-
 	var fields = !Array.isArray(field) ? parse(String(field)) : field;
 
 	// assert on invalid field names
-
-	for (var j = 0; j < fields.length; j++) {
-		if (!FIELD_NAME_REGEXP.test(fields[j])) {
-			throw new TypeError('field argument contains an invalid header name');
-		}
-	}
+	for (var j = 0; j < fields.length; j++)
+		if (!FIELD_NAME_REGEXP.test(fields[j])) throw new TypeError('field argument contains an invalid header name');
 
 	// existing, unspecified vary
-
-	if (header === '*') {
-		return header;
-	}
+	if (header === '*') return header;
 
 	// enumerate current values
-
 	var val = header;
-
 	var vals = parse(header.toLowerCase());
 
 	// unspecified vary
-
-	if (fields.indexOf('*') !== -1 || vals.indexOf('*') !== -1) {
-		return '*';
-	}
+	if (fields.indexOf('*') !== -1 || vals.indexOf('*') !== -1) return '*';
 
 	for (var i = 0; i < fields.length; i++) {
 		var fld = fields[i].toLowerCase();
 
 		// append value (case-preserving)
-
 		if (vals.indexOf(fld) === -1) {
 			vals.push(fld);
 

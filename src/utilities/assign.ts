@@ -4,15 +4,12 @@ object-assign
 @license MIT
 */
 
-/* eslint-disable no-unused-vars */
-
 var getOwnPropertySymbols = Object.getOwnPropertySymbols;
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 var propIsEnumerable = Object.prototype.propertyIsEnumerable;
 
 function toObject<T>(val: T): T {
 	if (val === null || val === undefined) throw new TypeError('Object.assign cannot be called with null or undefined');
-
 	return Object(val);
 }
 

@@ -6,14 +6,6 @@
 
 // Typescript-ified vary by Eden Kneale (2025)
 
-/**
- * Mark that a request is varied on a header field.
- *
- * @param {Object} res
- * @param {String|Array} field
- * @public
- */
-
 import { ServerResponse } from 'node:http';
 import { append } from './append.js';
 
@@ -25,7 +17,6 @@ function vary(res: ServerResponse, field: string | string[]): void {
 	const header = Array.isArray(val) ? val.join(', ') : String(val);
 
 	// set new header
-
 	if ((val = append(header, field))) res.setHeader('Vary', val);
 }
 
