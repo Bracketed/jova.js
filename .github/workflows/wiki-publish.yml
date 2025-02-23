@@ -18,8 +18,8 @@ jobs:
 
             - name: Generate TypeDoc Documentation
               run: |
-                  npm install
-                  npx typedoc --out docs
+                  yarn install
+                  yarn dlx typedoc --out docs
 
             - name: Fix Sidebar
               run: node FixSidebar.js
