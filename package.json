@@ -77,15 +77,15 @@
 		"typedoc-github-wiki-theme": "^2.1.0",
 		"typedoc-plugin-inline-sources": "^1.2.0",
 		"typedoc-plugin-markdown": "^4.4.2",
-		"typedoc-plugin-mdn-links": "^3.3.8"
+		"typedoc-plugin-mdn-links": "^3.3.8",
+		"typescript": "^5.7.3"
 	},
 	"dependencies": {
 		"@bracketed/express": "^4.21.7",
 		"@bracketed/logger": "^1.0.10",
 		"express": "4.21.2",
 		"ioredis": "^5.5.0",
-		"is2": "^2.0.9",
-		"typescript": "^5.7.3"
+		"is2": "^2.0.9"
 	},
 	"engines": {
 		"node": ">= 16"
