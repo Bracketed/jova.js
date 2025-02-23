@@ -38,7 +38,6 @@ export class Registry {
 	 *		route //
 	 *			.setRouteName('')
 	 *			.setMethod(Methods.GET)
-	 *			.setHandler(this.run)
 	 *	);
 	 */
 	public registerApplicationRoutes(configureRoute: (route: ApplicationRoute) => ApplicationRoute): ApplicationRoute {

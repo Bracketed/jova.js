@@ -1,11 +1,12 @@
-import { Express } from '@bracketed/express';
+import { Express, RequestHandler as Request } from '@bracketed/express';
 import { Logger } from '@bracketed/logger';
+import { RequestHandler } from 'express';
 import { MiddlewareHandler } from '../types/index.js';
 
 export const loadApplicationMiddlewaresConfiguration = (
 	application: Express,
 	logger: Logger,
-	middlewares: Array<MiddlewareHandler> | undefined
+	middlewares: Array<MiddlewareHandler | Request | RequestHandler> | undefined
 ) => {
 	if (!middlewares) return;
 
