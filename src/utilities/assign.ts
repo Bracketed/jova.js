@@ -61,7 +61,7 @@ function shouldUseNative() {
 
 const assign = shouldUseNative()
 	? Object.assign
-	: function (target: any, ...sources: any[]): any {
+	: function (target: any, ..._sources: any[]): any {
 			var from;
 			var to = toObject(target);
 			var symbols;
