@@ -5,6 +5,8 @@ on:
         paths:
             - src/**
             - typedoc.json
+    pull_request:
+    workflow_dispatch:
 
 jobs:
     update-wiki:
