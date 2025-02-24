@@ -3,9 +3,9 @@ import type {
 	ApplicationNextFunction,
 	ApplicationRequest as Request,
 	ApplicationResponse as Response,
-} from '../../types/index.js';
-import type { SUPPORTED_DRAFT_VERSIONS } from './headers.js';
-import type { Validations } from './validations.js';
+} from '../../types/index';
+import type { SUPPORTED_DRAFT_VERSIONS } from './headers';
+import type { Validations } from './validations';
 
 export type IncrementCallback = (error: Error | undefined, totalHits: number, resetTime: Date | undefined) => void;
 export type ValueDeterminingMiddleware<T> = (request: Request, response: Response) => T | Promise<T>;

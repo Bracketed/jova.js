@@ -1,9 +1,9 @@
-import {
+import type {
 	HttpStatus,
 	IORedisOptions,
 	RateLimitExceededEventHandler,
 	ValueDeterminingMiddleware,
-} from '../../types/index.js';
+} from '../../types/index';
 
 /**
  * Ratelimit config for the Jova.js server.

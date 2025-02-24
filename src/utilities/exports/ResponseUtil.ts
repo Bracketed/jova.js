@@ -1,12 +1,12 @@
 import {
-	ApplicationResponse,
+	type ApplicationResponse,
 	ContentType,
-	CookieOptions,
-	DownloadOptions,
-	ErrorCallback,
+	type CookieOptions,
+	type DownloadOptions,
+	type ErrorCallback,
 	HttpStatus,
-	SendFileOptions,
-} from '../../types/index.js';
+	type SendFileOptions,
+} from '../../types/index';
 
 /**
  * A utility for managing responses.

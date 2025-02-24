@@ -1,5 +1,5 @@
-import { CustomOrigin } from './CustomOrigin.js';
-import { StaticOrigin } from './StaticOrigin.js';
+import type { CustomOrigin } from './CustomOrigin';
+import type { StaticOrigin } from './StaticOrigin';
 
 export interface CorsOptions {
 	/**

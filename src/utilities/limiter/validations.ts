@@ -1,14 +1,8 @@
-// /source/validations.ts
-// The validation functions
-
 import { isIP } from 'node:net';
-import type { ApplicationRequest as Request } from '../../types/index.js';
-import { SUPPORTED_DRAFT_VERSIONS } from './headers.js';
-import type { EnabledValidations, Store } from './types.js';
+import type { ApplicationRequest as Request } from '../../types/index';
+import { SUPPORTED_DRAFT_VERSIONS } from './headers';
+import type { EnabledValidations, Store } from './types';
 
-/**
- * An error thrown/returned when a validation error occurs.
- */
 class ValidationError extends Error {
 	override name: string;
 	code: string;

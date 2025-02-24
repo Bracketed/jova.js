@@ -1,10 +1,10 @@
-import { Express } from '@bracketed/express';
+import type { Express } from '@bracketed/express';
 import { Logger } from '@bracketed/logger';
 import { Redis } from 'ioredis';
-import { RatelimitConfig } from '../types/index.js';
-import rateLimit from '../utilities/limiter/index.js';
-import RedisStore from '../utilities/redis-limiter/index.js';
-import { Stopwatch } from '../utilities/stopwatch.js';
+import type { RatelimitConfig } from '../types/index';
+import rateLimit from '../utilities/limiter/index';
+import RedisStore from '../utilities/redis-limiter/index';
+import { Stopwatch } from '../utilities/stopwatch';
 
 export const loadApplicationRatelimitConfiguration = async (
 	application: Express,

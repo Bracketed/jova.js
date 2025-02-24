@@ -3,9 +3,9 @@ import type {
 	IncrementResponse,
 	Options as RateLimitConfiguration,
 	Store,
-} from '../limiter/index.js';
-import scripts from './scripts.js';
-import type { Options, RedisReply, SendCommandFn } from './types.js';
+} from '../limiter/index';
+import scripts from './scripts';
+import type { Options, RedisReply, SendCommandFn } from './types';
 
 const toInt = (input: string | number | boolean | undefined): number => {
 	if (typeof input === 'number') return input;

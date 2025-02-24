@@ -1,7 +1,7 @@
 import { Buffer } from 'node:buffer';
 import { createHash } from 'node:crypto';
-import type { ApplicationResponse as Response } from '../../types/index.js';
-import type { RateLimitInfo } from './types.js';
+import type { ApplicationResponse as Response } from '../../types/index';
+import type { RateLimitInfo } from './types';
 
 export const SUPPORTED_DRAFT_VERSIONS = ['draft-6', 'draft-7', 'draft-8'];
 

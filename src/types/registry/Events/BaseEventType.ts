@@ -1,7 +1,7 @@
-import { Express, Locals } from '@bracketed/express';
+import type { Express, Locals } from '@bracketed/express';
 import { Logger } from '@bracketed/logger';
-import { UtilitiesType } from '../../../utilities/index.js';
-import { ApplicationEvent, EventListenerOptions } from '../../index.js';
+import type { UtilitiesType } from '../../../utilities/index';
+import { ApplicationEvent, type EventListenerOptions } from '../../index';
 
 /**
  * The Event Controller, The base class for `Event` which is used in event files.

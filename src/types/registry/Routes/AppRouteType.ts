@@ -1,11 +1,11 @@
 import {
-	ApplicationNextFunction,
-	ApplicationRegistry,
-	ApplicationRequest,
-	ApplicationResponse,
+	type ApplicationNextFunction,
+	type ApplicationRegistry,
+	type ApplicationRequest,
+	type ApplicationResponse,
 	Methods,
-	MiddlewareHandler,
-} from '../../index.js';
+	type MiddlewareHandler,
+} from '../../index';
 
 /**
  * An Application Route.

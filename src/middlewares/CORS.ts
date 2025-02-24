@@ -1,6 +1,6 @@
-import { CorsOptions, CorsOptionsDelegate, CorsRequest, CustomOrigin, StaticOrigin } from '../types/index.js';
-import { assign } from '../utilities/assign.js';
-import { vary } from '../utilities/vary/index.js';
+import type { CorsOptions, CorsOptionsDelegate, CorsRequest, CustomOrigin, StaticOrigin } from '../types/index';
+import { assign } from '../utilities/assign';
+import { vary } from '../utilities/vary/index';
 
 const defaults: CorsOptions = {
 	origin: '*',

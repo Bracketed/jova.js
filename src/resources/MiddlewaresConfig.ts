@@ -1,7 +1,7 @@
-import { Express, RequestHandler as Request } from '@bracketed/express';
+import type { Express, RequestHandler as Request } from '@bracketed/express';
 import { Logger } from '@bracketed/logger';
-import { RequestHandler } from 'express';
-import { MiddlewareHandler } from '../types/index.js';
+import type { RequestHandler } from 'express';
+import type { MiddlewareHandler } from '../types/index';
 
 export const loadApplicationMiddlewaresConfiguration = (
 	application: Express,

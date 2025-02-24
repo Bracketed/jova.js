@@ -1,39 +1,39 @@
-import express, { Express } from '@bracketed/express';
+import express, { type Express } from '@bracketed/express';
 import { Logger } from '@bracketed/logger';
 import { EventEmitter } from 'node:events';
 import fs from 'node:fs';
 import path from 'node:path';
 
-import * as utilities from './utilities/index.js';
-import * as tcp from './utilities/port-in-use.js';
-import { Stopwatch } from './utilities/stopwatch.js';
+import { resolvePath } from './utilities/Path/path';
+import { parseRootData } from './utilities/Path/root';
+import { search } from './utilities/fs';
+import * as utilities from './utilities/index';
+import * as tcp from './utilities/port-in-use';
+import { Stopwatch } from './utilities/stopwatch';
 
 import {
 	ApplicationEvent,
-	ApplicationRegistry,
-	CorsOptions,
+	type CorsOptions,
 	EventController,
-	JovaCustomOption,
-	JovaPathSettings,
-	JovaServerOptions,
-	JovaSettings,
+	type JovaCustomOption,
+	type JovaPathSettings,
+	type JovaServerOptions,
+	type JovaSettings,
 	JovaSettingsTable,
 	MiddlewareController,
-	MiddlewareHandler,
-	RatelimitConfig,
+	type MiddlewareHandler,
+	type RatelimitConfig,
 	RouteController,
-} from './types/index.js';
+} from './types/index';
 
-import { loadApplicationCorsConfiguration } from './resources/CorsConfig.js';
-import { loadApplicationCustomConfiguration } from './resources/CustomOptionsConfig.js';
-import { loadApplicationEventsMiddlewareConfiguration } from './resources/EventsConfig.js';
-import { loadApplicationMiddlewaresConfiguration } from './resources/MiddlewaresConfig.js';
-import { loadApplicationRatelimitConfiguration } from './resources/RatelimitConfig.js';
-import { loadApplicationSettingsConfiguration } from './resources/SettingsConfig.js';
+import { Registry as ApplicationRegistry } from './Registry';
 
-import { resolvePath } from './utilities/Path/path.js';
-import { parseRootData } from './utilities/Path/root.js';
-import { search } from './utilities/fs.js';
+import { loadApplicationCorsConfiguration } from './resources/CorsConfig';
+import { loadApplicationCustomConfiguration } from './resources/CustomOptionsConfig';
+import { loadApplicationEventsMiddlewareConfiguration } from './resources/EventsConfig';
+import { loadApplicationMiddlewaresConfiguration } from './resources/MiddlewaresConfig';
+import { loadApplicationRatelimitConfiguration } from './resources/RatelimitConfig';
+import { loadApplicationSettingsConfiguration } from './resources/SettingsConfig';
 
 function findHandlers(dir: string) {
 	if (!fs.existsSync(path.resolve(parseRootData().root, resolvePath(dir)))) {

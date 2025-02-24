@@ -1,5 +1,5 @@
-import { ApplicationRequest, Charset, ContentType, Encoder, Language } from '../../types/index.js';
-import { Options, Ranges, Result } from '../range.js';
+import { type ApplicationRequest, Charset, ContentType, Encoder, Language } from '../../types/index';
+import type { Options, Ranges, Result } from '../range';
 
 /**
  * A utility for managing requests.

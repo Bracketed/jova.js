@@ -3,10 +3,10 @@ import {
 	ApplicationListener,
 	ApplicationMiddleware,
 	ApplicationRoute,
-	EventHandler,
+	type EventHandler,
 	Methods,
-	MiddlewareHandler,
-} from './types/index.js';
+	type MiddlewareHandler,
+} from './types/index';
 
 /**
  * The Registry class, this allows the Jova Server to register, use and manage its content.

@@ -1,7 +1,7 @@
-import { Express, NextFunction, Request, Response } from '@bracketed/express';
+import type { Express, NextFunction, Request, Response } from '@bracketed/express';
 import { Logger } from '@bracketed/logger';
 import EventEmitter from 'node:events';
-import { ApplicationEvent, ApplicationRegistry } from '../types/index.js';
+import { ApplicationEvent, type ApplicationRegistry } from '../types/index';
 
 export const loadApplicationEventsMiddlewareConfiguration = (
 	application: Express,

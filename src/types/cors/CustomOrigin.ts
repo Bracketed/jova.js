@@ -1,4 +1,4 @@
-import { StaticOrigin } from './StaticOrigin.js';
+import type { StaticOrigin } from './StaticOrigin';
 
 export type CustomOrigin = (
 	requestOrigin: string | undefined,

@@ -7,7 +7,7 @@
 // Typescript-ified vary by Eden Kneale (2025)
 
 import { ServerResponse } from 'node:http';
-import { append } from './append.js';
+import { append } from './append';
 
 function vary(res: ServerResponse, field: string | string[]): void {
 	if (!res || !res.getHeader || !res.setHeader) throw new TypeError('res argument is required');

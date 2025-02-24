@@ -1,13 +1,7 @@
 import type { NextFunction, RequestHandler } from '@bracketed/express';
-import type { ApplicationRequest as Request, ApplicationResponse as Response } from '../../types/index.js';
-import {
-	setDraft6Headers,
-	setDraft7Headers,
-	setDraft8Headers,
-	setLegacyHeaders,
-	setRetryAfterHeader,
-} from './headers.js';
-import MemoryStore from './memory-store.js';
+import type { ApplicationRequest as Request, ApplicationResponse as Response } from '../../types/index';
+import { setDraft6Headers, setDraft7Headers, setDraft8Headers, setLegacyHeaders, setRetryAfterHeader } from './headers';
+import MemoryStore from './memory-store';
 import type {
 	AugmentedRequest,
 	ClientRateLimitInfo,
@@ -20,8 +14,8 @@ import type {
 	RateLimitRequestHandler,
 	Store,
 	ValueDeterminingMiddleware,
-} from './types.js';
-import { getValidations, type Validations } from './validations.js';
+} from './types';
+import { getValidations, type Validations } from './validations';
 
 const isLegacyStore = (store: LegacyStore | Store): store is LegacyStore =>
 	// Check that `incr` exists but `increment` does not - store authors might want

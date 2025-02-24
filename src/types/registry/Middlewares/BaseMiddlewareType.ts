@@ -1,7 +1,7 @@
-import { Express, Locals } from '@bracketed/express';
+import type { Express, Locals } from '@bracketed/express';
 import { Logger } from '@bracketed/logger';
-import { UtilitiesType } from '../../../utilities/index.js';
-import { ApplicationNextFunction, ApplicationRequest, ApplicationResponse, MiddlewareOptions } from '../../index.js';
+import type { UtilitiesType } from '../../../utilities/index';
+import type { ApplicationNextFunction, ApplicationRequest, ApplicationResponse, MiddlewareOptions } from '../../index';
 
 /**
  * The Middleware Controller, The base class for `Middleware` which is used in middleware files.

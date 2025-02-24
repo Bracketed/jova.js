@@ -1,4 +1,4 @@
-import type { ClientRateLimitInfo, Options, Store } from './types.js';
+import type { ClientRateLimitInfo, Options, Store } from './types';
 
 type Client = {
 	totalHits: number;

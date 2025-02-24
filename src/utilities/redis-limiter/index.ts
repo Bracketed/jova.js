@@ -1,6 +1,6 @@
 // Re-export all type definitions
-export * from './types.js';
+export * from './types';
 
 // Export the RedisStore class as the default export
-export { default, RedisStore } from './lib.js';
+export { default, RedisStore } from './lib';
 

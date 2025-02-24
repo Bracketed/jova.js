@@ -1,4 +1,4 @@
-import { JovaSettingsTable } from '../../types/index.js';
+import { JovaSettingsTable } from '../../types/index';
 
 /**
  * The enableable and disableable settings for the Jova.js server.

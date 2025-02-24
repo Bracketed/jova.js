@@ -118,13 +118,13 @@ function sortByRangeStart(a: Range, b: Range) {
 }
 
 export {
-	IndexedRange,
-	IndexedRanges,
-	Options,
-	Range,
 	rangeParser as RangeParser,
-	Ranges,
-	Result,
-	ResultInvalid,
-	ResultUnsatisfiable,
+	type IndexedRange,
+	type IndexedRanges,
+	type Options,
+	type Range,
+	type Ranges,
+	type Result,
+	type ResultInvalid,
+	type ResultUnsatisfiable,
 };

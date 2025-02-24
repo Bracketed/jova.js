@@ -1,4 +1,4 @@
-import { ApplicationEvent } from '../../jova/Events.js';
+import { ApplicationEvent } from '../../jova/Events';
 
 /**
  * Event Listener Options.

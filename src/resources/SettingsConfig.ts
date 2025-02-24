@@ -1,6 +1,6 @@
-import { Express } from '@bracketed/express';
+import type { Express } from '@bracketed/express';
 import { Logger } from '@bracketed/logger';
-import { JovaSettings } from '../types/index.js';
+import type { JovaSettings } from '../types/index';
 
 export const loadApplicationSettingsConfiguration = (
 	application: Express,

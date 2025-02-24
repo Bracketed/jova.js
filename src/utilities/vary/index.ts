@@ -1,2 +1,2 @@
-export * from './append.js';
-export * from './vary.js';
+export * from './append';
+export * from './vary';

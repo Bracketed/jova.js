@@ -6,7 +6,7 @@
 
 // Typescript-ified vary by Eden Kneale (2025)
 
-import { parse } from './parse.js';
+import { parse } from './parse';
 
 const FIELD_NAME_REGEXP: RegExp = /^[!#$%&'*+\-.^_`|~0-9A-Za-z]+$/;
 

@@ -1,5 +1,5 @@
-import { CorsOptions } from './Options.js';
-import { CorsRequest } from './Request.js';
+import type { CorsOptions } from './Options';
+import type { CorsRequest } from './Request';
 
 export type CorsOptionsDelegate<T extends CorsRequest = CorsRequest> = (
 	req: T,

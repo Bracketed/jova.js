@@ -1,6 +1,6 @@
-import { RequestHandler as Request } from '@bracketed/express';
-import { RequestHandler } from 'express';
-import {
+import type { RequestHandler as Request } from '@bracketed/express';
+import type { RequestHandler } from 'express';
+import type {
 	CorsOptions,
 	JovaCustomOption,
 	JovaHeaderSetting,
@@ -8,7 +8,7 @@ import {
 	JovaSettings,
 	MiddlewareHandler,
 	RatelimitConfig,
-} from '../../types/index.js';
+} from '../../types/index';
 
 /**
  * Jova Server options.

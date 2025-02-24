@@ -1,9 +1,9 @@
-import { request } from './exports/RequestUtil.js';
-import { response } from './exports/ResponseUtil.js';
+import { request } from './exports/RequestUtil';
+import { response } from './exports/ResponseUtil';
 
 interface UtilitiesType {
 	response: response;
 	request: request;
 }
 
-export { request, response, UtilitiesType };
+export { request, response, type UtilitiesType };
