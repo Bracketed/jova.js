@@ -1,5 +1,9 @@
-import type { NextFunction, RequestHandler } from '@bracketed/express';
-import type { ApplicationRequest as Request, ApplicationResponse as Response } from '../../types/index.js';
+import type { RequestHandler } from '@bracketed/express';
+import type {
+	ApplicationNextFunction,
+	ApplicationRequest as Request,
+	ApplicationResponse as Response,
+} from '../../types/index.js';
 import type { SUPPORTED_DRAFT_VERSIONS } from './headers.js';
 import type { Validations } from './validations.js';
 
@@ -9,7 +13,7 @@ export type ValueDeterminingMiddleware<T> = (request: Request, response: Respons
 export type RateLimitExceededEventHandler = (
 	request: Request,
 	response: Response,
-	next: NextFunction,
+	next: ApplicationNextFunction,
 	optionsUsed: Options
 ) => void;
 
@@ -84,4 +88,3 @@ export type RateLimitInfo = {
 	remaining: number;
 	resetTime: Date | undefined;
 };
-

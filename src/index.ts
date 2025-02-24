@@ -31,65 +31,16 @@ import { loadApplicationMiddlewaresConfiguration } from './resources/Middlewares
 import { loadApplicationRatelimitConfiguration } from './resources/RatelimitConfig.js';
 import { loadApplicationSettingsConfiguration } from './resources/SettingsConfig.js';
 
-function recursiveSearchInDir(targetDirName: string, currentDir: string): string | null {
-	const files = fs.readdirSync(currentDir);
+import { resolvePath } from './utilities/Path/path.js';
+import { parseRootData } from './utilities/Path/root.js';
+import { search } from './utilities/fs.js';
 
-	for (const file of files) {
-		const fullPath = path.join(currentDir, file);
-		const stat = fs.statSync(fullPath);
-
-		if (file === 'node_modules') continue;
-		if (stat.isDirectory() && file === targetDirName) return fullPath;
-
-		if (stat.isDirectory()) {
-			const result = recursiveSearchInDir(targetDirName, fullPath);
-			if (result) return result;
-		}
+function findHandlers(dir: string) {
+	if (!fs.existsSync(path.resolve(parseRootData().root, resolvePath(dir)))) {
+		return [];
 	}
 
-	return null;
-}
-
-function findDirUpward(targetDirName: string, startDir: string): string | null {
-	let currentDir = path.resolve(startDir);
-
-	while (currentDir !== path.parse(currentDir).root) {
-		const result: string | null = recursiveSearchInDir(targetDirName, currentDir);
-		if (result) return result;
-		currentDir = path.dirname(currentDir);
-	}
-
-	return null;
-}
-
-function findHandlers(dir: string, startDir = process.cwd(), fileList: string[] = [], visitedDirs = new Set()) {
-	const foundDir = findDirUpward(dir, startDir);
-
-	if (!foundDir) {
-		console.error(`Directory '${dir}' not found from '${startDir}' or any parent directories.`);
-		return fileList;
-	}
-
-	const absoluteDir = path.resolve(foundDir);
-	if (visitedDirs.has(absoluteDir)) return fileList;
-
-	visitedDirs.add(absoluteDir);
-
-	const files = fs.readdirSync(absoluteDir);
-
-	files.forEach((file: string) => {
-		const fullPath = path.join(absoluteDir, file);
-		const stat = fs.statSync(fullPath);
-
-		if (file === 'node_modules') return;
-
-		if (stat.isDirectory()) findHandlers(file, fullPath, fileList, visitedDirs);
-		else {
-			if (file.endsWith('.js')) fileList.push(fullPath);
-		}
-	});
-
-	return fileList;
+	return search(path.resolve(parseRootData().root, resolvePath(dir)), /\.(js|jsx|ts|tsx)$/);
 }
 
 /**
@@ -149,7 +100,7 @@ class JovaServer extends EventEmitter {
 		this.paths = {
 			events: options.paths?.events || 'events',
 			middlewares: options.paths?.middlewares || 'middlewares',
-			routes: options.paths?.events || 'routes',
+			routes: options.paths?.routes || 'routes',
 		};
 
 		this.emitter = new EventEmitter();

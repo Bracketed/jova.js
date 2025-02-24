@@ -5,7 +5,7 @@ import {
 	ApplicationRoute,
 	Methods,
 	RouteController,
-} from '../../types/index.js';
+} from '@bracketed/jova.js/types';
 
 export class Route extends RouteController {
 	public override registerApplicationRoutes(registry: ApplicationRegistry): ApplicationRoute {

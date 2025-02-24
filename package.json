@@ -2,7 +2,7 @@
 	"name": "@bracketed/jova.js",
 	"description": "Jova.js - A semi-advanced Express.js framework by Bracketed Softworks!",
 	"packageManager": "yarn@4.6.0",
-	"version": "1.6.0",
+	"version": "1.6.1",
 	"publishConfig": {
 		"access": "public"
 	},
@@ -72,6 +72,7 @@
 		"jsdoc": "^4.0.4",
 		"marked": "^14.1.4",
 		"prettier": "^3.5.2",
+		"tsx": "^4.19.3",
 		"typedoc": "^0.26.11",
 		"typedoc-github-theme": "^0.1.2",
 		"typedoc-github-wiki-theme": "^2.1.0",

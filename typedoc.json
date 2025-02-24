@@ -1,6 +1,6 @@
 {
 	"$schema": "https://typedoc.org/schema.json",
-	"exclude": ["**/node_modules/**", "**/*+(index|.test).ts", "**/lib/**", "**/docs/**"],
+	"exclude": ["**/node_modules/**", "**/*+(index|.test).ts", "**/lib/**", "**/docs/**", "**/test/**"],
 	"entryPoints": ["./src/index.ts", "./src/utilities/index.ts", "./src/types/**/*.ts"],
 	"basePath": "./src",
 	"name": "Jova.js by Bracketed Softworks",

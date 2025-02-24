@@ -4,7 +4,7 @@ import {
 	ApplicationResponse,
 	MiddlewareController,
 	MiddlewareOptions,
-} from '../../types/index.js';
+} from '@bracketed/jova.js/types';
 
 export class Middleware extends MiddlewareController {
 	public override setApplicationMiddlewareOptions(): MiddlewareOptions {

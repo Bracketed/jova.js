@@ -1,4 +1,4 @@
-import { ApplicationEvent, EventController, EventListenerOptions } from '../../types/index.js';
+import { ApplicationEvent, EventController, EventListenerOptions } from '@bracketed/jova.js/types';
 
 export class Event extends EventController {
 	public override setApplicationEventOptions(): EventListenerOptions {
