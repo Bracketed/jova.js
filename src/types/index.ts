@@ -39,6 +39,7 @@ export * from './registry/Events/EventHandlerType';
 export * from './registry/Events/EventListenerOptions';
 
 export * from './jova/Events';
+export * from './jova/Stats';
 
 export * from './cors/CustomOrigin';
 export * from './cors/Options';

@@ -19,7 +19,7 @@ export class Middleware extends MiddlewareController {
 		_response: ApplicationResponse,
 		next: ApplicationNextFunction
 	): Promise<ApplicationResponse | void> {
-		this.logger.info('Connected to middleware!');
+		this.logger.info('Example Middleware: successfully parsed through middleware!');
 		return next();
 	}
 }

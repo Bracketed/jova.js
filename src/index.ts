@@ -7,6 +7,7 @@ import path from 'node:path';
 import { resolvePath } from './utilities/Path/path';
 import { parseRootData } from './utilities/Path/root';
 import { search } from './utilities/fs';
+import { Handler } from './utilities/handlers';
 import * as utilities from './utilities/index';
 import * as tcp from './utilities/port-in-use';
 import { Stopwatch } from './utilities/stopwatch';
@@ -79,11 +80,11 @@ class JovaServer extends EventEmitter {
 	public readonly registry: ApplicationRegistry;
 
 	/**
-	 * The application registry, contains all the routes, middlewares and event handlers.
+	 * The current working directory of the project, this references the the folder of which the server is being ran from.
 	 *
 	 * @public
 	 * @readonly
-	 * @type ApplicationRegistry
+	 * @type string
 	 */
 	public readonly cwd: string;
 
@@ -423,6 +424,40 @@ class JovaServer extends EventEmitter {
 	public readonly path = this.application.path;
 
 	private async loadApplicationRoutes(): Promise<void> {
+		await new Handler(this.cwd)
+			.loadHandlers(this.paths.routes as string)
+			.register('Routes', async (RouteModule: any, Clock: Stopwatch) => {
+				if (!RouteModule['Route'] || typeof RouteModule['Route'] !== 'function') return undefined;
+
+				const RouteController = RouteModule.Route as new (...args: any[]) => RouteController;
+
+				const Route = new RouteController(this.application, this.container, this.logger, {
+					request: new utilities.request(),
+					response: new utilities.response(),
+				});
+
+				const RouteInformation = Route.registerApplicationRoutes(this.registry).getApplicationRoute();
+
+				this.logger.info(
+					`ApplicationRouteRegistry: Registered Route: "${RouteInformation.route}" (${RouteInformation.method.toUpperCase()}) in ${Clock.stop().toString()}`
+				);
+
+				const Middlewares = this.registry
+					.getMiddlewares()
+					.filter(
+						(m) => m.runsOnAllRoutes === false && RouteInformation.middlewares.find((r) => r === m.handler)
+					)
+					.map((m) => m.handler);
+
+				Middlewares.forEach((r) => RouteInformation.middlewares.push(r));
+
+				this.application[RouteInformation.method](RouteInformation.route, ...Middlewares, Route.run);
+
+				return {
+					message: `Route "${RouteInformation.route}" (${RouteInformation.method.toUpperCase()}) was deployed with ${Middlewares.length} route-specific middlewares.`,
+				};
+			});
+		/*
 		const routes = findHandlers(this.paths.routes as string);
 
 		this.logger.info('ApplicationRouteRegistry: Registering Routes...');
@@ -472,6 +507,7 @@ class JovaServer extends EventEmitter {
 			this.logger.warn(
 				'ApplicationRouteRegistry: Some routes were not registered due to errors or missing content in the registering process'
 			);
+			*/
 	}
 
 	private async loadApplicationEvents(): Promise<void> {
