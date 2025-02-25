@@ -77,6 +77,16 @@ class JovaServer extends EventEmitter {
 	 * @type ApplicationRegistry
 	 */
 	public readonly registry: ApplicationRegistry;
+
+	/**
+	 * The application registry, contains all the routes, middlewares and event handlers.
+	 *
+	 * @public
+	 * @readonly
+	 * @type ApplicationRegistry
+	 */
+	public readonly cwd: string;
+
 	private readonly application: Express = express();
 	private readonly logger: Logger = new Logger();
 	private readonly emitter: EventEmitter;
@@ -107,6 +117,9 @@ class JovaServer extends EventEmitter {
 		this.registry = new ApplicationRegistry({
 			basePath: this.basePath,
 		});
+
+		// document this please
+		this.cwd = parseRootData().root;
 
 		this.setupGlobalErrorHandlers();
 	}

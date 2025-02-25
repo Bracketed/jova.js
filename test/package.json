@@ -17,7 +17,7 @@
 		"lint:all": "yarn prettier --write .",
 		"validate:all": "yarn prettier --check .",
 		"start": "yarn node ./dist/index.js",
-		"test": "yarn tsx watch ./src/index.ts",
+		"test": "tsx watch ./src/index.ts",
 		"compile": "yarn tsc",
 		"dev": "yarn compile && yarn node ./dist/index.js",
 		"build": "docker build --tag ninjaninja140/ts-template .",
