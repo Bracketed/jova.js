@@ -1,0 +1,180 @@
+import type { Express, Locals } from '@bracketed/express';
+import { type Logger as LoggerType, Logger } from '@bracketed/logger';
+import fs from 'node:fs';
+import path from 'node:path';
+import { getHandlerOptions } from '../../decorators/ApplyControllerOptions';
+import type { Registry } from '../../Registry';
+import type { ApplicationStats } from '../../types/index';
+import * as utilities from '../index';
+import { resolvePath } from '../Path/path';
+import { Stopwatch } from '../stopwatch';
+import type { HandlerFunction } from './function';
+
+export namespace Handlers {
+	export enum Type {
+		ROUTE = 'route',
+		MIDDLEWARE = 'middleware',
+		EVENT = 'event',
+		AUTO = 'auto',
+	}
+	export interface Options {
+		type?: Type;
+		enabled?: boolean;
+	}
+
+	interface HandlerOptions<T> {
+		cwd: string;
+		type: string;
+		controllerType: new (...args: any[]) => T;
+		application: Express;
+		container: Record<string, any> & Locals;
+		registry: Registry;
+	}
+
+	export class Handler<T> {
+		private readonly cwd: string;
+		private readonly logger: LoggerType = new Logger();
+		private readonly type: string;
+		private readonly controllerType: new (...args: any[]) => T;
+		private readonly application: Express;
+		private readonly container: Record<string, any> & Locals;
+		private readonly registry: Registry;
+
+		private deploy!: (..._args: any[]) => Promise<ApplicationStats | undefined>;
+		private handlers: Array<string> = [];
+
+		constructor(options: HandlerOptions<T>) {
+			this.cwd = options.cwd;
+			this.type = options.type;
+			this.controllerType = options.controllerType;
+			this.application = options.application;
+			this.container = options.container;
+			this.registry = options.registry;
+		}
+
+		public async setupDeployScript() {
+			const functions = this.getFiles(
+				path.resolve(import.meta.dirname, resolvePath('functions')),
+				/^(?!.*\.d\.(ts|mts|cts)$).*\.(js|jsx|ts|tsx|mjs|mts|cjs|cts)$/
+			);
+
+			const Imports = functions.map(async (fp) => ({
+				module: await import(`file://${fp}`),
+				name: path.parse(fp).name,
+			}));
+
+			const Modules = await Promise.all(Imports);
+			const Module = Modules.find(
+				(m) => m.name === this.type.toLowerCase() && m.module[`${this.type}RegisterFunction`]
+			);
+
+			if (!Module) {
+				this.logger.warn(
+					`Unable to load function for event handler, type ${this.type} is not a valid function handler will be substituted for a blank handler.`
+				);
+				this.deploy = (..._args: any[]): Promise<any | void> | any | void => {
+					return;
+				};
+			} else {
+				const Handler = Module.module[`${this.type}RegisterFunction`] as new (
+					...args: any[]
+				) => HandlerFunction;
+
+				this.deploy = new Handler(this.application, this.registry, this.container, this.logger).run;
+			}
+
+			return this;
+		}
+
+		public async loadFunction(): Promise<this | void> {
+			return this;
+		}
+
+		public loadHandlers(handlerType: string): this {
+			const handlerDirectoryPath = path.resolve(this.cwd, resolvePath(handlerType));
+
+			if (!fs.existsSync(handlerDirectoryPath)) return this;
+			this.handlers = this.getFiles(
+				handlerDirectoryPath,
+				/^(?!.*\.d\.(ts|mts|cts)$).*\.(js|jsx|ts|tsx|mjs|mts|cjs|cts)$/
+			);
+
+			return this;
+		}
+
+		private getFiles(dir: string, regex: RegExp): Array<string> {
+			let results: Array<string> = [];
+
+			const list = fs.readdirSync(dir);
+
+			list.forEach((file) => {
+				const filePath = path.join(dir, file);
+				const stat = fs.statSync(filePath);
+
+				if (stat && stat.isDirectory()) results = results.concat(this.getFiles(filePath, regex));
+				else if (regex.test(file)) results.push(filePath);
+			});
+
+			return results;
+		}
+
+		public async register(type: string) {
+			if (this.handlers.length === 0) return this.logger.info(`ApplicationRegistry: Skipping ${type}...`);
+
+			this.logger.info(`ApplicationRegistry: Registering ${type}...`);
+			const RegisterStopwatch = new Stopwatch();
+			let Registered: number = 0;
+
+			const Imports = this.handlers.map(async (path) => ({
+				module: await import(`file://${path}`),
+				clock: new Stopwatch(),
+			}));
+
+			const Modules = (await Promise.all(Imports))
+				.filter((module) => module.module[this.type])
+				.flatMap((module) => ({ module: module.module[this.type], clock: module.clock }))
+				.filter((exported) => typeof exported.module === 'function');
+
+			for await (const [index, Module] of Modules.entries()) {
+				try {
+					const options = getHandlerOptions(Module.module);
+
+					this.logger.info(options);
+
+					type ControllerType = typeof this.controllerType;
+					const Controller = Module.module as new (...args: any[]) => ControllerType;
+
+					const Handler = new Controller(this.application, this.container, this.logger, {
+						request: new utilities.request(),
+						response: new utilities.response(),
+					});
+
+					const stats = await this.deploy(Handler, Module.clock);
+
+					if (!stats) {
+						this.logger.warn(
+							`ApplicationRegistry: Application ${type} handler at index ${index} was not deployed due to a missing entry class.`
+						);
+						continue;
+					}
+
+					this.logger.info(`ApplicationRegistry: ${stats.message}`);
+					Registered += 1;
+				} catch (error) {
+					this.logger.warn(
+						`ApplicationRegistry: Application ${type} handler at index ${index} was not deployed due to process error:`,
+						error
+					);
+				}
+			}
+
+			this.logger.info(
+				`ApplicationRegistry: Registered ${Registered} ${type} in ${RegisterStopwatch.stop().toString()}`
+			);
+			if (this.handlers.length !== Registered)
+				this.logger.warn(
+					`ApplicationRegistry: Some ${type.toLowerCase()} were not registered due to errors or missing content in the registering process.`
+				);
+		}
+	}
+}

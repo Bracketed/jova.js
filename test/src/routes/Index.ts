@@ -7,6 +7,13 @@ import {
 	RouteController,
 } from '@bracketed/jova.js/types';
 
+import { ApplyHandlerOptions } from '@bracketed/jova.js/decorators';
+import { Handlers } from '@bracketed/jova.js/utilities';
+
+@ApplyHandlerOptions<Handlers.Options>({
+	type: Handlers.Type.ROUTE,
+	enabled: true,
+})
 export class Route extends RouteController {
 	public override registerApplicationRoutes(registry: ApplicationRegistry): ApplicationRoute {
 		return registry.registerApplicationRoutes((route) =>

@@ -11,5 +11,5 @@ export const loadApplicationCorsConfiguration = (
 	if (!cors) return;
 
 	application.use(cors(corsOpt));
-	logger.info('ApplicationMiddlewareRegistry: CORS config was detected and set up!');
+	logger.info('ApplicationRegistry: CORS Middleware config was detected and set up!');
 };

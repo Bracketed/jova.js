@@ -100,6 +100,7 @@ __metadata:
     is2: "npm:^2.0.9"
     jsdoc: "npm:^4.0.4"
     prettier: "npm:^3.5.2"
+    reflect-metadata: "npm:^0.2.2"
     tsup: "npm:^8.3.6"
     typedoc: "npm:^0.27.8"
     typedoc-github-theme: "npm:^0.2.1"
@@ -2340,6 +2341,13 @@ __metadata:
   dependencies:
     redis-errors: "npm:^1.0.0"
   checksum: 10c0/ee16ac4c7b2a60b1f42a2cdaee22b005bd4453eb2d0588b8a4939718997ae269da717434da5d570fe0b05030466eeb3f902a58cf2e8e1ca058bf6c9c596f632f
+  languageName: node
+  linkType: hard
+
+"reflect-metadata@npm:^0.2.2":
+  version: 0.2.2
+  resolution: "reflect-metadata@npm:0.2.2"
+  checksum: 10c0/1cd93a15ea291e420204955544637c264c216e7aac527470e393d54b4bb075f10a17e60d8168ec96600c7e0b9fcc0cb0bb6e91c3fbf5b0d8c9056f04e6ac1ec2
   languageName: node
   linkType: hard
 

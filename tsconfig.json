@@ -22,6 +22,8 @@
 		"incremental": false,
 		"listEmittedFiles": true,
 		"allowSyntheticDefaultImports": true,
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
 		"alwaysStrict": true,
 		"importHelpers": false,
 		"newLine": "lf",

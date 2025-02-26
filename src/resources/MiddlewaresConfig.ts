@@ -12,8 +12,6 @@ export const loadApplicationMiddlewaresConfiguration = (
 
 	middlewares.forEach((m) => {
 		application.use(m);
-		logger.info(
-			`ApplicationMiddlewareRegistry: Registered Instance-set middleware, "${m.name}" - Runs on all Routes: true`
-		);
+		logger.info(`ApplicationRegistry: Registered Instance-set middleware, "${m.name}" - Runs on all Routes: true`);
 	});
 };

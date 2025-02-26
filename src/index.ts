@@ -1,23 +1,17 @@
 import express, { type Express } from '@bracketed/express';
 import { Logger } from '@bracketed/logger';
 import { EventEmitter } from 'node:events';
-import fs from 'node:fs';
-import path from 'node:path';
 
-import { resolvePath } from './utilities/Path/path';
 import { parseRootData } from './utilities/Path/root';
-import { search } from './utilities/fs';
-import { Handler } from './utilities/handlers';
-import * as utilities from './utilities/index';
+import { Handlers } from './utilities/handlers';
 import * as tcp from './utilities/port-in-use';
-import { Stopwatch } from './utilities/stopwatch';
 
 import {
 	ApplicationEvent,
 	type CorsOptions,
 	EventController,
 	type JovaCustomOption,
-	type JovaPathSettings,
+	type JovaPathSettings$1,
 	type JovaServerOptions,
 	type JovaSettings,
 	JovaSettingsTable,
@@ -35,14 +29,6 @@ import { loadApplicationEventsMiddlewareConfiguration } from './resources/Events
 import { loadApplicationMiddlewaresConfiguration } from './resources/MiddlewaresConfig';
 import { loadApplicationRatelimitConfiguration } from './resources/RatelimitConfig';
 import { loadApplicationSettingsConfiguration } from './resources/SettingsConfig';
-
-function findHandlers(dir: string) {
-	if (!fs.existsSync(path.resolve(parseRootData().root, resolvePath(dir)))) {
-		return [];
-	}
-
-	return search(path.resolve(parseRootData().root, resolvePath(dir)), /\.(js|jsx|ts|tsx)$/);
-}
 
 /**
  * The Jova Server Class.
@@ -62,7 +48,7 @@ class JovaServer extends EventEmitter {
 	 */
 	public readonly port: string | number;
 	private readonly basePath: string;
-	private readonly paths: JovaPathSettings;
+	private readonly paths: JovaPathSettings$1;
 
 	private readonly middlewares: Array<MiddlewareHandler> | undefined;
 	private readonly ratelimitConf: RatelimitConfig | undefined;
@@ -119,7 +105,6 @@ class JovaServer extends EventEmitter {
 			basePath: this.basePath,
 		});
 
-		// document this please
 		this.cwd = parseRootData().root;
 
 		this.setupGlobalErrorHandlers();
@@ -424,191 +409,55 @@ class JovaServer extends EventEmitter {
 	public readonly path = this.application.path;
 
 	private async loadApplicationRoutes(): Promise<void> {
-		await new Handler(this.cwd)
-			.loadHandlers(this.paths.routes as string)
-			.register('Routes', async (RouteModule: any, Clock: Stopwatch) => {
-				if (!RouteModule['Route'] || typeof RouteModule['Route'] !== 'function') return undefined;
-
-				const RouteController = RouteModule.Route as new (...args: any[]) => RouteController;
-
-				const Route = new RouteController(this.application, this.container, this.logger, {
-					request: new utilities.request(),
-					response: new utilities.response(),
-				});
-
-				const RouteInformation = Route.registerApplicationRoutes(this.registry).getApplicationRoute();
-
-				this.logger.info(
-					`ApplicationRouteRegistry: Registered Route: "${RouteInformation.route}" (${RouteInformation.method.toUpperCase()}) in ${Clock.stop().toString()}`
-				);
-
-				const Middlewares = this.registry
-					.getMiddlewares()
-					.filter(
-						(m) => m.runsOnAllRoutes === false && RouteInformation.middlewares.find((r) => r === m.handler)
-					)
-					.map((m) => m.handler);
-
-				Middlewares.forEach((r) => RouteInformation.middlewares.push(r));
-
-				this.application[RouteInformation.method](RouteInformation.route, ...Middlewares, Route.run);
-
-				return {
-					message: `Route "${RouteInformation.route}" (${RouteInformation.method.toUpperCase()}) was deployed with ${Middlewares.length} route-specific middlewares.`,
-				};
-			});
-		/*
-		const routes = findHandlers(this.paths.routes as string);
-
-		this.logger.info('ApplicationRouteRegistry: Registering Routes...');
-		const RouteRegisterStopwatch = new Stopwatch();
-
-		for await (const [_index, value] of routes.entries()) {
-			try {
-				const RouteTimer = new Stopwatch();
-				const RouteModule = await import(`file://${value}`);
-				if (!RouteModule['Route'] || typeof RouteModule['Route'] !== 'function') continue;
-
-				const RouteController = RouteModule.Route as new (...args: any[]) => RouteController;
-
-				const Route = new RouteController(this.application, this.container, this.logger, {
-					request: new utilities.request(),
-					response: new utilities.response(),
-				});
-
-				const RouteInformation = Route.registerApplicationRoutes(this.registry).getApplicationRoute();
-
-				this.logger.info(
-					`ApplicationRouteRegistry: Registered Route: "${RouteInformation.route}" (${RouteInformation.method.toUpperCase()}) in ${RouteTimer.stop().toString()}`
-				);
-
-				const Middlewares = this.registry
-					.getMiddlewares()
-					.filter(
-						(m) => m.runsOnAllRoutes === false && RouteInformation.middlewares.find((r) => r === m.handler)
-					)
-					.map((m) => m.handler);
-
-				Middlewares.forEach((r) => RouteInformation.middlewares.push(r));
-
-				this.application[RouteInformation.method](RouteInformation.route, ...Middlewares, Route.run);
-				this.logger.info(
-					`ApplicationRouteRegistry: Route "${RouteInformation.route}" (${RouteInformation.method.toUpperCase()}) was deployed with ${Middlewares.length} route-specific middlewares.`
-				);
-			} catch (error) {
-				this.logger.warn('ApplicationRouteRegistry: Route not deployed due to process error:', error);
-			}
-		}
-
-		this.logger.info(
-			`ApplicationRouteRegistry: Registered ${this.registry.getRoutes().length} Route(s) in ${RouteRegisterStopwatch.stop().toString()}`
-		);
-		if (!(routes.length === this.registry.getRoutes().length))
-			this.logger.warn(
-				'ApplicationRouteRegistry: Some routes were not registered due to errors or missing content in the registering process'
-			);
-			*/
+		await (
+			await new Handlers.Handler({
+				application: this.application,
+				container: this.container,
+				registry: this.registry,
+				cwd: this.cwd,
+				type: 'Route',
+				controllerType: RouteController,
+			}).setupDeployScript()
+		)
+			.loadHandlers(this.paths.routes)
+			.register('Routes');
 	}
 
 	private async loadApplicationEvents(): Promise<void> {
-		const events = findHandlers(this.paths.events as string);
-
-		this.logger.info(`ApplicationEventRegistry: Registering ${events.length} Events...`);
-		const EventRegisterStopwatch = new Stopwatch();
-
-		for await (const [_index, value] of events.entries()) {
-			try {
-				const EventTimer = new Stopwatch();
-				const EventModule = await import(`file://${value}`);
-				if (!EventModule['Event'] || typeof EventModule['Event'] !== 'function') continue;
-
-				const EventController = EventModule.Event as new (...args: any[]) => EventController;
-
-				const Event = new EventController(this.application, this.container, this.logger, {
-					request: new utilities.request(),
-					response: new utilities.response(),
-				});
-
-				const EventConfig = Event.setApplicationEventOptions();
-				const EventInfo = this.registry.registerApplicationEvent((event) =>
-					event //
-						.setEventType(EventConfig.type)
-						.setHandler(Event.run)
-				);
-
-				this.logger.info(
-					`ApplicationEventRegistry: Registered Event: "${EventInfo.getApplicationEvent().event}" in ${EventTimer.stop().toString()}`
-				);
-			} catch (error) {
-				this.logger.warn('ApplicationEventRegistry: Event not deployed due to process error:', error);
-			}
-		}
-
-		this.logger.info(
-			`ApplicationEventRegistry: Registered ${this.registry.getEvents().length} Event(s) in ${EventRegisterStopwatch.stop().toString()}`
-		);
-		if (!(events.length === this.registry.getEvents().length))
-			this.logger.warn(
-				'ApplicationEventRegistry: Some events were not registered due to errors or missing content in the registering process'
-			);
+		await (
+			await new Handlers.Handler({
+				application: this.application,
+				container: this.container,
+				registry: this.registry,
+				cwd: this.cwd,
+				type: 'Event',
+				controllerType: EventController,
+			}).setupDeployScript()
+		)
+			.loadHandlers(this.paths.events)
+			.register('Events');
 	}
 
 	private async loadApplicationMiddlewares(): Promise<void> {
-		this.logger.info('ApplicationMiddlewareRegistry: Registering Middlewares...');
+		this.logger.info('ApplicationRegistry: Registering Built-in Middlewares...');
 
 		await loadApplicationRatelimitConfiguration(this.application, this.logger, this.ratelimitConf);
 		loadApplicationCorsConfiguration(this.application, this.logger, this.corsOptions);
 		loadApplicationMiddlewaresConfiguration(this.application, this.logger, this.middlewares);
 		loadApplicationEventsMiddlewareConfiguration(this.application, this.logger, this.registry, this.emitter);
 
-		const middlewares = findHandlers(this.paths.middlewares as string);
-		const MiddlewareRegisterStopwatch = new Stopwatch();
-
-		for await (const [_index, value] of middlewares.entries()) {
-			try {
-				const MiddlewareTimer = new Stopwatch();
-				const MiddlewareModule = await import(`file://${value}`);
-				if (!MiddlewareModule['Middleware'] || typeof MiddlewareModule['Middleware'] !== 'function') continue;
-
-				const MiddlewareController = MiddlewareModule.Middleware as new (
-					...args: any[]
-				) => MiddlewareController;
-
-				const Middleware = new MiddlewareController(this.application, this.container, this.logger, {
-					request: new utilities.request(),
-					response: new utilities.response(),
-				});
-
-				const MiddlewareConfig = Middleware.setApplicationMiddlewareOptions();
-				const MiddlewareInfo = this.registry.registerApplicationMiddleware((middleware) =>
-					middleware //
-						.setMiddlewareName(MiddlewareConfig.middlewareName)
-						.setHandler(Middleware.run)
-						.runOnAllRoutes(MiddlewareConfig.runsOnAllRoutes || false)
-				);
-
-				this.logger.info(
-					`ApplicationMiddlewareRegistry: Registered Middleware: "${MiddlewareInfo.getApplicationMiddleware().middleware}" in ${MiddlewareTimer.stop().toString()} - Runs on all Routes: ${MiddlewareInfo.getApplicationMiddleware().runsOnAllRoutes}`
-				);
-
-				if (MiddlewareConfig.runsOnAllRoutes) {
-					this.application.use(Middleware.run);
-					this.logger.info(
-						`ApplicationMiddlewareRegistry: Middleware "${MiddlewareConfig.middlewareName}" was deployed to all routes.`
-					);
-				}
-			} catch (error) {
-				this.logger.warn('ApplicationMiddlewareRegistry: Middleware not deployed due to process error:', error);
-			}
-		}
-
-		this.logger.info(
-			`ApplicationMiddlewareRegistry: Registered ${this.registry.getMiddlewares().length} + Built-in Middleware(s) in ${MiddlewareRegisterStopwatch.stop().toString()}`
-		);
-		if (!(middlewares.length === this.registry.getMiddlewares().length))
-			this.logger.warn(
-				'ApplicationMiddlewareRegistry: Some middlewares were not registered due to errors or missing content in the registering process'
-			);
+		await (
+			await new Handlers.Handler({
+				cwd: this.cwd,
+				type: 'Middleware',
+				application: this.application,
+				container: this.container,
+				registry: this.registry,
+				controllerType: MiddlewareController,
+			}).setupDeployScript()
+		)
+			.loadHandlers(this.paths.middlewares)
+			.register('Middlewares');
 	}
 
 	/**
@@ -633,6 +482,7 @@ class JovaServer extends EventEmitter {
 	 */
 	public async listen(port?: string | number, allowPortIncrement?: boolean): Promise<void> {
 		this.logger.info(`Application: Starting new HTTP server on port ${port}...`);
+
 		try {
 			if (!port) port = this.port;
 
@@ -650,19 +500,19 @@ class JovaServer extends EventEmitter {
 			loadApplicationCustomConfiguration(this.application, this.logger, this.customOptions);
 
 			await this.loadApplicationEvents().catch((err) => {
-				this.logger.fatal('ApplicationEventRegistry: Error during listener processing:', err);
+				this.logger.fatal('ApplicationRegistry: Error during listener processing:', err);
 				this.release(ApplicationEvent.ERROR, err);
 				process.exit(1);
 			});
 
 			await this.loadApplicationMiddlewares().catch((err) => {
-				this.logger.fatal('ApplicationMiddlewareRegistry: Error during middleware processing:', err);
+				this.logger.fatal('ApplicationRegistry: Error during middleware processing:', err);
 				this.release(ApplicationEvent.ERROR, err);
 				process.exit(1);
 			});
 
 			await this.loadApplicationRoutes().catch((err) => {
-				this.logger.fatal('ApplicationRouteRegistry: Error during route processing:', err);
+				this.logger.fatal('ApplicationRegistry: Error during route processing:', err);
 				this.release(ApplicationEvent.ERROR, err);
 				process.exit(1);
 			});
@@ -707,19 +557,19 @@ class JovaServer extends EventEmitter {
 			loadApplicationCustomConfiguration(this.application, this.logger, this.customOptions);
 
 			await this.loadApplicationEvents().catch((err) => {
-				this.logger.fatal('ApplicationEventRegistry: Error during listener processing:', err);
+				this.logger.fatal('ApplicationRegistry: Error during listener processing:', err);
 				this.release(ApplicationEvent.ERROR, err);
 				process.exit(1);
 			});
 
 			await this.loadApplicationMiddlewares().catch((err) => {
-				this.logger.fatal('ApplicationMiddlewareRegistry: Error during middleware processing:', err);
+				this.logger.fatal('ApplicationRegistry: Error during middleware processing:', err);
 				this.release(ApplicationEvent.ERROR, err);
 				process.exit(1);
 			});
 
 			await this.loadApplicationRoutes().catch((err) => {
-				this.logger.fatal('ApplicationRouteRegistry: Error during route processing:', err);
+				this.logger.fatal('ApplicationRegistry: Error during route processing:', err);
 				this.release(ApplicationEvent.ERROR, err);
 				process.exit(1);
 			});

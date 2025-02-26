@@ -16,7 +16,9 @@
 		"declarationMap": false,
 		"incremental": false,
 		"listFiles": true,
-		"listEmittedFiles": true
+		"listEmittedFiles": true,
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true
 	},
 	"exclude": ["dist", "node_modules"]
 }

@@ -32,13 +32,13 @@ export const loadApplicationRatelimitConfiguration = async (
 		} catch (e) {
 			logger.fatal('ApplicationIORedis: ERROR:', e);
 			return logger.error(
-				`ApplicationMiddlewareRegistry: Failed to register middleware "ratelimiter" - Middleware registry failed in ${MiddlewareRegisterStopwatch.stop().toString()}, failed to connect to database.`
+				`ApplicationRegistry: Failed to register middleware "ratelimiter" - Middleware registry failed in ${MiddlewareRegisterStopwatch.stop().toString()}, failed to connect to database.`
 			);
 		}
 
 	if (!database)
 		return logger.error(
-			`ApplicationMiddlewareRegistry: Failed to register middleware "ratelimiter" - Middleware registry failed in ${MiddlewareRegisterStopwatch.stop().toString()}, failed to connect to database.`
+			`ApplicationRegistry: Failed to register middleware "ratelimiter" - Middleware registry failed in ${MiddlewareRegisterStopwatch.stop().toString()}, failed to connect to database.`
 		);
 
 	application.use(
@@ -57,6 +57,6 @@ export const loadApplicationRatelimitConfiguration = async (
 	);
 
 	logger.info(
-		`ApplicationMiddlewareRegistry: Registered Middleware: "ratelimiter" in ${MiddlewareRegisterStopwatch.stop().toString()} - Runs on all Routes: true`
+		`ApplicationRegistry: Registered Middleware: "ratelimiter" in ${MiddlewareRegisterStopwatch.stop().toString()} - Runs on all Routes: true`
 	);
 };

@@ -41,6 +41,16 @@
 				"types": "./lib/cjs/types/index.d.cts",
 				"default": "./lib/cjs/types/index.cjs"
 			}
+		},
+		"./decorators": {
+			"import": {
+				"types": "./lib/esm/decorators/index.d.mts",
+				"default": "./lib/esm/decorators/index.mjs"
+			},
+			"require": {
+				"types": "./lib/cjs/decorators/index.d.cts",
+				"default": "./lib/cjs/decorators/index.cjs"
+			}
 		}
 	},
 	"files": [
@@ -97,7 +107,8 @@
 		"@bracketed/logger": "^1.0.10",
 		"express": "4.21.2",
 		"ioredis": "^5.5.0",
-		"is2": "^2.0.9"
+		"is2": "^2.0.9",
+		"reflect-metadata": "^0.2.2"
 	},
 	"engines": {
 		"node": ">= 16"

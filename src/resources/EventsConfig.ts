@@ -21,5 +21,5 @@ export const loadApplicationEventsMiddlewareConfiguration = (
 		});
 		return next();
 	});
-	logger.info('ApplicationMiddlewareRegistry: Routing event listeners were set up!');
+	logger.info('ApplicationRegistry: Routing event Middleware listeners were set up!');
 };
