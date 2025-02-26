@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { Handlers } from '../utilities/handlers';
+import { Handlers } from '../utilities/handlers/index';
 
 function createClassDecorator<TFunction extends (...args: any[]) => void>(fn: TFunction): ClassDecorator {
 	return fn;
@@ -10,7 +10,7 @@ export function ApplyHandlerOptions<T extends Handlers.Options>(options: T): Cla
 	});
 }
 
-export function getHandlerOptions(target: any): Handlers.Options | undefined {
+export function getHandlerOptions(target: any): Handlers.Options {
 	const options: Handlers.Options = {
 		type: Handlers.Type.AUTO,
 		enabled: true,
@@ -18,9 +18,11 @@ export function getHandlerOptions(target: any): Handlers.Options | undefined {
 
 	const decoratedOptions: Handlers.Options = Reflect.getMetadata('handler:options', target);
 
+	console.log(decoratedOptions);
+
 	if (decoratedOptions.enabled === false) options.enabled = false;
 	if (decoratedOptions.type !== undefined || decoratedOptions.type !== Handlers.Type.AUTO)
 		options.type = decoratedOptions.type;
 
-	return;
+	return options;
 }

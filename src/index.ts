@@ -3,7 +3,7 @@ import { Logger } from '@bracketed/logger';
 import { EventEmitter } from 'node:events';
 
 import { parseRootData } from './utilities/Path/root';
-import { Handlers } from './utilities/handlers';
+import { Handlers } from './utilities/handlers/index';
 import * as tcp from './utilities/port-in-use';
 
 import {
@@ -580,8 +580,6 @@ class JovaServer extends EventEmitter {
 				);
 				this.release(ApplicationEvent.READY);
 			});
-
-			// TODO Add a route ping system soon
 
 			this.registry.flush();
 			this.logger.warn('ApplicationTest: Flushed registries!');

@@ -17,8 +17,37 @@ export namespace Handlers {
 		EVENT = 'event',
 		AUTO = 'auto',
 	}
+
+	/**
+	 * Decorative options for Handlers, customise the behaviour of a specific handler.
+	 *
+	 * __Usage of decorators in `jova.js` is unfinished and enabling/disabling handlers is currently only available!__
+	 *
+	 * @public
+	 * @interface
+	 */
 	export interface Options {
+		/**
+		 * The type of handler this is, all handlers default to
+		 * ```typescript
+		 * Handlers.Type.AUTO
+		 * ```
+		 *
+		 * @todo This option does not do anything in `jova.js` as of current (1.6.2) and will be updated to have functionality in a future version.
+		 *
+		 * __Usage of decorators in `jova.js` is unfinished and enabling/disabling handlers is currently only available!__
+		 *
+		 * @public
+		 */
 		type?: Type;
+		/**
+		 * Enable or disable a handler so it does not get ran or processed at runtime.
+		 *
+		 * __Usage of decorators in `jova.js` is unfinished and enabling/disabling handlers is currently only available!__
+		 * @default true
+		 *
+		 * @public
+		 */
 		enabled?: boolean;
 	}
 
@@ -124,6 +153,7 @@ export namespace Handlers {
 			this.logger.info(`ApplicationRegistry: Registering ${type}...`);
 			const RegisterStopwatch = new Stopwatch();
 			let Registered: number = 0;
+			let Ignored: number = 0;
 
 			const Imports = this.handlers.map(async (path) => ({
 				module: await import(`file://${path}`),
@@ -139,7 +169,12 @@ export namespace Handlers {
 				try {
 					const options = getHandlerOptions(Module.module);
 
-					this.logger.info(options);
+					//this.logger.info(options);
+
+					if (options.enabled === false) {
+						Ignored += 1;
+						continue;
+					}
 
 					type ControllerType = typeof this.controllerType;
 					const Controller = Module.module as new (...args: any[]) => ControllerType;
@@ -171,9 +206,14 @@ export namespace Handlers {
 			this.logger.info(
 				`ApplicationRegistry: Registered ${Registered} ${type} in ${RegisterStopwatch.stop().toString()}`
 			);
-			if (this.handlers.length !== Registered)
+			if (this.handlers.length - Ignored !== Registered)
 				this.logger.warn(
 					`ApplicationRegistry: Some ${type.toLowerCase()} were not registered due to errors or missing content in the registering process.`
+				);
+
+			if (Ignored !== 0)
+				this.logger.warn(
+					`ApplicationRegistry: ${Ignored} ${type.toLowerCase()} were disabled via decorators and were not registered.`
 				);
 		}
 	}

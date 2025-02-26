@@ -12,7 +12,7 @@ jobs:
               with:
                   node-version: 22
             - run: npm install --force
-            - run: npm run build:production
+            - run: npm run build
 
     publish:
         needs: test
