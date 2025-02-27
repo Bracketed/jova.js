@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { Handlers } from '../utilities/handlers/index';
+import { Handlers } from '../handlers/index';
 
 function createClassDecorator<TFunction extends (...args: any[]) => void>(fn: TFunction): ClassDecorator {
 	return fn;

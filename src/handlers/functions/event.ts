@@ -1,5 +1,5 @@
-import type { EventController } from '../../../types/index';
-import type { Stopwatch } from '../../stopwatch';
+import type { EventController } from '../../types/index';
+import type { Stopwatch } from '../../utilities/stopwatch';
 import { HandlerFunction } from '../function';
 
 export class EventRegisterFunction extends HandlerFunction {

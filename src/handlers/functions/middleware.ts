@@ -1,5 +1,5 @@
-import type { MiddlewareController } from '../../../types/index';
-import type { Stopwatch } from '../../stopwatch';
+import type { MiddlewareController } from '../../types/index';
+import type { Stopwatch } from '../../utilities/stopwatch';
 import { HandlerFunction } from '../function';
 
 export class MiddlewareRegisterFunction extends HandlerFunction {
@@ -14,9 +14,7 @@ export class MiddlewareRegisterFunction extends HandlerFunction {
 
 		if (MiddlewareConfig.runsOnAllRoutes) {
 			this.application.use(Middleware.run);
-			this.logger.info(
-				`ApplicationRegistry: Middleware "${MiddlewareConfig.middlewareName}" was deployed to all routes.`
-			);
+			this.logger.info(`Middleware "${MiddlewareConfig.middlewareName}" was deployed to all routes.`);
 		}
 
 		return {

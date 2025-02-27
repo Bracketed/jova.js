@@ -2,8 +2,8 @@ import express, { type Express } from '@bracketed/express';
 import { Logger } from '@bracketed/logger';
 import { EventEmitter } from 'node:events';
 
+import { Handlers } from './handlers/index';
 import { parseRootData } from './utilities/Path/root';
-import { Handlers } from './utilities/handlers/index';
 import * as tcp from './utilities/port-in-use';
 
 import {
@@ -412,7 +412,6 @@ class JovaServer extends EventEmitter {
 		await (
 			await new Handlers.Handler({
 				application: this.application,
-				container: this.container,
 				registry: this.registry,
 				cwd: this.cwd,
 				type: 'Route',
@@ -427,7 +426,6 @@ class JovaServer extends EventEmitter {
 		await (
 			await new Handlers.Handler({
 				application: this.application,
-				container: this.container,
 				registry: this.registry,
 				cwd: this.cwd,
 				type: 'Event',
@@ -451,7 +449,6 @@ class JovaServer extends EventEmitter {
 				cwd: this.cwd,
 				type: 'Middleware',
 				application: this.application,
-				container: this.container,
 				registry: this.registry,
 				controllerType: MiddlewareController,
 			}).setupDeployScript()

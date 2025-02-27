@@ -1,5 +1,5 @@
-import type { RouteController } from '../../../types/index';
-import type { Stopwatch } from '../../stopwatch';
+import type { RouteController } from '../../types/index';
+import type { Stopwatch } from '../../utilities/stopwatch';
 import { HandlerFunction } from '../function';
 
 export class RouteRegisterFunction extends HandlerFunction {
@@ -7,7 +7,7 @@ export class RouteRegisterFunction extends HandlerFunction {
 		const RouteInformation = Module.registerApplicationRoutes(this.registry).getApplicationRoute();
 
 		this.logger.info(
-			`ApplicationRegistry: Registered Route: "${RouteInformation.route}" (${RouteInformation.method.toUpperCase()}) in ${Clock.stop().toString()}`
+			`Registered Route: "${RouteInformation.route}" (${RouteInformation.method.toUpperCase()}) in ${Clock.stop().toString()}`
 		);
 
 		const Middlewares = this.registry

@@ -1,13 +1,12 @@
-import type { Express, Locals } from '@bracketed/express';
+import type { Express } from '@bracketed/express';
 import { type Logger as LoggerType, Logger } from '@bracketed/logger';
 import fs from 'node:fs';
 import path from 'node:path';
-import { getHandlerOptions } from '../../decorators/ApplyControllerOptions';
-import type { Registry } from '../../Registry';
-import type { ApplicationStats } from '../../types/index';
-import * as utilities from '../index';
-import { resolvePath } from '../Path/path';
-import { Stopwatch } from '../stopwatch';
+import { getHandlerOptions } from '../decorators/ApplyControllerOptions';
+import type { Registry } from '../Registry';
+import type { ApplicationStats } from '../types/index';
+import { resolvePath } from '../utilities/Path/path';
+import { Stopwatch } from '../utilities/stopwatch';
 import type { HandlerFunction } from './function';
 
 export namespace Handlers {
@@ -56,7 +55,6 @@ export namespace Handlers {
 		type: string;
 		controllerType: new (...args: any[]) => T;
 		application: Express;
-		container: Record<string, any> & Locals;
 		registry: Registry;
 	}
 
@@ -66,7 +64,6 @@ export namespace Handlers {
 		private readonly type: string;
 		private readonly controllerType: new (...args: any[]) => T;
 		private readonly application: Express;
-		private readonly container: Record<string, any> & Locals;
 		private readonly registry: Registry;
 
 		private deploy!: (..._args: any[]) => Promise<ApplicationStats | undefined>;
@@ -77,7 +74,6 @@ export namespace Handlers {
 			this.type = options.type;
 			this.controllerType = options.controllerType;
 			this.application = options.application;
-			this.container = options.container;
 			this.registry = options.registry;
 		}
 
@@ -109,7 +105,7 @@ export namespace Handlers {
 					...args: any[]
 				) => HandlerFunction;
 
-				this.deploy = new Handler(this.application, this.registry, this.container, this.logger).run;
+				this.deploy = new Handler(this.application, this.registry).run;
 			}
 
 			return this;
@@ -179,10 +175,7 @@ export namespace Handlers {
 					type ControllerType = typeof this.controllerType;
 					const Controller = Module.module as new (...args: any[]) => ControllerType;
 
-					const Handler = new Controller(this.application, this.container, this.logger, {
-						request: new utilities.request(),
-						response: new utilities.response(),
-					});
+					const Handler = new Controller(this.application, this.registry);
 
 					const stats = await this.deploy(Handler, Module.clock);
 

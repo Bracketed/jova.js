@@ -6,7 +6,7 @@ import type { Options, Ranges, Result } from '../range';
  *
  * @readonly
  */
-export class request {
+export class RequestUtility {
 	/**
 	 * Get value for header `field`.
 	 *

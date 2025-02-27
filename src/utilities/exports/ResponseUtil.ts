@@ -13,7 +13,7 @@ import {
  *
  * @readonly
  */
-export class response {
+export class ResponseUtility {
 	// Response Codes
 	// 1xx Informational responses
 	/**

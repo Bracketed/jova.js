@@ -1,18 +1,16 @@
-import type { Express, Locals } from '@bracketed/express';
+import type { Express } from '@bracketed/express';
 import { Logger } from '@bracketed/logger';
-import type { Registry } from '../../Registry';
-import type { ApplicationStats } from '../../types/index';
+import type { Registry } from '../Registry';
+import type { ApplicationStats } from '../types/index';
 
 export class HandlerFunction {
 	protected readonly application: Express;
 	protected readonly logger: Logger;
-	protected readonly container: Record<string, any> & Locals;
 	protected readonly registry: Registry;
 
-	constructor(application: Express, registry: Registry, container: Record<string, any> & Locals, logger: Logger) {
+	constructor(application: Express, registry: Registry) {
 		this.application = application;
-		this.logger = logger;
-		this.container = container;
+		this.logger = new Logger({ prefix: 'ApplicationRegistry' });
 		this.registry = registry;
 
 		this.run = this.run.bind(this);
