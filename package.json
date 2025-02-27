@@ -81,7 +81,6 @@
 	],
 	"scripts": {
 		"build": "tsup",
-		"test": "yarn tsc && yarn node ./lib/example/index.test.js",
 		"deploy": "gh-pages -d build",
 		"update": "yarn upgrade-interactive"
 	},
@@ -93,8 +92,8 @@
 		"esbuild-plugin-version-injector": "^1.2.1",
 		"jsdoc": "^4.0.4",
 		"prettier": "^3.5.2",
-		"tsup": "^8.3.6",
-		"typedoc": "^0.27.8",
+		"tsup": "^8.4.0",
+		"typedoc": "^0.27.9",
 		"typedoc-github-theme": "^0.2.1",
 		"typedoc-github-wiki-theme": "^2.1.0",
 		"typedoc-plugin-inline-sources": "^1.2.1",
@@ -104,7 +103,7 @@
 	},
 	"dependencies": {
 		"@bracketed/express": "^4.21.7",
-		"@bracketed/logger": "^1.0.10",
+		"@bracketed/logger": "^1.0.12",
 		"express": "4.21.2",
 		"ioredis": "^5.5.0",
 		"is2": "^2.0.9",
