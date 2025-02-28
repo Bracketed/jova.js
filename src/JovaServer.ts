@@ -30,6 +30,7 @@ import { BulkResourceLoader } from './resources/BulkResourceLoader';
  * The Jova Server Class.
  *
  * @class JovaServer
+ * @module Core
  * @extends EventEmitter
  */
 export class JovaServer extends EventEmitter {

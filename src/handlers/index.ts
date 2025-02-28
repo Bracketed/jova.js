@@ -9,6 +9,16 @@ import { resolvePath } from '../utilities/Path/path';
 import { Stopwatch } from '../utilities/stopwatch';
 import type { HandlerFunction } from './function';
 
+/**
+ * @name Handlers
+ * @description Decorative content options and customisability for Handlers, customise the behaviour of a specific handler.
+ *
+ * __Usage of decorators in `jova.js` is unfinished and enabling/disabling handlers is currently only available!__
+ *
+ * @public
+ * @module Core
+ * @namespace Handlers
+ */
 export namespace Handlers {
 	export enum Type {
 		ROUTE = 'route',
@@ -18,7 +28,8 @@ export namespace Handlers {
 	}
 
 	/**
-	 * Decorative options for Handlers, customise the behaviour of a specific handler.
+	 * @name Options
+	 * @description Decorative options for Handlers, customise the behaviour of a specific handler.
 	 *
 	 * __Usage of decorators in `jova.js` is unfinished and enabling/disabling handlers is currently only available!__
 	 *
@@ -27,6 +38,8 @@ export namespace Handlers {
 	 */
 	export interface Options {
 		/**
+		 * @name type
+		 * @description
 		 * The type of handler this is, all handlers default to
 		 * ```typescript
 		 * Handlers.Type.AUTO
@@ -37,14 +50,17 @@ export namespace Handlers {
 		 * __Usage of decorators in `jova.js` is unfinished and enabling/disabling handlers is currently only available!__
 		 *
 		 * @public
+		 * @type Handlers.Type
 		 */
 		type?: Type;
 		/**
+		 * @name enabled
+		 * @description
 		 * Enable or disable a handler so it does not get ran or processed at runtime.
 		 *
 		 * __Usage of decorators in `jova.js` is unfinished and enabling/disabling handlers is currently only available!__
 		 * @default true
-		 *
+		 * @type boolean
 		 * @public
 		 */
 		enabled?: boolean;

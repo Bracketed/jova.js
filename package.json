@@ -72,7 +72,7 @@
 	"scripts": {
 		"build": "tsup",
 		"update": "yarn upgrade-interactive",
-		"docs": "typedoc-json-parser"
+		"docs": "typedoc-json-parser --json docs/api.json"
 	},
 	"devDependencies": {
 		"@bracketed/typescript-config": "^4.4.0",

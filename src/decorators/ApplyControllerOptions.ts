@@ -6,8 +6,10 @@ function createClassDecorator<TFunction extends (...args: any[]) => void>(fn: TF
 }
 
 /**
- * Apply options to a handler.
+ * @name ApplyHandlerOptions
+ * @description Apply options to a handler.
  *
+ * @module Decorators
  * @public
  * @param options
  * @example

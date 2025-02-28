@@ -1,6 +1,13 @@
 import 'reflect-metadata';
 import { Handlers } from '../handlers/index';
 
+/**
+ * @name GetHandlerOptions
+ * @description Apply options get options from a handler.
+ *
+ * @module Decorators
+ * @private
+ */
 export function getHandlerOptions(target: any): Handlers.Options {
 	const options: Handlers.Options = {
 		type: Handlers.Type.AUTO,

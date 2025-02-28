@@ -11,7 +11,7 @@
 A semi-advanced Express.js framework by Bracketed Softworks!
 This is a package built revolving around [Express.js](https://www.npmjs.com/package/express) to allow the easy usage of Express' API and adding extra things like built in middlewares, event listeners etc.
 
-Wiki available at <https://github.com/Bracketed/jova.js/wiki>
+Wiki available at <https://jova.js.org>
 
 <h2>What is this?</h2>
 
@@ -21,7 +21,7 @@ Wiki available at <https://github.com/Bracketed/jova.js/wiki>
 <h2>Summary (Directory)</h2>
 
 - [Installation](#Installation)
-  <!--truncate-->
+    <!--truncate-->
     - [Yarn](#YarnInstall)
     - [Npm](#NpmInstall)
 - [Usage](#Usage)
