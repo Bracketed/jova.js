@@ -2,7 +2,7 @@ import type { Express } from '@bracketed/express';
 import { type Logger as LoggerType, Logger } from '@bracketed/logger';
 import fs from 'node:fs';
 import path from 'node:path';
-import { getHandlerOptions } from '../decorators/ApplyControllerOptions';
+import { getHandlerOptions } from '../decorators/index';
 import type { Registry } from '../Registry';
 import type { ApplicationStats } from '../types/index';
 import { resolvePath } from '../utilities/Path/path';
