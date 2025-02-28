@@ -1,6 +1,8 @@
 import type { CookieOptions, Errback, NextFunction, Request, Response } from '@bracketed/express';
 import type { RedisOptions as IORedisOptions } from 'ioredis';
+
 import { Registry } from '../Registry';
+
 import type { RateLimitExceededEventHandler, ValueDeterminingMiddleware } from '../utilities/limiter/index';
 import { RangeParser } from '../utilities/range';
 
@@ -22,6 +24,7 @@ export * from './http/ResponseCodes';
 
 export * from './express/DownloadOptions';
 export * from './express/FileOptions';
+export * from './express/RequestHandler';
 export * from './express/SendOptions';
 
 export * from './registry/Routes/AppRouteType';

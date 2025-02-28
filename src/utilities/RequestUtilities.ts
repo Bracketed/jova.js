@@ -1,5 +1,7 @@
-import { type ApplicationRequest, Charset, ContentType, Encoder, Language } from '../../types/index';
-import type { Options, Ranges, Result } from '../range';
+import { type ApplicationRequest, Charset, ContentType, Encoder, Language } from '../types/index';
+import type { Options, Ranges, Result } from './range';
+
+// Save for later
 
 /**
  * A utility for managing requests.
@@ -7,39 +9,38 @@ import type { Options, Ranges, Result } from '../range';
  * @readonly
  */
 export class RequestUtility {
+	private readonly request: ApplicationRequest;
+	constructor(request: ApplicationRequest) {
+		this.request = request;
+	}
+
 	/**
 	 * Get value for header `field`.
 	 *
-	 * @param request
-	 * The `ApplicationRequest` object from your route handler.
 	 * @param field
 	 * The HTTP request header field.
 	 *
 	 * @readonly
 	 */
-	public readonly getHeader = (request: ApplicationRequest, field: string): string | undefined => request.get(field);
+	public readonly getHeader = (field: string): string | undefined => this.request.get(field);
 	/**
 	 * Get value for header `field`.
 	 *
-	 * @param request
-	 * The `ApplicationRequest` object from your route handler.
 	 * @param field
 	 * The HTTP request header field.
 	 *
 	 * @readonly
 	 */
-	public readonly header = (request: ApplicationRequest, field: string): string | undefined => request.get(field);
+	public readonly header = (field: string): string | undefined => this.request.get(field);
 	/**
 	 * Get value for header `field`.
 	 *
-	 * @param request
-	 * The `ApplicationRequest` object from your route handler.
 	 * @param field
 	 * The HTTP request header field.
 
 	 * @readonly
 	 */
-	public readonly get = (request: ApplicationRequest, field: string): string | undefined => request.get(field);
+	public readonly get = (field: string): string | undefined => this.request.get(field);
 	/**
 	 * Check if the incoming request contains the "Content-Type"
 	 * header field, and it contains the give mime `type`.
@@ -62,17 +63,13 @@ export class RequestUtility {
 	 * // => false
 	 * ```
 	 *
-	 * @param request
-	 * The `ApplicationRequest` object from your route handler.
 	 * @param type
 	 * The Content Type.
 
 	 * @readonly
 	 */
-	public readonly is = (
-		request: ApplicationRequest,
-		type: string | string[] | ContentType | ContentType[]
-	): string | false | null => request.is(type);
+	public readonly is = (type: string | string[] | ContentType | ContentType[]): string | false | null =>
+		this.request.is(type);
 	/**
 	 * Check if the incoming request contains the "Content-Type"
 	 * header field, and it contains the give mime `type`.
@@ -95,17 +92,13 @@ export class RequestUtility {
 	 * // => false
 	 * ```
 	 *
-	 * @param request
-	 * The `ApplicationRequest` object from your route handler.
 	 * @param type
 	 * The Content Type.
 
 	 * @readonly
 	 */
-	public readonly isType = (
-		request: ApplicationRequest,
-		type: string | string[] | ContentType | ContentType[]
-	): string | false | null => request.is(type);
+	public readonly isType = (type: string | string[] | ContentType | ContentType[]): string | false | null =>
+		this.request.is(type);
 	/**
 	 * Check if the incoming request contains the "Content-Type"
 	 * header field, and it contains the give mime `type`.
@@ -128,17 +121,13 @@ export class RequestUtility {
 	 * // => false
 	 * ```
 	 *
-	 * @param request
-	 * The `ApplicationRequest` object from your route handler.
 	 * @param type
 	 * The Content Type.
 
 	 * @readonly
 	 */
-	public readonly isContentType = (
-		request: ApplicationRequest,
-		type: string | string[] | ContentType | ContentType[]
-	): string | false | null => request.is(type);
+	public readonly isContentType = (type: string | string[] | ContentType | ContentType[]): string | false | null =>
+		this.request.is(type);
 	/**
 	 * Check if the incoming request contains the "Content-Type"
 	 * header field, and it contains the give mime `type`.
@@ -161,17 +150,13 @@ export class RequestUtility {
 	 * // => false
 	 * ```
 	 *
-	 * @param request
-	 * The `ApplicationRequest` object from your route handler.
 	 * @param type
 	 * The Content Type.
 
 	 * @readonly
 	 */
-	public readonly verify = (
-		request: ApplicationRequest,
-		type: string | string[] | ContentType | ContentType[]
-	): string | false | null => request.is(type);
+	public readonly verify = (type: string | string[] | ContentType | ContentType[]): string | false | null =>
+		this.request.is(type);
 	/**
 	 * Check if the incoming request contains the "Content-Type"
 	 * header field, and it contains the give mime `type`.
@@ -194,17 +179,13 @@ export class RequestUtility {
 	 * // => false
 	 * ```
 	 *
-	 * @param request
-	 * The `ApplicationRequest` object from your route handler.
 	 * @param type
 	 * The Content Type.
 
 	 * @readonly
 	 */
-	public readonly verifyType = (
-		request: ApplicationRequest,
-		type: string | string[] | ContentType | ContentType[]
-	): string | false | null => request.is(type);
+	public readonly verifyType = (type: string | string[] | ContentType | ContentType[]): string | false | null =>
+		this.request.is(type);
 	/**
 	 * Check if the incoming request contains the "Content-Type"
 	 * header field, and it contains the give mime `type`.
@@ -227,17 +208,14 @@ export class RequestUtility {
 	 * // => false
 	 * ```
 	 *
-	 * @param request
-	 * The `ApplicationRequest` object from your route handler.
 	 * @param type
 	 * The Content Type.
 
 	 * @readonly
 	 */
 	public readonly verifyContentType = (
-		request: ApplicationRequest,
 		type: string | string[] | ContentType | ContentType[]
-	): string | false | null => request.is(type);
+	): string | false | null => this.request.is(type);
 	/**
 	 * Parse Range header field, capping to the given `size`.
 	 *
@@ -255,8 +233,6 @@ export class RequestUtility {
 	 * NOTE: remember that ranges are inclusive, so for example "Range: users=0-3"
 	 * should respond with 4 users when available, not 3.
 	 *
-	 * @param request
-	 * The `ApplicationRequest` object from your route handler.
 	 * @param size
 	 * The maximum size of the resource.
 	 * @param options
@@ -265,11 +241,8 @@ export class RequestUtility {
 	 *
 	 * @readonly
 	 */
-	public readonly range = (
-		request: ApplicationRequest,
-		size: number,
-		options?: Options
-	): Ranges | Result | undefined => request.range(size, options);
+	public readonly range = (size: number, options?: Options): Ranges | Result | undefined =>
+		this.request.range(size, options);
 	/**
 	 * Check if the given `type(s)` is acceptable, returning
 	 * the best match when true, otherwise `undefined`, in which
@@ -307,14 +280,11 @@ export class RequestUtility {
 	 * request.accepts('html, json');
 	 * // => "json"
 	 * ```
-	 * @param request
-	 * The `ApplicationRequest` object from your route handler.
 	 * @param type
 	 * The Content Type
 	 * @readonly
 	 */
-	public readonly accepts = (request: ApplicationRequest, type: string | ContentType): string | false =>
-		request.accepts(type);
+	public readonly accepts = (type: string | ContentType): string | false => this.request.accepts(type);
 	/**
 	 * Check if the given `type(s)` is acceptable, returning
 	 * the best match when true, otherwise `undefined`, in which
@@ -352,14 +322,11 @@ export class RequestUtility {
 	 * request.accepts('html, json');
 	 * // => "json"
 	 * ```
-	 * @param request
-	 * The `ApplicationRequest` object from your route handler.
 	 * @param type
 	 * The Content Type
 	 * @readonly
 	 */
-	public readonly acceptsType = (request: ApplicationRequest, type: string | ContentType): string | false =>
-		request.accepts(type);
+	public readonly acceptsType = (type: string | ContentType): string | false => this.request.accepts(type);
 	/**
 	 * Check if the given `type(s)` is acceptable, returning
 	 * the best match when true, otherwise `undefined`, in which
@@ -397,14 +364,12 @@ export class RequestUtility {
 	 * request.accepts('html, json');
 	 * // => "json"
 	 * ```
-	 * @param request
-	 * The `ApplicationRequest` object from your route handler.
 	 * @param type
 	 * The Content Type
 	 * @readonly
 	 */
-	public readonly acceptsTypes = (request: ApplicationRequest, ...types: string[] | ContentType[]): string | false =>
-		request.accepts(...types);
+	public readonly acceptsTypes = (...types: string[] | ContentType[]): string | false =>
+		this.request.accepts(...types);
 
 	/**
 	 * Returns the first accepted charset of the specified character sets,
@@ -413,14 +378,12 @@ export class RequestUtility {
 	 *
 	 * For more information, or if you have issues or concerns, see accepts.
 	 *
-	 * @param request
-	 * The `ApplicationRequest` object from your route handler.
 	 * @param charset
 	 * The Content Charset
 	 * @readonly
 	 */
-	public readonly acceptsCharset = (request: ApplicationRequest, charset: string | Charset): string | false =>
-		request.acceptsCharsets(charset);
+	public readonly acceptsCharset = (charset: string | Charset): string | false =>
+		this.request.acceptsCharsets(charset);
 	/**
 	 * Returns the first accepted charset of the specified character sets,
 	 * based on the request's Accept-Charset HTTP header field.
@@ -428,16 +391,12 @@ export class RequestUtility {
 	 *
 	 * For more information, or if you have issues or concerns, see accepts.
 	 *
-	 * @param request
-	 * The `ApplicationRequest` object from your route handler.
 	 * @param charset
 	 * The Content Charset
 	 * @readonly
 	 */
-	public readonly acceptsCharsets = (
-		request: ApplicationRequest,
-		...charsets: string[] | Charset[]
-	): string | false => request.acceptsCharsets(...charsets);
+	public readonly acceptsCharsets = (...charsets: string[] | Charset[]): string | false =>
+		this.request.acceptsCharsets(...charsets);
 
 	/**
 	 * Returns the first accepted encoding of the specified encodings,
@@ -446,14 +405,12 @@ export class RequestUtility {
 	 *
 	 * For more information, or if you have issues or concerns, see accepts.
 	 *
-	 * @param request
-	 * The `ApplicationRequest` object from your route handler.
 	 * @param encoding
 	 * The Content Encoder
 	 * @readonly
 	 */
-	public readonly acceptsEncoding = (request: ApplicationRequest, encoding: string | Encoder): string | false =>
-		request.acceptsEncodings(encoding);
+	public readonly acceptsEncoding = (encoding: string | Encoder): string | false =>
+		this.request.acceptsEncodings(encoding);
 	/**
 	 * Returns the first accepted encoding of the specified encodings,
 	 * based on the request's Accept-Encoding HTTP header field.
@@ -461,16 +418,12 @@ export class RequestUtility {
 	 *
 	 * For more information, or if you have issues or concerns, see accepts.
 	 *
-	 * @param request
-	 * The `ApplicationRequest` object from your route handler.
 	 * @param encoding
 	 * The Content Encoder
 	 * @readonly
 	 */
-	public readonly acceptsEncodings = (
-		request: ApplicationRequest,
-		...encodings: string[] | Encoder[]
-	): string | false => request.acceptsEncodings(...encodings);
+	public readonly acceptsEncodings = (...encodings: string[] | Encoder[]): string | false =>
+		this.request.acceptsEncodings(...encodings);
 
 	/**
 	 * Returns the first accepted language of the specified languages,
@@ -479,14 +432,11 @@ export class RequestUtility {
 	 *
 	 * For more information, or if you have issues or concerns, see accepts.
 	 *
-	 * @param request
-	 * The `ApplicationRequest` object from your route handler.
 	 * @param lang
 	 * The Content Language
 	 * @readonly
 	 */
-	public readonly acceptsLanguage = (request: ApplicationRequest, lang: string | Language): string | false =>
-		request.acceptsLanguages(lang);
+	public readonly acceptsLanguage = (lang: string | Language): string | false => this.request.acceptsLanguages(lang);
 	/**
 	 * Returns the first accepted language of the specified languages,
 	 * based on the request's Accept-Language HTTP header field.
@@ -494,12 +444,10 @@ export class RequestUtility {
 	 *
 	 * For more information, or if you have issues or concerns, see accepts.
 	 *
-	 * @param request
-	 * The `ApplicationRequest` object from your route handler.
 	 * @param lang
 	 * The Content Language
 	 * @readonly
 	 */
-	public readonly acceptsLanguages = (request: ApplicationRequest, ...langs: string[] | Language[]): string | false =>
-		request.acceptsLanguages(...langs);
+	public readonly acceptsLanguages = (...langs: string[] | Language[]): string | false =>
+		this.request.acceptsLanguages(...langs);
 }

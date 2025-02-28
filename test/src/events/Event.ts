@@ -1,6 +1,6 @@
+import { Handlers } from '@bracketed/jova.js';
 import { ApplyHandlerOptions } from '@bracketed/jova.js/decorators';
 import { ApplicationEvent, EventController, EventListenerOptions } from '@bracketed/jova.js/types';
-import { Handlers } from '@bracketed/jova.js/utilities';
 
 @ApplyHandlerOptions<Handlers.Options>({
 	type: Handlers.Type.EVENT,

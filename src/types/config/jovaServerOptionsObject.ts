@@ -1,5 +1,3 @@
-import type { RequestHandler as Request } from '@bracketed/express';
-import type { RequestHandler } from 'express';
 import type {
 	CorsOptions,
 	JovaCustomOption,
@@ -8,6 +6,7 @@ import type {
 	JovaSettings,
 	MiddlewareHandler,
 	RatelimitConfig,
+	RequestHandler,
 } from '../../types/index';
 
 /**
@@ -43,7 +42,7 @@ export interface JovaServerOptions {
 	 * })
 	 * @type Array<Middleware>
 	 */
-	middlewares?: Array<MiddlewareHandler | Request | RequestHandler>;
+	middlewares?: Array<MiddlewareHandler | RequestHandler>;
 	/**
 	 * The port for the Jova Server to run on.
 	 * @default 3000

@@ -1,6 +1,5 @@
 import type { Express, Locals } from '@bracketed/express';
 import { Logger } from '@bracketed/logger';
-import type { UtilitiesType } from '../../../utilities/index';
 import { ApplicationEvent, type EventListenerOptions } from '../../index';
 
 /**
@@ -15,26 +14,17 @@ export class EventController {
 	protected readonly application: Express;
 	/**
 	 * The Logger at the origin of the Jova Server.
+	 *
+	 * **Prefixed automatically with `ApplicationEvent`.**
 	 */
-	protected readonly logger: Logger;
-	/**
-	 * Utilities for routes.
-	 */
-	protected readonly utilities: UtilitiesType;
+	protected readonly logger: Logger = new Logger({ prefix: 'ApplicationEvent' });
 	/**
 	 * The Locals defined in JovaServer.
 	 */
 	protected readonly container: Record<string, any> & Locals;
 
-	constructor(
-		application: Express,
-		container: Record<string, any> & Locals,
-		logger: Logger,
-		utilities: UtilitiesType
-	) {
+	constructor(application: Express, container: Record<string, any> & Locals) {
 		this.application = application;
-		this.logger = logger;
-		this.utilities = utilities;
 		this.container = container;
 
 		this.run = this.run.bind(this);

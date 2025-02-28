@@ -18,7 +18,7 @@ export function getHandlerOptions(target: any): Handlers.Options {
 
 	const decoratedOptions: Handlers.Options = Reflect.getMetadata('handler:options', target);
 
-	console.log(decoratedOptions);
+	//console.log(decoratedOptions);
 
 	if (decoratedOptions.enabled === false) options.enabled = false;
 	if (decoratedOptions.type !== undefined || decoratedOptions.type !== Handlers.Type.AUTO)

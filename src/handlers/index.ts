@@ -60,7 +60,7 @@ export namespace Handlers {
 
 	export class Handler<T> {
 		private readonly cwd: string;
-		private readonly logger: LoggerType = new Logger();
+		private readonly logger: LoggerType = new Logger({ prefix: 'ApplicationRegistry' });
 		private readonly type: string;
 		private readonly controllerType: new (...args: any[]) => T;
 		private readonly application: Express;
@@ -111,10 +111,6 @@ export namespace Handlers {
 			return this;
 		}
 
-		public async loadFunction(): Promise<this | void> {
-			return this;
-		}
-
 		public loadHandlers(handlerType: string): this {
 			const handlerDirectoryPath = path.resolve(this.cwd, resolvePath(handlerType));
 
@@ -144,9 +140,9 @@ export namespace Handlers {
 		}
 
 		public async register(type: string) {
-			if (this.handlers.length === 0) return this.logger.info(`ApplicationRegistry: Skipping ${type}...`);
+			if (this.handlers.length === 0) return this.logger.info(`Skipping ${type}...`);
 
-			this.logger.info(`ApplicationRegistry: Registering ${type}...`);
+			this.logger.info(`Registering ${type}...`);
 			const RegisterStopwatch = new Stopwatch();
 			let Registered: number = 0;
 			let Ignored: number = 0;
@@ -181,32 +177,30 @@ export namespace Handlers {
 
 					if (!stats) {
 						this.logger.warn(
-							`ApplicationRegistry: Application ${type} handler at index ${index} was not deployed due to a missing entry class.`
+							`Application ${type} handler at index ${index} was not deployed due to a missing entry class.`
 						);
 						continue;
 					}
 
-					this.logger.info(`ApplicationRegistry: ${stats.message}`);
+					this.logger.info(`${stats.message}`);
 					Registered += 1;
 				} catch (error) {
 					this.logger.warn(
-						`ApplicationRegistry: Application ${type} handler at index ${index} was not deployed due to process error:`,
+						`Application ${type} handler at index ${index} was not deployed due to process error:`,
 						error
 					);
 				}
 			}
 
-			this.logger.info(
-				`ApplicationRegistry: Registered ${Registered} ${type} in ${RegisterStopwatch.stop().toString()}`
-			);
+			this.logger.info(`Registered ${Registered} ${type} in ${RegisterStopwatch.stop().toString()}`);
 			if (this.handlers.length - Ignored !== Registered)
 				this.logger.warn(
-					`ApplicationRegistry: Some ${type.toLowerCase()} were not registered due to errors or missing content in the registering process.`
+					`Some ${type.toLowerCase()} were not registered due to errors or missing content in the registering process.`
 				);
 
 			if (Ignored !== 0)
 				this.logger.warn(
-					`ApplicationRegistry: ${Ignored} ${type.toLowerCase()} were disabled via decorators and were not registered.`
+					`${Ignored} ${type.toLowerCase()} were disabled via decorators and were not registered.`
 				);
 		}
 	}

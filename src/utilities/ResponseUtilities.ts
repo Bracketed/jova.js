@@ -6,7 +6,9 @@ import {
 	type ErrorCallback,
 	HttpStatus,
 	type SendFileOptions,
-} from '../../types/index';
+} from '../types/index';
+
+// Save for later
 
 /**
  * A utility for managing responses.
@@ -14,623 +16,523 @@ import {
  * @readonly
  */
 export class ResponseUtility {
+	private readonly response: ApplicationResponse;
+	constructor(response: ApplicationResponse) {
+		this.response = response;
+	}
+
 	// Response Codes
 	// 1xx Informational responses
 	/**
 	 * HTTP CONTINUE response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly continue = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.Continue);
+	public readonly continue = (): ApplicationResponse => this.response.status(HttpStatus.Continue);
 	/**
 	 * HTTP Switching Protocols response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly switchingProtocols = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.SwitchingProtocols);
+	public readonly switchingProtocols = (): ApplicationResponse => this.response.status(HttpStatus.SwitchingProtocols);
 	/**
 	 * HTTP Processing response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly processing = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.Processing);
+	public readonly processing = (): ApplicationResponse => this.response.status(HttpStatus.Processing);
 	/**
 	 * HTTP Early Hints response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly earlyHints = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.EarlyHints);
+	public readonly earlyHints = (): ApplicationResponse => this.response.status(HttpStatus.EarlyHints);
 
 	// 2xx Success codes
-	public readonly ok = (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.OK);
+	public readonly ok = (): ApplicationResponse => this.response.status(HttpStatus.OK);
 	/**
 	 * HTTP OK response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly created = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.Created);
+	public readonly created = (): ApplicationResponse => this.response.status(HttpStatus.Created);
 	/**
 	 * HTTP Created response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly accepted = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.Accepted);
+	public readonly accepted = (): ApplicationResponse => this.response.status(HttpStatus.Accepted);
 	/**
 	 * HTTP Non Authoritative Information response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly nonAuthoritativeInformation = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.NonAuthoritativeInformation);
+	public readonly nonAuthoritativeInformation = (): ApplicationResponse =>
+		this.response.status(HttpStatus.NonAuthoritativeInformation);
 	/**
 	 * HTTP No Content response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly noContent = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.NoContent);
+	public readonly noContent = (): ApplicationResponse => this.response.status(HttpStatus.NoContent);
 	/**
 	 * HTTP Reset Content response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly resetContent = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.ResetContent);
+	public readonly resetContent = (): ApplicationResponse => this.response.status(HttpStatus.ResetContent);
 	/**
 	 * HTTP Partial Content response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly partialContent = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.PartialContent);
+	public readonly partialContent = (): ApplicationResponse => this.response.status(HttpStatus.PartialContent);
 	/**
 	 * HTTP Multi Status response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly multiStatus = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.MultiStatus);
+	public readonly multiStatus = (): ApplicationResponse => this.response.status(HttpStatus.MultiStatus);
 	/**
 	 * HTTP Already Reported response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly alreadyReported = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.AlreadyReported);
+	public readonly alreadyReported = (): ApplicationResponse => this.response.status(HttpStatus.AlreadyReported);
 	/**
 	 * HTTP I'm Used response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly imUsed = (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.IMUsed);
+	public readonly imUsed = (): ApplicationResponse => this.response.status(HttpStatus.IMUsed);
 
 	// 3xx Redirection
 	/**
 	 * HTTP Multiple Choices response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly multipleChoices = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.MultipleChoices);
+	public readonly multipleChoices = (): ApplicationResponse => this.response.status(HttpStatus.MultipleChoices);
 	/**
 	 * HTTP Permanently Moved response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly movedPermanently = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.MovedPermanently);
+	public readonly movedPermanently = (): ApplicationResponse => this.response.status(HttpStatus.MovedPermanently);
 	/**
 	 * HTTP Found response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly found = (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.Found);
+	public readonly found = (): ApplicationResponse => this.response.status(HttpStatus.Found);
 	/**
 	 * HTTP See Other response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly seeOther = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.SeeOther);
+	public readonly seeOther = (): ApplicationResponse => this.response.status(HttpStatus.SeeOther);
 	/**
 	 * HTTP Not Modified response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly notModified = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.NotModified);
+	public readonly notModified = (): ApplicationResponse => this.response.status(HttpStatus.NotModified);
 	/**
 	 * HTTP Use Proxy response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly useProxy = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.UseProxy);
+	public readonly useProxy = (): ApplicationResponse => this.response.status(HttpStatus.UseProxy);
 	/**
 	 * HTTP Temporary Redirect response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly temporaryRedirect = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.TemporaryRedirect);
+	public readonly temporaryRedirect = (): ApplicationResponse => this.response.status(HttpStatus.TemporaryRedirect);
 	/**
 	 * HTTP Permanent Redirect response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly permanentRedirect = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.PermanentRedirect);
+	public readonly permanentRedirect = (): ApplicationResponse => this.response.status(HttpStatus.PermanentRedirect);
 
 	// 4xx Client errors
 	/**
 	 * HTTP Bad Request response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly badRequest = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.BadRequest);
+	public readonly badRequest = (): ApplicationResponse => this.response.status(HttpStatus.BadRequest);
 	/**
 	 * HTTP Unauthorised response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly unauthorized = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.Unauthorized);
+	public readonly unauthorized = (): ApplicationResponse => this.response.status(HttpStatus.Unauthorized);
 	/**
 	 * HTTP Payment Required response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly paymentRequired = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.PaymentRequired);
+	public readonly paymentRequired = (): ApplicationResponse => this.response.status(HttpStatus.PaymentRequired);
 	/**
 	 * HTTP Forbidden response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly forbidden = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.Forbidden);
+	public readonly forbidden = (): ApplicationResponse => this.response.status(HttpStatus.Forbidden);
 	/**
 	 * HTTP Not Found response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly notFound = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.NotFound);
+	public readonly notFound = (): ApplicationResponse => this.response.status(HttpStatus.NotFound);
 	/**
 	 * HTTP Method Not Allowed response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly methodNotAllowed = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.MethodNotAllowed);
+	public readonly methodNotAllowed = (): ApplicationResponse => this.response.status(HttpStatus.MethodNotAllowed);
 	/**
 	 * HTTP Not Acceptable response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly notAcceptable = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.NotAcceptable);
+	public readonly notAcceptable = (): ApplicationResponse => this.response.status(HttpStatus.NotAcceptable);
 	/**
 	 * HTTP Proxy Auth Required response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly proxyAuthenticationRequired = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.ProxyAuthenticationRequired);
+	public readonly proxyAuthenticationRequired = (): ApplicationResponse =>
+		this.response.status(HttpStatus.ProxyAuthenticationRequired);
 	/**
 	 * HTTP Timeout response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly requestTimeout = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.RequestTimeout);
+	public readonly requestTimeout = (): ApplicationResponse => this.response.status(HttpStatus.RequestTimeout);
 	/**
 	 * HTTP Request conflict response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly conflict = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.Conflict);
+	public readonly conflict = (): ApplicationResponse => this.response.status(HttpStatus.Conflict);
 	/**
 	 * HTTP Gone response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly gone = (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.Gone);
+	public readonly gone = (): ApplicationResponse => this.response.status(HttpStatus.Gone);
 	/**
 	 * HTTP Length Required response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly lengthRequired = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.LengthRequired);
+	public readonly lengthRequired = (): ApplicationResponse => this.response.status(HttpStatus.LengthRequired);
 	/**
 	 * HTTP Precondition Failed response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly preconditionFailed = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.PreconditionFailed);
+	public readonly preconditionFailed = (): ApplicationResponse => this.response.status(HttpStatus.PreconditionFailed);
 	/**
 	 * HTTP Payload too large response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly payloadTooLarge = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.PayloadTooLarge);
+	public readonly payloadTooLarge = (): ApplicationResponse => this.response.status(HttpStatus.PayloadTooLarge);
 	/**
 	 * HTTP URI too long response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly uriTooLong = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.URITooLong);
+	public readonly uriTooLong = (): ApplicationResponse => this.response.status(HttpStatus.URITooLong);
 	/**
 	 * HTTP Unsupported Media Type response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly unsupportedMediaType = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.UnsupportedMediaType);
+	public readonly unsupportedMediaType = (): ApplicationResponse =>
+		this.response.status(HttpStatus.UnsupportedMediaType);
 	/**
 	 * HTTP Range error response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly rangeNotSatisfiable = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.RangeNotSatisfiable);
+	public readonly rangeNotSatisfiable = (): ApplicationResponse =>
+		this.response.status(HttpStatus.RangeNotSatisfiable);
 	/**
 	 * HTTP Expectation failure response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly expectationFailed = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.ExpectationFailed);
+	public readonly expectationFailed = (): ApplicationResponse => this.response.status(HttpStatus.ExpectationFailed);
 	/**
 	 * HTTP I'm A Teapot response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly imATeapot = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.ImATeapot);
+	public readonly imATeapot = (): ApplicationResponse => this.response.status(HttpStatus.ImATeapot);
 	/**
 	 * HTTP Misdirected response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly misdirectedRequest = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.MisdirectedRequest);
+	public readonly misdirectedRequest = (): ApplicationResponse => this.response.status(HttpStatus.MisdirectedRequest);
 	/**
 	 * HTTP Unprocessable Entity response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly unprocessableEntity = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.UnprocessableEntity);
+	public readonly unprocessableEntity = (): ApplicationResponse =>
+		this.response.status(HttpStatus.UnprocessableEntity);
 	/**
 	 * HTTP Request Locked response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly locked = (response: ApplicationResponse): ApplicationResponse => response.status(HttpStatus.Locked);
+	public readonly locked = (): ApplicationResponse => this.response.status(HttpStatus.Locked);
 	/**
 	 * HTTP Dependency Failure response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly failedDependency = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.FailedDependency);
+	public readonly failedDependency = (): ApplicationResponse => this.response.status(HttpStatus.FailedDependency);
 	/**
 	 * HTTP Too Early response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly tooEarly = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.TooEarly);
+	public readonly tooEarly = (): ApplicationResponse => this.response.status(HttpStatus.TooEarly);
 	/**
 	 * HTTP Upgrade Required response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly upgradeRequired = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.UpgradeRequired);
+	public readonly upgradeRequired = (): ApplicationResponse => this.response.status(HttpStatus.UpgradeRequired);
 	/**
 	 * HTTP Required Precondition response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly preconditionRequired = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.PreconditionRequired);
+	public readonly preconditionRequired = (): ApplicationResponse =>
+		this.response.status(HttpStatus.PreconditionRequired);
 	/**
 	 * HTTP Too many requests response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly tooManyRequests = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.TooManyRequests);
+	public readonly tooManyRequests = (): ApplicationResponse => this.response.status(HttpStatus.TooManyRequests);
 	/**
 	 * HTTP Header Fields too large response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly requestHeaderFieldsTooLarge = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.RequestHeaderFieldsTooLarge);
+	public readonly requestHeaderFieldsTooLarge = (): ApplicationResponse =>
+		this.response.status(HttpStatus.RequestHeaderFieldsTooLarge);
 	/**
 	 * HTTP Unavailable for legal reasons response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly unavailableForLegalReasons = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.UnavailableForLegalReasons);
+	public readonly unavailableForLegalReasons = (): ApplicationResponse =>
+		this.response.status(HttpStatus.UnavailableForLegalReasons);
 
 	// 5xx Server errors
 	/**
 	 * HTTP Internal Server Error response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly internalServerError = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.InternalServerError);
+	public readonly internalServerError = (): ApplicationResponse =>
+		this.response.status(HttpStatus.InternalServerError);
 	/**
 	 * HTTP Not Implemented response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly notImplemented = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.NotImplemented);
+	public readonly notImplemented = (): ApplicationResponse => this.response.status(HttpStatus.NotImplemented);
 	/**
 	 * HTTP Bad Gateway response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly badGateway = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.BadGateway);
+	public readonly badGateway = (): ApplicationResponse => this.response.status(HttpStatus.BadGateway);
 	/**
 	 * HTTP Service Unavailable response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly serviceUnavailable = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.ServiceUnavailable);
+	public readonly serviceUnavailable = (): ApplicationResponse => this.response.status(HttpStatus.ServiceUnavailable);
 	/**
 	 * HTTP Gateway Timeout response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly gatewayTimeout = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.GatewayTimeout);
+	public readonly gatewayTimeout = (): ApplicationResponse => this.response.status(HttpStatus.GatewayTimeout);
 	/**
 	 * HTTP Version Unsupported response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly httpVersionNotSupported = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.HTTPVersionNotSupported);
+	public readonly httpVersionNotSupported = (): ApplicationResponse =>
+		this.response.status(HttpStatus.HTTPVersionNotSupported);
 	/**
 	 * HTTP Variant Also Negotiates response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly variantAlsoNegotiates = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.VariantAlsoNegotiates);
+	public readonly variantAlsoNegotiates = (): ApplicationResponse =>
+		this.response.status(HttpStatus.VariantAlsoNegotiates);
 	/**
 	 * HTTP Insufficient Storage response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly insufficientStorage = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.InsufficientStorage);
+	public readonly insufficientStorage = (): ApplicationResponse =>
+		this.response.status(HttpStatus.InsufficientStorage);
 	/**
 	 * HTTP Loop Detected response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly loopDetected = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.LoopDetected);
+	public readonly loopDetected = (): ApplicationResponse => this.response.status(HttpStatus.LoopDetected);
 	/**
 	 * HTTP Not Extended response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly notExtended = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.NotExtended);
+	public readonly notExtended = (): ApplicationResponse => this.response.status(HttpStatus.NotExtended);
 	/**
 	 * HTTP Network Authentication Required response method.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 
 	 * @readonly
 	 */
-	public readonly networkAuthenticationRequired = (response: ApplicationResponse): ApplicationResponse =>
-		response.status(HttpStatus.NetworkAuthenticationRequired);
+	public readonly networkAuthenticationRequired = (): ApplicationResponse =>
+		this.response.status(HttpStatus.NetworkAuthenticationRequired);
 
 	// Functions
 	/**
@@ -638,8 +540,7 @@ export class ResponseUtility {
 	 * headers, its value will be replaced. Use an array of strings to send multiple
 	 * headers with the same name.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param field
 	 * The HTTP response header field.
 	 * @param value
@@ -648,11 +549,8 @@ export class ResponseUtility {
 
 	 * @readonly
 	 */
-	public readonly sendHeader = (
-		response: ApplicationResponse,
-		name: string,
-		value: number | string | readonly string[]
-	): ApplicationResponse => response.setHeader(name, value);
+	public readonly sendHeader = (name: string, value: number | string | readonly string[]): ApplicationResponse =>
+		this.response.setHeader(name, value);
 	/**
 	 * Set header `field` to `value`, or pass
 	 * an object of header fields.
@@ -661,12 +559,11 @@ export class ResponseUtility {
 	 * ```js
 	 * response.set('Foo', ['bar', 'baz']);
 	 * response.set('Accept', 'application/json');
-	 * response.set({ Accept: 'text/plain', 'X-API-Key': 'tobi' });
+	 * response.set({ Accept: 'text/plain', 'X-API-Key': 'superPrivateKey' });
 	 * ```
 	 * Aliased as `response.header()`.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param field
 	 * The HTTP response header field.
 	 * @param value
@@ -675,11 +572,8 @@ export class ResponseUtility {
 
 	 * @readonly
 	 */
-	public readonly setHeader = (
-		response: ApplicationResponse,
-		field: any,
-		value?: string | string[]
-	): ApplicationResponse => response.set(field, value);
+	public readonly setHeader = (field: any, value?: string | string[]): ApplicationResponse =>
+		this.response.set(field, value);
 	/**
 	 * Set header `field` to `value`, or pass
 	 * an object of header fields.
@@ -688,12 +582,11 @@ export class ResponseUtility {
 	 * ```js
 	 * response.set('Foo', ['bar', 'baz']);
 	 * response.set('Accept', 'application/json');
-	 * response.set({ Accept: 'text/plain', 'X-API-Key': 'tobi' });
+	 * response.set({ Accept: 'text/plain', 'X-API-Key': 'superPrivateKey' });
 	 * ```
 	 * Aliased as `response.header()`.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param field
 	 * The HTTP response header field.
 	 * @param value
@@ -702,45 +595,41 @@ export class ResponseUtility {
 
 	 * @readonly
 	 */
-	public readonly set = (response: ApplicationResponse, field: any, value?: string | string[]): ApplicationResponse =>
-		response.set(field, value);
+	public readonly set = (field: any, value?: string | string[]): ApplicationResponse =>
+		this.response.set(field, value);
 	/**
 	 * Get value for header `field`.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param field
 	 * The HTTP response header field.
 	 *
 
 	 * @readonly
 	 */
-	public readonly getHeader = (response: ApplicationResponse, field: string): string | undefined =>
-		response.get(field);
+	public readonly getHeader = (field: string): string | undefined => this.response.get(field);
 	/**
 	 * Get value for header `field`.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param field
 	 * The HTTP response header field.
 	 *
 
 	 * @readonly
 	 */
-	public readonly header = (response: ApplicationResponse, field: string): string | undefined => response.get(field);
+	public readonly header = (field: string): string | undefined => this.response.get(field);
 	/**
 	 * Get value for header `field`.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param field
 	 * The HTTP response header field.
 
 
 	 * @readonly
 	 */
-	public readonly get = (response: ApplicationResponse, field: string): string | undefined => response.get(field);
+	public readonly get = (field: string): string | undefined => this.response.get(field);
 	/**
 	 * Appends the specified value to the HTTP response header field.
 	 * If the header is not already set, it creates the header with the specified value.
@@ -748,8 +637,7 @@ export class ResponseUtility {
 	 *
 	 * Note: calling `response.set()` after `response.append()` will reset the previously-set header value.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param field
 	 * The HTTP response header field.
 	 * @param value
@@ -758,11 +646,8 @@ export class ResponseUtility {
 
 	 * @readonly
 	 */
-	public readonly append = (
-		response: ApplicationResponse,
-		field: string,
-		value?: string[] | string
-	): ApplicationResponse => response.append(field, value);
+	public readonly append = (field: string, value?: string[] | string): ApplicationResponse =>
+		this.response.append(field, value);
 	/**
 	 * Appends the specified value to the HTTP response header field.
 	 * If the header is not already set, it creates the header with the specified value.
@@ -770,8 +655,7 @@ export class ResponseUtility {
 	 *
 	 * Note: calling `response.set()` after `response.append()` will reset the previously-set header value.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param field
 	 * The HTTP response header field.
 	 * @param value
@@ -780,11 +664,8 @@ export class ResponseUtility {
 
 	 * @readonly
 	 */
-	public readonly appendHeader = (
-		response: ApplicationResponse,
-		field: string,
-		value?: string[] | string
-	): ApplicationResponse => response.append(field, value);
+	public readonly appendHeader = (field: string, value?: string[] | string): ApplicationResponse =>
+		this.response.append(field, value);
 	/**
 	 * Appends the specified value to the HTTP response header field.
 	 * If the header is not already set, it creates the header with the specified value.
@@ -792,8 +673,7 @@ export class ResponseUtility {
 	 *
 	 * Note: calling `response.set()` after `response.append()` will reset the previously-set header value.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param field
 	 * The HTTP response header field.
 	 * @param value
@@ -801,11 +681,8 @@ export class ResponseUtility {
 
 	 * @readonly
 	 */
-	public readonly addHeader = (
-		response: ApplicationResponse,
-		field: string,
-		value?: string[] | string
-	): ApplicationResponse => response.append(field, value);
+	public readonly addHeader = (field: string, value?: string[] | string): ApplicationResponse =>
+		this.response.append(field, value);
 	/**
 	 * Set Link header field with the given `links`.
 	 *
@@ -817,14 +694,13 @@ export class ResponseUtility {
 	 * });
 	 * ```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param links
 	 * The links to be added to headers.
 
 	 * @readonly
 	 */
-	public readonly link = (response: ApplicationResponse, links: any): ApplicationResponse => response.links(links);
+	public readonly link = (links: any): ApplicationResponse => this.response.links(links);
 	/**
 	 * Set Link header field with the given `links`.
 	 *
@@ -836,14 +712,13 @@ export class ResponseUtility {
 	 * });
 	 * ```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param links
 	 * The links to be added to headers.
 
 	 * @readonly
 	 */
-	public readonly links = (response: ApplicationResponse, links: any): ApplicationResponse => response.links(links);
+	public readonly links = (links: any): ApplicationResponse => this.response.links(links);
 	/**
 	 * Set Link header field with the given `links`.
 	 *
@@ -855,15 +730,13 @@ export class ResponseUtility {
 	 * });
 	 * ```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param links
 	 * The links to be added to headers.
 
 	 * @readonly
 	 */
-	public readonly linkHeaders = (response: ApplicationResponse, links: any): ApplicationResponse =>
-		response.links(links);
+	public readonly linkHeaders = (links: any): ApplicationResponse => this.response.links(links);
 	/**
 	 * Set the location header to url.
 	 * The given url can also be the name of a mapped url, for example by default express supports "back" which redirects to the Referrer or Referer headers or "/".
@@ -878,15 +751,13 @@ export class ResponseUtility {
 	 *
 	 * ```response.location('login');```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param url
 	 * The url for the location to be set to.
 
 	 * @readonly
 	 */
-	public readonly addLocationHeader = (response: ApplicationResponse, url: string): ApplicationResponse =>
-		response.location(url);
+	public readonly addLocationHeader = (url: string): ApplicationResponse => this.response.location(url);
 	/**
 	 * Set the location header to url.
 	 * The given url can also be the name of a mapped url, for example by default express supports "back" which redirects to the Referrer or Referer headers or "/".
@@ -901,15 +772,13 @@ export class ResponseUtility {
 	 *
 	 * ```response.location('login');```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param url
 	 * The url for the location to be set to.
 
 	 * @readonly
 	 */
-	public readonly addLocation = (response: ApplicationResponse, url: string): ApplicationResponse =>
-		response.location(url);
+	public readonly addLocation = (url: string): ApplicationResponse => this.response.location(url);
 	/**
 	 * Set the location header to url.
 	 * The given url can also be the name of a mapped url, for example by default express supports "back" which redirects to the Referrer or Referer headers or "/".
@@ -924,92 +793,77 @@ export class ResponseUtility {
 	 *
 	 * ```response.location('login');```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param url
 	 * The url for the location to be set to.
 
 	 * @readonly
 	 */
-	public readonly location = (response: ApplicationResponse, url: string): ApplicationResponse =>
-		response.location(url);
+	public readonly location = (url: string): ApplicationResponse => this.response.location(url);
 	/**
 	 * Set `"Content-Disposition"` header to attachment with optional `filename`.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param filename
 	 * The filename for the attachment.
 
 	 * @readonly
 	 */
-	public readonly attach = (response: ApplicationResponse, filename?: string): ApplicationResponse =>
-		response.attachment(filename);
+	public readonly attach = (filename?: string): ApplicationResponse => this.response.attachment(filename);
 	/**
 	 * Set `"Content-Disposition"` header to attachment with optional `filename`.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param filename
 	 * The filename for the attachment.
 
 	 * @readonly
 	 */
-	public readonly attachFile = (response: ApplicationResponse, filename?: string): ApplicationResponse =>
-		response.attachment(filename);
+	public readonly attachFile = (filename?: string): ApplicationResponse => this.response.attachment(filename);
 	/**
 	 * Set `"Content-Disposition"` header to attachment with optional `filename`.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param filename
 	 * The filename for the attachment.
 
 	 * @readonly
 	 */
-	public readonly sendAttachment = (response: ApplicationResponse, filename?: string): ApplicationResponse =>
-		response.attachment(filename);
+	public readonly sendAttachment = (filename?: string): ApplicationResponse => this.response.attachment(filename);
 	/**
 	 * Set `"Content-Disposition"` header to attachment with optional `filename`.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param filename
 	 * The filename for the attachment.
 
 	 * @readonly
 	 */
-	public readonly addAttachment = (response: ApplicationResponse, filename?: string): ApplicationResponse =>
-		response.attachment(filename);
+	public readonly addAttachment = (filename?: string): ApplicationResponse => this.response.attachment(filename);
 	/**
 	 * Set `"Content-Disposition"` header to attachment with optional `filename`.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param filename
 	 * The filename for the attachment.
 
 	 * @readonly
 	 */
-	public readonly setAttachment = (response: ApplicationResponse, filename?: string): ApplicationResponse =>
-		response.attachment(filename);
+	public readonly setAttachment = (filename?: string): ApplicationResponse => this.response.attachment(filename);
 	/**
 	 * Set `"Content-Disposition"` header to attachment with optional `filename`.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param filename
 	 * The filename for the attachment.
 
 	 * @readonly
 	 */
-	public readonly attachment = (response: ApplicationResponse, filename?: string): ApplicationResponse =>
-		response.attachment(filename);
+	public readonly attachment = (filename?: string): ApplicationResponse => this.response.attachment(filename);
 	/**
 	 * Set cookie `name` to `val`, with the given `options`.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param name
 	 * The name of the cookie.
 	 * @param value
@@ -1019,24 +873,19 @@ export class ResponseUtility {
 	 *
 	 * @example
 	 * // "Remember Me" for 15 minutes
-	 * response.cookie('rememberme', '1', { expires: new Date(Date.now() + 900000), httpOnly: true });
+	 * response.cookie('remember-me', '1', { expires: new Date(Date.now() + 900000), httpOnly: true });
 	 *
 	 * // save as above
-	 * response.cookie('rememberme', '1', { maxAge: 900000, httpOnly: true })
+	 * response.cookie('remember-me', '1', { maxAge: 900000, httpOnly: true })
 
 	 * @readonly
 	 */
-	public readonly setCookie = (
-		response: ApplicationResponse,
-		name: string,
-		value: string,
-		options: CookieOptions
-	): ApplicationResponse => response.cookie(name, value, options);
+	public readonly setCookie = (name: string, value: string, options: CookieOptions): ApplicationResponse =>
+		this.response.cookie(name, value, options);
 	/**
 	 * Set cookie `name` to `val`, with the given `options`.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param name
 	 * The name of the cookie.
 	 * @param value
@@ -1046,24 +895,19 @@ export class ResponseUtility {
 	 *
 	 * @example
 	 * // "Remember Me" for 15 minutes
-	 * response.cookie('rememberme', '1', { expires: new Date(Date.now() + 900000), httpOnly: true });
+	 * response.cookie('remember-me', '1', { expires: new Date(Date.now() + 900000), httpOnly: true });
 	 *
 	 * // save as above
-	 * response.cookie('rememberme', '1', { maxAge: 900000, httpOnly: true })
+	 * response.cookie('remember-me', '1', { maxAge: 900000, httpOnly: true })
 
 	 * @readonly
 	 */
-	public readonly addCookie = (
-		response: ApplicationResponse,
-		name: string,
-		value: string,
-		options: CookieOptions
-	): ApplicationResponse => response.cookie(name, value, options);
+	public readonly addCookie = (name: string, value: string, options: CookieOptions): ApplicationResponse =>
+		this.response.cookie(name, value, options);
 	/**
 	 * Set cookie `name` to `val`, with the given `options`.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param name
 	 * The name of the cookie.
 	 * @param value
@@ -1073,24 +917,19 @@ export class ResponseUtility {
 	 *
 	 * @example
 	 * // "Remember Me" for 15 minutes
-	 * response.cookie('rememberme', '1', { expires: new Date(Date.now() + 900000), httpOnly: true });
+	 * response.cookie('remember-me', '1', { expires: new Date(Date.now() + 900000), httpOnly: true });
 	 *
 	 * // save as above
-	 * response.cookie('rememberme', '1', { maxAge: 900000, httpOnly: true })
+	 * response.cookie('remember-me', '1', { maxAge: 900000, httpOnly: true })
 
 	 * @readonly
 	 */
-	public readonly cookie = (
-		response: ApplicationResponse,
-		name: string,
-		value: string,
-		options: CookieOptions
-	): ApplicationResponse => response.cookie(name, value, options);
+	public readonly cookie = (name: string, value: string, options: CookieOptions): ApplicationResponse =>
+		this.response.cookie(name, value, options);
 	/**
 	 * Set cookie `name` to `val`, with the given `options`.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param name
 	 * The name of the cookie.
 	 * @param value
@@ -1098,20 +937,19 @@ export class ResponseUtility {
 	 *
 	 * @example
 	 * // "Remember Me" for 15 minutes
-	 * response.cookie('rememberme', '1', { expires: new Date(Date.now() + 900000), httpOnly: true });
+	 * response.cookie('remember-me', '1', { expires: new Date(Date.now() + 900000), httpOnly: true });
 	 *
 	 * // save as above
-	 * response.cookie('rememberme', '1', { maxAge: 900000, httpOnly: true })
+	 * response.cookie('remember-me', '1', { maxAge: 900000, httpOnly: true })
 
 	 * @readonly
 	 */
-	public readonly simpleCookie = (response: ApplicationResponse, name: string, value: string): ApplicationResponse =>
-		response.cookie(name, value);
+	public readonly simpleCookie = (name: string, value: string): ApplicationResponse =>
+		this.response.cookie(name, value);
 	/**
 	 * Clear cookie `name`.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param name
 	 * The target cookie.
 	 * @param options
@@ -1120,16 +958,12 @@ export class ResponseUtility {
 
 	 * @readonly
 	 */
-	public readonly clearCookie = (
-		response: ApplicationResponse,
-		name: string,
-		options?: CookieOptions
-	): ApplicationResponse => response.clearCookie(name, options);
+	public readonly clearCookie = (name: string, options?: CookieOptions): ApplicationResponse =>
+		this.response.clearCookie(name, options);
 	/**
 	 * Clear cookie `name`.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param name
 	 * The target cookie.
 	 * @param options
@@ -1138,16 +972,12 @@ export class ResponseUtility {
 
 	 * @readonly
 	 */
-	public readonly clear = (
-		response: ApplicationResponse,
-		name: string,
-		options?: CookieOptions
-	): ApplicationResponse => response.clearCookie(name, options);
+	public readonly clear = (name: string, options?: CookieOptions): ApplicationResponse =>
+		this.response.clearCookie(name, options);
 	/**
 	 * Clear cookie `name`.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param name
 	 * The target cookie.
 	 * @param options
@@ -1156,16 +986,12 @@ export class ResponseUtility {
 
 	 * @readonly
 	 */
-	public readonly removeCookie = (
-		response: ApplicationResponse,
-		name: string,
-		options?: CookieOptions
-	): ApplicationResponse => response.clearCookie(name, options);
+	public readonly removeCookie = (name: string, options?: CookieOptions): ApplicationResponse =>
+		this.response.clearCookie(name, options);
 	/**
 	 * Clear cookie `name`.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param name
 	 * The target cookie.
 	 * @param options
@@ -1174,11 +1000,8 @@ export class ResponseUtility {
 
 	 * @readonly
 	 */
-	public readonly deleteCookie = (
-		response: ApplicationResponse,
-		name: string,
-		options?: CookieOptions
-	): ApplicationResponse => response.clearCookie(name, options);
+	public readonly deleteCookie = (name: string, options?: CookieOptions): ApplicationResponse =>
+		this.response.clearCookie(name, options);
 	/**
 	 * Transfer the file at the given path as an attachment.
 	 *
@@ -1190,8 +1013,7 @@ export class ResponseUtility {
 	 *
 	 * This method uses `response.sendfile()`.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param path
 	 * The target file path.
 	 * @param filename
@@ -1204,12 +1026,11 @@ export class ResponseUtility {
 	 * @readonly
 	 */
 	public readonly advancedDownload = (
-		response: ApplicationResponse,
 		path: string,
 		filename: string,
 		options: DownloadOptions,
 		callback?: ErrorCallback
-	): void => response.download(path, filename, options, callback);
+	): void => this.response.download(path, filename, options, callback);
 	/**
 	 * Transfer the file at the given path as an attachment.
 	 *
@@ -1221,8 +1042,7 @@ export class ResponseUtility {
 	 *
 	 * This method uses `response.sendfile()`.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param path
 	 * The target file path.
 	 * @param filename
@@ -1232,12 +1052,8 @@ export class ResponseUtility {
 	 *
 	 * @readonly
 	 */
-	public readonly namedDownload = (
-		response: ApplicationResponse,
-		path: string,
-		filename: string,
-		callback?: ErrorCallback
-	): void => response.download(path, filename, callback);
+	public readonly namedDownload = (path: string, filename: string, callback?: ErrorCallback): void =>
+		this.response.download(path, filename, callback);
 	/**
 	 * Transfer the file at the given path as an attachment.
 	 *
@@ -1249,8 +1065,7 @@ export class ResponseUtility {
 	 *
 	 * This method uses `response.sendfile()`.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param path
 	 * The target file path.
 	 * @param callback
@@ -1258,8 +1073,7 @@ export class ResponseUtility {
 	 *
 	 * @readonly
 	 */
-	public readonly download = (response: ApplicationResponse, path: string, callback?: ErrorCallback): void =>
-		response.download(path, callback);
+	public readonly download = (path: string, callback?: ErrorCallback): void => this.response.download(path, callback);
 	/**
 	 * Calling the `writable.end()` method signals that no more data will be written
 	 * to the `Writable`. The optional `chunk` and `encoding` arguments allow one
@@ -1277,8 +1091,7 @@ export class ResponseUtility {
 	 * // Writing more now is not allowed!
 	 * ```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param chunk Optional data to write. For streams not operating in object mode, `chunk` must be a `string`, `Buffer`,
 	 * `TypedArray` or `DataView`. For object mode streams, `chunk` may be any JavaScript value other than `null`.
 	 * @param encoding The encoding if `chunk` is a `string`
@@ -1287,7 +1100,7 @@ export class ResponseUtility {
 
 	 * @readonly
 	 */
-	public readonly end = (response: ApplicationResponse): ApplicationResponse => response.end();
+	public readonly end = (): ApplicationResponse => this.response.end();
 	/**
 	 * Calling the `writable.end()` method signals that no more data will be written
 	 * to the `Writable`. The optional `chunk` and `encoding` arguments allow one
@@ -1305,8 +1118,7 @@ export class ResponseUtility {
 	 * // Writing more now is not allowed!
 	 * ```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param chunk Optional data to write. For streams not operating in object mode, `chunk` must be a `string`, `Buffer`,
 	 * `TypedArray` or `DataView`. For object mode streams, `chunk` may be any JavaScript value other than `null`.
 	 * @param encoding The encoding if `chunk` is a `string`
@@ -1315,8 +1127,7 @@ export class ResponseUtility {
 
 	 * @readonly
 	 */
-	public readonly callbackedEnd = (response: ApplicationResponse, callback?: () => void): ApplicationResponse =>
-		response.end(callback);
+	public readonly callbackedEnd = (callback?: () => void): ApplicationResponse => this.response.end(callback);
 	/**
 	 * Calling the `writable.end()` method signals that no more data will be written
 	 * to the `Writable`. The optional `chunk` and `encoding` arguments allow one
@@ -1334,8 +1145,7 @@ export class ResponseUtility {
 	 * // Writing more now is not allowed!
 	 * ```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param chunk Optional data to write. For streams not operating in object mode, `chunk` must be a `string`, `Buffer`,
 	 * `TypedArray` or `DataView`. For object mode streams, `chunk` may be any JavaScript value other than `null`.
 	 * @param encoding The encoding if `chunk` is a `string`
@@ -1344,11 +1154,8 @@ export class ResponseUtility {
 
 	 * @readonly
 	 */
-	public readonly chunkedEnd = (
-		response: ApplicationResponse,
-		chunk: any,
-		callback?: () => void
-	): ApplicationResponse => response.end(chunk, callback);
+	public readonly chunkedEnd = (chunk: any, callback?: () => void): ApplicationResponse =>
+		this.response.end(chunk, callback);
 	/**
 	 * Calling the `writable.end()` method signals that no more data will be written
 	 * to the `Writable`. The optional `chunk` and `encoding` arguments allow one
@@ -1366,8 +1173,7 @@ export class ResponseUtility {
 	 * // Writing more now is not allowed!
 	 * ```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param chunk Optional data to write. For streams not operating in object mode, `chunk` must be a `string`, `Buffer`,
 	 * `TypedArray` or `DataView`. For object mode streams, `chunk` may be any JavaScript value other than `null`.
 	 * @param encoding The encoding if `chunk` is a string
@@ -1376,12 +1182,8 @@ export class ResponseUtility {
 
 	 * @readonly
 	 */
-	public readonly encodedEnd = (
-		response: ApplicationResponse,
-		chunk: any,
-		encoding: BufferEncoding,
-		callback?: () => void
-	) => response.end(chunk, encoding, callback);
+	public readonly encodedEnd = (chunk: any, encoding: BufferEncoding, callback?: () => void) =>
+		this.response.end(chunk, encoding, callback);
 	/**
 	 * Respond to the Acceptable formats using an `obj`
 	 * of mime-type callbacks.
@@ -1406,7 +1208,7 @@ export class ResponseUtility {
 	 *   response.send('<p>hey</p>');
 	 * },
 	 *
-	 * 'appliation/json': function(){
+	 * 'application/json': function(){
 	 *   response.send({ message: 'hey' });
 	 * }
 	 * });
@@ -1436,15 +1238,14 @@ export class ResponseUtility {
 	 * a `.default` callback it will be invoked
 	 * instead.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param obj
 	 * The object to be formatted.
 	 *
 
 	 * @readonly
 	 */
-	public readonly format = (response: ApplicationResponse, obj: any): ApplicationResponse => response.format(obj);
+	public readonly format = (obj: any): ApplicationResponse => this.response.format(obj);
 	/**
 	 * Respond to the Acceptable formats using an `obj`
 	 * of mime-type callbacks.
@@ -1469,7 +1270,7 @@ export class ResponseUtility {
 	 *   response.send('<p>hey</p>');
 	 * },
 	 *
-	 * 'appliation/json': function(){
+	 * 'application/json': function(){
 	 *   response.send({ message: 'hey' });
 	 * }
 	 * });
@@ -1499,16 +1300,14 @@ export class ResponseUtility {
 	 * a `.default` callback it will be invoked
 	 * instead.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param obj
 	 * The object to be formatted.
 	 *
 
 	 * @readonly
 	 */
-	public readonly formatObject = (response: ApplicationResponse, obj: any): ApplicationResponse =>
-		response.format(obj);
+	public readonly formatObject = (obj: any): ApplicationResponse => this.response.format(obj);
 	/**
 	 * Send JSON response.
 	 *
@@ -1520,16 +1319,14 @@ export class ResponseUtility {
 	 * response.status(404).json("I don't have that");
 	 * ```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param obj
 	 * The object to be sent.
 	 *
 
 	 * @readonly
 	 */
-	public readonly json = (response: ApplicationResponse, obj: any | object): ApplicationResponse =>
-		response.json(obj);
+	public readonly json = (obj: any | object): ApplicationResponse => this.response.json(obj);
 	/**
 	 * Send JSON response with JSONP callback support.
 	 *
@@ -1541,15 +1338,14 @@ export class ResponseUtility {
 	 * response.status(404).jsonp("I don't have that");
 	 * ```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param obj
 	 * The object to be sent.
 	 *
 
 	 * @readonly
 	 */
-	public readonly jsonp = (response: ApplicationResponse, obj: any): ApplicationResponse => response.jsonp(obj);
+	public readonly jsonp = (obj: any): ApplicationResponse => this.response.jsonp(obj);
 	/**
 	 * Redirect to the given `url` with optional response `status`
 	 * defaulting to 302.
@@ -1567,8 +1363,7 @@ export class ResponseUtility {
 	 * response.redirect('../login'); // /blog/post/1 -> /blog/login
 	 * ```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param url
 	 * The url the request/response is being redirected to.
 	 * @param status
@@ -1577,9 +1372,9 @@ export class ResponseUtility {
 
 	 * @readonly
 	 */
-	public readonly redirect = (response: ApplicationResponse, url: string, status?: HttpStatus | number): void => {
-		if (status) return response.redirect(status, url);
-		return response.redirect(url);
+	public readonly redirect = (url: string, status?: HttpStatus | number): void => {
+		if (status) return this.response.redirect(status, url);
+		return this.response.redirect(url);
 	};
 	/**
 	 * Redirect to the given `url` with optional response `status`
@@ -1598,8 +1393,7 @@ export class ResponseUtility {
 	 * response.redirect('../login'); // /blog/post/1 -> /blog/login
 	 * ```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param url
 	 * The url the request/response is being redirected to.
 	 * @param status
@@ -1608,13 +1402,9 @@ export class ResponseUtility {
 
 	 * @readonly
 	 */
-	public readonly redirectResponse = (
-		response: ApplicationResponse,
-		url: string,
-		status?: HttpStatus | number
-	): void => {
-		if (status) return response.redirect(status, url);
-		return response.redirect(url);
+	public readonly redirectResponse = (url: string, status?: HttpStatus | number): void => {
+		if (status) return this.response.redirect(status, url);
+		return this.response.redirect(url);
 	};
 	/**
 	 * Redirect to the given `url` with optional response `status`
@@ -1633,8 +1423,7 @@ export class ResponseUtility {
 	 * response.redirect('../login'); // /blog/post/1 -> /blog/login
 	 * ```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param url
 	 * The url the request/response is being redirected to.
 	 * @param status
@@ -1643,21 +1432,16 @@ export class ResponseUtility {
 
 	 * @readonly
 	 */
-	public readonly redirectRequest = (
-		response: ApplicationResponse,
-		url: string,
-		status?: HttpStatus | number
-	): void => {
-		if (status) return response.redirect(status, url);
-		return response.redirect(url);
+	public readonly redirectRequest = (url: string, status?: HttpStatus | number): void => {
+		if (status) return this.response.redirect(status, url);
+		return this.response.redirect(url);
 	};
 	/**
 	 * Render `view` with the given `options` and optional callback `fn`.
 	 * When a callback function is given a response will _not_ be made
 	 * automatically, otherwise a response of _200_ and _text/html_ is given.
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param view
 	 * The file path of the view file to render.
 	 * @param callback
@@ -1666,11 +1450,8 @@ export class ResponseUtility {
 
 	 * @readonly
 	 */
-	public readonly render = (
-		response: ApplicationResponse,
-		view: string,
-		callback?: (err: Error, html: string) => void
-	): void => response.render(view, callback);
+	public readonly render = (view: string, callback?: (err: Error, html: string) => void): void =>
+		this.response.render(view, callback);
 	/**
 	 * Render `view` with the given `options` and optional callback `fn`.
 	 * When a callback function is given a response will _not_ be made
@@ -1681,8 +1462,7 @@ export class ResponseUtility {
 	 *  - `cache` boolean hinting to the engine it should cache
 	 *  - `filename` filename of the view being rendered
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param view
 	 * The file path of the view file to render.
 	 * @param callback
@@ -1692,52 +1472,48 @@ export class ResponseUtility {
 	 * @readonly
 	 */
 	public readonly advancedRender = (
-		response: ApplicationResponse,
 		view: string,
 		options?: object,
 		callback?: (err: Error, html: string) => void
-	): void => response.render(view, options, callback);
+	): void => this.response.render(view, options, callback);
 	/**
 	 * Send a response.
 	 *
 	 * Examples:
 	 * ```js
-	 * response.send(new Buffer('wahoo'));
+	 * response.send(new Buffer('yay'));
 	 * response.send({ some: 'json' });
 	 * response.send('<p>some html</p>');
 	 * response.status(404).send('Sorry, cant find that');
 	 * ```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param body
 	 * The response body to be sent.
 	 *
 
 	 * @readonly
 	 */
-	public readonly send = (response: ApplicationResponse, body?: any): ApplicationResponse => response.send(body);
+	public readonly send = (body?: any): ApplicationResponse => this.response.send(body);
 	/**
 	 * Send a response.
 	 *
 	 * Examples:
 	 * ```js
-	 * response.send(new Buffer('wahoo'));
+	 * response.send(new Buffer('yay'));
 	 * response.send({ some: 'json' });
 	 * response.send('<p>some html</p>');
 	 * response.status(404).send('Sorry, cant find that');
 	 * ```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param body
 	 * The response body to be sent.
 	 *
 
 	 * @readonly
 	 */
-	public readonly sendContent = (response: ApplicationResponse, body?: any): ApplicationResponse =>
-		response.send(body);
+	public readonly sendContent = (body?: any): ApplicationResponse => this.response.send(body);
 	/**
 	 * Transfer the file at the given `path`.
 	 *
@@ -1777,20 +1553,15 @@ export class ResponseUtility {
 	 * });
 	 * ```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param body
 	 * The response body to be sent.
 	 *
 
 	 * @readonly
 	 */
-	public readonly sendAdvancedFile = (
-		response: ApplicationResponse,
-		path: string,
-		options: SendFileOptions,
-		callback?: ErrorCallback
-	) => response.sendFile(path, options, callback);
+	public readonly sendAdvancedFile = (path: string, options: SendFileOptions, callback?: ErrorCallback) =>
+		this.response.sendFile(path, options, callback);
 	/**
 	 * Transfer the file at the given `path`.
 	 *
@@ -1823,16 +1594,14 @@ export class ResponseUtility {
 	 * });
 	 * ```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param body
 	 * The response body to be sent.
 	 *
 
 	 * @readonly
 	 */
-	public readonly sendFile = (response: ApplicationResponse, path: string, callback?: ErrorCallback) =>
-		response.sendFile(path, callback);
+	public readonly sendFile = (path: string, callback?: ErrorCallback) => this.response.sendFile(path, callback);
 	/**
 	 * Transfer the file at the given `path`.
 	 *
@@ -1865,16 +1634,14 @@ export class ResponseUtility {
 	 * });
 	 * ```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param body
 	 * The response body to be sent.
 	 *
 
 	 * @readonly
 	 */
-	public readonly file = (response: ApplicationResponse, path: string, callback?: ErrorCallback) =>
-		response.sendFile(path, callback);
+	public readonly file = (path: string, callback?: ErrorCallback) => this.response.sendFile(path, callback);
 	/**
 	 * Transfer the file at the given `path`.
 	 *
@@ -1907,16 +1674,14 @@ export class ResponseUtility {
 	 * });
 	 * ```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param body
 	 * The response body to be sent.
 	 *
 
 	 * @readonly
 	 */
-	public readonly upload = (response: ApplicationResponse, path: string, callback?: ErrorCallback) =>
-		response.sendFile(path, callback);
+	public readonly upload = (path: string, callback?: ErrorCallback) => this.response.sendFile(path, callback);
 	/**
 	 * Transfer the file at the given `path`.
 	 *
@@ -1949,16 +1714,14 @@ export class ResponseUtility {
 	 * });
 	 * ```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param body
 	 * The response body to be sent.
 	 *
 
 	 * @readonly
 	 */
-	public readonly uploadFile = (response: ApplicationResponse, path: string, callback?: ErrorCallback) =>
-		response.sendFile(path, callback);
+	public readonly uploadFile = (path: string, callback?: ErrorCallback) => this.response.sendFile(path, callback);
 	/**
 	 * Transfer the file at the given `path`.
 	 *
@@ -1991,16 +1754,14 @@ export class ResponseUtility {
 	 * });
 	 * ```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param body
 	 * The response body to be sent.
 	 *
 
 	 * @readonly
 	 */
-	public readonly addFile = (response: ApplicationResponse, path: string, callback?: ErrorCallback) =>
-		response.sendFile(path, callback);
+	public readonly addFile = (path: string, callback?: ErrorCallback) => this.response.sendFile(path, callback);
 	/**
 	 * Set the response HTTP status code to `statusCode` and send its string representation as the response body.
 	 * Source: http://expressjs.com/4x/api.html#res.sendStatus
@@ -2013,16 +1774,14 @@ export class ResponseUtility {
 	 * response.sendStatus(500); // equivalent to response.status(500).send('Internal Server Error')
 	 * ```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param code
 	 * The response status code.
 	 *
 
 	 * @readonly
 	 */
-	public readonly sendStatus = (response: ApplicationResponse, code: number | HttpStatus): ApplicationResponse =>
-		response.sendStatus(code);
+	public readonly sendStatus = (code: number | HttpStatus): ApplicationResponse => this.response.sendStatus(code);
 	/**
 	 * Set the response HTTP status code to `statusCode` and send its string representation as the response body.
 	 * Source: http://expressjs.com/4x/api.html#res.sendStatus
@@ -2035,16 +1794,14 @@ export class ResponseUtility {
 	 * response.sendStatus(500); // equivalent to response.status(500).send('Internal Server Error')
 	 * ```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param code
 	 * The response status code.
 	 *
 
 	 * @readonly
 	 */
-	public readonly code = (response: ApplicationResponse, code: number | HttpStatus): ApplicationResponse =>
-		response.sendStatus(code);
+	public readonly code = (code: number | HttpStatus): ApplicationResponse => this.response.sendStatus(code);
 	/**
 	 * Set the response HTTP status code to `statusCode` and send its string representation as the response body.
 	 * Source: http://expressjs.com/4x/api.html#res.sendStatus
@@ -2057,16 +1814,14 @@ export class ResponseUtility {
 	 * response.sendStatus(500); // equivalent to response.status(500).send('Internal Server Error')
 	 * ```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param code
 	 * The response status code.
 	 *
 
 	 * @readonly
 	 */
-	public readonly setStatus = (response: ApplicationResponse, code: number | HttpStatus): ApplicationResponse =>
-		response.sendStatus(code);
+	public readonly setStatus = (code: number | HttpStatus): ApplicationResponse => this.response.sendStatus(code);
 	/**
 	 * Set the response HTTP status code to `statusCode` and send its string representation as the response body.
 	 * Source: http://expressjs.com/4x/api.html#res.sendStatus
@@ -2079,16 +1834,14 @@ export class ResponseUtility {
 	 * response.sendStatus(500); // equivalent to response.status(500).send('Internal Server Error')
 	 * ```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param code
 	 * The response status code.
 	 *
 
 	 * @readonly
 	 */
-	public readonly status = (response: ApplicationResponse, code: number | HttpStatus): ApplicationResponse =>
-		response.status(code);
+	public readonly status = (code: number | HttpStatus): ApplicationResponse => this.response.status(code);
 	/**
 	 * Set _Content-Type_ response header with `type` through `mime.lookup()`
 	 * when it does not contain "/", or set the Content-Type to `type` otherwise.
@@ -2102,16 +1855,13 @@ export class ResponseUtility {
 	 * response.type('png');
 	 * ```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
 	 * @param type
 	 * The response content type.
 	 *
 
 	 * @readonly
 	 */
-	public readonly type = (response: ApplicationResponse, type: string | ContentType): ApplicationResponse =>
-		response.type(type);
+	public readonly type = (type: string | ContentType): ApplicationResponse => this.response.type(type);
 	/**
 	 * Set _Content-Type_ response header with `type` through `mime.lookup()`
 	 * when it does not contain "/", or set the Content-Type to `type` otherwise.
@@ -2125,8 +1875,6 @@ export class ResponseUtility {
 	 * response.type('png');
 	 * ```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
 	 * @param type
 	 * The response content type.
 	 *
@@ -2134,8 +1882,7 @@ export class ResponseUtility {
 	 
 	 * @readonly
 	 */
-	public readonly responseType = (response: ApplicationResponse, type: string | ContentType): ApplicationResponse =>
-		response.type(type);
+	public readonly responseType = (type: string | ContentType): ApplicationResponse => this.response.type(type);
 	/**
 	 * Set _Content-Type_ response header with `type` through `mime.lookup()`
 	 * when it does not contain "/", or set the Content-Type to `type` otherwise.
@@ -2149,8 +1896,6 @@ export class ResponseUtility {
 	 * response.type('png');
 	 * ```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
 	 * @param type
 	 * The response content type.
 	 *
@@ -2158,10 +1903,7 @@ export class ResponseUtility {
 	 
 	 * @readonly
 	 */
-	public readonly setResponseType = (
-		response: ApplicationResponse,
-		type: string | ContentType
-	): ApplicationResponse => response.type(type);
+	public readonly setResponseType = (type: string | ContentType): ApplicationResponse => this.response.type(type);
 	/**
 	 * Set _Content-Type_ response header with `type` through `mime.lookup()`
 	 * when it does not contain "/", or set the Content-Type to `type` otherwise.
@@ -2175,8 +1917,6 @@ export class ResponseUtility {
 	 * response.type('png');
 	 * ```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
 	 * @param type
 	 * The response content type.
 	 *
@@ -2184,8 +1924,7 @@ export class ResponseUtility {
 	 
 	 * @readonly
 	 */
-	public readonly setType = (response: ApplicationResponse, type: string | ContentType): ApplicationResponse =>
-		response.type(type);
+	public readonly setType = (type: string | ContentType): ApplicationResponse => this.response.type(type);
 	/**
 	 * Set _Content-Type_ response header with `type` through `mime.lookup()`
 	 * when it does not contain "/", or set the Content-Type to `type` otherwise.
@@ -2199,8 +1938,6 @@ export class ResponseUtility {
 	 * response.type('png');
 	 * ```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
 	 * @param type
 	 * The response content type.
 	 *
@@ -2208,8 +1945,7 @@ export class ResponseUtility {
 	 
 	 * @readonly
 	 */
-	public readonly setResponse = (response: ApplicationResponse, type: string | ContentType): ApplicationResponse =>
-		response.type(type);
+	public readonly setResponse = (type: string | ContentType): ApplicationResponse => this.response.type(type);
 	/**
 	 * Set _Content-Type_ response header with `type` through `mime.lookup()`
 	 * when it does not contain "/", or set the Content-Type to `type` otherwise.
@@ -2223,8 +1959,6 @@ export class ResponseUtility {
 	 * response.type('png');
 	 * ```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
 	 * @param type
 	 * The response content type.
 	 *
@@ -2232,8 +1966,7 @@ export class ResponseUtility {
 	 
 	 * @readonly
 	 */
-	public readonly setContent = (response: ApplicationResponse, type: string | ContentType): ApplicationResponse =>
-		response.type(type);
+	public readonly setContent = (type: string | ContentType): ApplicationResponse => this.response.type(type);
 	/**
 	 * Set _Content-Type_ response header with `type` through `mime.lookup()`
 	 * when it does not contain "/", or set the Content-Type to `type` otherwise.
@@ -2247,8 +1980,6 @@ export class ResponseUtility {
 	 * response.type('png');
 	 * ```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
 	 * @param type
 	 * The response content type.
 	 *
@@ -2256,8 +1987,7 @@ export class ResponseUtility {
 	 
 	 * @readonly
 	 */
-	public readonly setContentType = (response: ApplicationResponse, type: string | ContentType): ApplicationResponse =>
-		response.type(type);
+	public readonly setContentType = (type: string | ContentType): ApplicationResponse => this.response.type(type);
 	/**
 	 * Set _Content-Type_ response header with `type` through `mime.lookup()`
 	 * when it does not contain "/", or set the Content-Type to `type` otherwise.
@@ -2271,8 +2001,6 @@ export class ResponseUtility {
 	 * response.type('png');
 	 * ```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
 	 * @param type
 	 * The response content type.
 	 *
@@ -2280,8 +2008,7 @@ export class ResponseUtility {
 	 
 	 * @readonly
 	 */
-	public readonly contentType = (response: ApplicationResponse, type: string | ContentType): ApplicationResponse =>
-		response.type(type);
+	public readonly contentType = (type: string | ContentType): ApplicationResponse => this.response.type(type);
 	/**
 	 * Adds the field to the Vary response header, if it is not there already.
 	 * Examples:
@@ -2289,13 +2016,12 @@ export class ResponseUtility {
 	 * response.vary('User-Agent').render('docs');
 	 * ```
 	 *
-	 * @param response
-	 * The `ApplicationResponse` object from your route handler.
+
 	 * @param field
 	 * The header.
 	 *
 
 	 * @readonly
 	 */
-	public readonly vary = (response: ApplicationResponse, field: string): ApplicationResponse => response.vary(field);
+	public readonly vary = (field: string): ApplicationResponse => this.response.vary(field);
 }

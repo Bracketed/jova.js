@@ -7,7 +7,7 @@ import {
 } from '@bracketed/jova.js/types';
 
 import { ApplyHandlerOptions } from '@bracketed/jova.js/decorators';
-import { Handlers } from '@bracketed/jova.js/utilities';
+import { Handlers } from '@bracketed/jova.js';
 
 @ApplyHandlerOptions<Handlers.Options>({
 	type: Handlers.Type.MIDDLEWARE,
