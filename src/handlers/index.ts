@@ -32,7 +32,7 @@ export namespace Handlers {
 		 * Handlers.Type.AUTO
 		 * ```
 		 *
-		 * @todo This option does not do anything in `jova.js` as of current (1.6.2) and will be updated to have functionality in a future version.
+		 * This option does not do anything in `jova.js` as of current (1.6.2) and will be updated to have functionality in a future version.
 		 *
 		 * __Usage of decorators in `jova.js` is unfinished and enabling/disabling handlers is currently only available!__
 		 *
