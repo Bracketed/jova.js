@@ -106,7 +106,6 @@ __metadata:
     tsup: "npm:^8.4.0"
     typedoc: "npm:^0.27.9"
     typedoc-github-theme: "npm:^0.2.1"
-    typedoc-github-wiki-theme: "npm:^2.1.0"
     typedoc-plugin-inline-sources: "npm:^1.2.1"
     typedoc-plugin-markdown: "npm:^4.4.2"
     typedoc-plugin-mdn-links: "npm:^4.0.14"
@@ -4881,15 +4880,6 @@ __metadata:
   peerDependencies:
     typedoc: ^0.27.6
   checksum: 10c0/a98c1eb3d9e5fb6f08d0e35a1e5050745e0ed9c8ef6a1521edc5f4f1718fdfc72988e411a893cbd7bffba01de4994a88731cf0dd3b7bf6474d37a89a9c230d22
-  languageName: node
-  linkType: hard
-
-"typedoc-github-wiki-theme@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "typedoc-github-wiki-theme@npm:2.1.0"
-  peerDependencies:
-    typedoc-plugin-markdown: ">=4.3.0"
-  checksum: 10c0/7b9082577d7f0f339a6750067ab4fb75224998efb2f938435c5f5475bee44502ecdec37785b2b7d8eaa35ac4e4f005102bc271060260fe0ef8a22631d93d5244
   languageName: node
   linkType: hard
 
