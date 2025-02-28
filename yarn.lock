@@ -69,6 +69,7 @@ __metadata:
     tsup: "npm:^8.4.0"
     typedoc: "npm:^0.27.9"
     typedoc-json-parser: "npm:^10.2.0"
+    typedoc-plugin-markdown: "npm:^4.4.2"
     typescript: "npm:^5.7.3"
     yarn-check: "npm:^0.0.3"
   languageName: unknown
@@ -5035,6 +5036,15 @@ __metadata:
   bin:
     typedoc-json-parser: ./dist/bin/index.js
   checksum: 10c0/a914f766237efc66953371e0884b74ed94309657c85abae6b872dec2324999bf3bdcdc45b0280e0270324a7c928063de04194199790d9e3c1594cb7b21aefe1a
+  languageName: node
+  linkType: hard
+
+"typedoc-plugin-markdown@npm:^4.4.2":
+  version: 4.4.2
+  resolution: "typedoc-plugin-markdown@npm:4.4.2"
+  peerDependencies:
+    typedoc: 0.27.x
+  checksum: 10c0/93112f0f06f1c0bc7eec1ba7f9034b88a6817a92ec41e491e8ac73c23a5fbda84df537d136395295737499fc1d5afa94d1500a1921b1a967248dc5d3054fc9d6
   languageName: node
   linkType: hard
 
