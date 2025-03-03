@@ -16,6 +16,14 @@ interface Handler<
 	): void;
 }
 
+/**
+ * @name RequestHandler
+ * @description Request handling for Jova.js routes.
+ *
+ * @module Types
+ * @interface RequestHandler
+ * @extends Handler
+ */
 export interface RequestHandler<
 	P = ParamsDictionary,
 	ResBody = any,

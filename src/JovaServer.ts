@@ -169,7 +169,7 @@ export class JovaServer extends EventEmitter {
 	 *
 	 * This method is like the standard methods, except it matches all HTTP verbs.
 	 *
-	 * Source: http://expressjs.com/en/5x/api.html#app.all
+	 * @see {@link https://expressjs.com/en/5x/api.html#app.all Express Docs: Application.all()}
 	 *
 	 * @public
 	 * @readonly
@@ -178,9 +178,10 @@ export class JovaServer extends EventEmitter {
 	 */
 	public readonly any = this.application.all;
 	/**
+	 * Special-cased "all" method, applying the given route `path`, middleware, and callback to every HTTP method.
 	 * This method is like the standard methods, except it matches all HTTP verbs.
 	 *
-	 * Source: http://expressjs.com/en/5x/api.html#app.all
+	 * @see {@link https://expressjs.com/en/5x/api.html#app.all Express Docs: Application.all()}
 	 *
 	 * @public
 	 * @param path string
@@ -190,19 +191,22 @@ export class JovaServer extends EventEmitter {
 	public readonly all = this.application.all;
 
 	/**
+	 * @name App.get
+	 * @description
 	 * Contextual function.
 	 *
 	 * HTTP GET:
 	 *
 	 * Routes HTTP GET requests to the specified path with the specified callback functions.
 	 *
-	 * Source: http://expressjs.com/en/5x/api.html#app.get.method
+	 * @see {@link https://expressjs.com/en/5x/api.html#app.get.method Express Docs: App.get (method)}
 	 *
+	 * @description
 	 * Get Setting:
 	 *
 	 * Returns the value of name app setting, where name is one of the strings in the app settings table.
 	 *
-	 * Source: https://expressjs.com/en/5x/api.html#app.get
+	 * @see {@link https://expressjs.com/en/5x/api.html#app.get Express Docs: App.get()}
 	 *
 	 * @public
 	 * @param (http get) path string
@@ -214,7 +218,7 @@ export class JovaServer extends EventEmitter {
 	/**
 	 * Routes HTTP DELETE requests to the specified path with the specified callback functions.
 	 *
-	 * Source: http://expressjs.com/en/5x/api.html#app.delete
+	 * @see {@link https://expressjs.com/en/5x/api.html#app.delete Express Docs: Application.delete()}
 	 *
 	 * @public
 	 * @param path string
@@ -225,7 +229,7 @@ export class JovaServer extends EventEmitter {
 	/**
 	 * Add callback triggers to route parameters.
 	 *
-	 * Source: http://expressjs.com/en/5x/api.html#app.param
+	 * @see {@link https://expressjs.com/en/5x/api.html#app.param Express Docs: Application.param()}
 	 *
 	 * @public
 	 * @readonly
@@ -234,7 +238,7 @@ export class JovaServer extends EventEmitter {
 	/**
 	 * Routes HTTP POST requests to the specified path with the specified callback functions.
 	 *
-	 * Source: http://expressjs.com/en/5x/api.html#app.post
+	 * @see {@link https://expressjs.com/en/5x/api.html#app.post Express Docs: Application.post()}
 	 *
 	 * @public
 	 * @param path string
@@ -245,7 +249,7 @@ export class JovaServer extends EventEmitter {
 	/**
 	 * Routes HTTP PUT requests to the specified path with the specified callback functions.
 	 *
-	 * Source: http://expressjs.com/en/5x/api.html#app.put
+	 * @see {@link https://expressjs.com/en/5x/api.html#app.put Express Docs: Application.put()}
 	 *
 	 * @public
 	 * @param path string
@@ -258,7 +262,7 @@ export class JovaServer extends EventEmitter {
 	 * It accepts an optional parameter that is an object containing local variables for the view.
 	 * It is like response.render(), except it cannot send the rendered view to the client on its own.
 	 *
-	 * Source: http://expressjs.com/en/5x/api.html#app.render
+	 * @see {@link https://expressjs.com/en/5x/api.html#app.render Express Docs: Application.render()}
 	 *
 	 * @public
 	 * @readonly
@@ -268,7 +272,7 @@ export class JovaServer extends EventEmitter {
 	 * Returns an instance of a single route, which you can then use to handle HTTP verbs with optional middleware.
 	 * Use `route` to avoid duplicate route names (and thus typo errors).
 	 *
-	 * Source: http://expressjs.com/en/5x/api.html#app.route
+	 * @see {@link https://expressjs.com/en/5x/api.html#app.route Express Docs: Application.route()}
 	 *
 	 * @public
 	 * @readonly
@@ -278,7 +282,7 @@ export class JovaServer extends EventEmitter {
 	/**
 	 * Routes HTTP HEAD requests to the specified path with the specified callback functions.
 	 *
-	 * Source: http://expressjs.com/en/5x/api.html#app.head
+	 * @see {@link https://expressjs.com/en/5x/api.html#app.head Express Docs: Application.head()}
 	 *
 	 * [ NO DOCUMENTATION CURRENT ]
 	 *
@@ -292,7 +296,7 @@ export class JovaServer extends EventEmitter {
 	/**
 	 * Routes HTTP OPTIONS requests to the specified path with the specified callback functions.
 	 *
-	 * Source: http://expressjs.com/en/5x/api.html#app.options
+	 * @see {@link https://expressjs.com/en/5x/api.html#app.options Express Docs: Application.options()}
 	 *
 	 * [ NO DOCUMENTATION CURRENT ]
 	 *
@@ -307,7 +311,7 @@ export class JovaServer extends EventEmitter {
 	 * Mounts the specified middleware function or functions at the specified path:
 	 * the middleware function is executed when the base of the requested path matches `path`.
 	 *
-	 * Source: http://expressjs.com/en/5x/api.html#app.use
+	 * @see {@link https://expressjs.com/en/5x/api.html#app.use Express Docs: Application.use()}
 	 *
 	 * @public
 	 * @param path string
@@ -320,7 +324,7 @@ export class JovaServer extends EventEmitter {
 	 * Mounts the specified middleware function or functions at the specified path:
 	 * the middleware function is executed when the base of the requested path matches `path`.
 	 *
-	 * Source: http://expressjs.com/en/5x/api.html#app.use
+	 * @see {@link https://expressjs.com/en/5x/api.html#app.use Express Docs: Application.use()}
 	 *
 	 * @public
 	 * @param path string
@@ -337,7 +341,7 @@ export class JovaServer extends EventEmitter {
 	 * Calling application.set('foo', true) for a Boolean property is the same as calling application.enable('foo').
 	 * Similarly, calling application.set('foo', false) for a Boolean property is the same as calling application.disable('foo').
 	 *
-	 * Source: http://expressjs.com/en/5x/api.html#app.set
+	 * @see {@link https://expressjs.com/en/5x/api.html#app.set Express Docs: Application.set()}
 	 *
 	 * @public
 	 * @param Name JovaSettingsTable | string
@@ -351,7 +355,7 @@ export class JovaServer extends EventEmitter {
 	/**
 	 * Registers the given template engine `callback` as `ext`.
 	 *
-	 * Source: http://expressjs.com/en/5x/api.html#app.engine
+	 * @see {@link https://expressjs.com/en/5x/api.html#app.engine Express Docs: Application.engine()}
 	 *
 	 * @public
 	 * @param ext string
@@ -370,7 +374,7 @@ export class JovaServer extends EventEmitter {
 	 * This is useful for providing helper functions to templates, as well as application-level data.
 	 * Local variables are available in middleware via `request.app.locals` or `this.container`.
 	 *
-	 * Source: http://expressjs.com/en/5x/api.html#app.locals
+	 * @see {@link https://expressjs.com/en/5x/api.html#app.locals Express Docs: Application.locals}
 	 *
 	 * @public
 	 */
@@ -386,7 +390,7 @@ export class JovaServer extends EventEmitter {
 	 * This is useful for providing helper functions to templates, as well as application-level data.
 	 * Local variables are available in middleware via `request.app.locals`.
 	 *
-	 * Source: http://expressjs.com/en/5x/api.html#app.locals
+	 * @see {@link https://expressjs.com/en/5x/api.html#app.locals Express Docs: Application.locals}
 	 *
 	 * @public
 	 */
@@ -398,7 +402,7 @@ export class JovaServer extends EventEmitter {
 	 * The behavior of this method can become very complicated in complex cases of mounted apps:
 	 * it is usually better to use request.baseUrl to get the canonical path of the application.
 	 *
-	 * Source: http://expressjs.com/en/5x/api.html#app.path
+	 * @see {@link https://expressjs.com/en/5x/api.html#app.path Express Docs: Application.path()}
 	 *
 	 * @public
 	 * @readonly

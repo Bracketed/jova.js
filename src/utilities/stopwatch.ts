@@ -1,6 +1,6 @@
 /**
  * Stopwatch class, uses native node to replicate/extend performance-now dependency.
- * @see https://www.npmjs.com/package/@sapphire/stopwatch
+ * @see {@link https://www.npmjs.com/package/@sapphire/stopwatch NPM: @sapphire/stopwatch}
  */
 export class Stopwatch {
 	/**

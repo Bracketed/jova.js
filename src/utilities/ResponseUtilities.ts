@@ -555,13 +555,13 @@ export class ResponseUtility {
 	 * Set header `field` to `value`, or pass
 	 * an object of header fields.
 	 *
-	 * Examples:
-	 * ```js
+	 * @example
+	 * ```typescript
 	 * response.set('Foo', ['bar', 'baz']);
 	 * response.set('Accept', 'application/json');
 	 * response.set({ Accept: 'text/plain', 'X-API-Key': 'superPrivateKey' });
 	 * ```
-	 * Aliased as `response.header()`.
+	 * @alias Aliased as `response.header()`.
 	 *
 
 	 * @param field
@@ -578,13 +578,13 @@ export class ResponseUtility {
 	 * Set header `field` to `value`, or pass
 	 * an object of header fields.
 	 *
-	 * Examples:
-	 * ```js
+	 * @example
+	 * ```typescript
 	 * response.set('Foo', ['bar', 'baz']);
 	 * response.set('Accept', 'application/json');
 	 * response.set({ Accept: 'text/plain', 'X-API-Key': 'superPrivateKey' });
 	 * ```
-	 * Aliased as `response.header()`.
+	 * @alias Aliased as `response.header()`.
 	 *
 
 	 * @param field
@@ -686,8 +686,8 @@ export class ResponseUtility {
 	/**
 	 * Set Link header field with the given `links`.
 	 *
-	 * Examples:
-	 * ```js
+	 * @example
+	 * ```typescript
 	 * response.links({
 	 *   next: 'http://api.example.com/users?page=2',
 	 *   last: 'http://api.example.com/users?page=5'
@@ -704,8 +704,8 @@ export class ResponseUtility {
 	/**
 	 * Set Link header field with the given `links`.
 	 *
-	 * Examples:
-	 * ```js
+	 * @example
+	 * ```typescript
 	 * response.links({
 	 *   next: 'http://api.example.com/users?page=2',
 	 *   last: 'http://api.example.com/users?page=5'
@@ -722,8 +722,8 @@ export class ResponseUtility {
 	/**
 	 * Set Link header field with the given `links`.
 	 *
-	 * Examples:
-	 * ```js
+	 * @example
+	 * ```typescript
 	 * response.links({
 	 *   next: 'http://api.example.com/users?page=2',
 	 *   last: 'http://api.example.com/users?page=5'
@@ -741,17 +741,19 @@ export class ResponseUtility {
 	 * Set the location header to url.
 	 * The given url can also be the name of a mapped url, for example by default express supports "back" which redirects to the Referrer or Referer headers or "/".
 	 *
-	 * Examples:
-	 *
-	 * response.location('/foo/bar').; response.location('http://example.com'); response.location('../login'); // /blog/post/1 -> /blog/login
-	 *
 	 * Mounting:
 	 *
 	 * When an application is mounted and response.location() is given a path that does not lead with "/" it becomes relative to the mount-point. For example if the application is mounted at "/blog", the following would become "/blog/login".
 	 *
-	 * ```response.location('login');```
+	 * ```typescript
+	 * response.location('login');
+	 * ```
 	 *
-
+	 * @example
+	 *
+	 * response.location('/foo/bar'); 
+	 * response.location('http://example.com'); 
+	 * response.location('../login'); // /blog/post/1 -> /blog/login
 	 * @param url
 	 * The url for the location to be set to.
 
@@ -762,17 +764,18 @@ export class ResponseUtility {
 	 * Set the location header to url.
 	 * The given url can also be the name of a mapped url, for example by default express supports "back" which redirects to the Referrer or Referer headers or "/".
 	 *
-	 * Examples:
-	 *
-	 * response.location('/foo/bar').; response.location('http://example.com'); response.location('../login'); // /blog/post/1 -> /blog/login
-	 *
 	 * Mounting:
 	 *
 	 * When an application is mounted and response.location() is given a path that does not lead with "/" it becomes relative to the mount-point. For example if the application is mounted at "/blog", the following would become "/blog/login".
 	 *
-	 * ```response.location('login');```
+	 * ```typescript
+	 * response.location('login');
+	 * ```
 	 *
-
+	 * @example
+	 * response.location('/foo/bar'); 
+	 * response.location('http://example.com'); 
+	 * response.location('../login'); // /blog/post/1 -> /blog/login
 	 * @param url
 	 * The url for the location to be set to.
 
@@ -783,17 +786,18 @@ export class ResponseUtility {
 	 * Set the location header to url.
 	 * The given url can also be the name of a mapped url, for example by default express supports "back" which redirects to the Referrer or Referer headers or "/".
 	 *
-	 * Examples:
-	 *
-	 * response.location('/foo/bar').; response.location('http://example.com'); response.location('../login'); // /blog/post/1 -> /blog/login
-	 *
 	 * Mounting:
 	 *
 	 * When an application is mounted and response.location() is given a path that does not lead with "/" it becomes relative to the mount-point. For example if the application is mounted at "/blog", the following would become "/blog/login".
 	 *
-	 * ```response.location('login');```
+	 * ```typescript
+	 * response.location('login');
+	 * ```
 	 *
-
+	 * @example
+	 * response.location('/foo/bar'); 
+	 * response.location('http://example.com'); 
+	 * response.location('../login'); // /blog/post/1 -> /blog/login
 	 * @param url
 	 * The url for the location to be set to.
 
@@ -1082,7 +1086,7 @@ export class ResponseUtility {
 	 *
 	 * Calling the `write` method after calling `end` will raise an error.
 	 *
-	 * ```js
+	 * ```typescript
 	 * // Write 'hello, ' and then end with 'world!'.
 	 * const fs = require('node:fs');
 	 * const file = fs.createWriteStream('example.txt');
@@ -1109,7 +1113,7 @@ export class ResponseUtility {
 	 *
 	 * Calling the `write` method after calling `end` will raise an error.
 	 *
-	 * ```js
+	 * ```typescript
 	 * // Write 'hello, ' and then end with 'world!'.
 	 * const fs = require('node:fs');
 	 * const file = fs.createWriteStream('example.txt');
@@ -1136,7 +1140,7 @@ export class ResponseUtility {
 	 *
 	 * Calling the `write` method after calling `end` will raise an error.
 	 *
-	 * ```js
+	 * ```typescript
 	 * // Write 'hello, ' and then end with 'world!'.
 	 * const fs = require('node:fs');
 	 * const file = fs.createWriteStream('example.txt');
@@ -1164,7 +1168,7 @@ export class ResponseUtility {
 	 *
 	 * Calling the `write` method after calling `end` will raise an error.
 	 *
-	 * ```js
+	 * ```typescript
 	 * // Write 'hello, ' and then end with 'world!'.
 	 * const fs = require('node:fs');
 	 * const file = fs.createWriteStream('example.txt');
@@ -1198,7 +1202,7 @@ export class ResponseUtility {
 	 * Content-Type is set for you, however if you choose
 	 * you may alter this within the callback using `response.type()`
 	 * or `response.set('Content-Type', ...)`.
-	 * ```js
+	 * ```typescript
 	 * response.format({
 	 * 'text/plain': function(){
 	 *   response.send('hey');
@@ -1216,7 +1220,7 @@ export class ResponseUtility {
 	 *
 	 * In addition to canonicalized MIME types you may
 	 * also use `extnames` mapped to these types:
-	 * ```js
+	 * ```typescript
 	 * response.format({
 	 * text: function(){
 	 *   response.send('hey');
@@ -1260,7 +1264,7 @@ export class ResponseUtility {
 	 * Content-Type is set for you, however if you choose
 	 * you may alter this within the callback using `response.type()`
 	 * or `response.set('Content-Type', ...)`.
-	 * ```js
+	 * ```typescript
 	 * response.format({
 	 * 'text/plain': function(){
 	 *   response.send('hey');
@@ -1278,7 +1282,7 @@ export class ResponseUtility {
 	 *
 	 * In addition to canonicalized MIME types you may
 	 * also use `extnames` mapped to these types:
-	 * ```js
+	 * ```typescript
 	 * response.format({
 	 * text: function(){
 	 *   response.send('hey');
@@ -1311,8 +1315,8 @@ export class ResponseUtility {
 	/**
 	 * Send JSON response.
 	 *
-	 * Examples:
-	 * ```js
+	 * @example
+	 * ```typescript
 	 * response.json(null);
 	 * response.json({ user: 'tj' });
 	 * response.status(500).json('oh noes!');
@@ -1330,8 +1334,8 @@ export class ResponseUtility {
 	/**
 	 * Send JSON response with JSONP callback support.
 	 *
-	 * Examples:
-	 * ```js
+	 * @example
+	 * ```typescript
 	 * response.jsonp(null);
 	 * response.jsonp({ user: 'tj' });
 	 * response.status(500).jsonp('oh noes!');
@@ -1354,8 +1358,8 @@ export class ResponseUtility {
 	 * it will play nicely with mounted apps, relative paths,
 	 * `"back"` etc.
 	 *
-	 * Examples:
-	 * ```js
+	 * @example
+	 * ```typescript
 	 * response.redirect('back');
 	 * response.redirect('/foo/bar');
 	 * response.redirect('http://example.com');
@@ -1384,8 +1388,8 @@ export class ResponseUtility {
 	 * it will play nicely with mounted apps, relative paths,
 	 * `"back"` etc.
 	 *
-	 * Examples:
-	 * ```js
+	 * @example
+	 * ```typescript
 	 * response.redirect('back');
 	 * response.redirect('/foo/bar');
 	 * response.redirect('http://example.com');
@@ -1414,8 +1418,8 @@ export class ResponseUtility {
 	 * it will play nicely with mounted apps, relative paths,
 	 * `"back"` etc.
 	 *
-	 * Examples:
-	 * ```js
+	 * @example
+	 * ```typescript
 	 * response.redirect('back');
 	 * response.redirect('/foo/bar');
 	 * response.redirect('http://example.com');
@@ -1479,8 +1483,8 @@ export class ResponseUtility {
 	/**
 	 * Send a response.
 	 *
-	 * Examples:
-	 * ```js
+	 * @example
+	 * ```typescript
 	 * response.send(new Buffer('yay'));
 	 * response.send({ some: 'json' });
 	 * response.send('<p>some html</p>');
@@ -1498,8 +1502,8 @@ export class ResponseUtility {
 	/**
 	 * Send a response.
 	 *
-	 * Examples:
-	 * ```js
+	 * @example
+	 * ```typescript
 	 * response.send(new Buffer('yay'));
 	 * response.send({ some: 'json' });
 	 * response.send('<p>some html</p>');
@@ -1532,24 +1536,24 @@ export class ResponseUtility {
 	 *
 	 * Other options are passed along to `send`.
 	 *
-	 * Examples:
-	 *
+	 * @example
 	 * The following example illustrates how `response.sendFile()` may
 	 * be used as an alternative for the `static()` middleware for
 	 * dynamic situations. The code backing `response.sendFile()` is actually
 	 * the same code, so HTTP cache support etc is identical.
 	 *
-	 * ```js
-	 * application.get('/user/:uid/photos/:file', function(req, res){
-	 *   var uid = req.params.uid
-	 * , file = req.params.file;
-	 *   req.user.mayViewFilesFrom(uid, function(yes){
-	 * if (yes) {
-	 *  response.sendFile('/uploads/' + uid + '/' + file);
-	 * } else {
-	 *  response.send(403, 'Sorry! you cant see that.');
-	 * }
-	 *   });
+	 * ```typescript
+	 * application.get('/user/:uid/photos/:file', function(req, res) {
+	 * 		var uid = req.params.uid;
+	 * 		var file = req.params.file;
+	 * 
+	 * 		req.user.mayViewFilesFrom(uid, function(yes) {
+	 * 			if (yes) {
+	 * 				response.sendFile('/uploads/' + uid + '/' + file);
+	 * 			} else {
+	 * 				response.send(403, 'Sorry! you cant see that.');
+	 * 			}
+	 * 		});
 	 * });
 	 * ```
 	 *
@@ -1573,24 +1577,24 @@ export class ResponseUtility {
 	 *
 	 * Other options are passed along to `send`.
 	 *
-	 * Examples:
-	 *
+	 * @example
 	 * The following example illustrates how `response.sendFile()` may
 	 * be used as an alternative for the `static()` middleware for
 	 * dynamic situations. The code backing `response.sendFile()` is actually
 	 * the same code, so HTTP cache support etc is identical.
 	 *
-	 * ```js
-	 * application.get('/user/:uid/photos/:file', function(req, res){
-	 *   var uid = req.params.uid
-	 * , file = req.params.file;
-	 *   req.user.mayViewFilesFrom(uid, function(yes){
-	 * if (yes) {
-	 *  response.sendFile('/uploads/' + uid + '/' + file);
-	 * } else {
-	 *  response.send(403, 'Sorry! you cant see that.');
-	 * }
-	 *   });
+	 * ```typescript
+	 * application.get('/user/:uid/photos/:file', function(req, res) {
+	 * 		var uid = req.params.uid;
+	 * 		var file = req.params.file;
+	 *  
+	 * 		req.user.mayViewFilesFrom(uid, function(yes) {
+	 * 			if (yes) {
+	 * 				response.sendFile('/uploads/' + uid + '/' + file);
+	 * 			} else {
+	 * 				response.send(403, 'Sorry! you cant see that.');
+	 * 			}
+	 * 		});
 	 * });
 	 * ```
 	 *
@@ -1613,24 +1617,24 @@ export class ResponseUtility {
 	 *
 	 * Other options are passed along to `send`.
 	 *
-	 * Examples:
-	 *
+	 * @example
 	 * The following example illustrates how `response.sendFile()` may
 	 * be used as an alternative for the `static()` middleware for
 	 * dynamic situations. The code backing `response.sendFile()` is actually
 	 * the same code, so HTTP cache support etc is identical.
 	 *
-	 * ```js
+	 * ```typescript
 	 * application.get('/user/:uid/photos/:file', function(req, res){
-	 *   var uid = req.params.uid
-	 * , file = req.params.file;
-	 *   req.user.mayViewFilesFrom(uid, function(yes){
-	 * if (yes) {
-	 *  response.sendFile('/uploads/' + uid + '/' + file);
-	 * } else {
-	 *  response.send(403, 'Sorry! you cant see that.');
-	 * }
-	 *   });
+	 * 		var uid = req.params.uid;
+	 * 		var file = req.params.file;
+	 * 		
+	 * 		req.user.mayViewFilesFrom(uid, function(yes){
+	 * 			if (yes) {
+	 * 				response.sendFile('/uploads/' + uid + '/' + file);
+	 * 			} else {
+	 * 				response.send(403, 'Sorry! you cant see that.');
+	 * 			}
+	 * 		});
 	 * });
 	 * ```
 	 *
@@ -1638,7 +1642,6 @@ export class ResponseUtility {
 	 * @param body
 	 * The response body to be sent.
 	 *
-
 	 * @readonly
 	 */
 	public readonly file = (path: string, callback?: ErrorCallback) => this.response.sendFile(path, callback);
@@ -1653,24 +1656,24 @@ export class ResponseUtility {
 	 *
 	 * Other options are passed along to `send`.
 	 *
-	 * Examples:
-	 *
+	 * @example
 	 * The following example illustrates how `response.sendFile()` may
 	 * be used as an alternative for the `static()` middleware for
 	 * dynamic situations. The code backing `response.sendFile()` is actually
 	 * the same code, so HTTP cache support etc is identical.
 	 *
-	 * ```js
+	 * ```typescript
 	 * application.get('/user/:uid/photos/:file', function(req, res){
-	 *   var uid = req.params.uid
-	 * , file = req.params.file;
-	 *   req.user.mayViewFilesFrom(uid, function(yes){
-	 * if (yes) {
-	 *  response.sendFile('/uploads/' + uid + '/' + file);
-	 * } else {
-	 *  response.send(403, 'Sorry! you cant see that.');
-	 * }
-	 *   });
+	 * 		var uid = req.params.uid;
+	 * 		var file = req.params.file;
+	 * 
+	 * 		req.user.mayViewFilesFrom(uid, function(yes){
+	 * 			if (yes) {
+	 * 				response.sendFile('/uploads/' + uid + '/' + file);
+	 * 			} else {
+	 * 				response.send(403, 'Sorry! you cant see that.');
+	 * 			}
+	 * 		});
 	 * });
 	 * ```
 	 *
@@ -1693,32 +1696,30 @@ export class ResponseUtility {
 	 *
 	 * Other options are passed along to `send`.
 	 *
-	 * Examples:
-	 *
+	 * @example
 	 * The following example illustrates how `response.sendFile()` may
 	 * be used as an alternative for the `static()` middleware for
 	 * dynamic situations. The code backing `response.sendFile()` is actually
 	 * the same code, so HTTP cache support etc is identical.
 	 *
-	 * ```js
+	 * ```typescript
 	 * application.get('/user/:uid/photos/:file', function(req, res){
-	 *   var uid = req.params.uid
-	 * , file = req.params.file;
-	 *   req.user.mayViewFilesFrom(uid, function(yes){
-	 * if (yes) {
-	 *  response.sendFile('/uploads/' + uid + '/' + file);
-	 * } else {
-	 *  response.send(403, 'Sorry! you cant see that.');
-	 * }
-	 *   });
+	 * 		var uid = req.params.uid;
+	 * 		var file = req.params.file;
+	 *
+	 * 		req.user.mayViewFilesFrom(uid, function(yes){
+	 * 			if (yes) {
+	 * 				response.sendFile('/uploads/' + uid + '/' + file);
+	 * 			} else {
+	 * 				response.send(403, 'Sorry! you cant see that.');
+	 * 			}
+	 * 		});
 	 * });
 	 * ```
 	 *
-
 	 * @param body
 	 * The response body to be sent.
 	 *
-
 	 * @readonly
 	 */
 	public readonly uploadFile = (path: string, callback?: ErrorCallback) => this.response.sendFile(path, callback);
@@ -1733,24 +1734,24 @@ export class ResponseUtility {
 	 *
 	 * Other options are passed along to `send`.
 	 *
-	 * Examples:
-	 *
+	 * @example
 	 * The following example illustrates how `response.sendFile()` may
 	 * be used as an alternative for the `static()` middleware for
 	 * dynamic situations. The code backing `response.sendFile()` is actually
 	 * the same code, so HTTP cache support etc is identical.
 	 *
-	 * ```js
+	 * ```typescript
 	 * application.get('/user/:uid/photos/:file', function(req, res){
-	 *   var uid = req.params.uid
-	 * , file = req.params.file;
-	 *   req.user.mayViewFilesFrom(uid, function(yes){
-	 * if (yes) {
-	 *  response.sendFile('/uploads/' + uid + '/' + file);
-	 * } else {
-	 *  response.send(403, 'Sorry! you cant see that.');
-	 * }
-	 *   });
+	 * 		var uid = req.params.uid;
+	 * 		var file = req.params.file;
+	 * 
+	 * 		req.user.mayViewFilesFrom(uid, function(yes){
+	 * 			if (yes) {
+	 * 				response.sendFile('/uploads/' + uid + '/' + file);
+	 * 			} else {
+	 * 				response.send(403, 'Sorry! you cant see that.');
+	 * 			}
+	 * 		});
 	 * });
 	 * ```
 	 *
@@ -1763,11 +1764,12 @@ export class ResponseUtility {
 	 */
 	public readonly addFile = (path: string, callback?: ErrorCallback) => this.response.sendFile(path, callback);
 	/**
-	 * Set the response HTTP status code to `statusCode` and send its string representation as the response body.
-	 * Source: http://expressjs.com/4x/api.html#res.sendStatus
+	 * @name sendStatus()
+	 * @description Set the response HTTP status code to `statusCode` and send its string representation as the response body.
+	 * @see {@link https://expressjs.com/4x/api.html#res.sendStatus Express Docs: Response.sendStatus()}
 	 *
-	 * Examples:
-	 * ```js
+	 * @example
+	 * ```typescript
 	 * response.sendStatus(200); // equivalent to response.status(200).send('OK')
 	 * response.sendStatus(403); // equivalent to response.status(403).send('Forbidden')
 	 * response.sendStatus(404); // equivalent to response.status(404).send('Not Found')
@@ -1775,19 +1777,17 @@ export class ResponseUtility {
 	 * ```
 	 *
 
-	 * @param code
-	 * The response status code.
-	 *
-
+	 * @param {number | HttpStatus} code - The response status code.
+	 * @public
 	 * @readonly
 	 */
 	public readonly sendStatus = (code: number | HttpStatus): ApplicationResponse => this.response.sendStatus(code);
 	/**
 	 * Set the response HTTP status code to `statusCode` and send its string representation as the response body.
-	 * Source: http://expressjs.com/4x/api.html#res.sendStatus
+	 * @see {@link https://expressjs.com/4x/api.html#res.sendStatus Express Docs: Response.sendStatus()}
 	 *
-	 * Examples:
-	 * ```js
+	 * @example
+	 * ```typescript
 	 * response.sendStatus(200); // equivalent to response.status(200).send('OK')
 	 * response.sendStatus(403); // equivalent to response.status(403).send('Forbidden')
 	 * response.sendStatus(404); // equivalent to response.status(404).send('Not Found')
@@ -1804,10 +1804,10 @@ export class ResponseUtility {
 	public readonly code = (code: number | HttpStatus): ApplicationResponse => this.response.sendStatus(code);
 	/**
 	 * Set the response HTTP status code to `statusCode` and send its string representation as the response body.
-	 * Source: http://expressjs.com/4x/api.html#res.sendStatus
+	 * @see {@link https://expressjs.com/4x/api.html#res.sendStatus Express Docs: Result.sendStatus()}
 	 *
-	 * Examples:
-	 * ```js
+	 * @example
+	 * ```typescript
 	 * response.sendStatus(200); // equivalent to response.status(200).send('OK')
 	 * response.sendStatus(403); // equivalent to response.status(403).send('Forbidden')
 	 * response.sendStatus(404); // equivalent to response.status(404).send('Not Found')
@@ -1824,10 +1824,10 @@ export class ResponseUtility {
 	public readonly setStatus = (code: number | HttpStatus): ApplicationResponse => this.response.sendStatus(code);
 	/**
 	 * Set the response HTTP status code to `statusCode` and send its string representation as the response body.
-	 * Source: http://expressjs.com/4x/api.html#res.sendStatus
+	 * @see {@link https://expressjs.com/4x/api.html#res.sendStatus Express Docs: Response.sendStatus()}
 	 *
-	 * Examples:
-	 * ```js
+	 * @example
+	 * ```typescript
 	 * response.sendStatus(200); // equivalent to response.status(200).send('OK')
 	 * response.sendStatus(403); // equivalent to response.status(403).send('Forbidden')
 	 * response.sendStatus(404); // equivalent to response.status(404).send('Not Found')
@@ -1846,8 +1846,8 @@ export class ResponseUtility {
 	 * Set _Content-Type_ response header with `type` through `mime.lookup()`
 	 * when it does not contain "/", or set the Content-Type to `type` otherwise.
 	 *
-	 * Examples:
-	 * ```js
+	 * @example
+	 * ```typescript
 	 * response.type('.html');
 	 * response.type('html');
 	 * response.type('json');
@@ -1866,8 +1866,8 @@ export class ResponseUtility {
 	 * Set _Content-Type_ response header with `type` through `mime.lookup()`
 	 * when it does not contain "/", or set the Content-Type to `type` otherwise.
 	 *
-	 * Examples:
-	 * ```js
+	 * @example
+	 * ```typescript
 	 * response.type('.html');
 	 * response.type('html');
 	 * response.type('json');
@@ -1887,8 +1887,8 @@ export class ResponseUtility {
 	 * Set _Content-Type_ response header with `type` through `mime.lookup()`
 	 * when it does not contain "/", or set the Content-Type to `type` otherwise.
 	 *
-	 * Examples:
-	 * ```js
+	 * @example
+	 * ```typescript
 	 * response.type('.html');
 	 * response.type('html');
 	 * response.type('json');
@@ -1908,8 +1908,8 @@ export class ResponseUtility {
 	 * Set _Content-Type_ response header with `type` through `mime.lookup()`
 	 * when it does not contain "/", or set the Content-Type to `type` otherwise.
 	 *
-	 * Examples:
-	 * ```js
+	 * @example
+	 * ```typescript
 	 * response.type('.html');
 	 * response.type('html');
 	 * response.type('json');
@@ -1929,8 +1929,8 @@ export class ResponseUtility {
 	 * Set _Content-Type_ response header with `type` through `mime.lookup()`
 	 * when it does not contain "/", or set the Content-Type to `type` otherwise.
 	 *
-	 * Examples:
-	 * ```js
+	 * @example
+	 * ```typescript
 	 * response.type('.html');
 	 * response.type('html');
 	 * response.type('json');
@@ -1950,8 +1950,8 @@ export class ResponseUtility {
 	 * Set _Content-Type_ response header with `type` through `mime.lookup()`
 	 * when it does not contain "/", or set the Content-Type to `type` otherwise.
 	 *
-	 * Examples:
-	 * ```js
+	 * @example
+	 * ```typescript
 	 * response.type('.html');
 	 * response.type('html');
 	 * response.type('json');
@@ -1971,8 +1971,8 @@ export class ResponseUtility {
 	 * Set _Content-Type_ response header with `type` through `mime.lookup()`
 	 * when it does not contain "/", or set the Content-Type to `type` otherwise.
 	 *
-	 * Examples:
-	 * ```js
+	 * @example
+	 * ```typescript
 	 * response.type('.html');
 	 * response.type('html');
 	 * response.type('json');
@@ -1992,8 +1992,8 @@ export class ResponseUtility {
 	 * Set _Content-Type_ response header with `type` through `mime.lookup()`
 	 * when it does not contain "/", or set the Content-Type to `type` otherwise.
 	 *
-	 * Examples:
-	 * ```js
+	 * @example
+	 * ```typescript
 	 * response.type('.html');
 	 * response.type('html');
 	 * response.type('json');
@@ -2011,8 +2011,8 @@ export class ResponseUtility {
 	public readonly contentType = (type: string | ContentType): ApplicationResponse => this.response.type(type);
 	/**
 	 * Adds the field to the Vary response header, if it is not there already.
-	 * Examples:
-	 * ```js
+	 * @example
+	 * ```typescript
 	 * response.vary('User-Agent').render('docs');
 	 * ```
 	 *

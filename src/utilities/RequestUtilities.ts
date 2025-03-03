@@ -45,8 +45,8 @@ export class RequestUtility {
 	 * Check if the incoming request contains the "Content-Type"
 	 * header field, and it contains the give mime `type`.
 	 *
-	 * Examples:
-	 * ```js
+	 * @example
+	 * ```typescript
 	 * // With Content-Type: text/html; charset=utf-8
 	 * request.is('html');
 	 * request.is('text/html');
@@ -74,8 +74,8 @@ export class RequestUtility {
 	 * Check if the incoming request contains the "Content-Type"
 	 * header field, and it contains the give mime `type`.
 	 *
-	 * Examples:
-	 * ```js
+	 * @example
+	 * ```typescript
 	 * // With Content-Type: text/html; charset=utf-8
 	 * request.is('html');
 	 * request.is('text/html');
@@ -103,8 +103,8 @@ export class RequestUtility {
 	 * Check if the incoming request contains the "Content-Type"
 	 * header field, and it contains the give mime `type`.
 	 *
-	 * Examples:
-	 * ```js
+	 * @example
+	 * ```typescript
 	 * // With Content-Type: text/html; charset=utf-8
 	 * request.is('html');
 	 * request.is('text/html');
@@ -132,8 +132,8 @@ export class RequestUtility {
 	 * Check if the incoming request contains the "Content-Type"
 	 * header field, and it contains the give mime `type`.
 	 *
-	 * Examples:
-	 * ```js
+	 * @example
+	 * ```typescript
 	 * // With Content-Type: text/html; charset=utf-8
 	 * request.is('html');
 	 * request.is('text/html');
@@ -161,8 +161,8 @@ export class RequestUtility {
 	 * Check if the incoming request contains the "Content-Type"
 	 * header field, and it contains the give mime `type`.
 	 *
-	 * Examples:
-	 * ```js
+	 * @example
+	 * ```typescript
 	 * // With Content-Type: text/html; charset=utf-8
 	 * request.is('html');
 	 * request.is('text/html');
@@ -190,8 +190,8 @@ export class RequestUtility {
 	 * Check if the incoming request contains the "Content-Type"
 	 * header field, and it contains the give mime `type`.
 	 *
-	 * Examples:
-	 * ```js
+	 * @example
+	 * ```typescript
 	 * // With Content-Type: text/html; charset=utf-8
 	 * request.is('html');
 	 * request.is('text/html');
@@ -254,8 +254,8 @@ export class RequestUtility {
 	 * or an array `["json", "html", "text/plain"]`. When a list
 	 * or array is given the _best_ match, if any is returned.
 	 *
-	 * Examples:
-	 * ```js
+	 * @example
+	 * ```typescript
 	 * // Accept: text/html
 	 * request.accepts('html');
 	 * // => "html"
@@ -296,8 +296,8 @@ export class RequestUtility {
 	 * or an array `["json", "html", "text/plain"]`. When a list
 	 * or array is given the _best_ match, if any is returned.
 	 *
-	 * Examples:
-	 * ```js
+	 * @example
+	 * ```typescript
 	 * // Accept: text/html
 	 * request.accepts('html');
 	 * // => "html"
@@ -338,8 +338,8 @@ export class RequestUtility {
 	 * or an array `["json", "html", "text/plain"]`. When a list
 	 * or array is given the _best_ match, if any is returned.
 	 *
-	 * Examples:
-	 * ```js
+	 * @example
+	 * ```typescript
 	 * // Accept: text/html
 	 * request.accepts('html');
 	 * // => "html"

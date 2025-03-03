@@ -1,18 +1,21 @@
 /**
- * Headings to be added to any request made into the Jova.js server.
+ * @name JovaHeaderSetting
+ * @description Headings to be added to any request made into the Jova.js server.
  *
- 
+ * @module Types
  * @interface JovaHeaderSetting
  */
 export interface JovaHeaderSetting {
 	/**
-	 * The name of the header.
+	 * @name header
+	 * @description The name of the header.
 	 *
 	 * @type string
 	 */
 	header: string;
 	/**
-	 * The value of the header.
+	 * @name value
+	 * @description The value of the header.
 	 *
 	 * @type any
 	 */

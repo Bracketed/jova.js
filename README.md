@@ -21,7 +21,7 @@ Wiki available at <https://jova.js.org>
 <h2>Summary (Directory)</h2>
 
 - [Installation](#Installation)
-    <!--truncate-->
+      <!--truncate-->
     - [Yarn](#YarnInstall)
     - [Npm](#NpmInstall)
 - [Usage](#Usage)
@@ -80,7 +80,7 @@ Jova.js also has two other exports, `@bracketed/jova.js/utilities` and `@bracket
 
 Initiating a new Jova Server.
 
-```ts
+```typescript
 // ESM
 import { JovaServer } from '@bracketed/jova.js';
 
@@ -89,7 +89,7 @@ const Jova = new JovaServer();
 await Jova.listen(3000);
 ```
 
-```ts
+```typescript
 // CJS
 const { JovaServer } = require('@bracketed/jova.js');
 
@@ -106,7 +106,7 @@ However, you can set up routes, middlewares and event listeners like this:
 
 **Events:**
 
-```ts
+```typescript
 // ESM
 // ./events/Event.ts
 import { ApplicationEvent, EventController, EventListenerOptions } from '@bracketed/jova.js/types';
@@ -124,7 +124,7 @@ export class Event extends EventController {
 }
 ```
 
-```ts
+```typescript
 // CJS
 // ./events/Event.ts
 const { ApplicationEvent, EventController, EventListenerOptions } = require('@bracketed.jova.js/types');
@@ -144,7 +144,7 @@ export class Event extends EventController {
 
 **Routes:**
 
-```ts
+```typescript
 // ESM
 // ./routes/Route.ts
 import {
@@ -175,7 +175,7 @@ export class Route extends RouteController {
 }
 ```
 
-```ts
+```typescript
 // CJS
 // ./routes/Route.ts
 const {
@@ -208,7 +208,7 @@ export class Route extends RouteController {
 
 **Middlewares:**
 
-```ts
+```typescript
 // ESM
 // ./middlewares/Middleware.ts
 import {
@@ -238,7 +238,7 @@ export class Middleware extends MiddlewareController {
 }
 ```
 
-```ts
+```typescript
 // CJS
 // ./middlewares/Middleware.ts
 const {

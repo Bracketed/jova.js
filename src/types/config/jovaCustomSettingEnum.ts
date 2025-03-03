@@ -14,7 +14,7 @@ export enum JovaSettingsTable {
 	 *
 	 * NOTE: Sub-apps will inherit the value of this setting.
 	 *
-	 * @see https://expressjs.com/en/api.html#app.settings.table
+	 * @see {@link https://expressjs.com/en/api.html#app.settings.table Express.js Documentation}
 	 *
 	 * @default undefined
 	 * @type boolean
@@ -24,7 +24,7 @@ export enum JovaSettingsTable {
 	 * @name Environment
 	 * @description Environment mode. Be sure to set to `"production"` in a production environment
 	 *
-	 * @see https://expressjs.com/en/api.html#app.settings.table
+	 * @see {@link https://expressjs.com/en/api.html#app.settings.table Express.js Documentation}
 	 *
 	 * @default process.env.NODE_ENV | "development"
 	 * @type string
@@ -34,7 +34,7 @@ export enum JovaSettingsTable {
 	 * @name ETag
 	 * @description Set the ETag response header.
 	 *
-	 * @see https://expressjs.com/en/api.html#app.settings.table
+	 * @see {@link https://expressjs.com/en/api.html#app.settings.table Express.js Documentation}
 	 *
 	 * @default "weak"
 	 * @type any
@@ -44,7 +44,7 @@ export enum JovaSettingsTable {
 	 * @name JSONPCallback
 	 * @description Specifies the default JSONP callback name.
 	 *
-	 * @see https://expressjs.com/en/api.html#app.settings.table
+	 * @see {@link https://expressjs.com/en/api.html#app.settings.table Express.js Documentation}
 	 *
 	 * @default "callback"
 	 * @type string
@@ -56,7 +56,7 @@ export enum JovaSettingsTable {
 	 * Enable escaping JSON responses from the `res.json`, `res.jsonp`, and `res.send` APIs.
 	 * The purpose of this it to assist with mitigating certain types of persistent XSS attacks when clients sniff responses for HTML.
 	 *
-	 * @see https://expressjs.com/en/api.html#app.settings.table
+	 * @see {@link https://expressjs.com/en/api.html#app.settings.table Express.js Documentation}
 	 *
 	 * @default undefined
 	 * @type boolean
@@ -69,7 +69,7 @@ export enum JovaSettingsTable {
 	 *
 	 * **NOTE**: *Sub-apps will inherit the value of this setting.*
 	 *
-	 * @see https://expressjs.com/en/api.html#app.settings.table
+	 * @see {@link https://expressjs.com/en/api.html#app.settings.table Express.js Documentation}
 	 *
 	 * @default undefined
 	 * @type any
@@ -83,7 +83,7 @@ export enum JovaSettingsTable {
 	 *
 	 * **NOTE**: *Sub-apps will inherit the value of this setting.*
 	 *
-	 * @see https://expressjs.com/en/api.html#app.settings.table
+	 * @see {@link https://expressjs.com/en/api.html#app.settings.table Express.js Documentation}
 	 *
 	 * @default undefined
 	 * @type any
@@ -100,7 +100,7 @@ export enum JovaSettingsTable {
 	 *
 	 * A custom query string parsing function will receive the complete query string, and must return an object of query keys and their values.
 	 *
-	 * @see https://expressjs.com/en/api.html#app.settings.table
+	 * @see {@link https://expressjs.com/en/api.html#app.settings.table Express.js Documentation}
 	 *
 	 * @default "extended"
 	 * @type any
@@ -114,7 +114,7 @@ export enum JovaSettingsTable {
 	 *
 	 * **NOTE**: *Sub-apps will inherit the value of this setting.*
 	 *
-	 * @see https://expressjs.com/en/api.html#app.settings.table
+	 * @see {@link https://expressjs.com/en/api.html#app.settings.table Express.js Documentation}
 	 *
 	 * @default undefined
 	 * @type boolean
@@ -125,7 +125,7 @@ export enum JovaSettingsTable {
 	 * @description
 	 * The number of dot-separated parts of the host to remove to access subdomain.
 	 *
-	 * @see https://expressjs.com/en/api.html#app.settings.table
+	 * @see {@link https://expressjs.com/en/api.html#app.settings.table Express.js Documentation}
 	 *
 	 * @default 2
 	 * @type boolean
@@ -146,7 +146,7 @@ export enum JovaSettingsTable {
 	 *
 	 * **NOTE**: *Sub-apps will inherit the value of this setting, even though it has a default value.*
 	 *
-	 * @see https://expressjs.com/en/api.html#app.settings.table
+	 * @see {@link https://expressjs.com/en/api.html#app.settings.table Express.js Documentation}
 	 *
 	 * @default false
 	 * @type any
@@ -157,7 +157,7 @@ export enum JovaSettingsTable {
 	 * @description
 	 * A directory or an array of directories for the application's views. If an array, the views are looked up in the order they occur in the array
 	 *
-	 * @see https://expressjs.com/en/api.html#app.settings.table
+	 * @see {@link https://expressjs.com/en/api.html#app.settings.table Express.js Documentation}
 	 *
 	 * @default process.cwd() + '/views'
 	 * @type string | Array<string>
@@ -170,7 +170,7 @@ export enum JovaSettingsTable {
 	 *
 	 * **NOTE**: *Sub-apps will not inherit the value of this setting in production (when `NODE_ENV` is `"production"`).*
 	 *
-	 * @see https://expressjs.com/en/api.html#app.settings.table
+	 * @see {@link https://expressjs.com/en/api.html#app.settings.table Express.js Documentation}
 	 *
 	 * @default true | undefined
 	 * @type boolean
@@ -183,7 +183,7 @@ export enum JovaSettingsTable {
 	 *
 	 * **NOTE**: *Sub-apps will inherit the value of this setting.*
 	 *
-	 * @see https://expressjs.com/en/api.html#app.settings.table
+	 * @see {@link https://expressjs.com/en/api.html#app.settings.table Express.js Documentation}
 	 *
 	 * @default undefined
 	 * @type string
@@ -194,7 +194,7 @@ export enum JovaSettingsTable {
 	 * @description
 	 * Enables the `"X-Powered-By: Express"` HTTP header.
 	 *
-	 * h@see https://expressjs.com/en/api.html#app.settings.table
+	 * @see {@link https://expressjs.com/en/api.html#app.settings.table Express.js Documentation}
 	 *
 	 * @default true
 	 * @type boolean

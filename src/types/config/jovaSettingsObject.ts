@@ -1,13 +1,16 @@
 import { JovaSettingsTable } from '../../types/index';
 
 /**
- * The enableable and disableable settings for the Jova.js server.
+ * @name JovaSettings
+ * @description The boolean-based settings for the Jova.js server.
  *
- 
+ * @module Types
  * @interface JovaSettings
  */
 export interface JovaSettings {
 	/**
+	 * @name enabled
+	 * @description
 	 * Settings to enable.
 	 *
 	 * Allows boolean-based settings only.
@@ -16,6 +19,8 @@ export interface JovaSettings {
 	 */
 	enabled?: Array<JovaSettingsTable>;
 	/**
+	 * @name disabled
+	 * @description
 	 * Settings to disable.
 	 *
 	 * Allows boolean-based settings only.

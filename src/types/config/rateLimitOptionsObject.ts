@@ -6,32 +6,37 @@ import type {
 } from '../../types/index';
 
 /**
- * Ratelimit config for the Jova.js server.
+ * @name RatelimitConfig
+ * @description Ratelimit config for the Jova.js server.
  *
- 
+ * @module Types
  * @interface RatelimitConfig
  */
 export interface RatelimitConfig {
 	/**
-	 * Time in milliseconds until the Ratelimit bucket refreshes.
+	 * @name refreshTime
+	 * @description Time in milliseconds until the Ratelimit bucket refreshes.
 	 *
 	 * @type number
 	 */
 	refreshTime?: number;
 	/**
-	 * The amount of requests that can be made before being Ratelimited.
+	 * @name requestLimitAmount
+	 * @description The amount of requests that can be made before being Ratelimited.
 	 *
 	 * @type number | ValueDeterminingMiddleware<number>
 	 */
 	requestLimitAmount?: number | ValueDeterminingMiddleware<number>;
 	/**
-	 * The message for the server to respond when the rate limit is maxed.
+	 * @name requestLimitMessage
+	 * @description The message for the server to respond when the rate limit is maxed.
 	 *
 	 * @type string
 	 */
 	requestLimitMessage?: string;
 	/**
-	 * The HTTP response code to respond with when the rate limit is maxed.
+	 * @name requestLimitCode
+	 * @description The HTTP response code to respond with when the rate limit is maxed.
 	 * @example
 	 * // All HTTP Response codes (HttpStatus ENUM)
 	 * enum HttpStatus {
@@ -112,24 +117,29 @@ export interface RatelimitConfig {
 	 */
 	requestLimitCode?: HttpStatus;
 	/**
-	 * A custom middleware to handle rate limited requests.
+	 * @name requestLimitHandler
+	 * @description A custom middleware to handle rate limited requests.
 	 *
 	 * @type RateLimitExceededEventHandler
 	 */
 	requestLimitHandler?: RateLimitExceededEventHandler;
 	/**
-	 * Count all failed requests after the ratelimit bucket is full.
+	 * @name countFailedRequests
+	 * @description Count all failed requests after the ratelimit bucket is full.
 	 *
 	 * @type boolean
 	 */
 	countFailedRequests?: boolean;
 	/**
-	 * Allow requests to be counted into the bucket even if the Jova.js server fails to respond.
+	 * @name allowOnInternalError
+	 * @description Allow requests to be counted into the bucket even if the Jova.js server fails to respond.
 	 *
 	 * @type boolean
 	 */
 	allowOnInternalError?: boolean;
 	/**
+	 * @name ratelimitDatabase
+	 * @description
 	 * Add an optional Redis server to manage limit buckets.
 	 *
 	 * Can be a connection string

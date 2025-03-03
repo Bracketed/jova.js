@@ -1,89 +1,121 @@
 /**
- * Common language tags used in the `Accept-Language` HTTP header field.
- * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Language
+ * @name `Accept-Language` HTTP header Enum
+ * @description Common language tags used in the `Accept-Language` HTTP header field.
+ * @module Types
+ * @memberof Types
+ * @enum {Language}
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Language MDN: Accept-Language}
  */
 export enum Language {
 	/**
-	 * English language.
-	 * @see https://en.wikipedia.org/wiki/English_language
+	 * @name English
+	 * @description English language.
+	 * @type {string}
+	 * @see {@link https://en.wikipedia.org/wiki/English_language English Language on Wikipedia}
 	 */
-	EN = 'en',
+	English = 'en',
 
 	/**
-	 * French language.
-	 * @see https://en.wikipedia.org/wiki/French_language
+	 * @name French
+	 * @description French language.
+	 * @type {string}
+	 * @see {@link https://en.wikipedia.org/wiki/French_language French Language on Wikipedia}
 	 */
-	FR = 'fr',
+	French = 'fr',
 
 	/**
-	 * Spanish language.
-	 * @see https://en.wikipedia.org/wiki/Spanish_language
+	 * @name Spanish
+	 * @description Spanish language.
+	 * @type {string}
+	 * @see {@link https://en.wikipedia.org/wiki/Spanish_language Spanish Language on Wikipedia}
 	 */
-	ES = 'es',
+	Spanish = 'es',
 
 	/**
-	 * German language.
-	 * @see https://en.wikipedia.org/wiki/German_language
+	 * @name German
+	 * @description German language.
+	 * @type {string}
+	 * @see {@link https://en.wikipedia.org/wiki/German_language German Language on Wikipedia}
 	 */
-	DE = 'de',
+	German = 'de',
 
 	/**
-	 * Chinese language (Simplified).
-	 * @see https://en.wikipedia.org/wiki/Chinese_language
+	 * @name Chinese (Simplified)
+	 * @description Chinese language (Simplified).
+	 * @type {string}
+	 * @see {@link https://en.wikipedia.org/wiki/Chinese_language Chinese Language on Wikipedia}
 	 */
-	ZH_CN = 'zh-CN',
+	ChineseSimplified = 'zh-CN',
 
 	/**
-	 * Chinese language (Traditional).
-	 * @see https://en.wikipedia.org/wiki/Chinese_language
+	 * @name Chinese (Traditional)
+	 * @description Chinese language (Traditional).
+	 * @type {string}
+	 * @see {@link https://en.wikipedia.org/wiki/Chinese_language Chinese Language on Wikipedia}
 	 */
-	ZH_TW = 'zh-TW',
+	ChineseTraditional = 'zh-TW',
 
 	/**
-	 * Japanese language.
-	 * @see https://en.wikipedia.org/wiki/Japanese_language
+	 * @name Japanese
+	 * @description Japanese language.
+	 * @type {string}
+	 * @see {@link https://en.wikipedia.org/wiki/Japanese_language Japanese Language on Wikipedia}
 	 */
-	JA = 'ja',
+	Japanese = 'ja',
 
 	/**
-	 * Russian language.
-	 * @see https://en.wikipedia.org/wiki/Russian_language
+	 * @name Russian
+	 * @description Russian language.
+	 * @type {string}
+	 * @see {@link https://en.wikipedia.org/wiki/Russian_language Russian Language on Wikipedia}
 	 */
-	RU = 'ru',
+	Russian = 'ru',
 
 	/**
-	 * Portuguese language (Brazil).
-	 * @see https://en.wikipedia.org/wiki/Portuguese_language
+	 * @name Portuguese (Brazilian)
+	 * @description Portuguese language (Brazil).
+	 * @type {string}
+	 * @see {@link https://en.wikipedia.org/wiki/Portuguese_language Portuguese Language on Wikipedia}
 	 */
-	PT_BR = 'pt-BR',
+	PortugueseBrazilian = 'pt-BR',
 
 	/**
-	 * Portuguese language (Portugal).
-	 * @see https://en.wikipedia.org/wiki/Portuguese_language
+	 * @name Portuguese
+	 * @description Portuguese language (Portugal).
+	 * @type {string}
+	 * @see {@link https://en.wikipedia.org/wiki/Portuguese_language Portuguese Language on Wikipedia}
 	 */
-	PT_PT = 'pt-PT',
+	Portuguese = 'pt-PT',
 
 	/**
-	 * Arabic language.
-	 * @see https://en.wikipedia.org/wiki/Arabic_language
+	 * @name Arabic
+	 * @description Arabic language.
+	 * @type {string}
+	 * @see {@link https://en.wikipedia.org/wiki/Arabic_language Arabic Language on Wikipedia}
 	 */
-	AR = 'ar',
+	Arabic = 'ar',
 
 	/**
-	 * Hindi language.
-	 * @see https://en.wikipedia.org/wiki/Hindi
+	 * @name Hindi
+	 * @description Hindi language.
+	 * @type {string}
+	 * @see {@link https://en.wikipedia.org/wiki/Hindi Hindi Language on Wikipedia}
 	 */
-	HI = 'hi',
+	Hindi = 'hi',
 
 	/**
-	 * Italian language.
-	 * @see https://en.wikipedia.org/wiki/Italian_language
+	 * @name Italian
+	 * @description Italian language.
+	 * @type {string}
+	 * @see {@link https://en.wikipedia.org/wiki/Italian_language Italian Language on Wikipedia}
 	 */
-	IT = 'it',
+	Italian = 'it',
 
 	/**
-	 * Korean language.
-	 * @see https://en.wikipedia.org/wiki/Korean_language
+	 * @name Korean
+	 * @description Korean language.
+	 * @type {string}
+	 * @see {@link https://en.wikipedia.org/wiki/Korean_language Korean Language on Wikipedia}
 	 */
-	KO = 'ko',
+	Korean = 'ko',
 }
