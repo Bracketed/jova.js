@@ -1,4 +1,4 @@
-import type { ClientRateLimitInfo, Options, Store } from './types';
+import type { ClientRateLimitInfo, LimitOptions, Store } from './types';
 
 type Client = {
 	totalHits: number;
@@ -12,7 +12,7 @@ export default class MemoryStore implements Store {
 	interval?: NodeJS.Timeout;
 	localKeys = true;
 
-	init(options: Options): void {
+	init(options: LimitOptions): void {
 		this.windowMs = options.windowMs;
 		if (this.interval) clearInterval(this.interval);
 		this.interval = setInterval(() => {
@@ -89,4 +89,3 @@ export default class MemoryStore implements Store {
 		this.current = new Map();
 	}
 }
-

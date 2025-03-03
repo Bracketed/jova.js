@@ -19,7 +19,7 @@ interface IndexedRange {
 	index: number;
 }
 
-interface Options {
+interface RangeOptions {
 	combine?: boolean | undefined;
 }
 type ResultUnsatisfiable = -1;
@@ -121,8 +121,8 @@ export {
 	rangeParser as RangeParser,
 	type IndexedRange,
 	type IndexedRanges,
-	type Options,
 	type Range,
+	type RangeOptions,
 	type Ranges,
 	type Result,
 	type ResultInvalid,

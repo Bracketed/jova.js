@@ -8,7 +8,7 @@ import type {
 	DraftHeadersVersion,
 	EnabledValidations,
 	LegacyStore,
-	Options,
+	LimitOptions,
 	RateLimitExceededEventHandler,
 	RateLimitInfo,
 	RateLimitRequestHandler,
@@ -76,7 +76,7 @@ type Configuration = {
 	passOnStoreError: boolean;
 };
 
-const getOptionsFromConfig = (config: Configuration): Options => {
+const getOptionsFromConfig = (config: Configuration): LimitOptions => {
 	const { validations, ...directlyPassableEntries } = config;
 
 	return {
@@ -85,11 +85,11 @@ const getOptionsFromConfig = (config: Configuration): Options => {
 	};
 };
 
-const omitUndefinedOptions = (passedOptions: Partial<Options>): Partial<Options> => {
-	const omittedOptions: Partial<Options> = {};
+const omitUndefinedOptions = (passedOptions: Partial<LimitOptions>): Partial<LimitOptions> => {
+	const omittedOptions: Partial<LimitOptions> = {};
 
 	for (const k of Object.keys(passedOptions)) {
-		const key = k as keyof Options;
+		const key = k as keyof LimitOptions;
 
 		if (passedOptions[key] !== undefined) omittedOptions[key] = passedOptions[key];
 	}
@@ -97,10 +97,10 @@ const omitUndefinedOptions = (passedOptions: Partial<Options>): Partial<Options>
 	return omittedOptions;
 };
 
-const parseOptions = (passedOptions: Partial<Options>): Configuration => {
+const parseOptions = (passedOptions: Partial<LimitOptions>): Configuration => {
 	// Passing undefined should be equivalent to not passing an option at all, so we'll
 	// omit all fields where their value is undefined.
-	const notUndefinedOptions: Partial<Options> = omitUndefinedOptions(passedOptions);
+	const notUndefinedOptions: Partial<LimitOptions> = omitUndefinedOptions(passedOptions);
 
 	// Create the validator before even parsing the rest of the options.
 	const validations = getValidations(notUndefinedOptions?.validate ?? true);
@@ -121,7 +121,7 @@ const parseOptions = (passedOptions: Partial<Options>): Configuration => {
 	let standardHeaders = notUndefinedOptions.standardHeaders ?? false;
 	if (standardHeaders === true) standardHeaders = 'draft-6';
 
-	// See ./types.ts#Options for a detailed description of the options and their
+	// See ./types.ts#LimitOptions for a detailed description of the options and their
 	// defaults.
 	const config: Configuration = {
 		windowMs: 60 * 1000,
@@ -161,7 +161,12 @@ const parseOptions = (passedOptions: Partial<Options>): Configuration => {
 			// By default, use the IP address to rate limit users.
 			return request.ip!;
 		},
-		async handler(request: Request, response: Response, _next: NextFunction, _optionsUsed: Options): Promise<void> {
+		async handler(
+			request: Request,
+			response: Response,
+			_next: NextFunction,
+			_optionsUsed: LimitOptions
+		): Promise<void> {
 			// Set the response status code.
 			response.status(config.statusCode);
 			// Call the `message` if it is a function.
@@ -210,7 +215,7 @@ const handleAsyncErrors =
 		}
 	};
 
-const rateLimit = (passedOptions?: Partial<Options>): RateLimitRequestHandler => {
+const rateLimit = (passedOptions?: Partial<LimitOptions>): RateLimitRequestHandler => {
 	// Parse the options and add the default values for unspecified options
 	const config = parseOptions(passedOptions ?? {});
 	const options = getOptionsFromConfig(config);
@@ -383,4 +388,3 @@ const rateLimit = (passedOptions?: Partial<Options>): RateLimitRequestHandler =>
 
 // Export it to the world!
 export default rateLimit;
-

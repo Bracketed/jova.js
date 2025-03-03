@@ -14,10 +14,10 @@ export type RateLimitExceededEventHandler = (
 	request: Request,
 	response: Response,
 	next: ApplicationNextFunction,
-	optionsUsed: Options
+	optionsUsed: LimitOptions
 ) => void;
 
-export type RateLimitReachedEventHandler = (request: Request, response: Response, optionsUsed: Options) => void;
+export type RateLimitReachedEventHandler = (request: Request, response: Response, optionsUsed: LimitOptions) => void;
 
 export type ClientRateLimitInfo = {
 	totalHits: number;
@@ -39,7 +39,7 @@ export type LegacyStore = {
 };
 
 export type Store = {
-	init?: (options: Options) => void;
+	init?: (options: LimitOptions) => void;
 	get?: (key: string) => Promise<ClientRateLimitInfo | undefined> | ClientRateLimitInfo | undefined;
 	increment: (key: string) => Promise<IncrementResponse> | IncrementResponse;
 	decrement: (key: string) => Promise<void> | void;
@@ -56,7 +56,7 @@ export type EnabledValidations = {
 	[key in keyof Omit<Validations, 'enabled' | 'disable'> | 'default']?: boolean;
 };
 
-export type Options = {
+export type LimitOptions = {
 	windowMs: number;
 	limit: number | ValueDeterminingMiddleware<number>;
 	message: any | ValueDeterminingMiddleware<any>;

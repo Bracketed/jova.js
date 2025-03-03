@@ -1,9 +1,9 @@
 import {
+	type ApplicationErrorCallback,
 	type ApplicationResponse,
 	ContentType,
 	type CookieOptions,
 	type DownloadOptions,
-	type ErrorCallback,
 	HttpStatus,
 	type SendFileOptions,
 } from '../types/index';
@@ -1033,7 +1033,7 @@ export class ResponseUtility {
 		path: string,
 		filename: string,
 		options: DownloadOptions,
-		callback?: ErrorCallback
+		callback?: ApplicationErrorCallback
 	): void => this.response.download(path, filename, options, callback);
 	/**
 	 * Transfer the file at the given path as an attachment.
@@ -1056,7 +1056,7 @@ export class ResponseUtility {
 	 *
 	 * @readonly
 	 */
-	public readonly namedDownload = (path: string, filename: string, callback?: ErrorCallback): void =>
+	public readonly namedDownload = (path: string, filename: string, callback?: ApplicationErrorCallback): void =>
 		this.response.download(path, filename, callback);
 	/**
 	 * Transfer the file at the given path as an attachment.
@@ -1077,7 +1077,8 @@ export class ResponseUtility {
 	 *
 	 * @readonly
 	 */
-	public readonly download = (path: string, callback?: ErrorCallback): void => this.response.download(path, callback);
+	public readonly download = (path: string, callback?: ApplicationErrorCallback): void =>
+		this.response.download(path, callback);
 	/**
 	 * Calling the `writable.end()` method signals that no more data will be written
 	 * to the `Writable`. The optional `chunk` and `encoding` arguments allow one
@@ -1564,7 +1565,7 @@ export class ResponseUtility {
 
 	 * @readonly
 	 */
-	public readonly sendAdvancedFile = (path: string, options: SendFileOptions, callback?: ErrorCallback) =>
+	public readonly sendAdvancedFile = (path: string, options: SendFileOptions, callback?: ApplicationErrorCallback) =>
 		this.response.sendFile(path, options, callback);
 	/**
 	 * Transfer the file at the given `path`.
@@ -1605,7 +1606,8 @@ export class ResponseUtility {
 
 	 * @readonly
 	 */
-	public readonly sendFile = (path: string, callback?: ErrorCallback) => this.response.sendFile(path, callback);
+	public readonly sendFile = (path: string, callback?: ApplicationErrorCallback) =>
+		this.response.sendFile(path, callback);
 	/**
 	 * Transfer the file at the given `path`.
 	 *
@@ -1644,7 +1646,8 @@ export class ResponseUtility {
 	 *
 	 * @readonly
 	 */
-	public readonly file = (path: string, callback?: ErrorCallback) => this.response.sendFile(path, callback);
+	public readonly file = (path: string, callback?: ApplicationErrorCallback) =>
+		this.response.sendFile(path, callback);
 	/**
 	 * Transfer the file at the given `path`.
 	 *
@@ -1684,7 +1687,8 @@ export class ResponseUtility {
 
 	 * @readonly
 	 */
-	public readonly upload = (path: string, callback?: ErrorCallback) => this.response.sendFile(path, callback);
+	public readonly upload = (path: string, callback?: ApplicationErrorCallback) =>
+		this.response.sendFile(path, callback);
 	/**
 	 * Transfer the file at the given `path`.
 	 *
@@ -1722,7 +1726,8 @@ export class ResponseUtility {
 	 *
 	 * @readonly
 	 */
-	public readonly uploadFile = (path: string, callback?: ErrorCallback) => this.response.sendFile(path, callback);
+	public readonly uploadFile = (path: string, callback?: ApplicationErrorCallback) =>
+		this.response.sendFile(path, callback);
 	/**
 	 * Transfer the file at the given `path`.
 	 *
@@ -1762,7 +1767,8 @@ export class ResponseUtility {
 
 	 * @readonly
 	 */
-	public readonly addFile = (path: string, callback?: ErrorCallback) => this.response.sendFile(path, callback);
+	public readonly addFile = (path: string, callback?: ApplicationErrorCallback) =>
+		this.response.sendFile(path, callback);
 	/**
 	 * @name sendStatus()
 	 * @description Set the response HTTP status code to `statusCode` and send its string representation as the response body.

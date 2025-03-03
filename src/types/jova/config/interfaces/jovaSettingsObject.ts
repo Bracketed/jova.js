@@ -1,4 +1,4 @@
-import { JovaSettingsTable } from '../../types/index';
+import { JovaSettingsTable } from '../../../index';
 
 /**
  * @name JovaSettings

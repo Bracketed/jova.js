@@ -7,7 +7,7 @@ import type {
 	MiddlewareHandler,
 	RatelimitConfig,
 	RequestHandler,
-} from '../../types/index';
+} from '../../../index';
 
 /**
  * @name JovaServerOptions

@@ -56,6 +56,7 @@ export class JovaServer extends EventEmitter {
 	/**
 	 * The application registry, contains all the routes, middlewares and event handlers.
 	 *
+	 * @class ApplicationRegistry
 	 * @public
 	 * @readonly
 	 * @type ApplicationRegistry

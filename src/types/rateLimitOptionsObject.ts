@@ -1,9 +1,4 @@
-import type {
-	HttpStatus,
-	IORedisOptions,
-	RateLimitExceededEventHandler,
-	ValueDeterminingMiddleware,
-} from '../../types/index';
+import type { HttpStatus, IORedisOptions, RateLimitExceededEventHandler, ValueDeterminingMiddleware } from './index';
 
 /**
  * @name RatelimitConfig
