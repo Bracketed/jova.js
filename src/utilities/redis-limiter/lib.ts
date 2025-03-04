@@ -1,11 +1,11 @@
 import type {
 	ClientRateLimitInfo,
 	IncrementResponse,
-	Options as RateLimitConfiguration,
+	LimitOptions as RateLimitConfiguration,
 	Store,
 } from '../limiter/index';
 import scripts from './scripts';
-import type { Options, RedisReply, SendCommandFn } from './types';
+import type { RedisLimitOptions as Options, RedisReply, SendCommandFn } from './types';
 
 const toInt = (input: string | number | boolean | undefined): number => {
 	if (typeof input === 'number') return input;
@@ -111,4 +111,3 @@ export class RedisStore implements Store {
 }
 
 export default RedisStore;
-

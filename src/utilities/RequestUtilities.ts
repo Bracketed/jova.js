@@ -1,5 +1,5 @@
 import { type ApplicationRequest, Charset, ContentType, Encoder, Language } from '../types/index';
-import type { Options, Ranges, Result } from './range';
+import type { RangeOptions, Ranges, Result } from './range';
 
 // Save for later
 
@@ -241,7 +241,7 @@ export class RequestUtility {
 	 *
 	 * @readonly
 	 */
-	public readonly range = (size: number, options?: Options): Ranges | Result | undefined =>
+	public readonly range = (size: number, options?: RangeOptions): Ranges | Result | undefined =>
 		this.request.range(size, options);
 	/**
 	 * Check if the given `type(s)` is acceptable, returning

@@ -1,0 +1,6 @@
+base-path: /api
+
+paths:
+    routes: 'routes'
+    events: 'events'
+    middlewares: 'middlewares'

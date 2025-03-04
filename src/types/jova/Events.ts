@@ -1,7 +1,6 @@
 /**
  * Events for Jova Listeners.
  *
- 
  * @enum string
  */
 export enum ApplicationEvent {

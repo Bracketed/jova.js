@@ -4,7 +4,7 @@ import { EventEmitter } from 'node:events';
 
 import { Handlers } from './handlers/index';
 
-import { parseRootData } from './utilities/Path/root';
+import { getProjectRoot, parseRootData } from './utilities/Path/root';
 import * as tcp from './utilities/port-in-use';
 
 import {
@@ -12,7 +12,7 @@ import {
 	type CorsOptions,
 	EventController,
 	type JovaCustomOption,
-	type JovaPathSettings$1,
+	type JovaRequiredPathSettings,
 	type JovaServerOptions,
 	type JovaSettings,
 	JovaSettingsTable,
@@ -25,6 +25,7 @@ import {
 import { Registry as ApplicationRegistry } from './Registry';
 
 import { BulkResourceLoader } from './resources/BulkResourceLoader';
+import { loadResourceConfigOptions } from './utilities/loadRC';
 
 /**
  * The Jova Server Class.
@@ -45,7 +46,11 @@ export class JovaServer extends EventEmitter {
 	 */
 	public readonly port: string | number;
 	private readonly basePath: string;
-	private readonly paths: JovaPathSettings$1;
+	private readonly paths: JovaRequiredPathSettings = {
+		events: 'events',
+		middlewares: 'middlewares',
+		routes: 'routes,',
+	};
 
 	private readonly middlewares: Array<MiddlewareHandler> | undefined;
 	private readonly ratelimitConf: RatelimitConfig | undefined;
@@ -72,6 +77,7 @@ export class JovaServer extends EventEmitter {
 	 */
 	public readonly cwd: string;
 
+	private readonly root: string | null = getProjectRoot();
 	private readonly application: Express = express();
 	private readonly logger: Logger = new Logger({ prefix: 'Application' });
 	private readonly emitter: EventEmitter;
@@ -84,6 +90,13 @@ export class JovaServer extends EventEmitter {
 	 */
 	constructor(options: JovaServerOptions = {}) {
 		super();
+
+		if (!this.root)
+			throw new Error('Unable to find project root, are you executing Jova.js from the correct file/directory?', {
+				cause: 'Unable to find package.json',
+			});
+
+		loadResourceConfigOptions();
 
 		this.basePath = options.basePath || '';
 		this.port = options.port || 3000;
@@ -466,10 +479,11 @@ export class JovaServer extends EventEmitter {
 	}
 
 	/**
+	 * @name listen
+	 * @description
 	 * Start the Jova Server, begin listening to a port & its incoming requests.
 	 *
 	 * @public
-	 
 	 * @param port
 	 * @param allowPortIncrement
 	 * @example

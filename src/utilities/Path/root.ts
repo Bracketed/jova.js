@@ -1,6 +1,6 @@
 // https://github.com/sapphiredev/pieces/blob/main/src/lib/internal/RootScan.ts
 
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 
 type PartialPackageJson = Partial<{
@@ -24,9 +24,21 @@ export function getRootData(): RootData {
 	return (data ??= parseRootData());
 }
 
+export function getProjectRoot(): null | string {
+	const cwd = process.cwd();
+	let file: string | null = null;
+
+	try {
+		if (existsSync(join(cwd, 'package.json'))) file = cwd;
+	} catch (error) {
+		return file;
+	}
+
+	return file;
+}
+
 export function parseRootData(): RootData {
 	const cwd = process.cwd();
-
 	let file: PartialPackageJson | undefined;
 
 	try {

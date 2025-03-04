@@ -4,7 +4,6 @@
  *
  * @module Types
  * @interface JovaCustomOption
- * @group Jova.js Configuration Typings
  */
 export interface JovaCustomOption {
 	/**

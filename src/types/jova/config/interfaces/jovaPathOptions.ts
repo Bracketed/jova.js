@@ -33,15 +33,17 @@ export interface JovaPathSettings {
 }
 
 /**
- * @name JovaPathSettings$1
+ * @name JovaRequiredPathSettings
  * @description
  * Custom paths for searching when the server runs.
  * - Has all properties marked as required.
  *
+ * Same as `JovaPathSettings`, but all fields are marked as required.
+ *
  * @module Types
- * @interface JovaPathSettings$1
+ * @interface JovaRequiredPathSettings
  */
-export interface JovaPathSettings$1 {
+export interface JovaRequiredPathSettings {
 	/**
 	 * @name routes
 	 * @description Folder where your routes are contained.
