@@ -6,6 +6,7 @@ import {
 	type ApplicationResponse,
 	ApplicationRoute,
 	HttpStatus,
+	type LoggerOptions,
 } from '../../index';
 
 /**
@@ -23,15 +24,16 @@ export class RouteController {
 	 *
 	 * **Prefixed automatically with `ApplicationRoute`.**
 	 */
-	protected readonly logger: Logger = new Logger({ prefix: 'ApplicationRoute' });
+	protected readonly logger: Logger;
 	/**
 	 * The Locals defined in JovaServer.
 	 */
 	protected readonly container: Record<string, any> & Locals;
 
-	constructor(application: Express, container: Record<string, any> & Locals) {
+	constructor(application: Express, container: Record<string, any> & Locals, logger: LoggerOptions) {
 		this.application = application;
 		this.container = container;
+		this.logger = new Logger({ ...logger, prefix: 'ApplicationRoute' });
 
 		this.run = this.run.bind(this);
 	}

@@ -16,6 +16,7 @@ import {
 	type JovaServerOptions,
 	type JovaSettings,
 	JovaSettingsTable,
+	type LoggerOptions,
 	MiddlewareController,
 	type MiddlewareHandler,
 	type RatelimitConfig,
@@ -79,7 +80,8 @@ export class JovaServer extends EventEmitter {
 
 	private readonly root: string | null = getProjectRoot();
 	private readonly application: Express = express();
-	private readonly logger: Logger = new Logger({ prefix: 'Application' });
+	private readonly logger: Logger;
+	private readonly loggerOptions: LoggerOptions;
 	private readonly emitter: EventEmitter;
 
 	/**
@@ -105,11 +107,15 @@ export class JovaServer extends EventEmitter {
 		this.settings = options.settings || undefined;
 		this.customOptions = options.customOptions || undefined;
 		this.corsOptions = options.cors || undefined;
+
 		this.paths = {
 			events: options.paths?.events || 'events',
 			middlewares: options.paths?.middlewares || 'middlewares',
 			routes: options.paths?.routes || 'routes',
 		};
+
+		this.logger = new Logger({ ...(options.logger ?? {}), prefix: 'Application' });
+		this.loggerOptions = options.logger ?? {};
 
 		this.emitter = new EventEmitter();
 		this.registry = new ApplicationRegistry({
@@ -431,6 +437,7 @@ export class JovaServer extends EventEmitter {
 				cwd: this.cwd,
 				type: 'Route',
 				controllerType: RouteController,
+				logger: this.loggerOptions,
 			}).setupDeployScript()
 		)
 			.loadHandlers(this.paths.routes)
@@ -445,6 +452,7 @@ export class JovaServer extends EventEmitter {
 				cwd: this.cwd,
 				type: 'Event',
 				controllerType: EventController,
+				logger: this.loggerOptions,
 			}).setupDeployScript()
 		)
 			.loadHandlers(this.paths.events)
@@ -457,6 +465,7 @@ export class JovaServer extends EventEmitter {
 		await new BulkResourceLoader({
 			application: this.application,
 			registry: this.registry,
+			logger: this.loggerOptions,
 			tasks: [
 				{ name: 'Ratelimits', arguments: [this.ratelimitConf] },
 				{ name: 'CORS', arguments: [this.corsOptions] },
@@ -472,6 +481,7 @@ export class JovaServer extends EventEmitter {
 				application: this.application,
 				registry: this.registry,
 				controllerType: MiddlewareController,
+				logger: this.loggerOptions,
 			}).setupDeployScript()
 		)
 			.loadHandlers(this.paths.middlewares)
@@ -518,6 +528,7 @@ export class JovaServer extends EventEmitter {
 			const resourceCount = await new BulkResourceLoader({
 				application: this.application,
 				registry: this.registry,
+				logger: this.loggerOptions,
 				tasks: [
 					{ name: 'Settings', arguments: [this.settings] },
 					{ name: 'CustomOptions', arguments: [this.customOptions] },
@@ -577,6 +588,7 @@ export class JovaServer extends EventEmitter {
 			const resourceCount = await new BulkResourceLoader({
 				application: this.application,
 				registry: this.registry,
+				logger: this.loggerOptions,
 				tasks: [
 					{ name: 'Settings', arguments: [this.settings] },
 					{ name: 'CustomOptions', arguments: [this.customOptions] },

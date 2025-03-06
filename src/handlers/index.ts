@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { getHandlerOptions } from '../decorators/index';
 import type { Registry } from '../Registry';
-import type { ApplicationStats } from '../types/index';
+import type { ApplicationStats, LoggerOptions } from '../types/index';
 import { resolvePath } from '../utilities/Path/path';
 import { Stopwatch } from '../utilities/stopwatch';
 import type { HandlerFunction } from './function';
@@ -72,15 +72,17 @@ export namespace Handlers {
 		controllerType: new (...args: any[]) => T;
 		application: Express;
 		registry: Registry;
+		logger: LoggerOptions;
 	}
 
 	export class Handler<T> {
 		private readonly cwd: string;
-		private readonly logger: LoggerType = new Logger({ prefix: 'ApplicationRegistry' });
+		private readonly logger: LoggerType;
 		private readonly type: string;
 		private readonly controllerType: new (...args: any[]) => T;
 		private readonly application: Express;
 		private readonly registry: Registry;
+		private readonly loggerOptions: LoggerOptions;
 
 		private deploy!: (..._args: any[]) => Promise<ApplicationStats | undefined>;
 		private handlers: Array<string> = [];
@@ -91,6 +93,8 @@ export namespace Handlers {
 			this.controllerType = options.controllerType;
 			this.application = options.application;
 			this.registry = options.registry;
+			this.logger = new Logger({ ...options.logger, prefix: 'ApplicationRegistry' });
+			this.loggerOptions = options.logger;
 		}
 
 		public async setupDeployScript() {
@@ -121,7 +125,7 @@ export namespace Handlers {
 					...args: any[]
 				) => HandlerFunction;
 
-				this.deploy = new Handler(this.application, this.registry).run;
+				this.deploy = new Handler(this.application, this.registry, this.loggerOptions).run;
 			}
 
 			return this;
@@ -187,7 +191,7 @@ export namespace Handlers {
 					type ControllerType = typeof this.controllerType;
 					const Controller = Module.module as new (...args: any[]) => ControllerType;
 
-					const Handler = new Controller(this.application, this.registry);
+					const Handler = new Controller(this.application, this.registry, this.loggerOptions);
 
 					const stats = await this.deploy(Handler, Module.clock);
 

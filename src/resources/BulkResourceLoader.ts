@@ -1,24 +1,29 @@
 import type { Express } from '@bracketed/express';
 import { Logger, type Logger as LoggerType } from '@bracketed/logger';
 import type { Registry } from '../Registry';
+import type { LoggerOptions } from '../types';
 import { ResourceLoader } from './ResourceLoader';
 
 export interface BulkResourceLoaderOptions {
 	application: Express;
 	registry: Registry;
+	logger: LoggerOptions;
 	tasks: Array<{ name: string; arguments: Array<any> }>;
 }
 
 export class BulkResourceLoader {
-	private readonly logger: LoggerType = new Logger({ prefix: 'ApplicationResourceLoader' });
+	private readonly logger: LoggerType;
 	private readonly application: Express;
 	private readonly registry: Registry;
 	private readonly array: Array<{ name: string; arguments: Array<any> }>;
+	private readonly options: LoggerOptions;
 
 	constructor(options: BulkResourceLoaderOptions) {
 		this.application = options.application;
 		this.registry = options.registry;
 		this.array = options.tasks;
+		this.logger = new Logger({ ...options.logger, prefix: 'ApplicationResourceLoader' });
+		this.options = options.logger;
 	}
 
 	public async load() {
@@ -27,7 +32,11 @@ export class BulkResourceLoader {
 		this.logger.info(`Loading ${this.array.length} resources...`);
 
 		for await (const [_index, task] of this.array.entries()) {
-			const Loader = new ResourceLoader({ application: this.application, registry: this.registry });
+			const Loader = new ResourceLoader({
+				application: this.application,
+				registry: this.registry,
+				logger: this.options,
+			});
 			const ResourceLoadedStatus = await Loader.loadResource(task.name.toLowerCase());
 
 			if (ResourceLoadedStatus === false) continue;

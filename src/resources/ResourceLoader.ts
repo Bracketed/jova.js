@@ -3,16 +3,18 @@ import { Logger, type Logger as LoggerType } from '@bracketed/logger';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Registry } from '../Registry';
+import type { LoggerOptions } from '../types';
 import { resolvePath } from '../utilities/Path/path';
 import { BaseResourceLoader, type BaseResourceOptions } from './BaseResource';
 
 export interface ResourceLoaderOptions {
 	application: Express;
 	registry: Registry;
+	logger: LoggerOptions;
 }
 
 export class ResourceLoader {
-	private readonly logger: LoggerType = new Logger({ prefix: 'ApplicationResourceLoader' });
+	private readonly logger: LoggerType;
 	private readonly application: Express;
 	private readonly registry: Registry;
 
@@ -21,6 +23,7 @@ export class ResourceLoader {
 	constructor(options: ResourceLoaderOptions) {
 		this.application = options.application;
 		this.registry = options.registry;
+		this.logger = new Logger({ ...options.logger, prefix: 'ApplicationResourceLoader' });
 	}
 
 	public async loadResource(name: string): Promise<this | boolean> {

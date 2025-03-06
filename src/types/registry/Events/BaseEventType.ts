@@ -1,6 +1,6 @@
 import type { Express, Locals } from '@bracketed/express';
 import { Logger } from '@bracketed/logger';
-import { ApplicationEvent, type EventListenerOptions } from '../../index';
+import { ApplicationEvent, type EventListenerOptions, type LoggerOptions } from '../../index';
 
 /**
  * The Event Controller, The base class for `Event` which is used in event files.
@@ -17,15 +17,16 @@ export class EventController {
 	 *
 	 * **Prefixed automatically with `ApplicationEvent`.**
 	 */
-	protected readonly logger: Logger = new Logger({ prefix: 'ApplicationEvent' });
+	protected readonly logger: Logger;
 	/**
 	 * The Locals defined in JovaServer.
 	 */
 	protected readonly container: Record<string, any> & Locals;
 
-	constructor(application: Express, container: Record<string, any> & Locals) {
+	constructor(application: Express, container: Record<string, any> & Locals, logger: LoggerOptions) {
 		this.application = application;
 		this.container = container;
+		this.logger = new Logger({ ...logger, prefix: 'ApplicationEvent' });
 
 		this.run = this.run.bind(this);
 	}

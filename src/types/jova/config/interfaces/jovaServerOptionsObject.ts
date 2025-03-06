@@ -4,6 +4,7 @@ import type {
 	JovaHeaderSetting,
 	JovaPathSettings,
 	JovaSettings,
+	LoggerOptions,
 	MiddlewareHandler,
 	RatelimitConfig,
 	RequestHandler,
@@ -102,4 +103,11 @@ export interface JovaServerOptions {
 	 * @type CorsOptions
 	 */
 	cors?: CorsOptions;
+	/**
+	 * @name logger
+	 * @description Options for the logger output of Jova.js. Utilise the package `@bracketed/logger` for an understanding on how the configuration works.
+	 * @default {}
+	 * @type LoggerOptions
+	 */
+	logger?: LoggerOptions;
 }

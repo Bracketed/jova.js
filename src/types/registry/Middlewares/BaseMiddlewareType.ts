@@ -1,6 +1,12 @@
 import type { Express, Locals } from '@bracketed/express';
 import { Logger } from '@bracketed/logger';
-import type { ApplicationNextFunction, ApplicationRequest, ApplicationResponse, MiddlewareOptions } from '../../index';
+import type {
+	ApplicationNextFunction,
+	ApplicationRequest,
+	ApplicationResponse,
+	LoggerOptions,
+	MiddlewareOptions,
+} from '../../index';
 
 /**
  * The Middleware Controller, The base class for `Middleware` which is used in middleware files.
@@ -17,15 +23,16 @@ export class MiddlewareController {
 	 *
 	 * **Prefixed automatically with `ApplicationMiddleware`.**
 	 */
-	protected readonly logger: Logger = new Logger({ prefix: 'ApplicationMiddleware' });
+	protected readonly logger: Logger;
 	/**
 	 * The Locals defined in JovaServer.
 	 */
 	protected readonly container: Record<string, any> & Locals;
 
-	constructor(application: Express, container: Record<string, any> & Locals) {
+	constructor(application: Express, container: Record<string, any> & Locals, logger: LoggerOptions) {
 		this.application = application;
 		this.container = container;
+		this.logger = new Logger({ ...logger, prefix: 'ApplicationMiddleware' });
 
 		this.run = this.run.bind(this);
 	}
