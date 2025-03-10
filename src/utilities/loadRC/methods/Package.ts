@@ -5,5 +5,7 @@ class Method {
 		this.path = path;
 	}
 
-	public load() {}
+	public load() {
+		console.log(this.path);
+	}
 }
