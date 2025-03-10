@@ -2,6 +2,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { getProjectRoot } from '../Path/root';
 
+// WIP.
+
 export const loadResourceConfigOptions = () => {
 	const cwd: string = getProjectRoot() as string; // Error checked beforehand, should always return what we need.
 	const files = fs.readdirSync(cwd).map((v) => path.parse(v).base);
