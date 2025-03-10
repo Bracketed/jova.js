@@ -78,8 +78,16 @@ export class JovaServer extends EventEmitter {
 	 */
 	public readonly cwd: string;
 
+	/**
+	 * The Express Object.
+	 *
+	 * @public
+	 * @readonly
+	 * @type Express
+	 */
+	public readonly application: Express = express();
+
 	private readonly root: string | null = getProjectRoot();
-	private readonly application: Express = express();
 	private readonly logger: Logger;
 	private readonly loggerOptions: LoggerOptions;
 	private readonly emitter: EventEmitter;

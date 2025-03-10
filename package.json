@@ -2,7 +2,7 @@
 	"name": "@bracketed/jova.js",
 	"description": "Jova.js - A semi-advanced Express.js framework by Bracketed Softworks!",
 	"packageManager": "yarn@4.6.0",
-	"version": "1.7.0",
+	"version": "1.7.1",
 	"publishConfig": {
 		"access": "public"
 	},
