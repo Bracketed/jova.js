@@ -4,6 +4,7 @@ import { BaseResourceLoader } from '../BaseResource';
 
 export class ResourceLoader extends BaseResourceLoader {
 	public override async load(corsOpt: CorsOptions | undefined) {
+		if (!corsOpt) return;
 		if (!cors) return;
 
 		this.application?.use(cors(corsOpt));
