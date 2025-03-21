@@ -1,3 +1,5 @@
+import type { JovaSettingsOptions } from '../enums';
+
 /**
  * @name JovaCustomOption
  * @description Custom express options to set when the Jova.js server starts.
@@ -12,7 +14,7 @@ export interface JovaCustomOption {
 	 *
 	 * @type string
 	 */
-	name: string;
+	name: string | JovaSettingsOptions;
 	/**
 	 * @name value
 	 * @description The value to set it to.

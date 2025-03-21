@@ -84,7 +84,7 @@ export interface JovaServerOptions {
 	settings?: JovaSettings;
 	/**
 	 * @name customOptions
-	 * @description Custom options from express to be set upon the server starting, similar to `settings` but this sets any value unlike `settings` which only allows settings from the `JovaSettingsTable` enum.
+	 * @description Custom options from express to be set upon the server starting, similar to `settings` but this sets any value unlike `settings` which only allows settings from the `JovaSettingsOptions` enum.
 	 * @default []
 	 * @type Array<JovaCustomOption>
 	 */

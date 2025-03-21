@@ -1,11 +1,11 @@
 /**
- * @name JovaSettingsTable
+ * @name JovaSettingsOptions
  * @description The Jova Settings enum.
  *
  * @module Types
  * @enum number
  */
-export enum JovaSettingsTable {
+export enum JovaSettingsOptions {
 	/**
 	 * @name CaseSensitive
 	 * @description

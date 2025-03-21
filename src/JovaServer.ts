@@ -15,7 +15,7 @@ import {
 	type JovaRequiredPathSettings,
 	type JovaServerOptions,
 	type JovaSettings,
-	JovaSettingsTable,
+	JovaSettingsOptions,
 	type LoggerOptions,
 	MiddlewareController,
 	type MiddlewareHandler,
@@ -239,7 +239,7 @@ export class JovaServer extends EventEmitter {
 	 * @public
 	 * @param (http get) path string
 	 * @param (http get) callback any
-	 * @param (get setting) setting string | JovaSettingsTable
+	 * @param (get setting) setting string | JovaSettingsOptions
 	 * @readonly
 	 */
 	public readonly get = this.application.get;
@@ -372,11 +372,11 @@ export class JovaServer extends EventEmitter {
 	 * @see {@link https://expressjs.com/en/5x/api.html#app.set Express Docs: Application.set()}
 	 *
 	 * @public
-	 * @param Name JovaSettingsTable | string
+	 * @param Name JovaSettingsOptions | string
 	 * @param Value any
 	 * @readonly
 	 */
-	public set(Name: JovaSettingsTable | string, Value: any): void {
+	public set(Name: JovaSettingsOptions | string, Value: any): void {
 		this.application.set(Name, Value);
 	}
 

@@ -1,4 +1,4 @@
-import { JovaSettingsTable } from '../../../index';
+import { JovaSettingsOptions } from '../../../index';
 
 /**
  * @name JovaSettings
@@ -15,9 +15,9 @@ export interface JovaSettings {
 	 *
 	 * Allows boolean-based settings only.
 	 *
-	 * @type Array<JovaSettingsTable>
+	 * @type Array<JovaSettingsOptions | string>
 	 */
-	enabled?: Array<JovaSettingsTable>;
+	enabled?: Array<JovaSettingsOptions | string>;
 	/**
 	 * @name disabled
 	 * @description
@@ -25,7 +25,7 @@ export interface JovaSettings {
 	 *
 	 * Allows boolean-based settings only.
 	 *
-	 * @type Array<JovaSettingsTable>
+	 * @type Array<JovaSettingsOptions>
 	 */
-	disabled?: Array<JovaSettingsTable>;
+	disabled?: Array<JovaSettingsOptions | string>;
 }
