@@ -14,3 +14,4 @@ jobs:
             BRSFTWORKS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
             project-name: '@bracketed/jova.js'
+            checkout-depth: 2
