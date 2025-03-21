@@ -6,7 +6,7 @@ on:
 
 jobs:
     verify:
-        uses: Bracketed/Workflows/Version-Check.yml@main
+        uses: Bracketed/Workflows/.github/workflows/Version-Check.yml@main
         permissions:
             contents: read
 
