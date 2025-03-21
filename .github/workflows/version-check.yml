@@ -9,7 +9,8 @@ jobs:
         uses: Bracketed/Workflows/.github/workflows/Version-Check.yml@main
         name: Version Check
         permissions:
-            contents: read
-
+            contents: write
         secrets:
             BRSFTWORKS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+            project-name: '@bracketed/jova.js'
