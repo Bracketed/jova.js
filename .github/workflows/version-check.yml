@@ -10,12 +10,14 @@ jobs:
         name: Version Check
         permissions:
             contents: write
+            actions: write
         secrets:
             BRSFTWORKS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
             project-name: '@bracketed/jova.js'
             checkout-depth: 2
             checkout-ref: master
+            workflow-runid: ${{ github.run_id }}
 
     runs:
         runs-on: ubuntu-latest
