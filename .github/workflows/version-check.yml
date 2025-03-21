@@ -15,3 +15,4 @@ jobs:
         with:
             project-name: '@bracketed/jova.js'
             checkout-depth: 2
+            checkout-ref: master
