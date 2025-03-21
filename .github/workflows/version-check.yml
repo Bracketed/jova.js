@@ -1,0 +1,15 @@
+name: Version Check
+
+on:
+    workflow_dispatch:
+    push:
+
+jobs:
+    VersionVerify:
+        uses: Bracketed/Workflows/.github/workflows/Version-Check.yml@main
+        name: Version Check
+        permissions:
+            contents: read
+
+        secrets:
+            BRSFTWORKS_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -2,16 +2,8 @@ name: Node.js Package (NPM)
 
 on:
     workflow_dispatch:
-    push:
 
 jobs:
-    verify:
-        uses: Bracketed/Workflows/.github/workflows/Version-Check.yml@main
-        permissions:
-            contents: read
-
-        secrets:
-            BRSFTWORKS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     test:
         runs-on: ubuntu-latest
         steps:
