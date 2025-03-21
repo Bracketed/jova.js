@@ -20,5 +20,6 @@ jobs:
     runs:
         runs-on: ubuntu-latest
         name: Extras
+        needs: [VersionVerify]
         steps:
             - run: echo "Hello!"
