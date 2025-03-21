@@ -16,3 +16,9 @@ jobs:
             project-name: '@bracketed/jova.js'
             checkout-depth: 2
             checkout-ref: master
+
+    runs:
+        runs-on: ubuntu-latest
+        name: Extras
+        steps:
+            - run: echo "Hello!"
