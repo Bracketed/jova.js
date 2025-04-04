@@ -180,7 +180,6 @@ export namespace Handlers {
 			for await (const [index, Module] of Modules.entries()) {
 				try {
 					const options = getHandlerOptions(Module.module);
-
 					//this.logger.info(options);
 
 					if (options)
