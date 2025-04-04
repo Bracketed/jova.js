@@ -24,17 +24,17 @@ export function getRootData(): RootData {
 	return (data ??= parseRootData());
 }
 
-export function getProjectRoot(): null | string {
+export function getProjectRoot(): string {
 	const cwd = process.cwd();
 	let file: string | null = null;
 
 	try {
 		if (existsSync(join(cwd, 'package.json'))) file = cwd;
 	} catch (error) {
-		return file;
+		return file as string;
 	}
 
-	return file;
+	return file as string;
 }
 
 export function parseRootData(): RootData {
