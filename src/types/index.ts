@@ -8,6 +8,7 @@ export type { Registry as ApplicationRegistry } from '../Registry';
 export * from '../utilities/limiter/index';
 export * from '../utilities/range';
 
+export * from './ParsedQs';
 export * from './rateLimitDatabaseOptionsObject';
 export * from './rateLimitOptionsObject';
 

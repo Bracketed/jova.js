@@ -1,6 +1,5 @@
 import type { ParamsDictionary, Query } from '@bracketed/express/serve-static';
-import type { ParsedQs } from 'qs';
-import type { ApplicationNextFunction, ApplicationRequest, ApplicationResponse } from '..';
+import type { ApplicationNextFunction, ApplicationRequest, ApplicationResponse, ParsedQs } from '..';
 
 interface Handler<
 	P = ParamsDictionary,

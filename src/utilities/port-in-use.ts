@@ -1,6 +1,6 @@
-import is from 'is2';
 import net from 'node:net';
 import util from 'node:util';
+import { isPort } from './is';
 
 export interface TcpPortUsedOptions {
 	port: number;
@@ -45,7 +45,7 @@ function check(port: number | TcpPortUsedOptions, host?: string): Promise<boolea
 	if (typeof port === 'number') opts = makeOptionsObj(port, host);
 	else opts = port;
 
-	if (!is.port(opts.port)) {
+	if (!isPort(opts.port)) {
 		deferred.reject(new Error('invalid port: ' + util.inspect(opts.port)));
 		return deferred.promise;
 	}
