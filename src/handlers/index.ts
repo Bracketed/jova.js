@@ -183,10 +183,11 @@ export namespace Handlers {
 
 					//this.logger.info(options);
 
-					if (options.enabled === false) {
-						Ignored += 1;
-						continue;
-					}
+					if (options)
+						if (options.enabled === false) {
+							Ignored += 1;
+							continue;
+						}
 
 					type ControllerType = typeof this.controllerType;
 					const Controller = Module.module as new (...args: any[]) => ControllerType;
