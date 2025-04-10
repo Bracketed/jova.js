@@ -36,6 +36,7 @@ jobs:
         permissions:
             contents: write
             id-token: write
+            actions: write
         with:
             project-name: '@bracketed/jova.js'
             checkout-ref: master
