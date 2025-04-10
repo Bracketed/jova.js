@@ -1,37 +1,51 @@
-import type { Express, Locals } from '@bracketed/express';
 import { Logger } from '@bracketed/logger';
+import { HandlerType } from '../../../decorators/index';
+import { container, type Container } from '../../../shared/index';
 import { ApplicationEvent, type EventListenerOptions, type LoggerOptions } from '../../index';
 
 /**
- * The Event Controller, The base class for `Event` which is used in event files.
- *
+ * @name EventController
+ * @description The Event Controller, The base class for `Event` which is used in event files.
+ * @module Types
  * @class EventController
  */
 export class EventController {
 	/**
-	 * The Express Application at the origin of the Jova Server.
+	 * @name container
+	 * @description The process container.
+	 * @constant
+	 * @readonly
 	 */
-	protected readonly application: Express;
+	protected readonly container: Container = container;
 	/**
-	 * The Logger at the origin of the Jova Server.
+	 * @name Logger
+	 * @description
+	 * The Logger for event files.
 	 *
 	 * **Prefixed automatically with `ApplicationEvent`.**
+	 * @readonly
+	 * @constant
 	 */
 	protected readonly logger: Logger;
 	/**
-	 * The Locals defined in JovaServer.
+	 * @name type
+	 * @description The type for the `EventController` class, this is for when processing controllers marked with a `AUTO` type in deployment.
+	 * @readonly
+	 * @constant
+	 * @type string
 	 */
-	protected readonly container: Record<string, any> & Locals;
+	public readonly type: HandlerType = HandlerType.EVENT;
 
-	constructor(application: Express, container: Record<string, any> & Locals, logger: LoggerOptions) {
-		this.application = application;
-		this.container = container;
+	constructor(logger: LoggerOptions) {
 		this.logger = new Logger({ ...logger, prefix: 'ApplicationEvent' });
 
 		this.run = this.run.bind(this);
 	}
 
 	/**
+	 * @name run()
+	 *
+	 * @description
 	 * The run function for this event, this function cannot be redefined to use another name, but only the content within the function.
 	 *
 	 * For listeners listening on `ApplicationEvent.ALL`, the first parameter is the event that was emitted, followed by any argument for that event.
@@ -42,12 +56,16 @@ export class EventController {
 	 * return;
 	 *
 	 * @public
+	 * @function
 	 */
 	public run(..._args: any[]): Promise<any | void> | any | void {
 		return;
 	}
 
 	/**
+	 * @name setApplicationEventOptions()
+	 *
+	 * @description
 	 * Set the details for this event.
 	 *
 	 * @example
@@ -57,6 +75,7 @@ export class EventController {
 	 * };
 	 *
 	 * @public
+	 * @function
 	 */
 	public setApplicationEventOptions(): EventListenerOptions {
 		return {

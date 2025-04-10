@@ -1,16 +1,11 @@
-import 'reflect-metadata';
-import { Handlers } from '../handlers/index';
-
-function createClassDecorator<TFunction extends (...args: any[]) => void>(fn: TFunction): ClassDecorator {
-	return fn;
-}
+import { setHandlerOptions } from './DecoratorMetadata';
+import type { HandlerOptions } from './DecoratorTypes';
 
 /**
  * @name ApplyHandlerOptions
  * @description Apply options to a handler.
  *
  * @module Decorators
- * @experiential
  * @public
  * @param options
  * @example
@@ -37,8 +32,6 @@ function createClassDecorator<TFunction extends (...args: any[]) => void>(fn: TF
  * 	}
  * }
  */
-export function ApplyHandlerOptions<T extends Handlers.Options>(options: T): ClassDecorator {
-	return createClassDecorator((target) => {
-		Reflect.defineMetadata('handler:options', options, target);
-	});
+export function ApplyHandlerOptions<T extends HandlerOptions>(options: T): ClassDecorator {
+	return (target) => setHandlerOptions(target, options);
 }

@@ -1,26 +1,60 @@
-import type { ApplicationNextFunction, ApplicationRequest, ApplicationResponse, MiddlewareHandler } from '../../index';
+import type {
+	ApplicationNextFunction,
+	ApplicationRequest,
+	ApplicationRequestHandler,
+	ApplicationResponse,
+} from '../../index';
 
 /**
- * An Application Middleware.
- *
+ * @name ApplicationMiddleware
+ * @description An Application Middleware.
+ * @module Types
  * @class AppMiddleware
  */
 export class ApplicationMiddleware {
 	private middleware: string | undefined;
-	private handler: MiddlewareHandler = async (
+	private handler: ApplicationRequestHandler = async (
 		_req: ApplicationRequest,
 		_res: ApplicationResponse,
-		_next: ApplicationNextFunction
+		_next?: ApplicationNextFunction
 	) => {};
 	private runsOnAllRoutes: boolean = false;
 
+	constructor() {
+		Object.defineProperty(this, 'setMiddlewareName', {
+			value: this.setMiddlewareName,
+			writable: false,
+			configurable: false,
+		});
+
+		Object.defineProperty(this, 'setHandler', {
+			value: this.setHandler,
+			writable: false,
+			configurable: false,
+		});
+
+		Object.defineProperty(this, 'runOnAllRoutes', {
+			value: this.runOnAllRoutes,
+			writable: false,
+			configurable: false,
+		});
+
+		Object.defineProperty(this, 'getApplicationMiddleware', {
+			value: this.getApplicationMiddleware,
+			writable: false,
+			configurable: false,
+		});
+	}
+
 	/**
-	 * Set the name of your middleware, this is used to enable the middleware in certain routes.
+	 * @name setMiddlewareName()
+	 * @description Set the name of your middleware, this is used to enable the middleware in certain routes.
 	 *
 	 * @public
 	 * @param name
 	 * @default undefined // If no name is set or is set to "", runsOnAllRoutes will default to true and make it a global middleware.
 	 * @example this.setMiddlewareName('authorisationMiddleware')
+	 * @function
 	 */
 	public setMiddlewareName(name: string | undefined): this {
 		if (name === '' || !name) return this;
@@ -29,25 +63,30 @@ export class ApplicationMiddleware {
 	}
 
 	/**
-	 * Set the callback function for your middleware.
+	 * @name setHandler()
+	 * @description Set the callback function for your middleware.
 	 *
 	 * @public
 	 * @param handler
 	 * @default // Blank Handler
 	 * @example this.setHandler(this.run)
+	 * @function
 	 */
-	public setHandler(handler: MiddlewareHandler): this {
+	public setHandler(handler: ApplicationRequestHandler): this {
 		this.handler = handler;
 		return this;
 	}
 
 	/**
+	 * @name runOnAllRoutes()
+	 * @description
 	 * Determine if this middleware is a globally running middleware across your application, or local to any route that specifically uses it.
 	 *
 	 * @public
 	 * @param active
 	 * @default false // Updates to true if setMiddlewareName is unset.
 	 * @example this.runOnAllRoutes(false)
+	 * @function
 	 */
 	public runOnAllRoutes(active: boolean): this {
 		this.runsOnAllRoutes = active;
@@ -55,13 +94,14 @@ export class ApplicationMiddleware {
 	}
 
 	/**
-	 * Gets the Middleware's Details.
-	 *
+	 * @name getApplicationMiddleware()
+	 * @description Gets the Middleware's Details.
+	 * @function
 	 * @public
 	 */
 	public getApplicationMiddleware(): {
 		middleware: string | undefined;
-		handler: MiddlewareHandler;
+		handler: ApplicationRequestHandler;
 		runsOnAllRoutes: boolean;
 	} {
 		let runsOnAllRoutes = this.runsOnAllRoutes;

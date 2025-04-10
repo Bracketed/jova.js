@@ -4,3 +4,4 @@ export * from './jovaLoggerOptions';
 export * from './jovaPathOptions';
 export * from './jovaServerOptionsObject';
 export * from './jovaSettingsObject';
+export * from './RCOptions/index';

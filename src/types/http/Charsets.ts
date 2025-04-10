@@ -4,6 +4,7 @@
  * Common character sets used in HTTP.
  *
  * @module Types
+ * @memberof Types
  * @enum Charset
  */
 export enum Charset {

@@ -4,12 +4,13 @@ import { defineConfig, type Options } from 'tsup';
 
 const baseOptions: Options = {
 	clean: true,
+	splitting: true,
 	entry: ['src/**/*.ts'],
 	dts: true,
-	minify: false,
+	minify: true,
 	skipNodeModulesBundle: true,
 	sourcemap: true,
-	target: 'es2021',
+	target: 'esnext',
 	tsconfig: 'tsconfig.json',
 	keepNames: true,
 	esbuildPlugins: [esbuildPluginVersionInjector(), esbuildPluginFilePathExtensions()],

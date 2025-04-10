@@ -2,9 +2,25 @@ name: Node.js Package (NPM)
 
 on:
     workflow_dispatch:
+    push:
 
 jobs:
+    verify:
+        uses: Bracketed/Workflows/.github/workflows/Version-Check.yml@main
+        name: Version Check
+        permissions:
+            contents: write
+            actions: write
+        secrets:
+            BRSFTWORKS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+            project-name: '@bracketed/jova.js'
+            checkout-depth: 2
+            checkout-ref: master
+            cancel-on-same: true
+
     test:
+        needs: verify
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4.2.0
@@ -15,26 +31,14 @@ jobs:
             - run: npm run build
 
     publish:
-        needs: test
-        runs-on: ubuntu-latest
+        needs: [test, verify]
+        uses: Bracketed/Workflows/.github/workflows/Package-Publish.yml@main
         permissions:
             contents: write
             id-token: write
-        steps:
-            - uses: actions/checkout@v4.2.0
-            - uses: actions/setup-node@v4.0.4
-              with:
-                  node-version: 22
-                  registry-url: https://registry.npmjs.org/
-            - run: npm install --force
-            - run: npm run build
-            - run: npm publish --access public --provenance
-              env:
-                  NODE_AUTH_TOKEN: ${{secrets.NODE_PUBLISH}}
-            - run: sed -i 's#"@bracketed/jova.js"#"jova.js"#g' package.json
-            - run: npm install --force
-            - run: npm run build
-
-            - run: npm publish --access public --provenance
-              env:
-                  NODE_AUTH_TOKEN: ${{secrets.NODE_PUBLISH}}
+        with:
+            project-name: '@bracketed/jova.js'
+            checkout-ref: master
+        secrets:
+            BRSFTWORKS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            NODE_AUTH_TOKEN: ${{secrets.NODE_PUBLISH}}

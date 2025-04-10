@@ -1,9 +1,8 @@
-import type { RequestHandler } from '@bracketed/express';
-import type { MiddlewareHandler } from '../../types/index';
+import type { ApplicationRequestHandler } from '../../types/index';
 import { BaseResourceLoader } from '../BaseResource';
 
 export class ResourceLoader extends BaseResourceLoader {
-	public override async load(middlewares: Array<MiddlewareHandler | RequestHandler> | undefined) {
+	public override async load(middlewares: Array<ApplicationRequestHandler> | undefined) {
 		if (!middlewares) return;
 
 		middlewares.forEach((m) => {

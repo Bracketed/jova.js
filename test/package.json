@@ -12,16 +12,8 @@
 		"#root/*": "./dist/*.js"
 	},
 	"scripts": {
-		"lint": "yarn prettier --write src/**/*.ts",
-		"validate": "yarn prettier --check src/**/*.ts",
-		"lint:all": "yarn prettier --write .",
-		"validate:all": "yarn prettier --check .",
-		"start": "yarn node ./dist/index.js",
-		"test": "tsx watch ./src/index.ts",
 		"compile": "npx tsc",
-		"dev": "npx compile && node ./dist/index.js",
-		"build": "docker build --tag ninjaninja140/ts-template .",
-		"up": "docker compose -f compose.yml up -d"
+		"dev": "npx compile && node dist/index.js"
 	},
 	"devDependencies": {
 		"@bracketed/typescript-config": "^4.4.0",

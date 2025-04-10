@@ -25,7 +25,7 @@ export interface JovaSettings {
 	 *
 	 * Allows boolean-based settings only.
 	 *
-	 * @type Array<JovaSettingsOptions>
+	 * @type Array<JovaSettingsOptions | string>
 	 */
 	disabled?: Array<JovaSettingsOptions | string>;
 }

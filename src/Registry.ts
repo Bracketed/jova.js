@@ -1,34 +1,70 @@
 import {
-	ApplicationEvent,
 	ApplicationListener,
 	ApplicationMiddleware,
 	ApplicationRoute,
-	type EventHandler,
-	Methods,
-	type MiddlewareHandler,
+	type Event,
+	type Middleware,
+	type RegistryOptions,
+	type Route,
 } from './types/index';
 
 /**
- * The Registry class, this allows the Jova Server to register, use and manage its content.
+ * @name Registry
+ * @description The Registry class, this allows the Jova Server to register, use and manage its content.
  *
+ * @module Core
+ * @private
  * @class Registry
  */
 export class Registry {
-	private readonly routes: ApplicationRoute[] = [];
-	private readonly events: ApplicationListener[] = [];
-	private readonly middlewares: ApplicationMiddleware[] = [];
+	private readonly routes: Array<ApplicationRoute> = [];
+	private readonly events: Array<ApplicationListener> = [];
+	private readonly middlewares: Array<ApplicationMiddleware> = [];
 	private readonly basePath: string;
 
-	/**
-	 * Creates Registry a instance.
-	 *
-	 * @param options
-	 */
-	constructor(options: { basePath?: string }) {
+	constructor(options: RegistryOptions) {
 		this.basePath = options.basePath || '';
+
+		Object.defineProperty(this, 'registerApplicationRoutes', {
+			value: this.registerApplicationRoutes,
+			writable: false,
+			configurable: false,
+		});
+
+		Object.defineProperty(this, 'registerApplicationEvent', {
+			value: this.registerApplicationEvent,
+			writable: false,
+			configurable: false,
+		});
+
+		Object.defineProperty(this, 'registerApplicationMiddleware', {
+			value: this.registerApplicationMiddleware,
+			writable: false,
+			configurable: false,
+		});
+
+		Object.defineProperty(this, 'getRoutes', {
+			value: this.getRoutes,
+			writable: false,
+			configurable: false,
+		});
+
+		Object.defineProperty(this, 'getEvents', {
+			value: this.getEvents,
+			writable: false,
+			configurable: false,
+		});
+
+		Object.defineProperty(this, 'getMiddlewares', {
+			value: this.getMiddlewares,
+			writable: false,
+			configurable: false,
+		});
 	}
 
 	/**
+	 * @name registerApplicationRoutes()
+	 * @description
 	 * Register an app route to the registry, does not work if the Jova App has already been initialised, but will work if the app has not.
 	 *
 	 * @public
@@ -39,14 +75,17 @@ export class Registry {
 	 *			.setRouteName('')
 	 *			.setMethod(Methods.GET)
 	 *	);
+	 * @function
 	 */
 	public registerApplicationRoutes(configureRoute: (route: ApplicationRoute) => ApplicationRoute): ApplicationRoute {
-		const Route = new ApplicationRoute(this);
+		const Route = new ApplicationRoute();
 		this.routes.push(configureRoute(Route));
 		return Route;
 	}
 
 	/**
+	 * @name registerApplicationEvent()
+	 * @description
 	 * Register an app event to the registry, does not work if the Jova App has already been initialised, but will work if the app has not.
 	 *
 	 * @public
@@ -57,6 +96,7 @@ export class Registry {
 	 *			.setEventType(ApplicationEvent.READY)
 	 *			.setHandler(this.run)
 	 *	);
+	 * @function
 	 */
 	public registerApplicationEvent(
 		configureEvent: (event: ApplicationListener) => ApplicationListener
@@ -67,6 +107,8 @@ export class Registry {
 	}
 
 	/**
+	 * @name registerApplicationMiddleware()
+	 * @description
 	 * Register an app middleware to the registry, does not work if the Jova App has already been initialised, but will work if the app has not.
 	 *
 	 * @public
@@ -78,6 +120,7 @@ export class Registry {
 	 *			.setHandler(this.run)
 	 *			.runOnAllRoutes(false)
 	 *	);
+	 * @function
 	 */
 	public registerApplicationMiddleware(
 		configureMiddleware: (middleware: ApplicationMiddleware) => ApplicationMiddleware
@@ -88,21 +131,21 @@ export class Registry {
 	}
 
 	/**
+	 * @name getRoutes()
+	 * @description
 	 * Gets all the routes currently attached to the registry.
 	 *
 	 * @public
+	 * @function
 	 */
-	public getRoutes(): {
-		route: string;
-		method: Methods;
-		middlewares: MiddlewareHandler[];
-	}[] {
+	public getRoutes(): Array<Route> {
 		return this.routes.map((routeInstance) => {
 			const route = routeInstance.getApplicationRoute();
 			const middlewares = this.middlewares.map((m) => m.getApplicationMiddleware().handler);
 
 			return {
-				route: (route.basePathOverride || this.basePath) + route.route,
+				// why did i not add this sooner...? (2.0 added)
+				route: ((route.basePathOverride || this.basePath) + route.route).replace(/\\/g, '/'),
 				method: route.method,
 				middlewares: [...middlewares, ...route.middlewares],
 			};
@@ -110,14 +153,14 @@ export class Registry {
 	}
 
 	/**
+	 * @name getEvents()
+	 * @description
 	 * Gets all the routes currently attached to the registry.
 	 *
 	 * @public
+	 * @function
 	 */
-	public getEvents(): {
-		event: ApplicationEvent;
-		handler: EventHandler;
-	}[] {
+	public getEvents(): Array<Event> {
 		return this.events.map((eventInstance) => {
 			const event = eventInstance.getApplicationEvent();
 
@@ -129,15 +172,14 @@ export class Registry {
 	}
 
 	/**
+	 * @name getMiddlewares()
+	 * @description
 	 * Gets all the middlewares currently attached to the registry.
 	 *
 	 * @public
+	 * @function
 	 */
-	public getMiddlewares(): {
-		middleware: string | undefined;
-		handler: MiddlewareHandler;
-		runsOnAllRoutes: boolean;
-	}[] {
+	public getMiddlewares(): Array<Middleware> {
 		return this.middlewares.map((middlewaresInstance) => {
 			const middleware = middlewaresInstance.getApplicationMiddleware();
 
@@ -147,16 +189,5 @@ export class Registry {
 				runsOnAllRoutes: middleware.runsOnAllRoutes,
 			};
 		});
-	}
-
-	/**
-	 * Clear all registries.
-	 *
-	 * @public
-	 */
-	public flush(): void {
-		this.middlewares.length = 0;
-		this.routes.length = 0;
-		this.events.length = 0;
 	}
 }

@@ -11,7 +11,7 @@
 A semi-advanced Express.js framework by Bracketed Softworks!
 This is a package built revolving around [Express.js](https://www.npmjs.com/package/express) to allow the easy usage of Express' API and adding extra things like built in middlewares, event listeners etc.
 
-Wiki available at <https://jova.js.org>
+Documentation & Guide available at <https://jova.js.org>, **the majority of the content which used to be part of our README.md is now at our js.org website**.
 
 <h2>What is this?</h2>
 
@@ -21,7 +21,7 @@ Wiki available at <https://jova.js.org>
 <h2>Summary (Directory)</h2>
 
 - [Installation](#Installation)
-      <!--truncate-->
+    <!--truncate-->
     - [Yarn](#YarnInstall)
     - [Npm](#NpmInstall)
 - [Usage](#Usage)
@@ -47,7 +47,7 @@ npm install --save @bracketed/jova.js
 
 Jova.js has a specific file structure it works by, this is shown below:
 
-```
+```txt
 project
 │   index.ts
 │
@@ -61,21 +61,25 @@ project
 │       │   Route.ts
 │       │   ...
 │
-└───routes
+└───routes (subfolders are supported)
 │   │   Route.ts
 │   │   Index.ts
 │   │   ...
 │
-└───middlewares
-    │   Middleware1.ts
-    │   Middleware2.ts
+└───middlewares (subfolders are supported)
+│   │   Middleware1.ts
+│   │   Middleware2.ts
+│   │   ...
+│
+└───static (subfolders are supported)
+    │   file1.css
+    │   file2.txt
     │   ...
-
 ```
 
-Jova.js also has two other exports, `@bracketed/jova.js/utilities` and `@bracketed/jova.js/types`.
+Jova.js also has two other exports, `@bracketed/jova.js/types` and `@bracketed/jova.js/decorators`.
 
-- `@bracketed/jova.js/utilities` - Utilities for routers and middlewares currently, may contain more in future versions of Jova. Exports `request` and `response`, utilities containers. All are documented using jsDoc.
+- `@bracketed/jova.js/decorators` - For decorators usage in handlers such as route handlers, event handlers and middleware handlers.
 - `@bracketed/jova.js/types` - Typings for Jova.js, used in routes, middlewares, events etc.
 
 Initiating a new Jova Server.
@@ -98,175 +102,17 @@ const Jova = new JovaServer(); // All options for JovaServer are documented in t
 await Jova.listen(3000);
 ```
 
-You can find an application example in the Jova.js repository [here](https://github.com/bracketed/jova.js) or the direct folder [here](https://github.com/Bracketed/jova.js/tree/master/src/example).
+You can find an application example in the Jova.js repository [here](https://github.com/bracketed/jova.js) or the direct folder [here](https://github.com/Bracketed/jova.js/tree/master/test).
 
-The default Express API can be utilised from the default Jova instance after being initiated e.g: get(), post(), etc.
+The default Express API can be utilised from the default Jova instance after being initiated e.g: get(), post(), etc or via the `container` object exported by `@bracketed/jova.js`.
 
 However, you can set up routes, middlewares and event listeners like this:
 
-**Events:**
+**Events** - [Via the documentation at jova.js.org](https://jova.js.org/docs/Guide/Events)
 
-```typescript
-// ESM
-// ./events/Event.ts
-import { ApplicationEvent, EventController, EventListenerOptions } from '@bracketed/jova.js/types';
+**Routes** - [Via the documentation at jova.js.org](https://jova.js.org/docs/Guide/Routes)
 
-export class Event extends EventController {
-	public override setApplicationEventOptions(): EventListenerOptions {
-		return {
-			type: ApplicationEvent.ALL,
-		};
-	}
-
-	public override async run(_e: ApplicationEvent, ..._args: any[]) {
-		return;
-	}
-}
-```
-
-```typescript
-// CJS
-// ./events/Event.ts
-const { ApplicationEvent, EventController, EventListenerOptions } = require('@bracketed.jova.js/types');
-
-export class Event extends EventController {
-	public override setApplicationEventOptions(): EventListenerOptions {
-		return {
-			type: ApplicationEvent.ALL,
-		};
-	}
-
-	public override async run(_e: ApplicationEvent, ..._args: any[]) {
-		return;
-	}
-}
-```
-
-**Routes:**
-
-```typescript
-// ESM
-// ./routes/Route.ts
-import {
-	ApplicationRegistry,
-	ApplicationRequest,
-	ApplicationResponse,
-	ApplicationRoute,
-	Methods,
-	RouteController,
-} from '@bracketed/jova.js/types';
-
-export class Route extends RouteController {
-	public override registerApplicationRoutes(registry: ApplicationRegistry): ApplicationRoute {
-		return registry.registerApplicationRoutes((route) =>
-			route //
-				.setRouteName('')
-				.setMethod(Methods.GET)
-		);
-	}
-
-	public override async run(
-		request: ApplicationRequest,
-		response: ApplicationResponse
-	): Promise<ApplicationResponse | void> {
-		this.logger.info('Recieved request for', request.baseUrl);
-		return response.status(200).json({ message: 'Hello World!' });
-	}
-}
-```
-
-```typescript
-// CJS
-// ./routes/Route.ts
-const {
-	ApplicationRegistry,
-	ApplicationRequest,
-	ApplicationResponse,
-	ApplicationRoute,
-	Methods,
-	RouteController,
-} = require('@bracketed/jova.js/types');
-
-export class Route extends RouteController {
-	public override registerApplicationRoutes(registry: ApplicationRegistry): ApplicationRoute {
-		return registry.registerApplicationRoutes((route) =>
-			route //
-				.setRouteName('')
-				.setMethod(Methods.GET)
-		);
-	}
-
-	public override async run(
-		request: ApplicationRequest,
-		response: ApplicationResponse
-	): Promise<ApplicationResponse | void> {
-		this.logger.info('Recieved request for', request.baseUrl);
-		return response.status(200).json({ message: 'Hello World!' });
-	}
-}
-```
-
-**Middlewares:**
-
-```typescript
-// ESM
-// ./middlewares/Middleware.ts
-import {
-	ApplicationNextFunction,
-	ApplicationRequest,
-	ApplicationResponse,
-	MiddlewareController,
-	MiddlewareOptions,
-} from '@bracketed/jova.js/types';
-
-export class Middleware extends MiddlewareController {
-	public override setApplicationMiddlewareOptions(): MiddlewareOptions {
-		return {
-			middlewareName: 'middleware',
-			runsOnAllRoutes: true,
-		};
-	}
-
-	public override async run(
-		_request: ApplicationRequest,
-		_response: ApplicationResponse,
-		next: ApplicationNextFunction
-	): Promise<ApplicationResponse | void> {
-		this.logger.info('Connected to middleware!');
-		return next();
-	}
-}
-```
-
-```typescript
-// CJS
-// ./middlewares/Middleware.ts
-const {
-	ApplicationNextFunction,
-	ApplicationRequest,
-	ApplicationResponse,
-	MiddlewareController,
-	MiddlewareOptions,
-} = require('@bracketed/jova.js/types');
-
-export class Middleware extends MiddlewareController {
-	public override setApplicationMiddlewareOptions(): MiddlewareOptions {
-		return {
-			middlewareName: 'middleware',
-			runsOnAllRoutes: true,
-		};
-	}
-
-	public override async run(
-		_request: ApplicationRequest,
-		_response: ApplicationResponse,
-		next: ApplicationNextFunction
-	): Promise<ApplicationResponse | void> {
-		this.logger.info('Connected to middleware!');
-		return next();
-	}
-}
-```
+**Middlewares** - [Via the documentation at jova.js.org](https://jova.js.org/docs/Guide/Middlewares)
 
 <h1 id="Contribution">Contribution & Help</h1>
 

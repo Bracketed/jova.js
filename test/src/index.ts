@@ -19,4 +19,4 @@ import { JovaServer } from '@bracketed/jova.js';
 
 const Jova = new JovaServer({ cors: { origin: '*' } });
 
-await Jova.listen(3000);
+await Jova.listen();

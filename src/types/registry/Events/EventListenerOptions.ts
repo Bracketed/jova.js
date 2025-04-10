@@ -1,15 +1,18 @@
 import { ApplicationEvent } from '../../jova/Events';
 
 /**
- * Event Listener Options.
- *
+ * @name EventListenerOptions
+ * @description Event Listener Options.
+ * @module Types
  * @interface
  */
 export interface EventListenerOptions {
 	/**
+	 * @name type
+	 * @description
 	 * The event Listener type.
 	 *
 	 * @type {ApplicationEvent}
 	 */
-	type: ApplicationEvent;
+	type: ApplicationEvent | 'mount' | 'error' | 'any' | 'route' | 'ready';
 }

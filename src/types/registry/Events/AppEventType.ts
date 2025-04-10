@@ -1,32 +1,56 @@
 import { ApplicationEvent, type EventHandler } from '../../index';
 
 /**
- * An Application Event Listener.
- *
- 
+ * @name ApplicationListener
+ * @description An Application Event Listener configuration object.
+ * @module Types
  * @class ApplicationListener
  */
 export class ApplicationListener {
-	private type: ApplicationEvent | undefined;
+	private type: ApplicationEvent | 'mount' | 'error' | 'any' | 'route' | 'ready' = ApplicationEvent.ALL;
 	private handler: EventHandler = async (..._args: any[]) => {};
 
+	constructor() {
+		Object.defineProperty(this, 'setEventType', {
+			value: this.setEventType,
+			writable: false,
+			configurable: false,
+		});
+
+		Object.defineProperty(this, 'setHandler', {
+			value: this.setHandler,
+			writable: false,
+			configurable: false,
+		});
+
+		Object.defineProperty(this, 'getApplicationEvent', {
+			value: this.getApplicationEvent,
+			writable: false,
+			configurable: false,
+		});
+	}
+
 	/**
-	 * Set the event type for the event listener.
+	 * @name setEventType
+	 * @description Set the event type for the event listener.
 	 *
 	 * @public
+	 * @function
 	 * @param type
 	 * @example this.setEventType(ApplicationEvent.ALL)
 	 * @default ApplicationEvent.ALL
 	 */
-	public setEventType(type: ApplicationEvent): this {
+	public setEventType(type: ApplicationEvent | 'mount' | 'error' | 'any' | 'route' | 'ready'): this {
 		this.type = type;
 		return this;
 	}
 
 	/**
-	 * Set the handler callback for the event listener.
+	 * @name setHandler
+	 * @description Set the handler callback for the event listener.
 	 *
 	 * @public
+	 * @function
 	 * @param handler
 	 * @example this.setHandler(this.run)
 	 */
@@ -36,16 +60,16 @@ export class ApplicationListener {
 	}
 
 	/**
-	 * Gets the Event Listener's Details.
+	 * @name getApplicationEvent
+	 * @description Gets the Event Listener's Details.
 	 *
+	 * @function
 	 * @public
 	 */
 	public getApplicationEvent(): {
-		event: ApplicationEvent;
+		event: ApplicationEvent | 'mount' | 'error' | 'any' | 'route' | 'ready';
 		handler: EventHandler;
 	} {
-		if (!this.type) this.type = ApplicationEvent.ALL;
-
 		return {
 			event: this.type,
 			handler: this.handler,

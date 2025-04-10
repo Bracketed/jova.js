@@ -1,5 +1,6 @@
-import type { Express, Locals } from '@bracketed/express';
 import { Logger } from '@bracketed/logger';
+import { HandlerType } from '../../../decorators/index';
+import { type Container } from '../../../shared/index';
 import type {
 	ApplicationNextFunction,
 	ApplicationRequest,
@@ -7,37 +8,52 @@ import type {
 	LoggerOptions,
 	MiddlewareOptions,
 } from '../../index';
+import { container } from './../../../shared/Container';
 
 /**
- * The Middleware Controller, The base class for `Middleware` which is used in middleware files.
- *
+ * @name MiddlewareController
+ * @description The Middleware Controller, The base class for `Middleware` which is used in middleware files.
+ * @module Types
  * @class MiddlewareController
  */
 export class MiddlewareController {
 	/**
-	 * The Express Application at the origin of the Jova Server.
+	 * @name container
+	 * @description The process container.
+	 * @constant
+	 * @readonly
 	 */
-	protected readonly application: Express;
+	protected container: Container = container;
 	/**
+	 * @name Logger
+	 * @description
 	 * The Logger at the origin of the Jova Server.
 	 *
-	 * **Prefixed automatically with `ApplicationMiddleware`.**
+	 * **Prefixed automatically with `ApplicationEvent`.**
+	 * @constant
+	 * @readonly
 	 */
 	protected readonly logger: Logger;
 	/**
-	 * The Locals defined in JovaServer.
+	 * @name type
+	 * @description
+	 * The type for the `MiddlewareController` class, this is for when processing controllers marked with a `AUTO` type in deployment.
+	 * @constant
+	 * @readonly
+	 * @public
+	 * @type string
 	 */
-	protected readonly container: Record<string, any> & Locals;
+	public readonly type: HandlerType = HandlerType.MIDDLEWARE;
 
-	constructor(application: Express, container: Record<string, any> & Locals, logger: LoggerOptions) {
-		this.application = application;
-		this.container = container;
+	constructor(logger: LoggerOptions) {
 		this.logger = new Logger({ ...logger, prefix: 'ApplicationMiddleware' });
 
 		this.run = this.run.bind(this);
 	}
 
 	/**
+	 * @name run()
+	 * @description
 	 * The run function for this middleware, this function cannot be redefined to use another name, but only the content within the function.
 	 *
 	 * Placeholder run function if nothing is defined:
@@ -49,19 +65,21 @@ export class MiddlewareController {
 	 * @param request
 	 * @param response
 	 * @param next
+	 * @function
 	 */
 	public run(
 		_request: ApplicationRequest,
 		_response: ApplicationResponse,
-		next: ApplicationNextFunction
-	): Promise<ApplicationResponse | void> | ApplicationResponse | void {
-		return next();
+		next?: ApplicationNextFunction
+	): Promise<ApplicationResponse | void | any> | ApplicationResponse | void | any {
+		return next!();
 	}
 
 	/**
-	 * Set the details for this middleware.
-	 *
+	 * @name setApplicationMiddlewareOptions()
+	 * @description Set the details for this middleware.
 	 * @public
+	 * @function
 	 */
 	public setApplicationMiddlewareOptions(): MiddlewareOptions {
 		return {};

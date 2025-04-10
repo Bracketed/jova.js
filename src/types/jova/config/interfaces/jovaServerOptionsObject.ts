@@ -1,14 +1,25 @@
+import type serveStatic from 'serve-static';
+
 import type {
+	ApplicationResponse,
 	CorsOptions,
 	JovaCustomOption,
 	JovaHeaderSetting,
 	JovaPathSettings,
 	JovaSettings,
 	LoggerOptions,
-	MiddlewareHandler,
 	RatelimitConfig,
-	RequestHandler,
+	ApplicationRequestHandler as RequestHandler,
 } from '../../../index';
+
+// this drove me insane
+/**
+ * @name ServeStaticConfig
+ * @description Options for serve static.
+ * @private
+ * @module Types
+ */
+export type ServeStaticConfig = serveStatic.ServeStaticOptions<ApplicationResponse>;
 
 /**
  * @name JovaServerOptions
@@ -48,7 +59,7 @@ export interface JovaServerOptions {
 	 * })
 	 * @type Array<Middleware>
 	 */
-	middlewares?: Array<MiddlewareHandler | RequestHandler>;
+	middlewares?: Array<RequestHandler>;
 	/**
 	 * @name port
 	 * @description The port for the Jova Server to run on.
@@ -110,4 +121,32 @@ export interface JovaServerOptions {
 	 * @type LoggerOptions
 	 */
 	logger?: LoggerOptions;
+	/**
+	 * @name customrc
+	 * @description Define a custom resource config file for the Jova config to be loaded from.
+	 * @default undefined
+	 * @type string
+	 */
+	customrc?: string;
+	/**
+	 * @name static
+	 * @description Configuration options for express.static. Static serving is automatically started when the `static` folder is found.
+	 * @default undefined
+	 */
+	static?: {
+		/**
+		 * @name dir
+		 * @description The directory for hosting static files, defaults to the same working directory that `routes`, `events` and `middlewares` are looked for under the folder name of `static`.
+		 * @default undefined
+		 * @type string
+		 */
+		dir: string;
+		/**
+		 * @name options
+		 * @description Options for serve-static.
+		 * @default undefined
+		 * @type ServeStaticConfig
+		 */
+		options?: ServeStaticConfig;
+	};
 }

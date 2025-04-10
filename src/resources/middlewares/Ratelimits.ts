@@ -1,8 +1,8 @@
+import { Stopwatch } from '@sapphire/stopwatch';
+import { rateLimit } from 'express-rate-limit';
 import { Redis } from 'ioredis';
-import type { RatelimitConfig } from '../../types/index';
-import rateLimit from '../../utilities/limiter/index';
-import RedisStore from '../../utilities/redis-limiter/index';
-import { Stopwatch } from '../../utilities/stopwatch';
+import { RedisStore } from 'rate-limit-redis';
+import type { ApplicationRequestHandler, RatelimitConfig } from '../../types/index';
 import { BaseResourceLoader } from '../BaseResource';
 
 export class ResourceLoader extends BaseResourceLoader {
@@ -37,7 +37,7 @@ export class ResourceLoader extends BaseResourceLoader {
 				`Failed to register middleware "ratelimiter" - Middleware registry failed in ${MiddlewareRegisterStopwatch.stop().toString()}, failed to connect to database.`
 			);
 
-		this.application?.use(
+		this.application!.use(
 			rateLimit({
 				windowMs: config.refreshTime || undefined,
 				limit: config.requestLimitAmount || 20,
@@ -49,7 +49,7 @@ export class ResourceLoader extends BaseResourceLoader {
 				store: database,
 				standardHeaders: true,
 				legacyHeaders: true,
-			})
+			}) as unknown as ApplicationRequestHandler
 		);
 
 		this.logger.info(

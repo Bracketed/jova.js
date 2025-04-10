@@ -1,11 +1,11 @@
-import type { MiddlewareController } from '../../types/index';
-import type { Stopwatch } from '../../utilities/stopwatch';
-import { HandlerFunction } from '../function';
+import { container } from '../../shared/index';
+import type { MiddlewareController, RegisterFunctionContext } from '../../types/index';
+import { HandlerFunction } from '../BaseHandlerFunction';
 
 export class MiddlewareRegisterFunction extends HandlerFunction {
-	public override async run(Middleware: MiddlewareController, Clock: Stopwatch) {
+	public override async run(Middleware: MiddlewareController, Context: RegisterFunctionContext) {
 		const MiddlewareConfig = Middleware.setApplicationMiddlewareOptions();
-		const MiddlewareInfo = this.registry.registerApplicationMiddleware((middleware) =>
+		const MiddlewareInfo = container.registry!.registerApplicationMiddleware((middleware) =>
 			middleware //
 				.setMiddlewareName(MiddlewareConfig.middlewareName)
 				.setHandler(Middleware.run)
@@ -13,12 +13,12 @@ export class MiddlewareRegisterFunction extends HandlerFunction {
 		);
 
 		if (MiddlewareConfig.runsOnAllRoutes) {
-			this.application.use(Middleware.run);
+			container.express.use(Middleware.run);
 			this.logger.info(`Middleware "${MiddlewareConfig.middlewareName}" was deployed to all routes.`);
 		}
 
 		return {
-			message: `Registered Middleware: "${MiddlewareInfo.getApplicationMiddleware().middleware}" in ${Clock.stop().toString()} - Runs on all Routes: ${MiddlewareInfo.getApplicationMiddleware().runsOnAllRoutes}`,
+			message: `Registered Middleware: "${MiddlewareInfo.getApplicationMiddleware().middleware}" in ${Context.clock.stop().toString()} - Runs on all Routes: ${MiddlewareInfo.getApplicationMiddleware().runsOnAllRoutes}`,
 		};
 	}
 }

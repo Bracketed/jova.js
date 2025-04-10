@@ -5,10 +5,8 @@
 
 export type { Registry as ApplicationRegistry } from '../Registry';
 
-export * from '../utilities/limiter/index';
-export * from '../utilities/range';
+export * from 'express-rate-limit';
 
-export * from './ParsedQs';
 export * from './rateLimitDatabaseOptionsObject';
 export * from './rateLimitOptionsObject';
 

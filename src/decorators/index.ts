@@ -4,4 +4,5 @@
  */
 
 export * from './ApplyControllerOptions';
-export * from './GetControllerOptions';
+export * from './DecoratorMetadata';
+export * from './DecoratorTypes';

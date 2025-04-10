@@ -1,0 +1,8 @@
+{
+	"yaml.schemas": {
+		"https://jova.js.org/schemas/.jovarc.json": [".jovarc.yaml", ".jovarc.yml"]
+	},
+	"json.schemas": [
+		{ "url": "https://jova.js.org/schemas/.jovarc.json", "fileMatch": [".jovarc.json", ".jovarc.jsonc"] }
+	]
+}

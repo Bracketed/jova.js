@@ -1,9 +1,8 @@
-import { Handlers } from '@bracketed/jova.js';
-import { ApplyHandlerOptions } from '@bracketed/jova.js/decorators';
+import { ApplyHandlerOptions, HandlerOptions, HandlerType } from '@bracketed/jova.js/decorators';
 import { ApplicationEvent, EventController, EventListenerOptions } from '@bracketed/jova.js/types';
 
-@ApplyHandlerOptions<Handlers.Options>({
-	type: Handlers.Type.EVENT,
+@ApplyHandlerOptions<HandlerOptions>({
+	type: HandlerType.AUTO,
 	enabled: true,
 })
 export class Event extends EventController {

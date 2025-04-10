@@ -1,227 +1,184 @@
-import type { Express } from '@bracketed/express';
-import { type Logger as LoggerType, Logger } from '@bracketed/logger';
+import { Logger, type Logger as LoggerType } from '@bracketed/logger';
+import { Stopwatch } from '@sapphire/stopwatch';
 import fs from 'node:fs';
 import path from 'node:path';
-import { getHandlerOptions } from '../decorators/index';
-import type { Registry } from '../Registry';
-import type { ApplicationStats, LoggerOptions } from '../types/index';
-import { resolvePath } from '../utilities/Path/path';
-import { Stopwatch } from '../utilities/stopwatch';
-import type { HandlerFunction } from './function';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+import { getHandlerOptions, HandlerType, type HandlerController, type HandlerOptions } from '../decorators/index';
+import { container } from '../shared/index';
+import type { JovaRequiredPathSettings, LoggerOptions, RegisterFunctionContext } from '../types/index';
+import { resolvePath } from '../utilities/path';
+import type { HandlerFunction } from './BaseHandlerFunction';
+
+interface Options {
+	logger: LoggerOptions;
+	paths: JovaRequiredPathSettings;
+}
 
 /**
- * @name Handlers
+ * @name Handler
  * @description Decorative content options and customisability for Handlers, customise the behaviour of a specific handler.
  *
  * __Usage of decorators in `jova.js` is unfinished and enabling/disabling handlers is currently only available!__
  *
  * @public
  * @module Core
- * @namespace Handlers
+ * @class Handler
  */
-export namespace Handlers {
-	export enum Type {
-		ROUTE = 'route',
-		MIDDLEWARE = 'middleware',
-		EVENT = 'event',
-		AUTO = 'auto',
+export class Handlers {
+	private readonly logger: LoggerType;
+	private readonly loggerOptions: LoggerOptions;
+	private readonly paths: JovaRequiredPathSettings;
+
+	constructor(options: Options) {
+		this.paths = options.paths;
+		this.logger = new Logger({ ...options.logger, prefix: 'ApplicationRegistry' });
+		this.loggerOptions = options.logger;
 	}
 
-	/**
-	 * @name Options
-	 * @description Decorative options for Handlers, customise the behaviour of a specific handler.
-	 *
-	 * __Usage of decorators in `jova.js` is unfinished and enabling/disabling handlers is currently only available!__
-	 *
-	 * @public
-	 * @interface
-	 */
-	export interface Options {
-		/**
-		 * @name type
-		 * @description
-		 * The type of handler this is, all handlers default to
-		 * ```typescript
-		 * Handlers.Type.AUTO
-		 * ```
-		 *
-		 * This option does not do anything in `jova.js` as of current (1.6.2) and will be updated to have functionality in a future version.
-		 *
-		 * __Usage of decorators in `jova.js` is unfinished and enabling/disabling handlers is currently only available!__
-		 *
-		 * @public
-		 * @type Handlers.Type
-		 */
-		type?: Type;
-		/**
-		 * @name enabled
-		 * @description
-		 * Enable or disable a handler so it does not get ran or processed at runtime.
-		 *
-		 * __Usage of decorators in `jova.js` is unfinished and enabling/disabling handlers is currently only available!__
-		 * @default true
-		 * @type boolean
-		 * @public
-		 */
-		enabled?: boolean;
+	private getFiles(dir: string, regex: RegExp): Array<URL> {
+		if (!fs.existsSync(dir)) return [];
+
+		let results: Array<URL> = [];
+
+		const list = fs.readdirSync(dir);
+
+		list.forEach((file) => {
+			const filePath = path.join(dir, file);
+			const stat = fs.statSync(filePath);
+
+			if (stat && stat.isDirectory()) results = results.concat(this.getFiles(filePath, regex));
+			else if (regex.test(file)) results.push(pathToFileURL(filePath));
+		});
+
+		return results;
 	}
 
-	interface HandlerOptions<T> {
-		cwd: string;
-		type: string;
-		controllerType: new (...args: any[]) => T;
-		application: Express;
-		registry: Registry;
-		logger: LoggerOptions;
-	}
-
-	export class Handler<T> {
-		private readonly cwd: string;
-		private readonly logger: LoggerType;
-		private readonly type: string;
-		private readonly controllerType: new (...args: any[]) => T;
-		private readonly application: Express;
-		private readonly registry: Registry;
-		private readonly loggerOptions: LoggerOptions;
-
-		private deploy!: (..._args: any[]) => Promise<ApplicationStats | undefined>;
-		private handlers: Array<string> = [];
-
-		constructor(options: HandlerOptions<T>) {
-			this.cwd = options.cwd;
-			this.type = options.type;
-			this.controllerType = options.controllerType;
-			this.application = options.application;
-			this.registry = options.registry;
-			this.logger = new Logger({ ...options.logger, prefix: 'ApplicationRegistry' });
-			this.loggerOptions = options.logger;
-		}
-
-		public async setupDeployScript() {
-			const functions = this.getFiles(
+	public async register() {
+		const Functions = await Promise.all(
+			this.getFiles(
 				path.resolve(import.meta.dirname, resolvePath('functions')),
 				/^(?!.*\.d\.(ts|mts|cts)$).*\.(js|jsx|ts|tsx|mjs|mts|cjs|cts)$/
-			);
+			).map(async (fp) => {
+				const module = await import(fp.href);
+				const info = path.parse(fileURLToPath(fp));
 
-			const Imports = functions.map(async (fp) => ({
-				module: await import(`file://${fp}`),
-				name: path.parse(fp).name,
-			}));
-
-			const Modules = await Promise.all(Imports);
-			const Module = Modules.find(
-				(m) => m.name === this.type.toLowerCase() && m.module[`${this.type}RegisterFunction`]
-			);
-
-			if (!Module) {
-				this.logger.warn(
-					`Unable to load function for event handler, type ${this.type} is not a valid function handler will be substituted for a blank handler.`
-				);
-				this.deploy = (..._args: any[]): Promise<any | void> | any | void => {
-					return;
-				};
-			} else {
-				const Handler = Module.module[`${this.type}RegisterFunction`] as new (
-					...args: any[]
+				const RegisterFunction = module[`${info.name}RegisterFunction`] as new (
+					loggerOptions: LoggerOptions
 				) => HandlerFunction;
 
-				this.deploy = new Handler(this.application, this.registry, this.loggerOptions).run;
-			}
+				return {
+					function: new RegisterFunction(this.loggerOptions),
+					name: info.name.toLocaleLowerCase(),
+				};
+			})
+		);
 
-			return this;
-		}
-
-		public loadHandlers(handlerType: string): this {
-			const handlerDirectoryPath = path.resolve(this.cwd, resolvePath(handlerType));
-
-			if (!fs.existsSync(handlerDirectoryPath)) return this;
-			this.handlers = this.getFiles(
-				handlerDirectoryPath,
+		const handlers: Array<URL> = [
+			...this.getFiles(
+				path.resolve(container.cwd, this.paths.routes),
 				/^(?!.*\.d\.(ts|mts|cts)$).*\.(js|jsx|ts|tsx|mjs|mts|cjs|cts)$/
-			);
+			),
+			...this.getFiles(
+				path.resolve(container.cwd, this.paths.events),
+				/^(?!.*\.d\.(ts|mts|cts)$).*\.(js|jsx|ts|tsx|mjs|mts|cjs|cts)$/
+			),
+			...this.getFiles(
+				path.resolve(container.cwd, this.paths.middlewares),
+				/^(?!.*\.d\.(ts|mts|cts)$).*\.(js|jsx|ts|tsx|mjs|mts|cjs|cts)$/
+			),
+		];
 
-			return this;
-		}
+		if (handlers.length === 0) return this.logger.info('No handlers found.');
 
-		private getFiles(dir: string, regex: RegExp): Array<string> {
-			let results: Array<string> = [];
+		this.logger.info(`Registering ${handlers.length} handlers...`);
+		const RegisterStopwatch = new Stopwatch();
+		let Registered: number = 0;
+		let Failed: number = 0;
 
-			const list = fs.readdirSync(dir);
+		const Imports: Array<RegisterFunctionContext> = (
+			await Promise.all(
+				handlers.map(async (url) => {
+					const module = await import(url.href);
 
-			list.forEach((file) => {
-				const filePath = path.join(dir, file);
-				const stat = fs.statSync(filePath);
+					let defaultExport: HandlerController | any | undefined = module.default ?? undefined;
+					let firstExport: HandlerController | any | undefined = Object.values(module)[0] ?? undefined;
 
-				if (stat && stat.isDirectory()) results = results.concat(this.getFiles(filePath, regex));
-				else if (regex.test(file)) results.push(filePath);
-			});
+					if (typeof firstExport !== 'function') firstExport = undefined;
+					if (typeof defaultExport !== 'function') defaultExport = undefined;
 
-			return results;
-		}
+					const targetExport: HandlerController | undefined = defaultExport ?? firstExport;
 
-		public async register(type: string) {
-			if (this.handlers.length === 0) return this.logger.info(`Skipping ${type}...`);
+					const decorators = targetExport
+						? getHandlerOptions(targetExport)
+						: ({ type: HandlerType.AUTO, enabled: true, handler: undefined } as HandlerOptions);
 
-			this.logger.info(`Registering ${type}...`);
-			const RegisterStopwatch = new Stopwatch();
-			let Registered: number = 0;
-			let Ignored: number = 0;
+					const definedExport: HandlerController | undefined =
+						decorators.type !== HandlerType.AUTO ? decorators.handler : undefined;
 
-			const Imports = this.handlers.map(async (path) => ({
-				module: await import(`file://${path}`),
-				clock: new Stopwatch(),
-			}));
+					const name = path.parse(fileURLToPath(url)).name.toLocaleLowerCase();
 
-			const Modules = (await Promise.all(Imports))
-				.filter((module) => module.module[this.type])
-				.flatMap((module) => ({ module: module.module[this.type], clock: module.clock }))
-				.filter((exported) => typeof exported.module === 'function');
+					return {
+						name: name,
+						import: definedExport ?? targetExport ?? undefined,
+						clock: new Stopwatch(),
+						decorators: decorators,
+						url: url,
+						data: path.parse(fileURLToPath(url)),
+						path: fileURLToPath(url),
+					};
+				})
+			)
+		)
+			.filter((i) => i.decorators.enabled === true)
+			.filter((i) => i.import !== undefined);
 
-			for await (const [index, Module] of Modules.entries()) {
-				try {
-					const options = getHandlerOptions(Module.module);
-					//this.logger.info(options);
+		if (handlers.length !== Imports.length)
+			this.logger.warn('Some handlers were omitted from queueing due to being explicitly disabled.');
+		this.logger.info(`Queued ${Imports.length} handler(s) for deployment!`);
 
-					if (options)
-						if (options.enabled === false) {
-							Ignored += 1;
-							continue;
-						}
+		for await (const [index, Module] of Imports.entries()) {
+			try {
+				const Handler = new Module.import!(this.loggerOptions);
+				const deployer = Functions.find((f) => f.name === Module.decorators.type || f.name === Handler.type);
 
-					type ControllerType = typeof this.controllerType;
-					const Controller = Module.module as new (...args: any[]) => ControllerType;
-
-					const Handler = new Controller(this.application, this.registry, this.loggerOptions);
-
-					const stats = await this.deploy(Handler, Module.clock);
-
-					if (!stats) {
-						this.logger.warn(
-							`Application ${type} handler at index ${index} was not deployed due to a missing entry class.`
-						);
-						continue;
-					}
-
-					this.logger.info(`${stats.message}`);
-					Registered += 1;
-				} catch (error) {
+				if (!deployer) {
+					Module.clock.stop();
+					Failed += 1;
 					this.logger.warn(
-						`Application ${type} handler at index ${index} was not deployed due to process error:`,
-						error
+						`Application handler at index ${index} was not deployed due to a missing register function.`
 					);
+					continue;
+				} else
+					this.logger.info(
+						`Found deployment ${deployer.name} handler from definition ${Module.decorators.type ?? Handler.type}`
+					);
+
+				const stats = await deployer.function.run(Handler, Module);
+
+				if (!stats) {
+					Module.clock.stop();
+					Failed += 1;
+					this.logger.warn(
+						`Application handler at index ${index} was not deployed due to a missing entry class.`
+					);
+					continue;
 				}
+
+				this.logger.info(stats.message);
+				Registered += 1;
+			} catch (error) {
+				Failed += 1;
+				this.logger.warn(
+					`Application handler at index ${index} was not deployed due to process error, failed in ${Module.clock.stop().toString()}\n`,
+					error
+				);
 			}
-
-			this.logger.info(`Registered ${Registered} ${type} in ${RegisterStopwatch.stop().toString()}`);
-			if (this.handlers.length - Ignored !== Registered)
-				this.logger.warn(
-					`Some ${type.toLowerCase()} were not registered due to errors or missing content in the registering process.`
-				);
-
-			if (Ignored !== 0)
-				this.logger.warn(
-					`${Ignored} ${type.toLowerCase()} were disabled via decorators and were not registered.`
-				);
 		}
+
+		this.logger.info(`Registered ${Registered} handlers in ${RegisterStopwatch.stop().toString()}`);
+		if (handlers.length - Failed !== Registered)
+			this.logger.warn(
+				'Some handlers were not registered due to errors or missing content in the registering process.'
+			);
 	}
 }
