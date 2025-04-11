@@ -1,5 +1,6 @@
 import { Logger } from '@bracketed/logger';
 import express from 'express';
+import type { Options } from 'express-rate-limit';
 import { EventEmitter } from 'node:events';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -23,7 +24,6 @@ import {
 	type JovaSettings,
 	JovaSettingsOptions,
 	type LoggerOptions,
-	type RatelimitConfig,
 	type ServeStaticConfig,
 } from './types/index';
 
@@ -49,7 +49,7 @@ export class JovaServer extends EventEmitter {
 		routes: 'routes,',
 	};
 	private readonly middlewares: Array<ApplicationRequestHandler> | undefined;
-	private readonly ratelimitConf: RatelimitConfig | undefined;
+	private readonly ratelimitConf: Partial<Options> | undefined;
 	private readonly settings: JovaSettings | undefined;
 	private readonly customOptions: Array<JovaCustomOption> | undefined;
 	private readonly corsOptions: CorsOptions | undefined;

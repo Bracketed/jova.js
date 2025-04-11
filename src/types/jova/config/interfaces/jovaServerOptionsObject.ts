@@ -1,5 +1,6 @@
 import type serveStatic from 'serve-static';
 
+import type { Options } from 'express-rate-limit';
 import type {
 	ApplicationResponse,
 	CorsOptions,
@@ -8,7 +9,6 @@ import type {
 	JovaPathSettings,
 	JovaSettings,
 	LoggerOptions,
-	RatelimitConfig,
 	ApplicationRequestHandler as RequestHandler,
 } from '../../../index';
 
@@ -71,21 +71,9 @@ export interface JovaServerOptions {
 	 * @name ratelimiting
 	 * @description The ratelimit config for a Jova Server Instance.
 	 * @default undefined // (Disabled by default)
-	 * @example
-	 * // Config types for the ratelimiting feature for Jova
-	 * interface LimitConfig {
-	 *		refreshTime: number;
-	 *		requestLimitAmount: number | Middleware;
-	 *		requestLimitMessage?: string;
-	 *		requestLimitCode?: string;
-	 *		requestLimitHandler?: Middleware;
-	 *		countFailedRequests?: boolean;
-	 *		allowOnInternalError?: boolean;
-	 *		ratelimitDatabase?: string | RatelimitDatabaseConfig;
-	 * }
-	 * @type RatelimitConfig
+	 * @type Options
 	 */
-	ratelimiting?: RatelimitConfig;
+	ratelimiting?: Partial<Options>;
 	/**
 	 * @name settings
 	 * @description Custom settings from express to be enabled or disabled upon the server starting.

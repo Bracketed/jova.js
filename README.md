@@ -16,12 +16,12 @@ Documentation & Guide available at <https://jova.js.org>, **the majority of the 
 <h2>What is this?</h2>
 
 \- A Framework package built for [Express.js](https://www.npmjs.com/package/express) that uses [@bracketed/logger](https://www.npmjs.com/package/@bracketed/logger) for logging.
-\- It utilises a range of packages to bring you the best experience! Some of these are, [ioRedis](https://www.npmjs.com/package/ioredis) for Database-Based ratelimit buckets, [CORS](https://www.npmjs.com/package/cors) for CORS middleware and a few minor packages that can be found in the dependencies tab for small tasks in Jova.js.
+\- It utilises a range of packages to bring you the best experience!
 
 <h2>Summary (Directory)</h2>
 
 - [Installation](#Installation)
-    <!--truncate-->
+      <!--truncate-->
     - [Yarn](#YarnInstall)
     - [Npm](#NpmInstall)
 - [Usage](#Usage)
