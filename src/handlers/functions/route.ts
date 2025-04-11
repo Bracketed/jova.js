@@ -3,7 +3,7 @@ import { container } from '../../shared/index';
 import type { RegisterFunctionContext, RouteController } from '../../types/index';
 import { HandlerFunction } from '../BaseHandlerFunction';
 
-export class RouteRegisterFunction extends HandlerFunction {
+export class RegisterFunction extends HandlerFunction {
 	public override async run(Module: RouteController, Context: RegisterFunctionContext) {
 		const RouteInformation = Module.registerApplicationRoutes(container.registry!).getApplicationRoute();
 

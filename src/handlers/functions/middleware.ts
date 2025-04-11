@@ -2,7 +2,7 @@ import { container } from '../../shared/index';
 import type { MiddlewareController, RegisterFunctionContext } from '../../types/index';
 import { HandlerFunction } from '../BaseHandlerFunction';
 
-export class MiddlewareRegisterFunction extends HandlerFunction {
+export class RegisterFunction extends HandlerFunction {
 	public override async run(Middleware: MiddlewareController, Context: RegisterFunctionContext) {
 		const MiddlewareConfig = Middleware.setApplicationMiddlewareOptions();
 		const MiddlewareInfo = container.registry!.registerApplicationMiddleware((middleware) =>

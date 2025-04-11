@@ -62,7 +62,7 @@ export class Handlers {
 				const module = await import(fp.href);
 				const info = path.parse(fileURLToPath(fp));
 
-				const RegisterFunction = module[`${info.name}RegisterFunction`] as new (
+				const RegisterFunction = module.RegisterFunction as new (
 					loggerOptions: LoggerOptions
 				) => HandlerFunction;
 
