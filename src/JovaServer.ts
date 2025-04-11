@@ -123,6 +123,8 @@ export class JovaServer extends EventEmitter {
 			container.logger?.fatal('Unhandled Rejection:', reason);
 			this.release(ApplicationEvent.ERROR, reason);
 		});
+
+		container.jova = this;
 	}
 
 	private release(Event: ApplicationEvent, ...args: any[]) {
