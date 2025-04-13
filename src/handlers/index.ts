@@ -75,15 +75,15 @@ export class Handlers {
 
 		const handlers: Array<URL> = [
 			...this.getFiles(
-				path.resolve(container.cwd, this.paths.routes),
-				/^(?!.*\.d\.(ts|mts|cts)$).*\.(js|jsx|ts|tsx|mjs|mts|cjs|cts)$/
-			),
-			...this.getFiles(
 				path.resolve(container.cwd, this.paths.events),
 				/^(?!.*\.d\.(ts|mts|cts)$).*\.(js|jsx|ts|tsx|mjs|mts|cjs|cts)$/
 			),
 			...this.getFiles(
 				path.resolve(container.cwd, this.paths.middlewares),
+				/^(?!.*\.d\.(ts|mts|cts)$).*\.(js|jsx|ts|tsx|mjs|mts|cjs|cts)$/
+			),
+			...this.getFiles(
+				path.resolve(container.cwd, this.paths.routes),
 				/^(?!.*\.d\.(ts|mts|cts)$).*\.(js|jsx|ts|tsx|mjs|mts|cjs|cts)$/
 			),
 		];
