@@ -2,7 +2,7 @@ import type { Logger } from '@bracketed/logger';
 import express, { type Express } from 'express';
 import type { JovaServer } from '../JovaServer';
 import type { ApplicationRegistry } from '../types/index';
-import { parseRootData } from '../utilities/path';
+import { getProjectRoot, parseRootData } from '../utilities/path';
 
 /**
  * @name Container
@@ -62,6 +62,15 @@ export interface Container {
 	 */
 	cwd: string;
 	/**
+	 * @name root
+	 * @description
+	 * The Root working Directory of the Jova Application
+	 *
+	 * @public
+	 * @property
+	 */
+	root: string;
+	/**
 	 * @name registry
 	 * @description
 	 * The Jova Registry
@@ -111,4 +120,5 @@ export interface Container {
 export const container: Container = {
 	express: express(),
 	cwd: parseRootData(),
+	root: getProjectRoot(),
 };

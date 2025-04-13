@@ -11,7 +11,6 @@ import { container } from './shared/Container';
 
 import { loadResourceConfigOptions } from './utilities/loadRC';
 import { extend } from './utilities/middlewares/Extend';
-import { getProjectRoot } from './utilities/path';
 import * as tcp from './utilities/port-in-use';
 
 import {
@@ -53,13 +52,12 @@ export class JovaServer extends EventEmitter {
 	private readonly settings: JovaSettings | undefined;
 	private readonly customOptions: Array<JovaCustomOption> | undefined;
 	private readonly corsOptions: CorsOptions | undefined;
-	private readonly root: string = getProjectRoot();
 	private readonly loggerOptions: LoggerOptions;
 
 	constructor(options: JovaServerOptions = {}) {
 		super();
 
-		if (!this.root)
+		if (!container.root)
 			throw new Error('Unable to find project root, are you executing Jova.js from the correct file/directory?', {
 				cause: 'Unable to find package.json',
 			});
@@ -96,7 +94,7 @@ export class JovaServer extends EventEmitter {
 		const staticConfiguredDir = options.static?.dir || 'static';
 		const staticConfiguredOptions = options.static?.options || ({} satisfies ServeStaticConfig);
 		const staticDir = path.resolve(container.cwd, staticConfiguredDir);
-		const rootStaticDir = path.resolve(this.root, staticConfiguredDir);
+		const rootStaticDir = path.resolve(container.root, staticConfiguredDir);
 
 		if (fs.existsSync(staticDir)) {
 			const serveStatic = express.static(staticDir, staticConfiguredOptions as any);
