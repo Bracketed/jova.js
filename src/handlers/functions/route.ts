@@ -17,7 +17,13 @@ export class RegisterFunction extends HandlerFunction {
 		const TrimmedCWD: string = Context.path.slice(container.cwd.length + '\\routes'.length).replace(/^\/+/, '');
 		const TrimmedDIR: string = path.dirname(TrimmedCWD).replace(/\\/g, '/');
 
-		const params = RouteInformation.params.map((p) => `:${p}`).join('/');
+		const params = RouteInformation.params
+			.map((p) => {
+				const isOptional = p.endsWith('?');
+				const paramName = p.replace(/\?$/, '');
+				return `:${paramName}${isOptional ? '?' : ''}`;
+			})
+			.join('/');
 		const fixedParams = params.length !== 0 ? '/' + params : '';
 		const name = Context.name === 'index' ? '' : Context.name;
 		const routePath =

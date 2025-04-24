@@ -2,7 +2,7 @@
 	"name": "@bracketed/jova.js",
 	"description": "Jova.js - An advanced Express.js framework by Bracketed Softworks!",
 	"packageManager": "yarn@4.9.0",
-	"version": "2.0.9",
+	"version": "2.0.10",
 	"publishConfig": {
 		"access": "public"
 	},
@@ -78,10 +78,10 @@
 	},
 	"devDependencies": {
 		"@bracketed/typescript-config": "^4.4.0",
-		"@swc/core": "^1.11.18",
+		"@swc/core": "^1.11.22",
 		"@types/cors": "^2.8.17",
 		"@types/express": "^5.0.1",
-		"@types/node": "^22.14.0",
+		"@types/node": "^22.15.0",
 		"esbuild-plugin-file-path-extensions": "^2.1.4",
 		"esbuild-plugin-version-injector": "^1.2.1",
 		"prettier": "^3.5.3",
@@ -92,7 +92,7 @@
 		"@bracketed/logger": "^1.0.12",
 		"@sapphire/stopwatch": "^1.5.4",
 		"cors": "^2.8.5",
-		"esbuild": "^0.25.2",
+		"esbuild": "^0.25.3",
 		"express": "^5.1.0",
 		"express-rate-limit": "^7.5.0",
 		"express-serve-static-core": "^0.1.1",
