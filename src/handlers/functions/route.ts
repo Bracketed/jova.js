@@ -21,27 +21,21 @@ export class RegisterFunction extends HandlerFunction {
 			.map((p) => {
 				const isOptional = p.endsWith('?');
 				const paramName = p.replace(/\?$/, '');
-				return `:${paramName}${isOptional ? '?' : ''}`;
+				const clean = paramName.replace(/^:/, '');
+
+				return `:${clean}${isOptional ? '?' : ''}`;
 			})
 			.join('/');
 		const fixedParams = params.length !== 0 ? '/' + params : '';
 		const name = Context.name === 'index' ? '' : Context.name;
+		const segment = RouteInformation.route
+			? RouteInformation.route === 'index' || RouteInformation.route === '' || RouteInformation.route === '/'
+				? ''
+				: RouteInformation.route
+			: name;
 		const routePath =
 			'/' +
-			(
-				TrimmedDIR +
-				'/' +
-				(RouteInformation.route
-					? RouteInformation.route === 'index' ||
-						RouteInformation.route === '' ||
-						RouteInformation.route === '/'
-						? ''
-						: RouteInformation.route
-					: name
-				)
-					.toString()
-					.replace(/\\/g, '/')
-			)
+			(TrimmedDIR + '/' + segment.toString().replace(/\\/g, '/'))
 				.replace(/\/+/g, '/')
 				.replace(/^\/+/, '')
 				.replace(/\/+$/, '');

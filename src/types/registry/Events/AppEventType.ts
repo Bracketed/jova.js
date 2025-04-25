@@ -17,6 +17,12 @@ export class ApplicationListener {
 			configurable: false,
 		});
 
+		Object.defineProperty(this, 'setType', {
+			value: this.setType,
+			writable: false,
+			configurable: false,
+		});
+
 		Object.defineProperty(this, 'setHandler', {
 			value: this.setHandler,
 			writable: false,
@@ -32,17 +38,30 @@ export class ApplicationListener {
 
 	/**
 	 * @name setEventType
+	 * @deprecated Use `event.setType()` instead.
+	 */
+	public setEventType(
+		type: ApplicationEvent | 'mount' | 'error' | 'any' | 'route' | 'ready'
+	): Omit<this, 'setType' | 'setEventType'> {
+		this.type = type;
+		return this as Omit<this, 'setType' | 'setEventType'>;
+	}
+
+	/**
+	 * @name setType
 	 * @description Set the event type for the event listener.
 	 *
 	 * @public
 	 * @function
 	 * @param type
-	 * @example this.setEventType(ApplicationEvent.ALL)
+	 * @example this.setType(ApplicationEvent.ALL)
 	 * @default ApplicationEvent.ALL
 	 */
-	public setEventType(type: ApplicationEvent | 'mount' | 'error' | 'any' | 'route' | 'ready'): this {
+	public setType(
+		type: ApplicationEvent | 'mount' | 'error' | 'any' | 'route' | 'ready'
+	): Omit<this, 'setType' | 'setEventType'> {
 		this.type = type;
-		return this;
+		return this as Omit<this, 'setType' | 'setEventType'>;
 	}
 
 	/**
@@ -54,9 +73,9 @@ export class ApplicationListener {
 	 * @param handler
 	 * @example this.setHandler(this.run)
 	 */
-	public setHandler(handler: EventHandler): this {
+	public setHandler(handler: EventHandler): Omit<this, 'setHandler'> {
 		this.handler = handler;
-		return this;
+		return this as Omit<this, 'setHandler'>;
 	}
 
 	/**

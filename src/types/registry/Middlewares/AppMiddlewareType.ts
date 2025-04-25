@@ -27,6 +27,12 @@ export class ApplicationMiddleware {
 			configurable: false,
 		});
 
+		Object.defineProperty(this, 'setName', {
+			value: this.setName,
+			writable: false,
+			configurable: false,
+		});
+
 		Object.defineProperty(this, 'setHandler', {
 			value: this.setHandler,
 			writable: false,
@@ -48,18 +54,28 @@ export class ApplicationMiddleware {
 
 	/**
 	 * @name setMiddlewareName()
+	 * @deprecated Use `middleware.setName()` instead.
+	 */
+	public setMiddlewareName(name: string | undefined): Omit<this, 'setName' | 'setMiddlewareName'> {
+		if (name === '' || !name) return this;
+		this.middleware = name;
+		return this as Omit<this, 'setName' | 'setMiddlewareName'>;
+	}
+
+	/**
+	 * @name setName()
 	 * @description Set the name of your middleware, this is used to enable the middleware in certain routes.
 	 *
 	 * @public
 	 * @param name
 	 * @default undefined // If no name is set or is set to "", runsOnAllRoutes will default to true and make it a global middleware.
-	 * @example this.setMiddlewareName('authorisationMiddleware')
+	 * @example this.setName('authorisationMiddleware')
 	 * @function
 	 */
-	public setMiddlewareName(name: string | undefined): this {
+	public setName(name: string | undefined): Omit<this, 'setName' | 'setMiddlewareName'> {
 		if (name === '' || !name) return this;
 		this.middleware = name;
-		return this;
+		return this as Omit<this, 'setName' | 'setMiddlewareName'>;
 	}
 
 	/**
