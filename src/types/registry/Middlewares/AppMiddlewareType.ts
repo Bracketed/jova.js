@@ -56,10 +56,10 @@ export class ApplicationMiddleware {
 	 * @name setMiddlewareName()
 	 * @deprecated Use `middleware.setName()` instead.
 	 */
-	public setMiddlewareName(name: string | undefined): Omit<this, 'setName' | 'setMiddlewareName'> {
+	public setMiddlewareName(name: string | undefined): this {
 		if (name === '' || !name) return this;
 		this.middleware = name;
-		return this as Omit<this, 'setName' | 'setMiddlewareName'>;
+		return this;
 	}
 
 	/**
@@ -72,10 +72,10 @@ export class ApplicationMiddleware {
 	 * @example this.setName('authorisationMiddleware')
 	 * @function
 	 */
-	public setName(name: string | undefined): Omit<this, 'setName' | 'setMiddlewareName'> {
+	public setName(name: string | undefined): this {
 		if (name === '' || !name) return this;
 		this.middleware = name;
-		return this as Omit<this, 'setName' | 'setMiddlewareName'>;
+		return this;
 	}
 
 	/**

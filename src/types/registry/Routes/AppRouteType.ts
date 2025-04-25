@@ -128,9 +128,9 @@ export class ApplicationRoute {
 	 * @name setRouteName()
 	 * @deprecated Use `setRoute()` instead.
 	 */
-	public setRouteName(route: ApplicationPathParameters): Omit<this, 'setRoute' | 'setRouteName' | 'setPath'> {
+	public setRouteName(route: ApplicationPathParameters): this {
 		this.route = route;
-		return this as Omit<this, 'setRoute' | 'setRouteName' | 'setPath'>;
+		return this;
 	}
 
 	/**
@@ -146,9 +146,9 @@ export class ApplicationRoute {
 	 * @example this.setRoute('/api/astronauts')
 	 * @function
 	 */
-	public setRoute(route: ApplicationPathParameters): Omit<this, 'setRoute' | 'setRouteName' | 'setPath'> {
+	public setRoute(route: ApplicationPathParameters): this {
 		this.route = route;
-		return this as Omit<this, 'setRoute' | 'setRouteName' | 'setPath'>;
+		return this;
 	}
 
 	/**
@@ -165,8 +165,8 @@ export class ApplicationRoute {
 	 * @function
 	 * @alias setRoute()
 	 */
-	public setPath(route: ApplicationPathParameters): Omit<this, 'setRoute' | 'setRouteName' | 'setPath'> {
-		return this.setRoute(route) as Omit<this, 'setRoute' | 'setRouteName' | 'setPath'>;
+	public setPath(route: ApplicationPathParameters): this {
+		return this.setRoute(route);
 	}
 
 	/**
@@ -180,9 +180,9 @@ export class ApplicationRoute {
 	 * @example this.allowHeaderExposeInMiddleware(true)
 	 * @function
 	 */
-	public allowHeaderExposeInMiddleware(allowed: boolean): Omit<this, 'allowHeaderExposeInMiddleware'> {
+	public allowHeaderExposeInMiddleware(allowed: boolean): this {
 		this.exposeHeadersInMiddleware = allowed;
-		return this as Omit<this, 'allowHeaderExposeInMiddleware'>;
+		return this;
 	}
 
 	/**
@@ -242,11 +242,9 @@ export class ApplicationRoute {
 	 * @example this.setMethod(Methods.GET)
 	 * @function
 	 */
-	public setMethod(
-		method: Methods | 'options' | 'head' | 'put' | 'all' | 'delete' | 'post' | 'get'
-	): Omit<this, 'setMethod'> {
+	public setMethod(method: Methods | 'options' | 'head' | 'put' | 'all' | 'delete' | 'post' | 'get'): this {
 		this.method = method;
-		return this as Omit<this, 'setMethod'>;
+		return this;
 	}
 
 	/**

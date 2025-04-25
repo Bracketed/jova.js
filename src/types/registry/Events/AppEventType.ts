@@ -40,11 +40,9 @@ export class ApplicationListener {
 	 * @name setEventType
 	 * @deprecated Use `event.setType()` instead.
 	 */
-	public setEventType(
-		type: ApplicationEvent | 'mount' | 'error' | 'any' | 'route' | 'ready'
-	): Omit<this, 'setType' | 'setEventType'> {
+	public setEventType(type: ApplicationEvent | 'mount' | 'error' | 'any' | 'route' | 'ready'): this {
 		this.type = type;
-		return this as Omit<this, 'setType' | 'setEventType'>;
+		return this;
 	}
 
 	/**
@@ -57,11 +55,9 @@ export class ApplicationListener {
 	 * @example this.setType(ApplicationEvent.ALL)
 	 * @default ApplicationEvent.ALL
 	 */
-	public setType(
-		type: ApplicationEvent | 'mount' | 'error' | 'any' | 'route' | 'ready'
-	): Omit<this, 'setType' | 'setEventType'> {
+	public setType(type: ApplicationEvent | 'mount' | 'error' | 'any' | 'route' | 'ready'): this {
 		this.type = type;
-		return this as Omit<this, 'setType' | 'setEventType'>;
+		return this;
 	}
 
 	/**
@@ -73,9 +69,9 @@ export class ApplicationListener {
 	 * @param handler
 	 * @example this.setHandler(this.run)
 	 */
-	public setHandler(handler: EventHandler): Omit<this, 'setHandler'> {
+	public setHandler(handler: EventHandler): this {
 		this.handler = handler;
-		return this as Omit<this, 'setHandler'>;
+		return this;
 	}
 
 	/**
