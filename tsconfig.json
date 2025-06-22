@@ -1,5 +1,5 @@
 {
-	"extends": ["@bracketed/typescript-config", "@bracketed/typescript-config/extra-strict"],
+	"extends": ["@bracketed/typescript-config/tsconfig", "@bracketed/typescript-config/extra-strict"],
 	"compileOnSave": true,
 	"compilerOptions": {
 		"noEmit": true,

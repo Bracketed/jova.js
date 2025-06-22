@@ -2,7 +2,7 @@
 	"name": "@bracketed/jova.js",
 	"description": "Jova.js - An advanced Express.js framework by Bracketed Softworks!",
 	"packageManager": "yarn@4.9.0",
-	"version": "2.0.12",
+	"version": "2.0.13",
 	"publishConfig": {
 		"access": "public"
 	},
@@ -10,7 +10,7 @@
 	"author": "@bracketed",
 	"main": "lib/cjs/index.cjs",
 	"module": "lib/esm/index.mjs",
-	"types": "lib/cjs/index.d.cts",
+	"types": "lib/cjs/index.d.ts",
 	"exports": {
 		".": {
 			"import": {
@@ -18,7 +18,7 @@
 				"default": "./lib/esm/index.mjs"
 			},
 			"require": {
-				"types": "./lib/cjs/index.d.cts",
+				"types": "./lib/cjs/index.d.ts",
 				"default": "./lib/cjs/index.cjs"
 			}
 		},
@@ -28,7 +28,7 @@
 				"default": "./lib/esm/types/index.mjs"
 			},
 			"require": {
-				"types": "./lib/cjs/types/index.d.cts",
+				"types": "./lib/cjs/types/index.d.ts",
 				"default": "./lib/cjs/types/index.cjs"
 			}
 		},
@@ -38,7 +38,7 @@
 				"default": "./lib/esm/decorators/index.mjs"
 			},
 			"require": {
-				"types": "./lib/cjs/decorators/index.d.cts",
+				"types": "./lib/cjs/decorators/index.d.ts",
 				"default": "./lib/cjs/decorators/index.cjs"
 			}
 		}
@@ -74,31 +74,31 @@
 	],
 	"scripts": {
 		"build": "tsup",
-		"update": "yarn upgrade-interactive"
+		"update": "yarn upgrade-interactive",
+		"typecheck": "tsc --noEmit"
 	},
 	"devDependencies": {
-		"@bracketed/typescript-config": "^4.4.0",
-		"@swc/core": "^1.11.22",
-		"@types/cors": "^2.8.17",
-		"@types/express": "^5.0.1",
-		"@types/node": "^22.15.0",
-		"esbuild-plugin-file-path-extensions": "^2.1.4",
-		"esbuild-plugin-version-injector": "^1.2.1",
+		"@bracketed/tsup-configuration": "^1.0.5",
+		"@bracketed/typescript-config": "^4.7.1",
+		"@swc/core": "^1.12.5",
+		"@types/cors": "^2.8.19",
+		"@types/express": "^5.0.3",
+		"@types/node": "^24.0.3",
 		"prettier": "^3.5.3",
-		"tsup": "^8.4.0",
+		"tsup": "^8.5.0",
 		"typescript": "^5.8.3"
 	},
 	"dependencies": {
-		"@bracketed/logger": "^1.0.12",
+		"@bracketed/logger": "^1.1.1",
 		"@sapphire/stopwatch": "^1.5.4",
 		"cors": "^2.8.5",
-		"esbuild": "^0.25.3",
+		"esbuild": "^0.25.5",
 		"express": "^5.1.0",
-		"express-rate-limit": "^7.5.0",
+		"express-rate-limit": "^7.5.1",
 		"express-serve-static-core": "^0.1.1",
 		"is2": "^2.0.9",
 		"serve-static": "^2.2.0",
-		"yaml": "^2.7.1"
+		"yaml": "^2.8.0"
 	},
 	"engines": {
 		"node": ">=18"
