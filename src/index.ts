@@ -8,9 +8,11 @@ import * as express from 'express';
 
 export { Router } from 'express';
 
+export * from './decorators/index';
 export * from './handlers/index';
 export * from './JovaServer';
 export * from './shared/index';
+export * from './types/index';
 
 /**
  * @module Core
