@@ -40,5 +40,5 @@
 		"strict": true,
 		"useDefineForClassFields": true
 	},
-	"exclude": ["lib", "node_modules", "docs", "test", "tsup.config.ts"]
+	"exclude": ["lib", "node_modules", "docs", "test", "tsup.config.ts", "plugins"]
 }

@@ -78,13 +78,14 @@
 		"typecheck": "tsc --noEmit"
 	},
 	"devDependencies": {
+		"@bracketed/prettier-configuration": "^1.0.0",
 		"@bracketed/tsup-configuration": "^1.0.5",
 		"@bracketed/typescript-config": "^4.7.1",
-		"@swc/core": "^1.12.5",
+		"@swc/core": "^1.13.1",
 		"@types/cors": "^2.8.19",
 		"@types/express": "^5.0.3",
-		"@types/node": "^24.0.3",
-		"prettier": "^3.5.3",
+		"@types/node": "^24.1.0",
+		"prettier": "^3.6.2",
 		"tsup": "^8.5.0",
 		"typescript": "^5.8.3"
 	},
@@ -92,9 +93,9 @@
 		"@bracketed/logger": "^1.1.1",
 		"@sapphire/stopwatch": "^1.5.4",
 		"cors": "^2.8.5",
-		"esbuild": "^0.25.5",
+		"esbuild": "^0.25.8",
 		"express": "^5.1.0",
-		"express-rate-limit": "^7.5.1",
+		"express-rate-limit": "^8.0.1",
 		"express-serve-static-core": "^0.1.1",
 		"is2": "^2.0.9",
 		"serve-static": "^2.2.0",
@@ -102,5 +103,6 @@
 	},
 	"engines": {
 		"node": ">=18"
-	}
+	},
+	"prettier": "@bracketed/prettier-configuration"
 }

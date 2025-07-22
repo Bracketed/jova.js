@@ -1,0 +1,7 @@
+{
+	"extends": ["@bracketed/typescript-config/tsconfig", "@bracketed/typescript-config/extra-strict"],
+	"compilerOptions": {
+		"noEmit": true,
+		"incremental": true
+	}
+}

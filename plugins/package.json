@@ -1,0 +1,33 @@
+{
+	"name": "@bracketed/jova-plugins",
+	"description": "Jova.js official plugins repository.",
+	"private": true,
+	"packageManager": "yarn@4.9.0",
+	"license": "Apache-2.0",
+	"author": "@bracketed",
+	"workspaces": [
+		"packages/*"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Bracketed/jova.js"
+	},
+	"homepage": "https://jova.js.org/",
+	"bugs": {
+		"url": "https://github.com/bracketed/jova.js/issues"
+	},
+	"scripts": {
+		"update": "yarn upgrade-interactive",
+		"typecheck": "tsc"
+	},
+	"devDependencies": {
+		"@bracketed/prettier-configuration": "^1.0.0",
+		"@bracketed/typescript-config": "^4.7.1",
+		"prettier": "^3.6.2",
+		"typescript": "^5.8.3"
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"prettier": "@bracketed/prettier-configuration"
+}
